@@ -38,7 +38,7 @@
 
 a.&gt; **Create the Repo:** We will need to setup a private git repo, it is assumed you already know how to do one. If not [click here](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-new-repository) to read the official GitHub docs. You can decide to make it *public or private* for production use, it is best to set it to `private` this way it is more secured and not exposed to the public.
 
-However; by choice I will be leaving my repo `public` , this way you can get access to it and the source files used for this project. [Repo Link](https://github.com/ougabriel/full-stack-blogging-app.git)
+However; by choice I will be leaving my repo `public` , this way you can get access to it and the source files used for this project. [Repo Link](https://github.com/devcloudninjas/full-stack-blogging-app.git)
 
 b.&gt; **Create a Security Token:** After setting up the git repo, we will have to create a `security token` ; this will help us authenticate easily. Another major importance is that it ensures secured, managed access to your repositories without exposing your actual password.
 
@@ -46,10 +46,10 @@ c.&gt; **Install GitBash in your local system and clone the repo:**
 
 Again, it is assumed you already know how to install Git Bash, it is quite easy to do this for Windows and Mac. Download the OS and follow the installation prompts. [Click Here](https://github.com/git-guides/install-git) to get started and install Git. Having Git on your local system is a advisable because it makes it easier to push and commits code.
 
-After installing Git Bash, we need to clone the [repo](https://github.com/ougabriel/full-stack-blogging-app.git) we will be using, this [repo](https://github.com/ougabriel/full-stack-blogging-app.git) contains the source code needed for this project. [Click Here to CLONE it.](https://github.com/ougabriel/full-stack-blogging-app.git)
+After installing Git Bash, we need to clone the [repo](https://github.com/devcloudninjas/full-stack-blogging-app.git) we will be using, this [repo](https://github.com/devcloudninjas/full-stack-blogging-app.git) contains the source code needed for this project. [Click Here to CLONE it.](https://github.com/devcloudninjas/full-stack-blogging-app.git)
 
-```go
-git clone https://github.com/ougabriel/full-stack-blogging-app.git
+```bash
+git clone https://github.com/devcloudninjas/full-stack-blogging-app.git
 ```
 
 I am running the `git clone` command in VS Studio
@@ -58,7 +58,7 @@ I am running the `git clone` command in VS Studio
 
 When this is done make sure to `cd` into the project directory
 
-```go
+```bash
 cd FullStack-Blogging-App/
 ```
 
@@ -79,7 +79,7 @@ To create two `t2.medium`Ubuntu EC2 instances on AWS, follow these steps:
 **i.&gt; Launch Instances:** -Review your settings and click Launch.  
 **j.&gt;10. Connect:** -Once the instances are running, you can use the SSH keyto connect via terminal:
 
-```go
+```bash
 ssh -i /path/to/your-key.pem ubuntu@<public-ip>
 ```
 
@@ -101,14 +101,14 @@ a.&gt; SSH into the Jenkins instance
 
 b.&gt; Update and install java
 
-```go
+```bash
 sudo apt update
 sudo apt install openjdk-17-jre-headless  -y
 ```
 
 c.&gt; Install Jenkins: Using scripts make it easier to install packages, and helps to save time spent on running single commands.
 
-```go
+```bash
 #!/bin/bash
 
 # Update system packages
@@ -146,11 +146,11 @@ echo "sudo cat /var/lib/jenkins/secrets/initialAdminPassword"
 
 Run the following command to run the script
 
-```go
+```bash
 vi install_jenkins.sh  #paste the script into the editor. Press Ctrl wq! to save and exit
 ```
 
-```go
+```bash
 chmod +x install_jenkins.sh
 ./install_jenkins.sh
 ```
@@ -171,7 +171,7 @@ When this is done correctly we can now access the Jenkins page.
 
 d.&gt; Install Docker:
 
-```go
+```bash
 #!/bin/bash
 
 # Update existing list of packages
@@ -230,7 +230,7 @@ For Nexus: SSH into the VM &gt; Run the command `sudo apt update` &gt; Next, cop
 
 When this is done. We will be running `Nexus` as a docker container
 
-```go
+```bash
 sudo docker run -d -p 8081:8081 sonatype/nexus3
 ```
 
@@ -248,11 +248,11 @@ Sign in: To be able to login, click on the signin button and run this command on
 
 ![s](https://miro.medium.com/v2/resize:fit:644/1*4VkGSjsltH23ssmA5R96vg.png)
 
-```go
+```bash
 sudo docker exec -it <sonar-docker-container-name> /bin/bash
 ```
 
-```go
+```bash
 cat /nexus-data/admin.password
 ```
 
@@ -330,7 +330,7 @@ In the jenkins, click on ‘New Items’ &gt; Select ‘pipeline’ &gt; give a 
 
 In the `jenkins` VM terminal, run the following commands to install `trivy` plugins . This is important if not our `trivy` pipeline commands will not run.
 
-```go
+```bash
 wget https://github.com/aquasecurity/trivy/releases/download/v0.43.0/trivy_0.43.0_Linux-64bit.deb
 sudo dpkg -i trivy_0.43.0_Linux-64bit.deb
 ```
@@ -349,7 +349,7 @@ To complete the setup, Jenkins needs authentication to the Nexus Server.
 
 go to Managed Jenkins &gt; Managed Files &gt; Add ‘A new config file’ &gt; Select ‘Global Maven settings.xml’ &gt; scroll down, for `ID`change it to ‘maven-settings’ or any name you can remember &gt; In the pop page, edit the `server` section &gt; Change username and password with your Nexus login credentials . (*In the server section make sure by removing the comments and making sure it looks like this.*)
 
-```go
+```bash
  <servers>
  
     <server>
@@ -401,7 +401,7 @@ We will need to add the credentials to system settings, go to managed jenkins &g
 
 This pipeline should be changed to fit your `docker image` and `dockerhub` details. This is not the end of the pipeline, because we still going to integrate Email Push Notification within the pipeline that tells us when the pipeline fails or succeeds.
 
-```go
+```bash
 pipeline {
     agent any
     tools {
@@ -415,7 +415,7 @@ pipeline {
     stages {
         stage('Git Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/ougabriel/full-stack-blogging-app.git'
+                git branch: 'main', url: 'https://github.com/devcloudninjas/full-stack-blogging-app.git'
             }
         }
         stage('Compile') {
@@ -487,7 +487,7 @@ We will need to create a VM, install and use`terraform` to deploy the EKS servic
 
 **b.&gt; Install AWS CLI:** The AWS CLI (Command Line Interface) allows you to interact with AWS services directly from your terminal.
 
-```go
+```bash
 # Update the package list
 sudo apt update
 
@@ -524,13 +524,13 @@ Follow the prompts as shown below
 
 **c.&gt; Install Terraform:** Install `terraform` in this instance by running this command
 
-```go
+```bash
 sudo apt install terraform --classic
 ```
 
 We need 3 `tf` files for our `terraform` script. Which is the `main.tf` , `output.tf` and `variable.tf` . ***(find the files in the given github repo for this project)***
 
-```go
+```bash
 vi output.tf
 vi main.tf
 vi variable.tf
@@ -556,7 +556,7 @@ To deploy the resources, we need to first run the following commands
 
 preferrably; run this command
 
-```go
+```bash
 terraform apply --auto-approve
 ```
 
@@ -566,7 +566,7 @@ When you run the command, it will take sometime for all the changes or all the s
 
 After the installation when you run `kubectl get nodes` you will notice the error `Command kubectl not found` this is because the `kubectl` command is not yet installed.
 
-```go
+```bash
 sudo snap install kubectl --classic
 ```
 
@@ -578,7 +578,7 @@ After installing `kubectl` we need to confirm if our `nodes` are ready; run the 
 
 This is because you are yet to connect the EKS cluster to AWS services, do that using this command;
 
-```go
+```bash
 aws eks --region eu-west-2 update-kubeconfig --name <cluster-name>
 ```
 
@@ -592,13 +592,13 @@ Run the command again this time to the `nodes` ready
 
 Create a `namespace`
 
-```go
+```bash
 kubectl create namespace webapps
 ```
 
 Service Account &gt; `vi serviceaccount.yaml`
 
-```go
+```bash
 apiVersion: v1
 kind: ServiceAccount
 metadata:
@@ -608,7 +608,7 @@ metadata:
 
 Role &gt; `vi role.yaml`
 
-```go
+```bash
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
@@ -622,7 +622,7 @@ rules:
 
 Rolebinding &gt; `vi rolebinding.yaml`
 
-```go
+```bash
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
@@ -640,7 +640,7 @@ roleRef:
 
 Token for Service Account Secret &gt; `vi sa-secret.yaml`
 
-```go
+```bash
 apiVersion: v1
 kind: Secret
 type: kubernetes.io/service-account-token
@@ -653,7 +653,7 @@ metadata:
 
 Apply all the `yaml` files,
 
-```go
+```bash
 kubectl apply -f serviceaccount.yaml
 kubectl apply -f role.yaml
 kubectl apply -f rolebinding.yaml
@@ -662,7 +662,7 @@ kubectl apply -f sa-secret.yaml
 
 If you check the `git repo` for this project, you will see the `deployment-service.yml` which will be deployed to this EKS cluster. We will need to create an `imagePullSecret`for it to pull our `docker image from the dockerhub private registry` . When working with private registry, you will need to provide an authentication secret that helps it get access to the private registry. Run the following command. (change `username` and `password` to that of your dockerhub credentials).
 
-```go
+```bashgo
 kubectl create secret docker—registry regcred \
 --docker—server=https://index.docker.io/v1/ \
 --docker—username=<your—username> \
@@ -690,7 +690,7 @@ Go to jenkins, click on ‘manage jenkins’ &gt; Credentials &gt; Global &gt; A
 
 We will be inserting `kubectl` command in the pipeline, we will need to install it on the Jenkins machine so that `kubectl` command syntax can be able to work.
 
-```go
+```bash
 sudo snap install kubectl --classic
 ```
 
@@ -700,13 +700,13 @@ Now, we will be modifying the pipeline to deploy our kubernetes resources. we wi
 
 Copy and paste the following into the browser to generate an email authentication password. (GMAIL only)
 
-```go
+```bash
 https://myaccount.google.com/apppasswords
 ```
 
 for other email accounts, you can do this.
 
-```go
+```bash
 For Hotmail/OutlookGo to your Microsoft Account Security page.
 Click on Advanced security options.
 Under App passwords, click on Create a new app password.
@@ -748,7 +748,7 @@ Install Blackbox Exporter
 
 Download and run Blackbox Exporter:
 
-```go
+```bash
 wget https://github.com/prometheus/blackbox_exporter/releases/download/v0.21.0/blackbox_exporter-0.21.0.linux-amd64.tar.gz
  tar xvfz blackbox_exporter-0.21.0.linux-amd64.tar.gz
  cd blackbox_exporter-0.21.0.linux-amd64
@@ -757,7 +757,7 @@ wget https://github.com/prometheus/blackbox_exporter/releases/download/v0.21.0/b
 
 Configure Blackbox Exporter &gt; `vi blackbox.yaml`
 
-```go
+```bash
 modules:
   http_2xx:
     prober: http
@@ -775,7 +775,7 @@ Install Prometheus &gt; `sudo apt install prometheus -y`
 
 Create the Prometheus config file &gt; `vi prometheus.yaml`
 
-```go
+```bash
 global:
   scrape_interval: 15s
   evaluation_interval: 15s
@@ -810,7 +810,7 @@ Run Prometheus &gt; `prometheus --config.file=prometheus.yaml`
 
 **c.&gt; Set Up Grafana:** Grafana will be used for visualizing metrics collected by Prometheus.
 
-```go
+```bash
 # Update package list and install necessary dependencies
 sudo apt-get update
 sudo apt-get install -y software-properties-common curl
@@ -837,7 +837,7 @@ sudo systemctl status grafana-server
 
 **d.&gt; Verify Installations:** Do this on the termline
 
-```go
+```bash
 #for blackbox
 curl http://localhost:9115
 
@@ -853,7 +853,7 @@ sudo systemctl status grafana-server
 
 Open `grafana` and `prometheus` using your VM IP and their port
 
-```go
+```bash
 #for grafana
 http://<monitoring-vm-ip>:3000
 
