@@ -865,4 +865,6 @@ Thank you for taking the time to work on this tutorial/labs. Let me know what yo
 
 #### Author by [DevCloud Ninjas](https://github.com/DevCloudNinjas)
 
-Ensure to follow me on GitHub. Please star/share this repository!
+Ensure to follow us on GitHub. Please star/share this repository!
+
+![](https://imgur.com/ZdiaMeo.gif)

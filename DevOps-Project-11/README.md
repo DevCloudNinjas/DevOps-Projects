@@ -82,3 +82,5 @@ Feel free to contribute and adapt this project to suit your needs. We welcome yo
 ## License
 
 This project is licensed under the [MIT License](LICENSE).
+
+![](https://imgur.com/ZdiaMeo.gif)
