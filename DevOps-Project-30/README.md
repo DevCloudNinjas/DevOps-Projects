@@ -883,7 +883,7 @@ By setting up these components, you’ll be able to monitor your application’s
 
 ## **Author by:**
 
-![s](https://imgur.com/2j6Aoyl.png)
+![s](https://imgur.com/ZdiaMeo.gif)
 
 > [!NOTE]
 > **Join Our** [Telegram Community](https://t.me/devcloudninjas) // [Follow me](https://github.com/devcloudninjas) **for more DevOps & Cloud content.**

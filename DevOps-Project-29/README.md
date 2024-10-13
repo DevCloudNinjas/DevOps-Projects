@@ -968,7 +968,7 @@ To check the votes, run the following commands . We can check for the `votes cou
 
 ## **Author by:**
 
-![](https://imgur.com/2j6Aoyl.png)
+![](https://imgur.com/a/0BcbETu.gif)
 
 > [!NOTE]
 > **Join Our** [Telegram Community](https://t.me/devcloudninjas) // [Follow me](https://github.com/devcloudninjas) **for more DevOps & Cloud content.**

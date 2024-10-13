@@ -871,7 +871,7 @@ This journey has been a valuable learning experience, from infrastructure provis
 
 ## Author by
 
-![](https://imgur.com/2j6Aoyl.png)
+![](https://imgur.com/ZdiaMeo.gif)
 
 > [!Note]
 > Join Our [Telegram Community](https://t.me/devcloudninjas) || [Follow me](https://github.com/devcloudninjas) for more DevOps Content

@@ -528,7 +528,7 @@ terraform destroy -auto-approve -var-file=variables.tfvars
 
 ## **Author by:**
 
-![](https://imgur.com/2j6Aoyl.png)
+![](https://imgur.com/ZdiaMeo.gif)
 
 > [!Note]
 > **Join Our** [Telegram Community](https://t.me/devcloudninjas) // [Follow me](https://github.com/devcloudninjas) **for more DevOps & Cloud content.**
