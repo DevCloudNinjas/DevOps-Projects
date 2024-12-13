@@ -2,7 +2,7 @@
 
 ![github-actions](https://imgur.com/XNUS0pA.png)
 
-# 👉 Blog Link: https://devcloudninjas.hashnode.dev/end-to-end-cicd-pipeline-using-github-actions-for-android-application
+# 👉 Blog Link: https://dev.to/devcloudninjas/end-to-end-cicd-pipeline-using-github-actions-for-android-application-36i5
 
 # Thank you
 Thank you for taking the time to work on this tutorial/labs. Let me know what you thought!
