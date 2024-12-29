@@ -73,7 +73,7 @@ For an in-depth walkthrough of the project, check out the detailed guide on [Has
 ## Connect with Me
 
 - GitHub: [GitHub Profile](https://github.com/DevCloudNinjas)
-- LinkedIn: [LinkedIn Profile](https://www.linkedin.com/in/lionel-tchami/)
+- LinkedIn: [LinkedIn Profile](https://www.linkedin.com/in/lioneltchami/)
 
 ## Contributions
 
