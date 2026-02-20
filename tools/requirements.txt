@@ -1,0 +1,4 @@
+# Repo Consolidation — Link & Secret Remediation Pipeline
+# Testing dependencies
+hypothesis>=6.0
+pytest>=7.0

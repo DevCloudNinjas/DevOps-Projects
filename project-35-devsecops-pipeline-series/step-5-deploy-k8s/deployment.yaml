@@ -14,7 +14,8 @@ spec:
     spec:
       containers:
       - name: dcnbuggy
-        image: 221650130255.dkr.ecr.us-west-2.amazonaws.com/devcloudninjas
+# Replace <AWS_ACCOUNT_ID> with your AWS account ID
+        image: <AWS_ACCOUNT_ID>.dkr.ecr.us-west-2.amazonaws.com/<IMAGE_NAME>
         imagePullPolicy: Always
         ports:
         - containerPort: 8080

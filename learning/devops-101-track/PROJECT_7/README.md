@@ -83,8 +83,10 @@
 
         #### 3 new environment variables ####
          registryCredential = 'ecr:us-east-1:awscreds'
-        appRegistry = '392530415763.dkr.ecr.us-east-1.amazonaws.com/vprofileappimg'
-        vprofileRegistry = "https://392530415763.dkr.ecr.us-east-1.amazonaws.com"
+# Replace <AWS_ACCOUNT_ID> with your AWS account ID
+        appRegistry = '<AWS_ACCOUNT_ID>.dkr.ecr.us-east-1.amazonaws.com/<IMAGE_NAME>'
+# Replace <AWS_ACCOUNT_ID> with your AWS account ID
+        vprofileRegistry = "https://<AWS_ACCOUNT_ID>.dkr.ecr.us-east-1.amazonaws.com"
         ################################
             stage('Build App image'){
                     steps{

@@ -252,7 +252,8 @@ resource "aws_cloudwatch_log_group" "dummyapi" {
   }
 }
 
-// example -> ./push.sh . 123456789012.dkr.ecr.us-east-1.amazonaws.com/task-details latest
+# Replace <AWS_ACCOUNT_ID> with your AWS account ID
+// example -> ./push.sh . <AWS_ACCOUNT_ID>.dkr.ecr.us-east-1.amazonaws.com/<IMAGE_NAME> latest
 
 resource "null_resource" "push" {
   provisioner "local-exec" {

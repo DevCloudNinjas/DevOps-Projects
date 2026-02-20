@@ -22,7 +22,7 @@ pipeline {
             steps { 
                withDockerRegistry([credentialsId: "dockerlogin", url: ""]) {
                  script{
-                 app =  docker.build("devcloudninjas")
+                 app =  docker.build("<IMAGE_NAME>")
                  }
                }
             }
@@ -31,7 +31,8 @@ pipeline {
 	stage('Push') {
             steps {
                 script{
-                    docker.withRegistry('https://221650130255.dkr.ecr.us-west-2.amazonaws.com', 'ecr:us-west-2:aws-credentials') {
+# Replace <AWS_ACCOUNT_ID> with your AWS account ID
+                    docker.withRegistry('https://<AWS_ACCOUNT_ID>.dkr.ecr.us-west-2.amazonaws.com', 'ecr:us-west-2:aws-credentials') {
                     app.push("latest")
                     }
                 }

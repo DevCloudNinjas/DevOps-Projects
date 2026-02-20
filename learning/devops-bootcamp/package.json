@@ -18,7 +18,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/devcloudninjas/devops-bootcamp.git"
+    "url": "git+https://github.com/DevCloudNinjas/DevOps-Projects/tree/main/learning/devops-bootcamp"
   },
   "keywords": [
     "devops",
@@ -27,9 +27,9 @@
   "author": "DevCloud Ninjas",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/devcloudninjas/devops-bootcamp/issues"
+    "url": "https://github.com/DevCloudNinjas/DevOps-Projects/tree/main/learning/devops-bootcamp"
   },
-  "homepage": "https://github.com/devcloudninjas/devops-bootcamp#readme",
+  "homepage": "https://github.com/DevCloudNinjas/DevOps-Projects/tree/main/learning/devops-bootcamp",
   "dependencies": {
     "chart.js": "^4.3.0",
     "chartjs-chart-wordcloud": "^4.2.0",

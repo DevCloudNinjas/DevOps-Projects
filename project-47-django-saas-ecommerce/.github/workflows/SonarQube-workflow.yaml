@@ -1,5 +1,6 @@
 name: "sonar_cloud_scan"
-## 111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5553
+# Use GitHub Actions secret for authentication
+## 111${{ secrets.GITHUB_TOKEN }}5553
 on:
   push:
     branches: [master, main, dev/*, feature/*, release/*, staging/*, prod/*, qa]

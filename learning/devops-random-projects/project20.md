@@ -160,7 +160,8 @@ pipeline {
       environment 
     {
         PROJECT     = 'php-todo'
-        ECRURL      = '704771385539.dkr.ecr.us-east-1.amazonaws.com/php-todo'
+# Replace <AWS_ACCOUNT_ID> with your AWS account ID
+        ECRURL      = '<AWS_ACCOUNT_ID>.dkr.ecr.us-east-1.amazonaws.com/<IMAGE_NAME>'
         DEPLOY_TO = 'development'
     }
 

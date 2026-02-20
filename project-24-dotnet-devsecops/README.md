@@ -2,7 +2,7 @@
 
 ## Below is the Application Source code for this project
 
-[![DevOps-Project-24: DotNet Monitoring](https://img.shields.io/badge/Project-DotNet%20Monitoring-brightgreen)](https://github.com/devcloudninjas/DevOps-Projects/tree/master/DevOps-Project-24/DotNet-monitoring)
+[![DevOps-Project-24: DotNet Monitoring](https://img.shields.io/badge/Project-DotNet%20Monitoring-brightgreen)](https://github.com/devcloudninjas/DevOps-Projects/tree/master/project-24-dotnet-devsecops/DotNet-monitoring)
 
 ![](<https://miro.medium.com/v2/resize:fit:700/0*lhbz9vRWnbRl4xVS>)
 
@@ -239,7 +239,7 @@ pipeline {
         }
         stage('Checkout From Git') {
             steps {
-                git branch: 'master', url: 'https://github.com/devcloudninjas/DevOps-Projects/tree/master/DevOps-Project-24/DotNet-monitoring'
+                git branch: 'master', url: 'https://github.com/devcloudninjas/DevOps-Projects/tree/master/project-24-dotnet-devsecops/DotNet-monitoring'
             }
         }
         stage("Sonarqube Analysis ") {
@@ -536,7 +536,7 @@ pipeline{
         }
         stage('Checkout From Git'){
             steps{
-                git branch: 'master', url: 'https://github.com/devcloudninjas/DevOps-Projects/tree/master/DevOps-Project-24/DotNet-monitoring'
+                git branch: 'master', url: 'https://github.com/devcloudninjas/DevOps-Projects/tree/master/project-24-dotnet-devsecops/DotNet-monitoring'
             }
         }
         stage("Sonarqube Analysis "){

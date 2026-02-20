@@ -100,7 +100,8 @@ Then run this `python3 ecr.py`
 - Setup password and credentials for ECR
 
 ```
-aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 221650130255.dkr.ecr.us-east-1.amazonaws.com
+# Replace <AWS_ACCOUNT_ID> with your AWS account ID
+aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin <AWS_ACCOUNT_ID>.dkr.ecr.us-east-1.amazonaws.com
 ```
 
 - Push the Docker image to ECR using the push commands on the console:
@@ -144,7 +145,8 @@ deployment = client.V1Deployment(
                 containers=[
                     client.V1Container(
                         name="my-flask-container",
-                        image="568373317874.dkr.ecr.us-east-1.amazonaws.com/my-cloud-native-repo:latest",
+# Replace <AWS_ACCOUNT_ID> with your AWS account ID
+                        image="<AWS_ACCOUNT_ID>.dkr.ecr.us-east-1.amazonaws.com/<IMAGE_NAME>:latest",
                         ports=[client.V1ContainerPort(container_port=5000)]
                     )
                 ]

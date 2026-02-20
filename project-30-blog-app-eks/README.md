@@ -38,7 +38,7 @@
 
 a.&gt; **Create the Repo:** We will need to setup a private git repo, it is assumed you already know how to do one. If not [click here](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-new-repository) to read the official GitHub docs. You can decide to make it *public or private* for production use, it is best to set it to `private` this way it is more secured and not exposed to the public.
 
-However; by choice I will be leaving my repo `public` , this way you can get access to it and the source files used for this project. [Repo Link](https://github.com/devcloudninjas/full-stack-blogging-app.git)
+However; by choice I will be leaving my repo `public` , this way you can get access to it and the source files used for this project. [Repo Link](project-30-blog-app-eks/.git)
 
 b.&gt; **Create a Security Token:** After setting up the git repo, we will have to create a `security token` ; this will help us authenticate easily. Another major importance is that it ensures secured, managed access to your repositories without exposing your actual password.
 
@@ -46,10 +46,10 @@ c.&gt; **Install GitBash in your local system and clone the repo:**
 
 Again, it is assumed you already know how to install Git Bash, it is quite easy to do this for Windows and Mac. Download the OS and follow the installation prompts. [Click Here](https://github.com/git-guides/install-git) to get started and install Git. Having Git on your local system is a advisable because it makes it easier to push and commits code.
 
-After installing Git Bash, we need to clone the [repo](https://github.com/devcloudninjas/full-stack-blogging-app.git) we will be using, this [repo](https://github.com/devcloudninjas/full-stack-blogging-app.git) contains the source code needed for this project. [Click Here to CLONE it.](https://github.com/devcloudninjas/full-stack-blogging-app.git)
+After installing Git Bash, we need to clone the [repo](project-30-blog-app-eks/.git) we will be using, this [repo](project-30-blog-app-eks/.git) contains the source code needed for this project. [Click Here to CLONE it.](project-30-blog-app-eks/.git)
 
 ```bash
-git clone https://github.com/devcloudninjas/full-stack-blogging-app.git
+git clone https://github.com/DevCloudNinjas/DevOps-Projects.git
 ```
 
 I am running the `git clone` command in VS Studio
@@ -415,7 +415,7 @@ pipeline {
     stages {
         stage('Git Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/devcloudninjas/full-stack-blogging-app.git'
+                git branch: 'main', url: 'https://github.com/DevCloudNinjas/DevOps-Projects/tree/main/project-30-blog-app-eks/.git'
             }
         }
         stage('Compile') {

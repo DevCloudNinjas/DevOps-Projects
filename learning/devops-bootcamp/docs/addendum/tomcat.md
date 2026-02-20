@@ -18,7 +18,7 @@ Before continuing, make sure you have two separate servers, one running Jenkins,
 ## Deploying from Jenkins to Tomcat
 
 1. Setup an SSH key to allow Jenkins to connect to Tomcat.
-2. Configure a Jenkins job which builds [spring-petclinic](https://github.com/devcloudninjas/spring-petclinic).
+2. Configure a Jenkins job which builds [spring-petclinic](learning/devops-bootcamp).
 3. Configure a second job that deploys the build artifacts to Tomcat with SCP using either:
 
 - A shell script

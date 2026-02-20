@@ -1,0 +1,93 @@
+name: Repo Consolidation Scan
+
+on:
+  schedule:
+    # Run every Monday at 08:00 UTC
+    - cron: '0 8 * * 1'
+  workflow_dispatch: # Allow manual trigger
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install -r tools/requirements.txt
+
+      - name: Run consolidation scan (dry-run)
+        id: scan
+        run: |
+          python -m tools.repo_consolidation DevOps-Projects \
+            --dry-run \
+            --report-output scan-report.txt \
+            2>&1 | tee scan-output.log
+          echo "exit_code=${PIPESTATUS[0]}" >> "$GITHUB_OUTPUT"
+        continue-on-error: true
+
+      - name: Upload scan report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: scan-report
+          path: |
+            scan-report.txt
+            scan-output.log
+
+      - name: Create issue if findings detected
+        if: steps.scan.outputs.exit_code == '1'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            let report = '';
+            try {
+              report = fs.readFileSync('scan-report.txt', 'utf8');
+            } catch (e) {
+              report = 'Report file not found. Check workflow artifacts.';
+            }
+
+            // Truncate if too long for an issue body
+            if (report.length > 60000) {
+              report = report.substring(0, 60000) + '\n\n... (truncated, see full report in artifacts)';
+            }
+
+            const title = `[Automated] Repo consolidation scan found issues - ${new Date().toISOString().split('T')[0]}`;
+
+            // Check for existing open issue to avoid duplicates
+            const existing = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open',
+              labels: 'repo-consolidation',
+              per_page: 1,
+            });
+
+            if (existing.data.length > 0) {
+              // Update existing issue
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: existing.data[0].number,
+                body: `## Updated scan results\n\n\`\`\`\n${report}\n\`\`\``,
+              });
+            } else {
+              // Create new issue
+              await github.rest.issues.create({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                title: title,
+                body: `## Repo Consolidation Scan Results\n\nThe scheduled scan detected issues that need attention.\n\n\`\`\`\n${report}\n\`\`\`\n\nRun \`python -m tools.repo_consolidation DevOps-Projects --dry-run\` locally to review.`,
+                labels: ['repo-consolidation'],
+              });
+            }

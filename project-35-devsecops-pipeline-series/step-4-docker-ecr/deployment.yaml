@@ -14,7 +14,8 @@ spec:
     spec:
       containers:
       - name: asgbuggy
-        image: 145988340565.dkr.ecr.us-west-2.amazonaws.com/asg
+# Replace <AWS_ACCOUNT_ID> with your AWS account ID
+        image: <AWS_ACCOUNT_ID>.dkr.ecr.us-west-2.amazonaws.com/<IMAGE_NAME>
         imagePullPolicy: Always
         ports:
         - containerPort: 8080

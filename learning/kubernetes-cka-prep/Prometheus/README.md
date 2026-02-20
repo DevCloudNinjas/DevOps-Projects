@@ -1,7 +1,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/DevCloudNinjas/Certified_Kubernetes_Administrator/edit/master/Prometheus">
+  <a href="https://github.com/DevCloudNinjas/DevOps-Projects/tree/main/learning/kubernetes-cka-prep/edit/master/Prometheus">
     <img src="images/logo.svg" alt="Logo" width="150" height="150">
   </a>
 
@@ -522,8 +522,8 @@ For deploying it, we have three options:
 
 We will use option 3 (Helm chart to deploy Operator) here.
 
-NOTE: we have covered [Helm](https://github.com/DevCloudNinjas/Certified_Kubernetes_Administrator/tree/master/Helm)
-and [Operators](https://github.com/DevCloudNinjas/Certified_Kubernetes_Administrator/tree/master/Operators) previously in this repo. Here we don't need to
+NOTE: we have covered [Helm](learning/kubernetes-cka-prep/Helm)
+and [Operators](learning/kubernetes-cka-prep/Operators) previously in this repo. Here we don't need to
 know much about Operators. However, we should know a little bit about Helm.
 
 We will use the [Prometheus Chart](https://github.com/prometheus-community/helm-charts)
@@ -755,12 +755,12 @@ Congratulation, you are in Grafana UI!
 <img src="images/Grafana-UI.png" alt="Grafana UI">
 
 Before moving any further, if you don't have anything in your cluster, let's deploy a
-simple [online shop deployment](https://github.com/DevCloudNinjas/Certified_Kubernetes_Administrator/tree/master/Helm#Demo-Online-Boutique-overview).
+simple [online shop deployment](learning/kubernetes-cka-prep/Helm#Demo-Online-Boutique-overview).
 
 Because we need something in our cluster to be monitored by Prometheus (Beside the Prometheus itself!)
 
 This online shop is an example from Google to understand the concept of Microservice, and we've covered it in our Helm
-section (See [here](https://github.com/DevCloudNinjas/Certified_Kubernetes_Administrator/tree/master/Helm) if you're interested)
+section (See [here](learning/kubernetes-cka-prep/Helm) if you're interested)
 
 Now, let's access the Grafana Dashboards.
 
@@ -1242,7 +1242,7 @@ So, here we want to create a simple `CRD` based on
 the [docs](https://docs.openshift.com/container-platform/4.11/rest_api/monitoring_apis/monitoring-apis-index.html)
 
 I have discussed it in this repo if you want to know more about Operators, CRD, etc.
-See [here](https://github.com/DevCloudNinjas/Certified_Kubernetes_Administrator/tree/master/Operators)
+See [here](learning/kubernetes-cka-prep/Operators)
 
 ---
 
@@ -1800,7 +1800,7 @@ data:
 ```
 
 * **NOTE:** If you aren't familiar with Kubernetes Secrets,
-  see [here](https://github.com/DevCloudNinjas/Certified_Kubernetes_Administrator/tree/master/CKA#configmap--secret-1)
+  see [here](learning/kubernetes-cka-prep/CKA#configmap--secret-1)
 
 Before applying it, there is one little note you should consider.
 
@@ -2039,7 +2039,7 @@ In simple words:
 
 Now that we understand what an Exporter is let's deploy a Redis Exporter.
 
-If you still have the [online shop](https://github.com/DevCloudNinjas/Certified_Kubernetes_Administrator/tree/master/Helm#Demo-Online-Boutique-overview)
+If you still have the [online shop](learning/kubernetes-cka-prep/Helm#Demo-Online-Boutique-overview)
 sample application in your cluster from previous sections is excellent, and we will go with it. If not, we will create a
 Redis Deployment from scratch. I'm going with option number 2 (Deploy Redis from scratch and only Redis) for the rest of
 this tutorial.
@@ -2116,7 +2116,7 @@ Apply the file and see that everything is OK!
   for many of [those Exporters](https://prometheus.io/docs/instrumenting/exporters).
 * We will use [this](https://github.com/prometheus-community/helm-charts/tree/master/charts/prometheus-redis-exporter)
   Chart for the rest of the tutorial.
-* Also, I have to mention that I have a [Helm tutorial](https://github.com/DevCloudNinjas/Certified_Kubernetes_Administrator/tree/master/Helm) too, but we
+* Also, I have to mention that I have a [Helm tutorial](learning/kubernetes-cka-prep/Helm) too, but we
   will not use Helm that much here!
 
 ---

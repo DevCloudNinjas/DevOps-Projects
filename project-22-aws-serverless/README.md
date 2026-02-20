@@ -6,7 +6,7 @@ Enter the world of serverless computing, where developers are freed from server 
 
 Despite its name, serverless doesn’t mean a server-free existence. Instead, it signals a shift in responsibility — developers no longer need to manage, provision, or see the underlying servers. This allows them to concentrate on crafting efficient code without the distractions of server intricacies.
 
-In this article, we’ll explore a practical example of a Fully Serverless Architecture implemented using Terraform — a popular IaC tool and CI/CD implemented using GitHub Actions. The code repository we’ll be examining is hosted on GitHub: [GitHub Repository](https://github.com/devcloudninjas/DevOps-Projects/tree/master/DevOps-Project-22)
+In this article, we’ll explore a practical example of a Fully Serverless Architecture implemented using Terraform — a popular IaC tool and CI/CD implemented using GitHub Actions. The code repository we’ll be examining is hosted on GitHub: [GitHub Repository](https://github.com/devcloudninjas/DevOps-Projects/tree/master/project-22-aws-serverless)
 
 I have a NodeJS Cloud Native API which I have used to deploy in this architecture. This API is specifically designed to make use of AWS serverless services.
 
@@ -16,7 +16,7 @@ I have a NodeJS Cloud Native API which I have used to deploy in this architectur
 
 The aim of this project is to deploy API to AWS Public cloud using only serverless components.
 
-### API code is available [here](https://github.com/devcloudninjas/DevOps-Projects/tree/master/DevOps-Project-22/serverless-api).
+### API code is available [here](https://github.com/devcloudninjas/DevOps-Projects/tree/master/project-22-aws-serverless/serverless-api).
 
 Following are the serverless services used in this project:
 

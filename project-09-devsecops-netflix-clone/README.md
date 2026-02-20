@@ -10,25 +10,25 @@
 
 
 # Project Steps :-
-- **Step 1** — [Launch an Ubuntu(22.04) T2 Large Instance](https://github.com/DevCloudNinjas/DevOps-Projects/blob/master/DevOps%20Project-09/README.md#step-1-launch-an-ubuntu2204-t2-large-instance)
-- **Step 2** — [Install Jenkins, Docker and Trivy. Create a Sonarqube Container using Docker.](https://github.com/DevCloudNinjas/DevOps-Projects/blob/master/DevOps%20Project-09/README.md#step-2--install-jenkins-docker-and-trivy-create-a-sonarqube-container-using-docker)
-- **Step 3** — [Create a TMDB API Key.](https://github.com/DevCloudNinjas/DevOps-Projects/blob/master/DevOps%20Project-09/README.md#step-3-create-a-tmdb-api-key)
-- **Step 4** — [Install Prometheus and Grafana On the new Server.](https://github.com/DevCloudNinjas/DevOps-Projects/blob/master/DevOps%20Project-09/README.md#step-4--install-prometheus-and-grafana-on-the-new-server)
-- **Step 5** — [Install the Prometheus Plugin and Integrate it with the Prometheus server.](https://github.com/DevCloudNinjas/DevOps-Projects/blob/master/DevOps%20Project-09/README.md#step-5--install-the-prometheus-plugin-and-integrate-it-with-the-prometheus-server)
-- **Step 6** — [Email Integration With Jenkins and Plugin setup.](https://github.com/DevCloudNinjas/DevOps-Projects/blob/master/DevOps%20Project-09/README.md#step-6--email-integration-with-jenkins-and-plugin-setup)
-- **Step 7** — [Install Plugins like JDK, Sonarqube Scanner, Nodejs, and OWASP Dependency Check.](https://github.com/DevCloudNinjas/DevOps-Projects/blob/master/DevOps%20Project-09/README.md#step-7--install-plugins-like-jdk-sonarqube-scanner-nodejs-and-owasp-dependency-check)
-- **Step 8** — [Create a Pipeline Project in Jenkins using a Declarative Pipeline](https://github.com/DevCloudNinjas/DevOps-Projects/blob/master/DevOps%20Project-09/README.md#step-8--create-a-pipeline-project-in-jenkins-using-a-declarative-pipeline)
-- **Step 9** — [Install OWASP Dependency Check Plugins](https://github.com/DevCloudNinjas/DevOps-Projects/blob/master/DevOps%20Project-09/README.md#step-9--install-owasp-dependency-check-plugins)
-- **Step 10** — [Docker Image Build and Push](https://github.com/DevCloudNinjas/DevOps-Projects/blob/master/DevOps%20Project-09/README.md#step-10--docker-image-build-and-push)
-- **Step 11** — [Deploy the image using Docker](https://github.com/DevCloudNinjas/DevOps-Projects/blob/master/DevOps%20Project-09/README.md#step-11--deploy-the-image-using-docker)
-- **Step 12** — [Kubernetes master and slave setup on Ubuntu (20.04)](https://github.com/DevCloudNinjas/DevOps-Projects/blob/master/DevOps%20Project-09/README.md#step-12-kubernetes-master-and-slave-setup-on-ubuntu-2004)
-- **Step 13** — [Access the Netflix app on the Browser.](https://github.com/DevCloudNinjas/DevOps-Projects/blob/master/DevOps%20Project-09/README.md#step-13-access-the-netflix-app-on-the-browser)
-- **Step 14** — [Terminate the AWS EC2 Instances.](https://github.com/DevCloudNinjas/DevOps-Projects/blob/master/DevOps%20Project-09/README.md#step-14-terminate-instances)
+- **Step 1** — [Launch an Ubuntu(22.04) T2 Large Instance](https://github.com/DevCloudNinjas/DevOps-Projects/blob/master/project-09-devsecops-netflix-clone/README.md#step-1-launch-an-ubuntu2204-t2-large-instance)
+- **Step 2** — [Install Jenkins, Docker and Trivy. Create a Sonarqube Container using Docker.](https://github.com/DevCloudNinjas/DevOps-Projects/blob/master/project-09-devsecops-netflix-clone/README.md#step-2--install-jenkins-docker-and-trivy-create-a-sonarqube-container-using-docker)
+- **Step 3** — [Create a TMDB API Key.](https://github.com/DevCloudNinjas/DevOps-Projects/blob/master/project-09-devsecops-netflix-clone/README.md#step-3-create-a-tmdb-api-key)
+- **Step 4** — [Install Prometheus and Grafana On the new Server.](https://github.com/DevCloudNinjas/DevOps-Projects/blob/master/project-09-devsecops-netflix-clone/README.md#step-4--install-prometheus-and-grafana-on-the-new-server)
+- **Step 5** — [Install the Prometheus Plugin and Integrate it with the Prometheus server.](https://github.com/DevCloudNinjas/DevOps-Projects/blob/master/project-09-devsecops-netflix-clone/README.md#step-5--install-the-prometheus-plugin-and-integrate-it-with-the-prometheus-server)
+- **Step 6** — [Email Integration With Jenkins and Plugin setup.](https://github.com/DevCloudNinjas/DevOps-Projects/blob/master/project-09-devsecops-netflix-clone/README.md#step-6--email-integration-with-jenkins-and-plugin-setup)
+- **Step 7** — [Install Plugins like JDK, Sonarqube Scanner, Nodejs, and OWASP Dependency Check.](https://github.com/DevCloudNinjas/DevOps-Projects/blob/master/project-09-devsecops-netflix-clone/README.md#step-7--install-plugins-like-jdk-sonarqube-scanner-nodejs-and-owasp-dependency-check)
+- **Step 8** — [Create a Pipeline Project in Jenkins using a Declarative Pipeline](https://github.com/DevCloudNinjas/DevOps-Projects/blob/master/project-09-devsecops-netflix-clone/README.md#step-8--create-a-pipeline-project-in-jenkins-using-a-declarative-pipeline)
+- **Step 9** — [Install OWASP Dependency Check Plugins](https://github.com/DevCloudNinjas/DevOps-Projects/blob/master/project-09-devsecops-netflix-clone/README.md#step-9--install-owasp-dependency-check-plugins)
+- **Step 10** — [Docker Image Build and Push](https://github.com/DevCloudNinjas/DevOps-Projects/blob/master/project-09-devsecops-netflix-clone/README.md#step-10--docker-image-build-and-push)
+- **Step 11** — [Deploy the image using Docker](https://github.com/DevCloudNinjas/DevOps-Projects/blob/master/project-09-devsecops-netflix-clone/README.md#step-11--deploy-the-image-using-docker)
+- **Step 12** — [Kubernetes master and slave setup on Ubuntu (20.04)](https://github.com/DevCloudNinjas/DevOps-Projects/blob/master/project-09-devsecops-netflix-clone/README.md#step-12-kubernetes-master-and-slave-setup-on-ubuntu-2004)
+- **Step 13** — [Access the Netflix app on the Browser.](https://github.com/DevCloudNinjas/DevOps-Projects/blob/master/project-09-devsecops-netflix-clone/README.md#step-13-access-the-netflix-app-on-the-browser)
+- **Step 14** — [Terminate the AWS EC2 Instances.](https://github.com/DevCloudNinjas/DevOps-Projects/blob/master/project-09-devsecops-netflix-clone/README.md#step-14-terminate-instances)
 
 ## Step 1: Launch an Ubuntu(22.04) T2 Large Instance
 - Launch an Ubuntu(22.04) T2 Large Instance
 - Launch an AWS T2 Large Instance. Use the image as Ubuntu. You can create a new key pair or use an existing one. Enable HTTP and HTTPS settings in the Security Group and open all ports (not best case to open all ports but just for learning purposes it's okay).
-<img width="952" alt="image" src="https://github.com/rutikdevops/DevOps-Project-11/assets/109506158/898a4ca5-4126-45a5-a9d0-b8efb0a22dbe">
+<img width="952" alt="image" src="https://github.com/rutikdevops/project-11-aws-2tier-terraform/assets/109506158/898a4ca5-4126-45a5-a9d0-b8efb0a22dbe">
 
 
 ## Step 2 : Install Jenkins, Docker and Trivy. Create a Sonarqube Container using Docker.
@@ -845,15 +845,15 @@ kubectl get svc #use anyone
 - <public-ip-of-slave:service port>
 
 ## Step 13: Access the Netflix app on the Browser.
-- ![image](https://github.com/rutikdevops/DevOps-Project-11/assets/109506158/c9fd56c4-8e24-40bd-b67a-c7cce5edc16a)
-- ![image](https://github.com/rutikdevops/DevOps-Project-11/assets/109506158/0662da82-ad5c-45c1-a81b-10152b33cb44)
-- ![image](https://github.com/rutikdevops/DevOps-Project-11/assets/109506158/3d6ace51-0218-475a-8b3d-0a3813c5413f)
-- ![image](https://github.com/rutikdevops/DevOps-Project-11/assets/109506158/6db0292e-be3e-40d7-85ef-2541bfc0f79f)
-- ![image](https://github.com/rutikdevops/DevOps-Project-11/assets/109506158/008c5e21-4ae8-4c87-a58d-80b43036b217)
-- ![image](https://github.com/rutikdevops/DevOps-Project-11/assets/109506158/64d0e773-4ce6-453f-9e77-368547582dd6)
-- ![image](https://github.com/rutikdevops/DevOps-Project-11/assets/109506158/3662c450-6ef7-4727-ac3c-c222332ca205)
-- ![image](https://github.com/rutikdevops/DevOps-Project-11/assets/109506158/ee08dcf0-de79-4a76-a4ec-fea7aa644e02)
-- ![image](https://github.com/rutikdevops/DevOps-Project-11/assets/109506158/0bfdfbd0-927e-4513-96bd-5029571fc8e3)
+- ![image](https://github.com/rutikdevops/project-11-aws-2tier-terraform/assets/109506158/c9fd56c4-8e24-40bd-b67a-c7cce5edc16a)
+- ![image](https://github.com/rutikdevops/project-11-aws-2tier-terraform/assets/109506158/0662da82-ad5c-45c1-a81b-10152b33cb44)
+- ![image](https://github.com/rutikdevops/project-11-aws-2tier-terraform/assets/109506158/3d6ace51-0218-475a-8b3d-0a3813c5413f)
+- ![image](https://github.com/rutikdevops/project-11-aws-2tier-terraform/assets/109506158/6db0292e-be3e-40d7-85ef-2541bfc0f79f)
+- ![image](https://github.com/rutikdevops/project-11-aws-2tier-terraform/assets/109506158/008c5e21-4ae8-4c87-a58d-80b43036b217)
+- ![image](https://github.com/rutikdevops/project-11-aws-2tier-terraform/assets/109506158/64d0e773-4ce6-453f-9e77-368547582dd6)
+- ![image](https://github.com/rutikdevops/project-11-aws-2tier-terraform/assets/109506158/3662c450-6ef7-4727-ac3c-c222332ca205)
+- ![image](https://github.com/rutikdevops/project-11-aws-2tier-terraform/assets/109506158/ee08dcf0-de79-4a76-a4ec-fea7aa644e02)
+- ![image](https://github.com/rutikdevops/project-11-aws-2tier-terraform/assets/109506158/0bfdfbd0-927e-4513-96bd-5029571fc8e3)
 
 
 

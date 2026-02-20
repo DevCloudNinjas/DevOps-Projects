@@ -1,7 +1,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/DevCloudNinjas/Certified_Kubernetes_Administrator/tree/master/CKA">
+  <a href="https://github.com/DevCloudNinjas/DevOps-Projects/tree/main/learning/kubernetes-cka-prep/CKA">
     <img src="images/cka-logo.png" alt="Logo" width="150" height="150">
   </a>
 
@@ -2387,7 +2387,7 @@ We deploy our Ingress Controller via Helm charts...
 What is Helm?
 
 * Helm is a package manager for Kubernetes.
-* I have a complete [Helm tutorial](https://github.com/DevCloudNinjas/Certified_Kubernetes_Administrator/tree/master/Helm) as well.
+* I have a complete [Helm tutorial](learning/kubernetes-cka-prep/Helm) as well.
 * But you can only know some about Helm to complete this repo.
 * So, don't worry if you are not familiar with Helm.
 
@@ -2631,13 +2631,13 @@ In this section, we will learn about it.
 
 We need to install cert-manager to do the work with Kubernetes to request a certificate and respond to the challenge to validate it. We can use Helm or plain Kubernetes manifests to install cert-manager.
 
-We will use Helm to install it. I have a [Helm tutorial](https://github.com/DevCloudNinjas/Certified_Kubernetes_Administrator/tree/master/Helm), be sure to check it too.
+We will use Helm to install it. I have a [Helm tutorial](learning/kubernetes-cka-prep/Helm), be sure to check it too.
 
 ---
 
 Now let's talk a little more about cert-manager.
 
-Cert-manager masterly uses two different custom Kubernetes resources - known as CRDs - to configure and control how it operates and store state. These resources are Issuers and Certificates. (I have a [tutorial](https://github.com/DevCloudNinjas/Certified_Kubernetes_Administrator/tree/master/Operators) about K8s CRDs and Operators. Check that as well)
+Cert-manager masterly uses two different custom Kubernetes resources - known as CRDs - to configure and control how it operates and store state. These resources are Issuers and Certificates. (I have a [tutorial](learning/kubernetes-cka-prep/Operators) about K8s CRDs and Operators. Check that as well)
 
 That's enough to start using cert-manager but to understand the certificate concept, check the [official documentation](https://cert-manager.io/docs/concepts/certificate).
 

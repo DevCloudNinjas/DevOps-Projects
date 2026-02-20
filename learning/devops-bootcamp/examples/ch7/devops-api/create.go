@@ -5,7 +5,7 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
-	"github.com/devcloudninjas/devops-bootcamp/examples/ch7/devops-resources"
+	"github.com/DevCloudNinjas/DevOps-Projects/learning/devops-bootcamp/examples/ch7/devops-resources"
 )
 
 func newDevOps(newDevOps devops_resource.DevOps) (*devops_resource.DevOps, error) {

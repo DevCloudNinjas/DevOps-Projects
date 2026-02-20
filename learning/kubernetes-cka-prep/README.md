@@ -1,7 +1,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/DevCloudNinjas/Certified_Kubernetes_Administrator">
+  <a href="https://github.com/DevCloudNinjas/DevOps-Projects/tree/main/learning/kubernetes-cka-prep">
     <img src="CKA/images/logo.png" alt="Logo" width="200" height="200">
     <img src="Helm/images/logo.svg" alt="Logo" width="200" height="200">
     <img src="Operators/images/logo.png" alt="Logo" width="200" height="200">
@@ -14,9 +14,9 @@
     Become an EXPERT in Kubernetes from scratch!
     <br />
     <br />
-    <a href="https://github.com/DevCloudNinjas/Certified_Kubernetes_Administrator/issues">Report Bug</a>
+    <a href="https://github.com/DevCloudNinjas/DevOps-Projects/tree/main/learning/kubernetes-cka-prep/issues">Report Bug</a>
     ·
-    <a href="https://github.com/DevCloudNinjas/Certified_Kubernetes_Administrator/issues">Request Feature</a>
+    <a href="https://github.com/DevCloudNinjas/DevOps-Projects/tree/main/learning/kubernetes-cka-prep/issues">Request Feature</a>
   </p>
 </div>
 
@@ -53,10 +53,10 @@ If you are a beginner and want to start from scratch, you should follow along wi
 
 | index | Name       | Link                                                                           | Website                                                                              | Description                                                                                                  |
 |-------|------------|--------------------------------------------------------------------------------|--------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------|
-| 1     | Kubernetes | [Start the Tutorial](https://github.com/DevCloudNinjas/Certified_Kubernetes_Administrator/tree/master/CKA)        | [kubernetes.io](https://kubernetes.io)                                               | Become a Certified Kubernetes Administrator, an EXPERT in K8s from scratch                                   |
-| 2     | Helm       | [Start the Tutorial](https://github.com/DevCloudNinjas/Certified_Kubernetes_Administrator/tree/master/Helm)       | [helm.sh](https://helm.sh)                                                           | Become a master in Kubernetes package manager                                                                |
-| 3     | Operator   | [Start the Tutorial](https://github.com/DevCloudNinjas/Certified_Kubernetes_Administrator/tree/master/Operators)  | [kubernetes.io/docs](https://kubernetes.io/docs/concepts/extend-kubernetes/operator) | Extend the functionality of the Kubernetes API                                                               |
-| 4     | Prometheus | [Start the Tutorial](https://github.com/DevCloudNinjas/Certified_Kubernetes_Administrator/tree/master/Prometheus) | [prometheus.io](https://prometheus.io)                                               | The Prometheus monitoring system and time series database                                                    |
+| 1     | Kubernetes | [Start the Tutorial](learning/kubernetes-cka-prep/CKA)        | [kubernetes.io](https://kubernetes.io)                                               | Become a Certified Kubernetes Administrator, an EXPERT in K8s from scratch                                   |
+| 2     | Helm       | [Start the Tutorial](learning/kubernetes-cka-prep/Helm)       | [helm.sh](https://helm.sh)                                                           | Become a master in Kubernetes package manager                                                                |
+| 3     | Operator   | [Start the Tutorial](learning/kubernetes-cka-prep/Operators)  | [kubernetes.io/docs](https://kubernetes.io/docs/concepts/extend-kubernetes/operator) | Extend the functionality of the Kubernetes API                                                               |
+| 4     | Prometheus | [Start the Tutorial](learning/kubernetes-cka-prep/Prometheus) | [prometheus.io](https://prometheus.io)                                               | The Prometheus monitoring system and time series database                                                    |
 | 5     | EKS        | SOON                                                                           | [aws.amazon.com](https://aws.amazon.com/eks)                                         | Amazon EKS is a managed Kubernetes service to run Kubernetes in the AWS cloud and on-premises data centers.  |
 
 ---
@@ -72,7 +72,7 @@ If you are a beginner and want to start from scratch, you should follow along wi
 - [x] Add monitoring - `Prometheus`
 - [ ] Kubernetes on AWS - `EKS`
 
-See the [open issues](https://github.com/DevCloudNinjas/Certified_Kubernetes_Administrator/issues) for a complete list of proposed features (and known
+See the [open issues](learning/kubernetes-cka-prep/issues) for a complete list of proposed features (and known
 issues).
 
 ---
@@ -98,7 +98,7 @@ with the tag "enhancement."
 
 ## License
 
-The license is under the MIT License. See [LICENSE](https://github.com/DevCloudNinjas/Certified_Kubernetes_Administrator/blob/master/LICENSE) for more
+The license is under the MIT License. See [LICENSE](learning/kubernetes-cka-prep/LICENSE) for more
 information.
 
 ---

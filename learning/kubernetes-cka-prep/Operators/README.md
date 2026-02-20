@@ -1,7 +1,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/DevCloudNinjas/Certified_Kubernetes_Administrator/edit/master/Operators">
+  <a href="https://github.com/DevCloudNinjas/DevOps-Projects/tree/main/learning/kubernetes-cka-prep/edit/master/Operators">
     <img src="images/logo.png" alt="Logo" width="150" height="150">
   </a>
 
@@ -592,7 +592,7 @@ Prometheus has three master components, and we have to set up these three.
 
 <div id="Demo-Setup-Prometheus-Monitoring-Setup-with-Helm-Chart">
 
-**Note:** If you are unfamiliar with Helm, I have a [Helm tutorial](https://github.com/DevCloudNinjas/Certified_Kubernetes_Administrator/tree/master/Helm)
+**Note:** If you are unfamiliar with Helm, I have a [Helm tutorial](learning/kubernetes-cka-prep/Helm)
 about it.
 
 Be sure to check it out, but essentially Helm is a package manager for Kubernetes.

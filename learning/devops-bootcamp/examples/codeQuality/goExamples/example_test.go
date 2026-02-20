@@ -8,7 +8,7 @@ func TestIndexGitHubRepositoriesByOrg_basic(t *testing.T) {
         {
             Organization: "devcloudninjas",
             Repository: "devops-bootcamp",
-            Url: "https://github.com/devcloudninjas/devops-bootcamp",
+            Url: "https://github.com/DevCloudNinjas/DevOps-Projects/learning/devops-bootcamp",
             License: "MIT",
         },
     }
@@ -30,7 +30,7 @@ func TestIndexGitHubRepositoriesByOrg_multiple(t *testing.T) {
         {
             Organization: "devcloudninjas",
             Repository: "devops-bootcamp",
-            Url: "https://github.com/devcloudninjas/devops-bootcamp",
+            Url: "https://github.com/DevCloudNinjas/DevOps-Projects/learning/devops-bootcamp",
             License: "MIT",
         },
         {
@@ -42,7 +42,7 @@ func TestIndexGitHubRepositoriesByOrg_multiple(t *testing.T) {
         {
             Organization: "devcloudninjas",
             Repository: "lead-terraform",
-            Url: "https://github.com/devcloudninjas/lead-terraform",
+            Url: "https://github.com/DevCloudNinjas/DevOps-Projects/learning/devops-bootcamp",
             License: "MIT",
         },
     }

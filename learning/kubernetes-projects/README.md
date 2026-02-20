@@ -14,25 +14,25 @@ To get prepared please install the `kubernetes cli` & `setup cluster` in your en
 
 ## Learning List
 
-1. [**Kubernetes for Everyone**](https://github.com/DevCloudNinjas/kubernetes-projects/blob/master/learning/kubernetes-for-everyone/README.md)
+1. [**Kubernetes for Everyone**](learning/kubernetes-projects/learning/kubernetes-for-everyone/README.md)
 
-2. [**What is a Pod in Kubernetes?**](https://github.com/DevCloudNinjas/kubernetes-projects/blob/master/learning/What-is-Pod-in-Kubernetes/README.md)
+2. [**What is a Pod in Kubernetes?**](learning/kubernetes-projects/learning/What-is-Pod-in-Kubernetes/README.md)
 
-3. [**Deploying an Application on Kubernetes: A Complete Guide!**](https://github.com/DevCloudNinjas/kubernetes-projects/blob/master/learning/Deploying-an-Application-on-Kubernetes/README.md)
+3. [**Deploying an Application on Kubernetes: A Complete Guide!**](learning/kubernetes-projects/learning/Deploying-an-Application-on-Kubernetes/README.md)
 
-4. [**Kubernetes – Architecture and main components overview**](https://github.com/DevCloudNinjas/kubernetes-projects/blob/master/learning/Kubernetes-components-overview/README.md)
+4. [**Kubernetes – Architecture and main components overview**](learning/kubernetes-projects/learning/Kubernetes-components-overview/README.md)
 
 **MORE ADDING SOON**
 
 ## Projects List
 
-1. [**Designing a 10-Microservices Application Deployment on EKS!**](https://github.com/DevCloudNinjas/kubernetes-projects/blob/master/projects/10-microservices-deployment-eks/README.md)
+1. [**Designing a 10-Microservices Application Deployment on EKS!**](learning/kubernetes-projects/projects/10-microservices-deployment-eks/README.md)
 
-2. [**Deploying Spring Boot application on K8S**](https://github.com/DevCloudNinjas/kubernetes-projects/blob/master/projects/Deploying-Spring-Boot-K8S/README.md)
+2. [**Deploying Spring Boot application on K8S**](learning/kubernetes-projects/projects/Deploying-Spring-Boot-K8S/README.md)
 
-3. [**Uber Clone DevSecOps CI/CD Kubernetes Project**](https://github.com/DevCloudNinjas/kubernetes-projects/blob/master/projects/Uber-Clone-DevSecOps/README.md)
+3. [**Uber Clone DevSecOps CI/CD Kubernetes Project**](learning/kubernetes-projects/projects/Uber-Clone-DevSecOps/README.md)
 
-4. [**Deploy to Kubernetes Using Jenkins | End to End DevOps Project | CICD**](https://github.com/DevCloudNinjas/kubernetes-projects/blob/master/projects/Kubernetes-Using-Jenkins/README.md)
+4. [**Deploy to Kubernetes Using Jenkins | End to End DevOps Project | CICD**](learning/kubernetes-projects/projects/Kubernetes-Using-Jenkins/README.md)
 
 **MORE ADDING SOON**
 

@@ -1,7 +1,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/DevCloudNinjas/Certified_Kubernetes_Administrator/tree/master/Helm">
+  <a href="https://github.com/DevCloudNinjas/DevOps-Projects/tree/main/learning/kubernetes-cka-prep/Helm">
     <img src="images/logo.svg" alt="Logo" width="150" height="150">
   </a>
 

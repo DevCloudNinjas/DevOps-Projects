@@ -26,7 +26,7 @@ AWS CodePipeline is a fully managed continuous integration and continuous delive
 - C. After deployment, automate the ALB routing to gradually shift traffic from the Blue service to the Green service based on predefined health checks.  
 - D. Monitor the deployment process and rollback automatically if issues occur during the transition.
 
-## GitHub Source Code Repo: [HERE](https://github.com/devcloudninjas/DevOps-Projects/tree/master/DevOps-Project-23/Swiggy_clone)
+## GitHub Source Code Repo: [HERE](https://github.com/devcloudninjas/DevOps-Projects/tree/master/project-23-swiggy-clone-ecs/Swiggy_clone)
 
 # **Step:-1 : Create a Sonar Server**
 

@@ -10,8 +10,8 @@ This is a MVC architecture based application where controller returns a page wit
 Checkout the repo and move to the directory
 
 ```
-git clone https://github.com/devcloudninjas/DevOps-Projects/DevOps-Project-18/sprint-boot-app
-cd DevOps-Project-18/sprint-boot-app
+git clone https://github.com/devcloudninjas/DevOps-Projects/project-18-jenkins-java-full-cicd/sprint-boot-app
+cd project-18-jenkins-java-full-cicd/sprint-boot-app
 ```
 
 Execute the Maven targets to generate the artifacts

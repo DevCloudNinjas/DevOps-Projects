@@ -23,7 +23,7 @@ In addition to creating an example pipeline, we'll also add enhanced capabilitie
 * Demonstrating how we can scale with multiple deployments
 
 
-> *If you'd like to skip straight to the download of the example pipeline and Terraform code, it can be found on* [*GitHub*](https://github.com/devcloudninjas/DevOps-Projects/tree/master/DevOps-Project-20/terraform)*.*
+> *If you'd like to skip straight to the download of the example pipeline and Terraform code, it can be found on* [*GitHub*](https://github.com/devcloudninjas/DevOps-Projects/tree/master/project-20-azure-terraform-pipeline/terraform)*.*
 
 ### **Overall Topology**
 

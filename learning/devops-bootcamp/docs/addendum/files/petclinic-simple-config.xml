@@ -8,7 +8,7 @@
     <configVersion>2</configVersion>
     <userRemoteConfigs>
       <hudson.plugins.git.UserRemoteConfig>
-        <url>https://github.com/devcloudninjas/spring-petclinic.git</url>
+        <url>https://github.com/DevCloudNinjas/DevOps-Projects/tree/main/learning/devops-bootcamp/.git</url>
       </hudson.plugins.git.UserRemoteConfig>
     </userRemoteConfigs>
     <branches>

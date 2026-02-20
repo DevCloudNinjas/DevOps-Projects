@@ -96,7 +96,7 @@ This project demonstrates a complete **CI/CD pipeline** setup for deploying a fu
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/devcloudninjas/full-stack-blogging-app.git
+git clone https://github.com/DevCloudNinjas/DevOps-Projects.git
 cd full-stack-blogging-app
 ```
 

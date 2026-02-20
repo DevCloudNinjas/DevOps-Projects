@@ -10,7 +10,7 @@ Nexus is one such repository manager which stores artifacts. Previously in the B
 # Setup Nexus
 
 1. Install Nexus on a new server.
-2. Configure a Jenkins [spring-petclinic](https://github.com/devcloudninjas/spring-petclinic) job to deploy SNAPSHOT artifacts to your Nexus.
+2. Configure a Jenkins [spring-petclinic](learning/devops-bootcamp) job to deploy SNAPSHOT artifacts to your Nexus.
 
 Confirm that your artifact was deployed.
 

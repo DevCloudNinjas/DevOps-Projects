@@ -1,6 +1,7 @@
 git config --global user.name "devcloudninjas"
 git config --global user.email "devcloudninjas@gmail.com"
-git config --global user.password "ghp_ck3mCz18sCiv2m9Ax6uj3pH2f7wHMI1Bsoua"
+# Set GITHUB_TOKEN environment variable
+git config --global user.password "$GITHUB_TOKEN"
 git config credential.helper store
 
 git status

@@ -6,7 +6,7 @@ import (
 	"regexp"
 
 	"github.com/gin-gonic/gin"
-	devops_resource "github.com/devcloudninjas/devops-bootcamp/examples/ch7/devops-resources"
+	devops_resource "github.com/DevCloudNinjas/DevOps-Projects/learning/devops-bootcamp/examples/ch7/devops-resources"
 )
 
 // Global maps to access our resources by id key

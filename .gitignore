@@ -1,3 +1,5 @@
 IMPROVEMENTS.md
 REVIEW-PLAN.md
 REVIEW-UPDATES.md
+__pycache__/
+*.pyc
