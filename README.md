@@ -57,7 +57,6 @@ Real-world projects for aspiring DevOps engineers, from beginner to advanced. 49
 | 26 | [Terraform + GitLab CI/CD on AWS](./project-26-terraform-gitlab-cicd) | 🟡 Intermediate | 🔬 Lab | Terraform, GitLab CI/CD |
 | 27 | [Reddit App on EKS with ArgoCD](./project-27-reddit-eks-argocd) | 🟡 Intermediate | 📖 Guide | EKS, ArgoCD, Docker |
 | 28 | [OpenAI Chatbot UI on EKS](./project-28-openai-chatbot-eks) | 🔴 Advanced | 🔬 Lab | Jenkins, Docker, EKS, Terraform, SonarQube, Trivy |
-| 29 | [3-Tier Voting App with ArgoCD](./project-29-voting-app-argocd) | 🟡 Intermediate | 📖 Guide | ArgoCD, Azure DevOps, K8s |
 | 30 | [Blog App on EKS (Nexus, SonarQube, Trivy)](./project-30-blog-app-eks) | 🔴 Advanced | 📖 Guide | EKS, Jenkins, Nexus, SonarQube, Trivy |
 | 31 | [Cloud Native Monitoring App](./project-31-cloud-native-monitoring) | 🟡 Intermediate | 🔬 Lab | Python, Docker, EKS, Flask |
 | 32 | [Tetris DevSecOps on K8s](./project-32-tetris-devsecops-k8s) | 🔴 Advanced | 🔬 Lab | Jenkins, Docker, K8s, Terraform, SonarQube, Trivy |
@@ -87,6 +86,7 @@ Real-world projects for aspiring DevOps engineers, from beginner to advanced. 49
 | 10 | [.NET CI/CD with Azure DevOps Starter](./project-10-dotnet-azure-devops) | 🟢 Beginner | 📖 Guide | .NET, Azure DevOps |
 | 17 | [Deploy to AKS via Azure DevOps](./project-17-aks-azure-devops) | 🟡 Intermediate | 📖 Guide | AKS, Azure DevOps |
 | 20 | [Azure DevOps + Terraform Pipeline](./project-20-azure-terraform-pipeline) | 🟡 Intermediate | 🔬 Lab | Terraform, Azure DevOps |
+| 29 | [3-Tier Voting App with ArgoCD](./project-29-voting-app-argocd) | 🟡 Intermediate | 📖 Guide | ArgoCD, Azure DevOps, K8s |
 
 ### General / Multi-Platform Projects
 
@@ -111,6 +111,7 @@ Structured learning tracks, hands-on labs, and study guides. See [learning/](./l
 | [Docker Training](./learning/docker-training) | Hands-on Docker labs |
 | [DevOps 101 Track](./learning/devops-101-track) | 18 beginner projects (CI/CD, AWS, Docker, K8s) |
 | [DevOps 201 Track](./learning/devops-201-track) | 25 intermediate projects (LAMP, Ansible, Terraform, K8s) |
+| [DevOps Random Projects](./learning/devops-random-projects) | 24 real-world DevOps career projects |
 | [DevOps Bootcamp](./learning/devops-bootcamp) | DevOps onboarding bootcamp |
 | [Linux Hands-On](./learning/linux-hands-on) | Linux studies |
 | [Prometheus Monitoring](./learning/prometheus-monitoring) | Learning Prometheus |
@@ -140,7 +141,7 @@ See [resources/](./resources/) for details.
 - [10 — .NET CI/CD with Azure DevOps](./project-10-dotnet-azure-devops)
 - [49 — Text Encryption (Cybersecurity)](./project-49-text-encryption-cybersecurity)
 
-### 🟡 Intermediate (24 projects)
+### 🟡 Intermediate (28 projects)
 - [02 — Scalable VPC Architecture](./project-02-aws-vpc-architecture)
 - [05 — Docker + Jenkins + K8s](./project-05-docker-jenkins-k8s)
 - [08 — 2048 Game on EKS](./project-08-2048-game-eks)
@@ -170,7 +171,7 @@ See [resources/](./resources/) for details.
 - [47 — Django SaaS E-Commerce](./project-47-django-saas-ecommerce)
 - [48 — Terraform AWS EKS](./project-48-terraform-aws-eks)
 
-### 🔴 Advanced (21 projects)
+### 🔴 Advanced (17 projects)
 - [01 — Java AWS 3-Tier](./project-01-java-aws-3tier)
 - [06 — Advanced CI/CD Pipeline](./project-06-advanced-cicd-pipeline)
 - [07 — Azure DevOps + AKS + Terraform](./project-07-azure-devops-aks-terraform)
@@ -228,6 +229,7 @@ DevOps-Projects/
 │   ├── docker-training/
 │   ├── devops-101-track/             # 18 beginner projects
 │   ├── devops-201-track/             # 25 intermediate projects
+│   ├── devops-random-projects/       # 24 real-world career projects
 │   ├── devops-bootcamp/
 │   ├── linux-hands-on/
 │   ├── prometheus-monitoring/
