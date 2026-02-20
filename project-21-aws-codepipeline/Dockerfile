@@ -9,9 +9,11 @@ ENV VITE_APP_TMDB_V3_API_KEY=${TMDB_V3_API_KEY}
 ENV VITE_APP_API_ENDPOINT_URL="https://api.themoviedb.org/3"
 RUN yarn build
 
-FROM nginx:stable-alpine
+FROM nginxinc/nginx-unprivileged:alpine
 WORKDIR /usr/share/nginx/html
+USER root
 RUN rm -rf ./*
 COPY --from=builder /app/dist .
-EXPOSE 80
+USER nginx
+EXPOSE 8080
 ENTRYPOINT ["nginx", "-g", "daemon off;"]

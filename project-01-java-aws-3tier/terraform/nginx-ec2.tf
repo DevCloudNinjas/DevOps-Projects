@@ -86,7 +86,8 @@ resource "aws_security_group" "nginx_sg" {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
+    cidr_blocks = ["YOUR_IP_ADDRESS/32"] # REPLACE THIS with your actual IP address
+    description = "Allow SSH from administrator IP"
   }
 
   egress {
@@ -94,6 +95,7 @@ resource "aws_security_group" "nginx_sg" {
     to_port     = 0
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
+    description = "Allow all outbound traffic"
   }
 
   tags = {

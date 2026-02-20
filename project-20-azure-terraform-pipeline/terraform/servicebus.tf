@@ -9,11 +9,11 @@ resource "azurerm_servicebus_namespace" "sbus" {
   local_auth_enabled            = false
   minimum_tls_version           = "1.2"
   network_rule_set {
-    default_action                = "Allow"      
-    public_network_access_enabled = true
-    trusted_services_allowed      = false
+    default_action                = "Deny"      
+    public_network_access_enabled = false
+    trusted_services_allowed      = true
   }
-  public_network_access_enabled = true
+  public_network_access_enabled = false
   sku                           = "Standard"
 }
 

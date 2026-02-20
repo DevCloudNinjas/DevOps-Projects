@@ -33,15 +33,11 @@ phases:
     commands:
       - echo "Running tests..."
       - echo "Building Docker image..."
-      # - echo "$DOCKER_REGISTRY_PASSWORD" | docker login -u "$DOCKER_REGISTRY_USERNAME" --password-stdin "$DOCKER_REGISTRY_URL"
-      # - docker build -t "$DOCKER_REGISTRY_URL/$DOCKER_REGISTRY_USERNAME/swiggy:latest" .
-      # - docker push "$DOCKER_REGISTRY_URL/$DOCKER_REGISTRY_USERNAME/swiggy:latest"
-  # post_build:
-  #   commands:
-  #     - echo "Performing Trivy image scan after building the image..."
-  #     - aws ses send-email --from "madithati123@gmail.com" --to "madithatisreedhar123@gmail.com" --subject "CodeBuild Status: $CODEBUILD_BUILD_ID" --text "Build status: $CODEBUILD_BUILD_STATUS" --region "ap-south-1" 
-
-  #     # - trivy image  "$DOCKER_REGISTRY_USERNAME/swiggy:latest" >> trivyimage.txt
+      - echo "$DOCKER_REGISTRY_PASSWORD" | docker login -u "$DOCKER_REGISTRY_USERNAME" --password-stdin "$DOCKER_REGISTRY_URL"
+      - docker build -t "$DOCKER_REGISTRY_USERNAME/swiggy:$CODEBUILD_BUILD_ID" .
+      - echo "Performing Trivy image scan..."
+      - trivy image --exit-code 1 --severity HIGH,CRITICAL "$DOCKER_REGISTRY_USERNAME/swiggy:$CODEBUILD_BUILD_ID"
+      - docker push "$DOCKER_REGISTRY_USERNAME/swiggy:$CODEBUILD_BUILD_ID"
   #     # - echo "Running OWASP Dependency-Check scan..."
   #     # - cd dependency-check/bin
   #     # - ./dependency-check.sh --scan . --format ALL

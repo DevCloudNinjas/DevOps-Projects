@@ -353,6 +353,11 @@ resource "aws_lambda_function" "api_lambda" {
       SECRET_ID = aws_rds_cluster.aurora_cluster.master_user_secret[0].secret_arn
     }
   }
+  
+  tracing_config {
+    mode = "Active"
+  }
+
   timeout = 30
 }
 

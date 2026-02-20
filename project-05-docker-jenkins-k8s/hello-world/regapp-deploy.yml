@@ -22,6 +22,21 @@ spec:
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
+        resources:
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+          requests:
+            memory: "256Mi"
+            cpu: "250m"
+        securityContext:
+          allowPrivilegeEscalation: false
+          runAsNonRoot: true
+          # The non-root tomcat user from the updated Dockerfile
+          runAsUser: 999 
+          capabilities:
+            drop:
+            - ALL
   strategy:
     type: RollingUpdate
     rollingUpdate:

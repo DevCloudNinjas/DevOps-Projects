@@ -85,7 +85,18 @@ environment {
       }
     }
 
-            stage (" Docker Publish "){
+    stage(" Trivy Vulnerability Scan ") {
+      steps {
+        script {
+           echo '<--------------- Trivy Scan Started --------------->'
+           // Run Trivy scan on the built image, failing the build on HIGH/CRITICAL severities
+           sh "trivy image --exit-code 1 --severity HIGH,CRITICAL ${imageName}:${version}"
+           echo '<--------------- Trivy Scan Ends --------------->'
+        }
+      }
+    }
+
+    stage (" Docker Publish "){
         steps {
             script {
                echo '<--------------- Docker Publish Started --------------->'  

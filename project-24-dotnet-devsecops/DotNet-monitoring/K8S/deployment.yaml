@@ -17,6 +17,13 @@ spec:
         image: writetoritika/dotnet-monitoring:latest # Replace with your Docker image name
         ports:
         - containerPort: 5000 # Expose the port specified in your Dockerfile
+        resources:
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+          requests:
+            memory: "256Mi"
+            cpu: "250m"
 
 ---
 apiVersion: v1

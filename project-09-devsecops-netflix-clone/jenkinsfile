@@ -53,16 +53,20 @@ pipeline{
             steps{
                 script{
                    withDockerRegistry(credentialsId: 'docker', toolName: 'docker'){   
-                       sh "docker build --build-arg TMDB_V3_API_KEY=AJ7AYe14eca3e76864yah319b92 -t netflix ."
-                       sh "docker tag netflix rutik/netflix:latest "
-                       sh "docker push rutik/netflix:latest "
+                       withCredentials([string(credentialsId: 'tmdb-api-key', variable: 'TMDB_V3_API_KEY')]) {
+                           sh "docker build --build-arg TMDB_V3_API_KEY=${TMDB_V3_API_KEY} -t netflix:${env.BUILD_NUMBER} ."
+                           sh "docker tag netflix:${env.BUILD_NUMBER} rutik/netflix:${env.BUILD_NUMBER}"
+                           sh "docker tag netflix:${env.BUILD_NUMBER} rutik/netflix:latest"
+                           sh "docker push rutik/netflix:${env.BUILD_NUMBER}"
+                           sh "docker push rutik/netflix:latest"
+                       }
                     }
                 }
             }
         }
         stage("TRIVY"){
             steps{
-                sh "trivy image sevenajay/netflix:latest > trivyimage.txt" 
+                sh "trivy image --exit-code 1 --severity HIGH,CRITICAL rutik/netflix:${env.BUILD_NUMBER} > trivyimage.txt" 
             }
         }
         stage('Deploy to container'){

@@ -1,6 +1,9 @@
-# Create a CI/CD pipeline for .NET with the DevOps Starter Project
+# Create a CI/CD pipeline for .NET with Azure App Service (formerly DevOps Starter)
 
 ![devops](https://imgur.com/gBofYCl.png)
+
+> [!WARNING]
+> **2026 Update:** Microsoft has retired the "Azure DevOps Starter" experience from the Azure Portal. The modern equivalent method to achieve this lab is by creating an **Azure App Service**, navigating to the **Deployment Center** blade on the left, and linking your Azure DevOps repository there. The concepts in this lab remain the same, but the UI has changed.
 
 ## Overview
 

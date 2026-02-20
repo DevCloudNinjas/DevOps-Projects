@@ -21,12 +21,16 @@ phases:
       - echo "dependencies installed"
   build:
     commands:
-      - docker build . -t dhruvdarji123/netflix-react-app:latest --build-arg TMDB_V3_API_KEY=$KEY
+      - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
+      - IMAGE_TAG=${COMMIT_HASH:=latest}
+      - docker build . -t dhruvdarji123/netflix-react-app:$IMAGE_TAG --build-arg TMDB_V3_API_KEY=$KEY
   post_build:
     commands:
-      - echo "waiting right now"
+      - echo "Scanning Image with Trivy"
+      - trivy image --exit-code 1 --severity HIGH,CRITICAL dhruvdarji123/netflix-react-app:$IMAGE_TAG
+      - echo "Logging into DockerHub"
       - docker login -u $USERNAME -p $PASSWORD
-      - docker push dhruvdarji123/netflix-react-app:latest
+      - docker push dhruvdarji123/netflix-react-app:$IMAGE_TAG
 artifacts:
   files:
     - '**/*'

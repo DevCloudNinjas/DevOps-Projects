@@ -7,6 +7,10 @@ ARG artifact=target/spring-boot-web.jar
 
 WORKDIR /opt/app
 
+# Create a non-root user and group
+RUN addgroup -S spring && adduser -S spring -G spring
+USER spring:spring
+
 COPY ${artifact} app.jar
 
 # This should not be changed

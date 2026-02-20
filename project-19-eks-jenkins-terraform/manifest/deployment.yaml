@@ -14,6 +14,18 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: nginx
+        image: nginx:1.25.3-alpine # specifying exact image
         ports:
         - containerPort: 80
+        resources:
+          limits:
+            memory: "256Mi"
+            cpu: "250m"
+          requests:
+            memory: "128Mi"
+            cpu: "100m"
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop:
+            - ALL

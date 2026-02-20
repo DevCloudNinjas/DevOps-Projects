@@ -26,6 +26,7 @@ Goal of this project is to deploy scalable, highly available and secured Java ap
 3. Migrate Java Source Code to your own GitHub repository
 4. Create account in Sonarcloud.
 5. Create account in Jfrog cloud.
+6. **Security Mandate**: Find your public IP address and replace `YOUR_IP_ADDRESS/32` in `terraform/bastion.tf`, `terraform/apache-ec2.tf`, and `terraform/nginx-ec2.tf` before deploying.
 
 ## Pre-Deployment
 

@@ -1,23 +1,20 @@
-# Use Node.js 16 slim as the base image
-FROM node:16
-
-# Set the working directory
+# Stage 1: Build the React application
+FROM node:16-alpine as builder
 WORKDIR /app
-
-# Copy package.json and package-lock.json to the working directory
 COPY package*.json ./
-
-# Install dependencies
-RUN npm install
-
-# Copy the rest of the application code
+# Using npm ci for reliable builds
+RUN npm ci
 COPY . .
-
-# Build the React app
 RUN npm run build
 
-# Expose port 3000 (or the port your app is configured to listen on)
-EXPOSE 3000
+# Stage 2: Serve the static files with a non-root Nginx server
+FROM nginxinc/nginx-unprivileged:alpine
+WORKDIR /usr/share/nginx/html
+# Switch to root to clear the default html files, then drop privileges back
+USER root
+RUN rm -rf ./*
+COPY --from=builder /app/build .
+USER nginx
 
-# Start your Node.js server (assuming it serves the React app)
-CMD ["npm", "start"]
+EXPOSE 8080
+CMD ["nginx", "-g", "daemon off;"]

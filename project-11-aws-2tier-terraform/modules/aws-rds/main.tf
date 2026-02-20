@@ -17,6 +17,7 @@ resource "aws_rds_cluster" "aurora_cluster" {
   skip_final_snapshot     = true
   database_name           = var.db-name
   port                    = 3306
+  storage_encrypted       = true
   db_subnet_group_name    = aws_db_subnet_group.db_subnet_group.name
   vpc_security_group_ids  = [data.aws_security_group.db-sg.id]
   tags = {

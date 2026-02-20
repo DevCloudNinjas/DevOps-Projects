@@ -21,7 +21,7 @@ pipeline {
     }
     stage('Static Code Analysis') {
       environment {
-        SONAR_URL = "http://34.201.116.83:9000"
+        SONAR_URL = "http://sonar-server:9000"
       }
       steps {
         withCredentials([string(credentialsId: 'sonarqube', variable: 'SONAR_AUTH_TOKEN')]) {
@@ -43,6 +43,11 @@ pipeline {
                 dockerImage.push()
             }
         }
+      }
+    }
+    stage('Trivy Image Scan') {
+      steps {
+        sh "trivy image --exit-code 1 --severity HIGH,CRITICAL abhishekf5/ultimate-cicd:${BUILD_NUMBER}"
       }
     }
     stage('Update Deployment File') {

@@ -19,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: "Checkout"
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: "Run linting"
         # We have to update the path because HOME is set weird in actions runner
@@ -29,7 +29,7 @@ jobs:
         run: make test-report
 
       - name: "Upload test results"
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         # Disabled when running locally with the nektos/act tool
         if: ${{ always() }}
         with:
@@ -48,7 +48,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: "Checkout"
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       # Nicer than using github runid, I think, will be picked up automatically by make
       - name: "Create datestamp image tag"

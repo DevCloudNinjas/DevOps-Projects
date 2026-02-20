@@ -5,19 +5,21 @@ resource "aws_db_subnet_group" "mysql" {
 }
 
 resource "aws_db_instance" "mysql" {
-  identifier             = "myapp-mysql"
-  engine                 = "mysql"
-  engine_version         = "8.0"
-  instance_class         = "db.t3.medium"
-  allocated_storage      = 20
-  storage_type           = "gp2"
-  multi_az               = true
-  db_name                = "myapp"
-  username               = "admin"
-  password               = var.db_password
-  db_subnet_group_name   = aws_db_subnet_group.mysql.name
-  vpc_security_group_ids = [aws_security_group.mysql_sg.id]
-  skip_final_snapshot    = true
+  identifier                  = "myapp-mysql"
+  engine                      = "mysql"
+  engine_version              = "8.0"
+  instance_class              = "db.t3.medium"
+  allocated_storage           = 20
+  storage_type                = "gp2"
+  multi_az                    = true
+  db_name                     = "myapp"
+  username                    = "admin"
+  password                    = var.db_password
+  db_subnet_group_name        = aws_db_subnet_group.mysql.name
+  vpc_security_group_ids      = [aws_security_group.mysql_sg.id]
+  skip_final_snapshot         = true
+  publicly_accessible         = false # SECURITY FIX: Explicitly disable public access
+  storage_encrypted           = true  # SECURITY FIX: Enable encryption at rest
 }
 
 resource "aws_security_group" "mysql_sg" {
@@ -30,6 +32,7 @@ resource "aws_security_group" "mysql_sg" {
     to_port     = 3306
     protocol    = "tcp"
     cidr_blocks = [aws_vpc.bastion_vpc.cidr_block, aws_vpc.app_vpc.cidr_block]
+    description = "Allow MySQL access from App and Bastion VPCs"
   }
 
   egress {
@@ -37,5 +40,6 @@ resource "aws_security_group" "mysql_sg" {
     to_port     = 0
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
+    description = "Allow all outbound traffic"
   }
 }

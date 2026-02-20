@@ -81,11 +81,13 @@ resource "aws_security_group" "bastion_sg" {
   description = "Security group for Bastion host"
   vpc_id      = aws_vpc.bastion_vpc.id
 
+  # SECURITY FIX: Removed open 0.0.0.0/0. Recommend standardizing on VPN or explicit admin IP.
   ingress {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
+    cidr_blocks = ["YOUR_IP_ADDRESS/32"] # REPLACE THIS with your actual IP address
+    description = "Allow SSH from administrator IP"
   }
 
   egress {
@@ -93,6 +95,7 @@ resource "aws_security_group" "bastion_sg" {
     to_port     = 0
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
+    description = "Allow all outbound traffic"
   }
 
   tags = {
@@ -107,4 +110,5 @@ resource "aws_security_group_rule" "bastion_to_rds" {
   protocol          = "tcp"
   cidr_blocks       = [aws_vpc.app_vpc.cidr_block]
   security_group_id = aws_security_group.bastion_sg.id
+  description       = "Allow Bastion to connect to RDS"
 }

@@ -1,5 +1,74 @@
+# -------------------------------------------------------------------
+# DevOps-Projects Global .gitignore
+# -------------------------------------------------------------------
+
+# OS & Environment
+.DS_Store
+Thumbs.db
+.env
+.venv/
+venv/
+ENV/
+
+# IDE & Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Git/Review artifacts
 IMPROVEMENTS.md
 REVIEW-PLAN.md
 REVIEW-UPDATES.md
+
+# Application Dependencies
+node_modules/
 __pycache__/
 *.pyc
+*.pyo
+target/
+build/
+bin/
+obj/
+dist/
+
+# Terraform / OpenTofu
+.terraform/
+*.tfstate
+*.tfstate.*
+crash.log
+crash.*.log
+*.tfvars
+*.tfvars.json
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+.terraformrc
+terraform.rc
+
+# Credentials & Secrets (NEVER COMMIT)
+*.pem
+*.key
+*.cert
+*.cer
+*.crt
+*.pfx
+*.p12
+secret*.yaml
+credentials
+id_rsa
+id_rsa.pub
+
+# Build Artifacts & Archives
+*.tgz
+*.tar.gz
+*.zip
+*.jar
+*.war
+*.ear
+
+# Databases
+*.sqlite3
+db.sqlite3
+*.db

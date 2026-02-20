@@ -1,26 +1,36 @@
-# importing base image
-FROM python:3.9
+# Use slim Python 3.11 image for a smaller, secure footprint
+FROM python:3.11-slim
 
-# updating docker host or host machine
-RUN apt-get update \
-    && apt-get install -y --no-install-recommends \
-    && rm -rf /var/lib/apt/lists/*
+# Prevent Python from writing .pyc files and enable unbuffered output
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
 
-# changing current working directory to /usr/src/app
+# Create a non-root user for security
+RUN groupadd -r django && useradd -r -g django django
+
+# Set working directory
 WORKDIR /usr/src/app
 
-# copying requirement.txt file to present working directory
+# Install system dependencies (clearing cache afterwards)
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends gcc libpq-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+# Copy requirements and install
 COPY requirements.txt ./
+RUN pip install --no-cache-dir -r requirements.txt gunicorn
 
-# installing dependency in container
-RUN pip install -r requirements.txt
-
-# copying all the files to present working directory
+# Copy application code
 COPY . .
 
-# informing Docker that the container listens on the
-# specified network ports at runtime i.e 8000.
+# Change ownership to the non-root user
+RUN chown -R django:django /usr/src/app /var/log
+
+# Switch to non-root user
+USER django
+
+# Expose port
 EXPOSE 8000
 
-# running server
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+# Run server using gunicorn instead of the development runserver
+CMD ["gunicorn", "--bind", "0.0.0.0:8000", "--workers", "3", "hello_world_django_app.wsgi:application"]
