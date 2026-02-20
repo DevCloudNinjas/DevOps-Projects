@@ -1,0 +1,80 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: url("kuber.jpg"); /* Replace "background.jpg" with the actual filename of your image */
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.dashboard {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.top-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex: 1;
+    border-bottom: 1px solid #ccc;
+    padding: 20px;
+}
+
+.bottom-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex: 1;
+    flex-direction: column; /* Add this line to align items in column */
+    padding: 20px;
+}
+
+.namespace-selector {
+    /* Add styles to position the namespace selector at the top right within the bottom section */
+    align-self: flex-end; /* This positions the element at the top right */
+}
+
+.storage-used,
+.memory-utilization,
+.cpu-utilization,
+.deployments,
+.pods-running,
+.services-running {
+    flex: 1;
+    text-align: center;
+}
+
+.percentage {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.count {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+h1 {
+    text-align: center;
+}
+
+/* Style the health check button */
+#healthCheckButton {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    cursor: pointer;
+    margin-right: 1500px; /*
+}
+
+/* Style the health check result */
+#healthCheckResult {
+    font-size: 24px;
+    font-weight: bold;
+    font-size: 16px;
+    margin-top: 5000px;
+   
+}

@@ -1,0 +1,18 @@
+{% extends "base.html" %} 
+{% block title %} Products {% endblock title%} 
+{% block content %} 
+{% for product in products %}
+<div class="card" style="width: 18rem">
+ 
+  <div class="card-body">
+    <h5 class="card-title">{{product.name}}</h5>
+    <p class="card-text">{{product.desc}}</p>
+    <a
+      href="{% url 'products:product-detail' product.id %}"
+      class="btn btn-primary"
+      >View Detail</a
+    >
+  </div>
+</div>
+{% endfor %} 
+{% endblock content %}

@@ -1,0 +1,57 @@
+{
+    "name": "soft-ui-dashboard",
+    "version": "1.0.1",
+    "description": "Premium Dashboard for Bootstrap 5",
+    "main": "dashboards/default.html",
+    "directories": {
+        "example": "root"
+    },
+    "scripts": {
+        "open-app": "gulp open-app",
+        "start": "npm run open-app",
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "watch": "gulp-watch"
+    },
+    "keywords": [
+        "soft ui dashboard pro",
+        "bootstrap 5",
+        "dashboard",
+        "admin dashboard",
+        "creative tim",
+        "html dashboard",
+        "html css dashboard",
+        "web dashboard",
+        "premium",
+        "premium bootstrap admin dashboard",
+        "css3 kit",
+        "bootstrap dashboard",
+        "frontend",
+        "responsive bootstrap admin dashboard"
+    ],
+    "author": "Creative Tim <hello@creative-tim.com> (https://www.creative-tim.com/)",
+    "license": "Premium",
+    "bugs": {
+        "url": "https://github.com/creativetimofficial/ct-soft-ui-dashboard-pro/issues"
+    },
+    "devDependencies": {
+        "gulp": "^4.0.2",
+        "gulp-autoprefixer": "^7.0.1",
+        "gulp-clean": "^0.4.0",
+        "gulp-install": "^1.1.0",
+        "gulp-sass": "^4.1.0",
+        "gulp-sourcemaps": "^2.6.5",
+        "gulp-open": "^3.0.1",
+        "gulp-clean-css": "4.2.0",
+        "gulp-cssbeautify": "1.0.1",
+        "gulp-file-include": "2.1.0",
+        "gulp-header": "2.0.7",
+        "gulp-htmlmin": "5.0.1",
+        "gulp-npm-dist": "^1.0.3",
+        "gulp-plumber": "1.2.1",
+        "gulp-rename": "1.4.0",
+        "gulp-uglify": "3.0.2",
+        "gulp-wait": "0.0.2",
+        "merge-stream": "2.0.0"
+    },
+    "homepage": "https://creative-tim.com/product/soft-ui-dashboard-pro"
+}

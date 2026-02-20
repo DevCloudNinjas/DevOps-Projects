@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: laravel
+  labels:
+    app: laravel
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: laravel
+  template:
+    metadata:
+      labels:
+        app: laravel
+    spec:
+      containers:
+      - name: laravel-app
+        image: devopscalvine/laravel-aws-eks
+        ports:
+        - containerPort: 80 
+        env:
+        - name: DB_HOST
+          value: localhost
+        - name: DB_DATABASE
+          value: laravel_aws_eks
+        - name: DB_USERNAME
+          value: app 
+        - name: DB_PASSWORD
+          value: password
+      - name: mysql
+        image: mysql:5 
+        env:
+        - name: MYSQL_DATABASE
+          value: laravel_aws_eks
+        - name: MYSQL_USER
+          value: app
+        - name: MYSQL_PASSWORD
+          value: password 
+        - name: MYSQL_ROOT_PASSWORD
+          value: password 

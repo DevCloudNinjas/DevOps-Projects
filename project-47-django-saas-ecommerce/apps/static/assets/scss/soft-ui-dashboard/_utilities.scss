@@ -1,0 +1,1304 @@
+@include media-breakpoint-up(xl) {
+  .w-lg-50 {
+    width: 50% !important;
+  }
+}
+
+.shadow-xl {
+  box-shadow: $box-shadow-xl;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.h-100-vh {
+  height: 100vh;
+}
+.section-height-25 {
+  min-height: $section-height-25-min-height;
+}
+
+.section-height-50 {
+  min-height: $section-height-50-min-height;
+}
+
+.section-height-75 {
+  min-height: $section-height-75-min-height;
+}
+
+.section-height-85 {
+  min-height: $section-height-85-min-height;
+}
+
+.section-height-100 {
+  min-height: $section-height-100-min-height;
+}
+
+.transform-translate-50{
+  transform: translate(0,-50%)
+}
+
+.border-radius-top-start-0 {
+  border-top-left-radius: 0 !important;
+}
+.border-radius-top-end-0 {
+  border-top-right-radius: 0 !important;
+}
+.border-radius-bottom-start-0 {
+  border-bottom-left-radius: 0 !important;
+}
+.border-radius-bottom-end-0 {
+  border-bottom-right-radius: 0 !important;
+}
+
+@include media-breakpoint-up(xxl) {
+  .border-radius-top-start-xxl-0 {
+    border-top-left-radius: 0 !important;
+  }
+  .border-radius-top-end-xxl-0 {
+    border-top-right-radius: 0 !important;
+  }
+  .border-radius-bottom-start-xxl-0 {
+    border-bottom-left-radius: 0 !important;
+  }
+  .border-radius-bottom-end-xxl-0 {
+    border-bottom-right-radius: 0 !important;
+  }
+}
+
+@include media-breakpoint-up(xl) {
+  .border-radius-top-start-xl-0 {
+    border-top-left-radius: 0 !important;
+  }
+  .border-radius-top-end-xl-0 {
+    border-top-right-radius: 0 !important;
+  }
+  .border-radius-bottom-start-xl-0 {
+    border-bottom-left-radius: 0 !important;
+  }
+  .border-radius-bottom-end-xl-0 {
+    border-bottom-right-radius: 0 !important;
+  }
+}
+
+@include media-breakpoint-up(lg) {
+  .border-radius-top-start-lg-0 {
+    border-top-left-radius: 0 !important;
+  }
+  .border-radius-top-end-lg-0 {
+    border-top-right-radius: 0 !important;
+  }
+  .border-radius-bottom-start-lg-0 {
+    border-bottom-left-radius: 0 !important;
+  }
+  .border-radius-bottom-end-lg-0 {
+    border-bottom-right-radius: 0 !important;
+  }
+}
+
+@include media-breakpoint-up(md) {
+  .border-radius-top-start-md-0 {
+    border-top-left-radius: 0 !important;
+  }
+  .border-radius-top-end-md-0 {
+    border-top-right-radius: 0 !important;
+  }
+  .border-radius-bottom-start-md-0 {
+    border-bottom-left-radius: 0 !important;
+  }
+  .border-radius-bottom-end-md-0 {
+    border-bottom-right-radius: 0 !important;
+  }
+}
+
+@include media-breakpoint-up(sm) {
+  .border-radius-top-start-sm-0 {
+    border-top-left-radius: 0 !important;
+  }
+  .border-radius-top-end-sm-0 {
+    border-top-right-radius: 0 !important;
+  }
+  .border-radius-bottom-start-sm-0 {
+    border-bottom-left-radius: 0 !important;
+  }
+  .border-radius-bottom-end-sm-0 {
+    border-bottom-right-radius: 0 !important;
+  }
+}
+
+@include media-breakpoint-up(xs) {
+  .border-radius-top-start-xs-0 {
+    border-top-left-radius: 0 !important;
+  }
+  .border-radius-top-end-xs-0 {
+    border-top-right-radius: 0 !important;
+  }
+  .border-radius-bottom-start-xs-0 {
+    border-bottom-left-radius: 0 !important;
+  }
+  .border-radius-bottom-end-xs-0 {
+    border-bottom-right-radius: 0 !important;
+  }
+}
+
+// Border extend responsive
+
+@include media-breakpoint-up(xxl) {
+  .border-top-xxl {
+    border-top: $border-width solid $border-color !important;
+  }
+  .border-end-xxl {
+    border-right: $border-width solid $border-color !important;
+  }
+  .border-bottom-xxl {
+    border-bottom: $border-width solid $border-color !important;
+  }
+  .border-start-xxl {
+    border-left: $border-width solid $border-color !important;
+  }
+}
+
+@include media-breakpoint-up(xl) {
+  .border-top-xl {
+    border-top: $border-width solid $border-color !important;
+  }
+  .border-end-xl {
+    border-right: $border-width solid $border-color !important;
+  }
+  .border-bottom-xl {
+    border-bottom: $border-width solid $border-color !important;
+  }
+  .border-start-xl {
+    border-left: $border-width solid $border-color !important;
+  }
+}
+
+@include media-breakpoint-up(lg) {
+  .border-top-lg {
+    border-top: $border-width solid $border-color !important;
+  }
+  .border-end-lg {
+    border-right: $border-width solid $border-color !important;
+  }
+  .border-bottom-lg {
+    border-bottom: $border-width solid $border-color !important;
+  }
+  .border-start-lg {
+    border-left: $border-width solid $border-color !important;
+  }
+}
+
+@include media-breakpoint-up(md) {
+  .border-top-md {
+    border-top: $border-width solid $border-color !important;
+  }
+  .border-end-md {
+    border-right: $border-width solid $border-color !important;
+  }
+  .border-bottom-md {
+    border-bottom: $border-width solid $border-color !important;
+  }
+  .border-start-md {
+    border-left: $border-width solid $border-color !important;
+  }
+}
+
+@include media-breakpoint-up(sm) {
+  .border-top-sm {
+    border-top: $border-width solid $border-color !important;
+  }
+  .border-end-sm {
+    border-right: $border-width solid $border-color !important;
+  }
+  .border-bottom-sm {
+    border-bottom: $border-width solid $border-color !important;
+  }
+  .border-start-sm {
+    border-left: $border-width solid $border-color !important;
+  }
+}
+
+@include media-breakpoint-up(xs) {
+  .border-top-xs {
+    border-top: $border-width solid $border-color !important;
+  }
+  .border-end-xs {
+    border-right: $border-width solid $border-color !important;
+  }
+  .border-bottom-xs {
+    border-bottom: $border-width solid $border-color !important;
+  }
+  .border-start-xs {
+    border-left: $border-width solid $border-color !important;
+  }
+}
+
+// Background Sizes
+.bg-cover{
+  background-size: cover;
+}
+
+.mask {
+  position: $mask-position;
+  background-size: $mask-bg-size;
+  background-position: $mask-bg-position;
+  top: $mask-top;
+  left: $mask-left;
+  width: $mask-width;
+  height: $mask-height;
+  opacity: $mask-opacity;
+}
+
+// z-index
+@each $name, $value in $z-index {
+  .z-index-#{$name} {
+    z-index: $value !important;
+  }
+}
+
+// Paddings Extend CT
+@each $name, $value in $paddings {
+  .p-#{$name} {
+    padding: $value !important;
+  }
+}
+@each $name, $value in $paddings {
+  .pt-#{$name} {
+    padding-top: $value !important;
+  }
+}
+@each $name, $value in $paddings {
+  .pe-#{$name} {
+    padding-right: $value !important;
+  }
+}
+@each $name, $value in $paddings {
+  .pb-#{$name} {
+    padding-bottom: $value !important;
+  }
+}
+@each $name, $value in $paddings {
+  .ps-#{$name} {
+    padding-left: $value !important;
+  }
+}
+@each $name, $value in $paddings {
+  .px-#{$name} {
+    padding-left: $value !important;
+    padding-right: $value !important;
+  }
+}
+@each $name, $value in $paddings {
+  .py-#{$name} {
+    padding-top: $value !important;
+    padding-bottom: $value !important;
+  }
+}
+
+// Responsive paddings
+
+// XXL
+@include media-breakpoint-up(xxl) {
+  @each $name, $value in $paddings {
+    .p-xxl-#{$name} {
+      padding: $value !important;
+    }
+  }
+}
+
+@include media-breakpoint-up(xxl) {
+  @each $name, $value in $paddings {
+    .pt-xxl-#{$name} {
+      padding-top: $value !important;
+    }
+  }
+}
+
+@include media-breakpoint-up(xxl) {
+  @each $name, $value in $paddings {
+    .pe-xxl-#{$name} {
+      padding-right: $value !important;
+    }
+  }
+}
+
+@include media-breakpoint-up(xxl) {
+  @each $name, $value in $paddings {
+    .pb-xxl-#{$name} {
+      padding-bottom: $value !important;
+    }
+  }
+}
+
+@include media-breakpoint-up(xxl) {
+  @each $name, $value in $paddings {
+    .ps-xxl-#{$name} {
+      padding-top: $value !important;
+    }
+  }
+}
+
+@include media-breakpoint-up(xxl) {
+  @each $name, $value in $paddings {
+    .px-xxl-#{$name} {
+      padding-left: $value !important;
+      padding-right: $value !important;
+    }
+  }
+}
+
+@include media-breakpoint-up(xxl) {
+  @each $name, $value in $paddings {
+    .py-xxl-#{$name} {
+      padding-top: $value !important;
+      padding-bottom: $value !important;
+    }
+  }
+}
+
+// XL
+@include media-breakpoint-up(xl) {
+  @each $name, $value in $paddings {
+    .p-xl-#{$name} {
+      padding: $value !important;
+    }
+  }
+}
+
+@include media-breakpoint-up(xl) {
+  @each $name, $value in $paddings {
+    .pt-xl-#{$name} {
+      padding-top: $value !important;
+    }
+  }
+}
+
+@include media-breakpoint-up(xl) {
+  @each $name, $value in $paddings {
+    .pe-xl-#{$name} {
+      padding-right: $value !important;
+    }
+  }
+}
+
+@include media-breakpoint-up(xl) {
+  @each $name, $value in $paddings {
+    .pb-xl-#{$name} {
+      padding-bottom: $value !important;
+    }
+  }
+}
+
+@include media-breakpoint-up(xl) {
+  @each $name, $value in $paddings {
+    .ps-xl-#{$name} {
+      padding-top: $value !important;
+    }
+  }
+}
+
+@include media-breakpoint-up(xl) {
+  @each $name, $value in $paddings {
+    .px-xl-#{$name} {
+      padding-left: $value !important;
+      padding-right: $value !important;
+    }
+  }
+}
+
+@include media-breakpoint-up(xl) {
+  @each $name, $value in $paddings {
+    .py-xl-#{$name} {
+      padding-top: $value !important;
+      padding-bottom: $value !important;
+    }
+  }
+}
+
+// LG
+@include media-breakpoint-up(lg) {
+  @each $name, $value in $paddings {
+    .p-lg-#{$name} {
+      padding: $value !important;
+    }
+  }
+}
+
+@include media-breakpoint-up(lg) {
+  @each $name, $value in $paddings {
+    .pt-lg-#{$name} {
+      padding-top: $value !important;
+    }
+  }
+}
+
+@include media-breakpoint-up(lg) {
+  @each $name, $value in $paddings {
+    .pe-lg-#{$name} {
+      padding-right: $value !important;
+    }
+  }
+}
+
+@include media-breakpoint-up(lg) {
+  @each $name, $value in $paddings {
+    .pb-lg-#{$name} {
+      padding-bottom: $value !important;
+    }
+  }
+}
+
+@include media-breakpoint-up(lg) {
+  @each $name, $value in $paddings {
+    .ps-lg-#{$name} {
+      padding-top: $value !important;
+    }
+  }
+}
+
+@include media-breakpoint-up(lg) {
+  @each $name, $value in $paddings {
+    .px-lg-#{$name} {
+      padding-left: $value !important;
+      padding-right: $value !important;
+    }
+  }
+}
+
+@include media-breakpoint-up(lg) {
+  @each $name, $value in $paddings {
+    .py-lg-#{$name} {
+      padding-top: $value !important;
+      padding-bottom: $value !important;
+    }
+  }
+}
+
+// MD
+@include media-breakpoint-up(md) {
+  @each $name, $value in $paddings {
+    .p-md-#{$name} {
+      padding: $value !important;
+    }
+  }
+}
+
+@include media-breakpoint-up(md) {
+  @each $name, $value in $paddings {
+    .pt-md-#{$name} {
+      padding-top: $value !important;
+    }
+  }
+}
+
+@include media-breakpoint-up(md) {
+  @each $name, $value in $paddings {
+    .pe-md-#{$name} {
+      padding-right: $value !important;
+    }
+  }
+}
+
+@include media-breakpoint-up(md) {
+  @each $name, $value in $paddings {
+    .pb-md-#{$name} {
+      padding-bottom: $value !important;
+    }
+  }
+}
+
+@include media-breakpoint-up(md) {
+  @each $name, $value in $paddings {
+    .ps-md-#{$name} {
+      padding-top: $value !important;
+    }
+  }
+}
+
+@include media-breakpoint-up(md) {
+  @each $name, $value in $paddings {
+    .px-md-#{$name} {
+      padding-left: $value !important;
+      padding-right: $value !important;
+    }
+  }
+}
+
+@include media-breakpoint-up(md) {
+  @each $name, $value in $paddings {
+    .py-md-#{$name} {
+      padding-top: $value !important;
+      padding-bottom: $value !important;
+    }
+  }
+}
+
+// SM
+@include media-breakpoint-up(sm) {
+  @each $name, $value in $paddings {
+    .p-sm-#{$name} {
+      padding: $value !important;
+    }
+  }
+}
+
+@include media-breakpoint-up(sm) {
+  @each $name, $value in $paddings {
+    .pt-sm-#{$name} {
+      padding-top: $value !important;
+    }
+  }
+}
+
+@include media-breakpoint-up(sm) {
+  @each $name, $value in $paddings {
+    .pe-sm-#{$name} {
+      padding-right: $value !important;
+    }
+  }
+}
+
+@include media-breakpoint-up(sm) {
+  @each $name, $value in $paddings {
+    .pb-sm-#{$name} {
+      padding-bottom: $value !important;
+    }
+  }
+}
+
+@include media-breakpoint-up(sm) {
+  @each $name, $value in $paddings {
+    .ps-sm-#{$name} {
+      padding-left: $value !important;
+    }
+  }
+}
+
+@include media-breakpoint-up(sm) {
+  @each $name, $value in $paddings {
+    .px-sm-#{$name} {
+      padding-left: $value !important;
+      padding-right: $value !important;
+    }
+  }
+}
+
+@include media-breakpoint-up(sm) {
+  @each $name, $value in $paddings {
+    .py-sm-#{$name} {
+      padding-top: $value !important;
+      padding-bottom: $value !important;
+    }
+  }
+}
+
+// XS
+@include media-breakpoint-up(xs) {
+  @each $name, $value in $paddings {
+    .p-xs-#{$name} {
+      padding: $value !important;
+    }
+  }
+}
+
+@include media-breakpoint-up(xs) {
+  @each $name, $value in $paddings {
+    .pt-xs-#{$name} {
+      padding-top: $value !important;
+    }
+  }
+}
+
+@include media-breakpoint-up(xs) {
+  @each $name, $value in $paddings {
+    .pe-xs-#{$name} {
+      padding-right: $value !important;
+    }
+  }
+}
+
+@include media-breakpoint-up(xs) {
+  @each $name, $value in $paddings {
+    .pb-xs-#{$name} {
+      padding-bottom: $value !important;
+    }
+  }
+}
+
+@include media-breakpoint-up(xs) {
+  @each $name, $value in $paddings {
+    .ps-xs-#{$name} {
+      padding-top: $value !important;
+    }
+  }
+}
+
+@include media-breakpoint-up(xs) {
+  @each $name, $value in $paddings {
+    .px-xs-#{$name} {
+      padding-left: $value !important;
+      padding-right: $value !important;
+    }
+  }
+}
+
+@include media-breakpoint-up(xs) {
+  @each $name, $value in $paddings {
+    .py-xs-#{$name} {
+      padding-top: $value !important;
+      padding-bottom: $value !important;
+    }
+  }
+}
+
+// Margins Extend CT
+@each $name, $value in $margins {
+  .m-#{$name} {
+    margin: $value !important;
+  }
+}
+@each $name, $value in $margins {
+  .mt-#{$name} {
+    margin-top: $value !important;
+  }
+}
+@each $name, $value in $margins {
+  .me-#{$name} {
+    margin-right: $value !important;
+  }
+}
+@each $name, $value in $margins {
+  .mb-#{$name} {
+    margin-bottom: $value !important;
+  }
+}
+@each $name, $value in $margins {
+  .ms-#{$name} {
+    margin-left: $value !important;
+  }
+}
+@each $name, $value in $margins {
+  .mx-#{$name} {
+    margin-left: $value !important;
+    margin-right: $value !important;
+  }
+}
+@each $name, $value in $margins {
+  .my-#{$name} {
+    margin-top: $value !important;
+    margin-bottom: $value !important;
+  }
+}
+
+// Responsive margins
+
+// XS
+@include media-breakpoint-up(xs) {
+  @each $name, $value in $margins {
+    .m-xs-#{$name} {
+      margin: $value !important;
+    }
+  }
+}
+
+@include media-breakpoint-up(xs) {
+  @each $name, $value in $margins {
+    .mt-xs-#{$name} {
+      margin-top: $value !important;
+    }
+  }
+}
+
+@include media-breakpoint-up(xs) {
+  @each $name, $value in $margins {
+    .me-xs-#{$name} {
+      margin-right: $value !important;
+    }
+  }
+}
+
+@include media-breakpoint-up(xs) {
+  @each $name, $value in $margins {
+    .mb-xs-#{$name} {
+      margin-bottom: $value !important;
+    }
+  }
+}
+
+@include media-breakpoint-up(xs) {
+  @each $name, $value in $margins {
+    .ms-xs-#{$name} {
+      margin-left: $value !important;
+    }
+  }
+}
+
+@include media-breakpoint-up(xs) {
+  @each $name, $value in $margins {
+    .mx-xs-#{$name} {
+      margin-left: $value !important;
+      margin-right: $value !important;
+    }
+  }
+}
+
+@include media-breakpoint-up(xs) {
+  @each $name, $value in $margins {
+    .my-xs-#{$name} {
+      margin-top: $value !important;
+      margin-bottom: $value !important;
+    }
+  }
+}
+
+// SM
+@include media-breakpoint-up(sm) {
+  @each $name, $value in $margins {
+    .m-sm-#{$name} {
+      margin: $value !important;
+    }
+  }
+}
+
+@include media-breakpoint-up(sm) {
+  @each $name, $value in $margins {
+    .mt-sm-#{$name} {
+      margin-top: $value !important;
+    }
+  }
+}
+
+@include media-breakpoint-up(sm) {
+  @each $name, $value in $margins {
+    .me-sm-#{$name} {
+      margin-right: $value !important;
+    }
+  }
+}
+
+@include media-breakpoint-up(sm) {
+  @each $name, $value in $margins {
+    .mb-sm-#{$name} {
+      margin-bottom: $value !important;
+    }
+  }
+}
+
+@include media-breakpoint-up(sm) {
+  @each $name, $value in $margins {
+    .ms-sm-#{$name} {
+      margin-left: $value !important;
+    }
+  }
+}
+
+@include media-breakpoint-up(sm) {
+  @each $name, $value in $margins {
+    .mx-sm-#{$name} {
+      margin-left: $value !important;
+      margin-right: $value !important;
+    }
+  }
+}
+
+@include media-breakpoint-up(sm) {
+  @each $name, $value in $margins {
+    .my-sm-#{$name} {
+      margin-top: $value !important;
+      margin-bottom: $value !important;
+    }
+  }
+}
+
+// MD
+@include media-breakpoint-up(md) {
+  @each $name, $value in $margins {
+    .m-md-#{$name} {
+      margin: $value !important;
+    }
+  }
+}
+
+@include media-breakpoint-up(md) {
+  @each $name, $value in $margins {
+    .mt-md-#{$name} {
+      margin-top: $value !important;
+    }
+  }
+}
+
+@include media-breakpoint-up(md) {
+  @each $name, $value in $margins {
+    .me-md-#{$name} {
+      margin-right: $value !important;
+    }
+  }
+}
+
+@include media-breakpoint-up(md) {
+  @each $name, $value in $margins {
+    .mb-md-#{$name} {
+      margin-bottom: $value !important;
+    }
+  }
+}
+
+@include media-breakpoint-up(md) {
+  @each $name, $value in $margins {
+    .ms-md-#{$name} {
+      margin-left: $value !important;
+    }
+  }
+}
+
+@include media-breakpoint-up(md) {
+  @each $name, $value in $margins {
+    .mx-md-#{$name} {
+      margin-left: $value !important;
+      margin-right: $value !important;
+    }
+  }
+}
+
+@include media-breakpoint-up(md) {
+  @each $name, $value in $margins {
+    .my-md-#{$name} {
+      margin-top: $value !important;
+      margin-bottom: $value !important;
+    }
+  }
+}
+
+// LG
+@include media-breakpoint-up(lg) {
+  @each $name, $value in $margins {
+    .m-lg-#{$name} {
+      margin: $value !important;
+    }
+  }
+}
+
+@include media-breakpoint-up(lg) {
+  @each $name, $value in $margins {
+    .mt-lg-#{$name} {
+      margin-top: $value !important;
+    }
+  }
+}
+
+@include media-breakpoint-up(lg) {
+  @each $name, $value in $margins {
+    .me-lg-#{$name} {
+      margin-right: $value !important;
+    }
+  }
+}
+
+@include media-breakpoint-up(lg) {
+  @each $name, $value in $margins {
+    .mb-lg-#{$name} {
+      margin-bottom: $value !important;
+    }
+  }
+}
+
+@include media-breakpoint-up(lg) {
+  @each $name, $value in $margins {
+    .ms-lg-#{$name} {
+      margin-left: $value !important;
+    }
+  }
+}
+
+@include media-breakpoint-up(lg) {
+  @each $name, $value in $margins {
+    .mx-lg-#{$name} {
+      margin-left: $value !important;
+      margin-right: $value !important;
+    }
+  }
+}
+
+@include media-breakpoint-up(lg) {
+  @each $name, $value in $margins {
+    .my-lg-#{$name} {
+      margin-top: $value !important;
+      margin-bottom: $value !important;
+    }
+  }
+}
+
+
+// XL
+@include media-breakpoint-up(xl) {
+  @each $name, $value in $margins {
+    .m-xl-#{$name} {
+      margin: $value !important;
+    }
+  }
+}
+
+@include media-breakpoint-up(xl) {
+  @each $name, $value in $margins {
+    .mt-xl-#{$name} {
+      margin-top: $value !important;
+    }
+  }
+}
+
+@include media-breakpoint-up(xl) {
+  @each $name, $value in $margins {
+    .me-xl-#{$name} {
+      margin-right: $value !important;
+    }
+  }
+}
+
+@include media-breakpoint-up(xl) {
+  @each $name, $value in $margins {
+    .mb-xl-#{$name} {
+      margin-bottom: $value !important;
+    }
+  }
+}
+
+@include media-breakpoint-up(xl) {
+  @each $name, $value in $margins {
+    .ms-xl-#{$name} {
+      margin-left: $value !important;
+    }
+  }
+}
+
+@include media-breakpoint-up(xl) {
+  @each $name, $value in $margins {
+    .mx-xl-#{$name} {
+      margin-left: $value !important;
+      margin-right: $value !important;
+    }
+  }
+}
+
+@include media-breakpoint-up(xl) {
+  @each $name, $value in $margins {
+    .my-xl-#{$name} {
+      margin-top: $value !important;
+      margin-bottom: $value !important;
+    }
+  }
+}
+
+// XXL
+@include media-breakpoint-up(xxl) {
+  @each $name, $value in $margins {
+    .m-xxl-#{$name} {
+      margin: $value !important;
+    }
+  }
+}
+
+@include media-breakpoint-up(xxl) {
+  @each $name, $value in $margins {
+    .mt-xxl-#{$name} {
+      margin-top: $value !important;
+    }
+  }
+}
+
+@include media-breakpoint-up(xxl) {
+  @each $name, $value in $margins {
+    .me-xxl-#{$name} {
+      margin-right: $value !important;
+    }
+  }
+}
+
+@include media-breakpoint-up(xxl) {
+  @each $name, $value in $margins {
+    .mb-xxl-#{$name} {
+      margin-bottom: $value !important;
+    }
+  }
+}
+
+@include media-breakpoint-up(xxl) {
+  @each $name, $value in $margins {
+    .ms-xxl-#{$name} {
+      margin-left: $value !important;
+    }
+  }
+}
+
+@include media-breakpoint-up(xxl) {
+  @each $name, $value in $margins {
+    .mx-xxl-#{$name} {
+      margin-left: $value !important;
+      margin-right: $value !important;
+    }
+  }
+}
+
+@include media-breakpoint-up(xxl) {
+  @each $name, $value in $margins {
+    .my-xxl-#{$name} {
+      margin-top: $value !important;
+      margin-bottom: $value !important;
+    }
+  }
+}
+
+// Extended Negative Margins - CT
+
+@each $name, $value in $margins {
+  .mt-n#{$name} {
+    margin-top: -$value !important;
+  }
+}
+@each $name, $value in $margins {
+  .me-n#{$name} {
+    margin-right: -$value !important;
+  }
+}
+@each $name, $value in $margins {
+  .mb-n#{$name} {
+    margin-bottom: -$value !important;
+  }
+}
+@each $name, $value in $margins {
+  .ms-n#{$name} {
+    margin-left: -$value !important;
+  }
+}
+
+@include media-breakpoint-up(xs) {
+  @each $name, $value in $margins {
+    .mt-xs-n#{$name} {
+      margin-top: -$value !important;
+    }
+
+    .me-xs-n#{$name} {
+      margin-right: -$value !important;
+    }
+
+    .mb-xs-n#{$name} {
+      margin-bottom: -$value !important;
+    }
+
+    .ms-xs-n#{$name} {
+      margin-left: -$value !important;
+    }
+  }
+}
+
+@include media-breakpoint-up(sm) {
+  @each $name, $value in $margins {
+    .mt-sm-n#{$name} {
+      margin-top: -$value !important;
+    }
+
+    .me-sm-n#{$name} {
+      margin-right: -$value !important;
+    }
+
+    .mb-sm-n#{$name} {
+      margin-bottom: -$value !important;
+    }
+
+    .ms-sm-n#{$name} {
+      margin-left: -$value !important;
+    }
+  }
+}
+
+@include media-breakpoint-up(md) {
+  @each $name, $value in $margins {
+    .mt-md-n#{$name} {
+      margin-top: -$value !important;
+    }
+
+    .me-md-n#{$name} {
+      margin-right: -$value !important;
+    }
+
+    .mb-md-n#{$name} {
+      margin-bottom: -$value !important;
+    }
+
+    .ms-md-n#{$name} {
+      margin-left: -$value !important;
+    }
+  }
+}
+
+
+@include media-breakpoint-up(lg) {
+  @each $name, $value in $margins {
+    .mt-lg-n#{$name} {
+      margin-top: -$value !important;
+    }
+
+    .me-lg-n#{$name} {
+      margin-right: -$value !important;
+    }
+
+    .mb-lg-n#{$name} {
+      margin-bottom: -$value !important;
+    }
+
+    .ms-lg-n#{$name} {
+      margin-left: -$value !important;
+    }
+  }
+}
+
+@include media-breakpoint-up(xl) {
+  @each $name, $value in $margins {
+    .mt-xl-n#{$name} {
+      margin-top: -$value !important;
+    }
+
+    .me-xl-n#{$name} {
+      margin-right: -$value !important;
+    }
+
+    .mb-xl-n#{$name} {
+      margin-bottom: -$value !important;
+    }
+
+    .ms-xl-n#{$name} {
+      margin-left: -$value !important;
+    }
+  }
+}
+
+@include media-breakpoint-up(xxl) {
+  @each $name, $value in $margins {
+    .mt-xxl-n#{$name} {
+      margin-top: -$value !important;
+    }
+
+    .me-xxl-n#{$name} {
+      margin-right: -$value !important;
+    }
+
+    .mb-xxl-n#{$name} {
+      margin-bottom: -$value !important;
+    }
+
+    .ms-xxl-n#{$name} {
+      margin-left: -$value !important;
+    }
+  }
+}
+
+// Extend Opacity values - CT
+@each $name, $value in $opacities {
+  .opacity-#{$name} {
+    opacity: $value !important;
+  }
+}
+
+
+// Extend Right Values - CT
+
+@each $name, $value in $end {
+  .end-#{$name} {
+    right: $value !important;
+  }
+}
+
+// Extend Width Values - CT
+
+@each $name, $value in $width {
+  .w-#{$name} {
+    width: $value !important;
+  }
+}
+
+// Extend Max Width Values - CT
+
+@each $name, $value in $max-width {
+  .max-width-#{$name} {
+    max-width: $value !important;
+  }
+}
+
+// Extend Height Values - CT
+
+@each $name, $value in $height {
+  .height-#{$name} {
+    height: $value !important;
+  }
+}
+
+// Extend Height Values - CT
+
+@each $name, $value in $max-height {
+  .max-height-#{$name} {
+    max-height: $value !important;
+  }
+}
+
+@each $name, $value in $min-height {
+  .min-height-#{$name} {
+    min-height: $value !important;
+  }
+}
+
+// Gray Bg Colors
+
+.bg-gray{
+  background: $gray-500;
+}
+
+
+@each $name, $value in $grays {
+  .bg-gray-#{$name} {
+    background-color: $value !important;
+  }
+}
+
+// Letter Spacing
+@each $name, $value in $letterSpacing {
+  .letter-spacing-#{$name} {
+    letter-spacing: $value !important;
+  }
+}
+
+// Top values
+@each $name, $value in $top {
+  .top-#{$name} {
+    top: $value !important;
+  }
+}
+
+// Right values
+@each $name, $value in $top {
+  .right-#{$name} {
+    right: $value !important;
+  }
+}
+
+// Left values
+@each $name, $value in $top {
+  .left-#{$name} {
+    left: $value !important;
+  }
+}
+
+// Bottom values
+@each $name, $value in $top {
+  .bottom-#{$name} {
+    bottom: $value !important;
+  }
+}
+
+// Position dynamic on relative or absolute
+.left-auto {
+  left: auto;
+}
+
+.right-auto {
+  right: auto;
+}

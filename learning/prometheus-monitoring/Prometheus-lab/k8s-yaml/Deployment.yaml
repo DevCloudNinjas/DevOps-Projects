@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-deployment # Name of the deployment
+  labels:
+    app: api # Label for identifying the application type
+spec:
+  selector:
+    matchLabels:
+      app: api # Match labels to select pods for this deployment
+  template:
+    metadata:
+      labels:
+        app: api # Labels for pods created by this template
+    spec:
+      containers:
+        - name: mycontainer # Name of the container
+          image: panchanandevops/myexpress:v0.1.0 # Docker image for the container
+          resources:
+            limits:
+              memory: "128Mi" # Memory limit for the container
+              cpu: "500m" # CPU limit for the container
+          ports:
+            - containerPort: 3000 # Port on which the container will listen

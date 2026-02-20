@@ -1,0 +1,42 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: prodxcloud-django-web
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: prodxcloud-django-web
+  template:
+    metadata:
+      labels:
+        app: prodxcloud-django-web
+    spec:
+      containers:
+      - name: prodxcloud-django-web
+        image: joelwembo/prodxcloud-django-web:latest
+        resources:
+            limits:
+              memory: 200Mi
+            requests:
+              cpu: 100m
+              memory: 200Mi
+        ports:
+        - containerPort: 80
+
+--- 
+apiVersion: v1
+kind: Service
+metadata:
+  name: load-balancer
+  labels:
+    app: prodxcloud-django-web
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+    targetPort: 80
+    protocol: TCP
+    nodePort: 31009
+  selector:
+    app: prodxcloud-django-web        

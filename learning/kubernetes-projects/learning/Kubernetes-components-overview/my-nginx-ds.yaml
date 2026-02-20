@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: my-nginx-ds
+spec:
+  selector:
+    matchLabels:
+      app: my-nginx-pod
+  template: 
+    metadata:
+      labels: 
+        app: my-nginx-pod
+    spec:
+      tolerations:
+      - effect: NoSchedule
+        operator: Exists
+      containers:
+      - name: nginx-container
+        image: nginx
+        ports:
+        - containerPort: 80

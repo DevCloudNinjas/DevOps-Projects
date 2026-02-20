@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: invalid-dev-deploy
+  namespace: development
+spec:
+  replicas: 10
+  selector:
+    matchLabels:
+      app: nginx-dev
+  template:
+    metadata:
+      labels:
+        app: nginx-dev
+    spec:
+      containers:
+      - name: nginx
+        image: nginx
+

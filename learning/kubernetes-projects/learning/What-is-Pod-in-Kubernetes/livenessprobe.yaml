@@ -1,0 +1,5 @@
+livenessProbe:
+ httpGet:
+   path: hello-world/health
+   port: http
+ initialDelaySeconds: 120

@@ -1,0 +1,30 @@
+name: "sonar_cloud_scan"
+## 111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5553
+on:
+  push:
+    branches: [master, main, dev/*, feature/*, release/*, staging/*, prod/*, qa]
+  pull_request:
+    branches: [master, main, dev/*, feature/*, release/*, staging/*, prod/*, qa]
+
+permissions:
+    contents: write   
+
+jobs:
+  CodeScan-Analysis:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+            fetch-depth: 0
+      - name: SonarCloud Scan
+        uses: sonarsource/sonarcloud-github-action@master
+        env:
+            GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
+            SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        with:
+          args: >
+              -X
+              -Dsonar.organization=joelwembo
+              -Dsonar.projectKey=joelwembo_django-multitenant-saas-ecommerce-kubernetes
+              -Dsonar.python.coverage.reportPaths=coverage.xml
+              -Dsonar.verbose=true

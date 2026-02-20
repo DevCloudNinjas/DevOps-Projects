@@ -1,0 +1,312 @@
+name: CI/CD Pipeline
+
+on:
+  pull_request:
+    types:
+    - closed
+    paths-ignore:
+    - 'VERSION'
+    branches:
+    - dev
+  push:
+    branches:
+    - prod
+    - dev
+    - staging
+    paths-ignore:
+    - 'VERSION'
+    - 'README.md'
+permissions:
+  contents: write
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    outputs:
+      releaseTrue: ${{steps.release-status.outptus.rel-status}}
+      currentVersion: ${{ steps.updated-version.outputs.version }}
+      currentENV: ${{ steps.current-env.outputs.ENV }}
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v3
+
+    - name: Setup Node
+      uses: actions/setup-node@v3
+      with:
+        node-version: 18
+
+    - name: Install Dependencies
+      run: |
+        cd app
+        npm install
+
+    - name: Run Tests
+      run: |
+        cd app
+        npm test
+
+    - name: Determine version increment
+      id: version-increment
+      run: |
+        commit_message=$(git log -1 --pretty=%B)
+        if [[ "$commit_message" == *"major:"* ]]; then
+          echo "increment=major" >> "$GITHUB_OUTPUT"
+          echo "release=true" >> "$GITHUB_ENV"
+        elif [[ "$commit_message" == "minor:"* ]]; then
+          echo "increment=minor" >> "$GITHUB_OUTPUT"
+          echo "release=true" >> "$GITHUB_ENV"
+        elif [[ "$commit_message" == "patch:"* ]]; then
+          echo "increment=patch" >> "$GITHUB_OUTPUT"
+          echo "release=true" >> "$GITHUB_ENV"
+        else
+          echo "release=false" >> "$GITHUB_ENV"
+        fi
+    - name: Publish Release Status
+      id: release-status
+      run: echo "rel-status=${{ env.release }}" >> "$GITHUB_OUTPUT"
+
+
+    - name: Publish Current Environment
+      id: current-env
+      run: |
+        export ENVIRONMENT=$(echo "${{ github.ref }}" | sed -e "s/refs\/heads\///g")
+        echo "ENV=${ENVIRONMENT}" >> "$GITHUB_OUTPUT"
+
+
+    - name: Get current version
+      id: get-version
+      run: echo "version=$(cat VERSION)" >> "$GITHUB_OUTPUT"
+
+    - name: Increment version
+      id: increment-version
+      run: echo "new_version=$(docker run --rm -v ${PWD}:/app treeder/bump ${{ steps.version-increment.outputs.increment }})" >> "$GITHUB_OUTPUT"
+      if: |
+        github.ref == 'refs/heads/dev' &&
+        env.release == 'true'
+
+    - name: Update VERSION file
+      run: echo "${{ steps.increment-version.outputs.new_version }}" > VERSION
+      if: |
+        github.ref == 'refs/heads/dev' &&
+        env.release == 'true'
+
+    - name: Get updated version
+      id: updated-version
+      run: echo "version=$(cat VERSION)" >> "$GITHUB_OUTPUT"
+
+    - uses: EndBug/add-and-commit@v9
+      name: Commit VERSION file to Dev
+      with:
+        add: 'VERSION'
+        author_name: 'Afraz Ahmed'
+        author_email: 'aphraz@live.com'
+        fetch: false
+        message: 'Updating VERSION file'
+        pathspec_error_handling: ignore
+        push: origin dev --force
+        tag: "${{ steps.updated-version.outputs.version }} --force"
+        tag_push: '--force'
+      if: |
+        github.ref == 'refs/heads/dev' &&
+        env.release == 'true'
+
+
+
+    - name: Login to DockerHub
+      uses: docker/login-action@v2
+      with:
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+
+    - name: Docker Build and Push Dev
+      run: |
+        cd app
+        docker build -t ${{ secrets.DOCKER_USERNAME }}/node-app:${{ steps.updated-version.outputs.version }}-dev .
+        docker push ${{ secrets.DOCKER_USERNAME }}/node-app:${{ steps.updated-version.outputs.version }}-dev
+      if: github.ref == 'refs/heads/dev'
+
+
+    - name: Docker Build and Push Staging
+      run: |
+        cd app
+        docker build -t ${{ secrets.DOCKER_USERNAME }}/node-app:${{ steps.updated-version.outputs.version }}-staging .
+        docker push ${{ secrets.DOCKER_USERNAME }}/node-app:${{ steps.updated-version.outputs.version }}-staging
+      if: github.ref == 'refs/heads/staging'
+
+    - name: Docker Build and Push Prod
+      run: |
+        cd app
+        docker build -t ${{ secrets.DOCKER_USERNAME }}/node-app:${{ steps.updated-version.outputs.version }}-prod .
+        docker push ${{ secrets.DOCKER_USERNAME }}/node-app:${{ steps.updated-version.outputs.version }}-prod
+      if: github.ref == 'refs/heads/prod'
+
+    - name: Notify Slack - Release
+      uses: 8398a7/action-slack@v3
+      with:
+        status: custom
+        fields: workflow,job,commit,repo,ref,author,took
+        custom_payload: |
+          {
+            attachments: [{
+              color: '${{ job.status }}' === 'success' ? 'good' : '${{ job.status }}' === 'failure' ? 'danger' : 'warning',
+              text: `Workflow: ${process.env.AS_WORKFLOW}\nJob: ${process.env.AS_JOB}\nCommit: ${process.env.AS_COMMIT}\nVersion: ${process.env.AS_VERSION}\nRepository: ${process.env.AS_REPO}@${process.env.AS_REF}\nAuthor: ${process.env.AS_AUTHOR}\nStatus: ${{ job.status }}\nDuration: ${process.env.AS_TOOK}`,
+            }]
+          }
+      env:
+        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }}
+        AS_VERSION: ${{ steps.updated-version.outputs.version }}
+      if: |
+        github.ref == 'refs/heads/dev' &&
+        env.release == 'true'
+
+    - name: Notify Slack
+      uses: 8398a7/action-slack@v3
+      with:
+        status: custom
+        fields: workflow,job,commit,repo,ref,author,took
+        custom_payload: |
+          {
+            attachments: [{
+              color: '${{ job.status }}' === 'success' ? 'good' : '${{ job.status }}' === 'failure' ? 'danger' : 'warning',
+              text: `Workflow: ${process.env.AS_WORKFLOW}\nJob: ${process.env.AS_JOB}\nCommit: ${process.env.AS_COMMIT}\nVersion: ${process.env.AS_VERSION}\nRepository: ${process.env.AS_REPO}@${process.env.AS_REF}\nAuthor: ${process.env.AS_AUTHOR}\nStatus: ${{ job.status }}\nDuration: ${process.env.AS_TOOK}`,
+            }]
+          }
+      env:
+        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }}
+        AS_VERSION: ${{ steps.updated-version.outputs.version }}
+      if: env.release == 'false'
+
+  deployment:
+    needs: build
+    runs-on: ubuntu-latest
+
+    env:
+      TF_IN_AUTOMATION: "1"
+      S3_BUCKET: ${{ secrets.S3_BUCKET }}
+      S3_REGION: ${{ secrets.S3_REGION }}
+      DYNAMODB_TABLE: ${{ secrets.DYNAMODB_TABLE }}
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
+      ENVIRONMENT: ${{ needs.build.outputs.currentENV }}
+      TF_VAR_environment: ${{ needs.build.outputs.currentENV }}
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v3
+
+    - name: Terraform CLI Setup
+      uses: hashicorp/setup-terraform@v2
+
+    - name: Install AWS CLI
+      run: |
+        curl -sLk "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+        unzip awscliv2.zip
+        sudo ./aws/install --update       
+    
+    - name: Terraform Init EKS
+      run: |
+        cd terraform
+        terraform init \
+          -backend-config="bucket=${S3_BUCKET}" \
+          -backend-config="key=state/${ENVIRONMENT}-env.tfstate" \
+          -backend-config="region=${S3_REGION}" \
+          -backend-config="encrypt=true" \
+          -backend-config="dynamodb_table=${DYNAMODB_TABLE}"
+
+    
+    - name: Install Kubectl
+      uses: azure/setup-kubectl@v3
+      with:
+        version: 'latest'
+
+    - name: Configure Kubectl if EKS running
+      run: aws eks --region ${{ secrets.S3_REGION }} update-kubeconfig --name e2ecicd-eks-${ENVIRONMENT} || install -m 600 -D /dev/null ~/.kube/config
+    
+    - name: Terraform Plan EKS
+      id: tf-plan-eks
+      run: |
+        cd terraform
+        export exitcode=0
+        terraform plan -detailed-exitcode -no-color -out tfplan
+        export exitcode=$?
+
+             
+        if [ $exitcode -eq 1 ]; then
+          echo "Terraform Plan Failed!"
+          exit 1
+        elif [ $exitcode -eq 2 ]; then
+           echo "Drift detected. Need to run terraform apply"
+           echo "exitcode=$exitcode" >> $GITHUB_OUTPUT
+           exit 0
+        else 
+          exit 0
+        fi
+
+    - name: Deploy EKS Cluster
+      run: |
+        cd terraform
+        terraform apply -auto-approve tfplan
+      if: ${{ steps.tf-plan-eks.outputs.exitcode == '2' }}
+
+
+    - name: Create Namespace
+      run: |
+        NAMESPACE=app-${ENVIRONMENT}
+        kubectl get ns ${NAMESPACE} || kubectl create namespace ${NAMESPACE}
+
+    - name: Update Image
+      run: |
+        image=${{ secrets.DOCKER_USERNAME }}/node-app:${{ needs.build.outputs.currentVersion }}-${ENVIRONMENT}
+        sed -i "s|image: .*$|image: ${image}|" kustomize/overlays/${ENVIRONMENT}/deploy-${ENVIRONMENT}.yaml
+
+
+    - name: Install Kustomized Manifests
+      id: kustomize-deploy
+      run: |
+        kubectl apply -k kustomize/overlays/${ENVIRONMENT} | tee kubeout
+        
+        if grep -q "deployment.*unchanged" kubeout; then
+          echo "needRestart=yes" >> "$GITHUB_OUTPUT"
+        else
+          echo "needRestart=no" >> "$GITHUB_OUTPUT"
+        fi
+
+    - name: Rollout Restart Deployment
+      run: kubectl -n app-${ENVIRONMENT} rollout restart deployment web-deployment
+      if: ${{ steps.kustomize-deploy.outputs.needRestart == 'yes' }}
+
+    - name: Get LB hostname
+      id: lb-hostname
+      run: |
+        kubectl -n ingress-nginx get svc ingress-nginx-controller \
+          -o jsonpath={'.status.loadBalancer.ingress[0].hostname'} > lb-hostname
+          echo -n "hostname=$(cat lb-hostname)" >> "$GITHUB_OUTPUT"
+    
+    
+    - name: Set DNS on Cloudflare
+      uses: rez0n/create-dns-record@v2.1
+      with:
+        type: "CNAME"
+        name: "${{ needs.build.outputs.currentENV }}.afraz.dev"
+        content: ${{ steps.lb-hostname.outputs.hostname }}
+        ttl: 1
+        proxied: true
+        token: ${{ secrets.CLOUDFLARE_TOKEN }}
+        zone: ${{ secrets.CLOUDFLARE_ZONE }}
+   
+    - name: Notify Slack - Deployment
+      uses: 8398a7/action-slack@v3
+      with:
+        status: custom
+        fields: workflow,job,commit,repo,ref,author,took
+        custom_payload: |
+          {
+            attachments: [{
+              color: '${{ job.status }}' === 'success' ? 'good' : '${{ job.status }}' === 'failure' ? 'danger' : 'warning',
+              text: `Workflow: ${process.env.AS_WORKFLOW}\nJob: ${process.env.AS_JOB}\nCommit: ${process.env.AS_COMMIT}\nVersion: ${process.env.AS_VERSION}\nDNS: ${process.env.AS_DNS}\nRepository: ${process.env.AS_REPO}@${process.env.AS_REF}\nAuthor: ${process.env.AS_AUTHOR}\nStatus: ${{ job.status }}\nDuration: ${process.env.AS_TOOK}`,
+            }]
+          }
+      env:
+        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }}
+        AS_VERSION: ${{ needs.build.outputs.currentVersion }}
+        AS_DNS: "https://${{ needs.build.outputs.currentENV }}.afraz.dev"

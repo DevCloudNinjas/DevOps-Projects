@@ -1,0 +1,32 @@
+
+# Requires Terraform 0.12.11+
+#
+# Prevents upload of paths to Terraform Cloud
+#
+# Same format as .gitignore
+# - directories must end with forward slash /
+# - negate matches using !
+#
+# Only works at the root of the config directory
+
+# https://www.terraform.io/docs/backends/types/remote.html#excluding-files-from-upload-with-terraformignore
+
+# defaults
+.git/
+.terraform/
+
+# custom
+.hg/
+.svn/
+.ssh/
+github/
+gitroot/
+mercurial/
+hg/
+hgroot/
+svn/
+svnroot/
+
+# exclude all hidden dot files
+.*
+.idea

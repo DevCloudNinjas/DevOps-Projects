@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app
+  namespace: dev
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: login-app
+    matchExpressions:
+      - {key: env, operator: In, values: [dev]}
+    
+  template:
+    metadata:
+      name: login
+      labels:
+        app: login-app
+        env: dev
+    spec:
+      containers:
+      - name: login-app
+        image: docker.io/dpthub/edtom:1.0
+        resources:
+          requests:
+            memory: "1Mi"
+            cpu: "1m"
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 8080
+      tolerations:
+        - key: "frontend"
+          operator: "Equal"
+          value: "yes"
+          effect: "NoSchedule"

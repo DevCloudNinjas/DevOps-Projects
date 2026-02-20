@@ -1,0 +1,19 @@
+{
+  "name": "scripts",
+  "version": "1.0.0",
+  "description": "",
+  "main": "import-employees.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "aws-sdk": "^2.1445.0",
+    "boxen": "^4.2.0",
+    "dotenv": "^16.3.1",
+    "moment": "^2.24.0",
+    "ora": "^4.0.3"
+  }
+}

@@ -1,0 +1,8 @@
+version: '3'
+services:
+  docsify:
+    build: .
+    ports:
+     - "3000:3000"
+    volumes:
+     - ".:/usr/local/docsify"

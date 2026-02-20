@@ -1,0 +1,13 @@
+# PVC
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: login-pvc
+spec:
+  storageClassName: aws-ebs-pv
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 7Gi
+

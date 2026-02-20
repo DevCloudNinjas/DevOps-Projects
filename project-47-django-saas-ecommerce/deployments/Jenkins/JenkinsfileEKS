@@ -1,0 +1,75 @@
+pipeline {
+    agent any
+    
+    environment {
+        AWS_REGION = 'us-east-1'
+        AWS_ACCESS_KEY_ID = credentials('aws-access-key-id')
+        AWS_SECRET_ACCESS_KEY = credentials('aws-secret-access-key')
+        DOCKER_REGISTRY_URL = 'docker.io'
+        EKS_CLUSTER_NAME = 'mycluster'
+        EKS_NAMESPACE = 'default'
+        APP_NAME = 'joelwembo/prodxcloud-django-web'
+        DOCKER_IMAGE_TAG = 'latest'
+    }
+    
+    stages {
+        stage('Checkout') {
+            steps {
+                // Checkout your source code repository
+                git 'https://github.com/joelwembo/django-multitenant-saas-ecommerce-kubernetes.git'
+            }
+        }
+        
+        stage('Build Docker Image') {
+            steps {
+                script {
+                    // Build your Docker image
+                    docker.build("${DOCKER_REGISTRY_URL}/${APP_NAME}:${DOCKER_IMAGE_TAG}")
+                }
+                
+            }
+        }
+        
+        stage('Push Docker Image to Registry') {
+            steps {
+                script {
+                    // Push your Docker image to the registry
+                    docker.withRegistry(DOCKER_REGISTRY_URL, 'globaldockerhub') {
+                        docker.image("${DOCKER_REGISTRY_URL}/${APP_NAME}:${DOCKER_IMAGE_TAG}").push()
+                    }
+                }
+                
+            }
+        }
+
+        stage('Create EKS Cluster') {
+            steps {
+                script {
+                    sh "eksctl create cluster - name mycluster - nodegroup-name ng-test - node-type t3.medium - nodes 2"
+                    
+                }
+            }
+        }
+
+        stage('update-kubeconfig') {
+            steps {
+                script {
+                    sh "aws eks --region us-east-1 update-kubeconfig --name mycluster"
+                    
+                }
+            }
+        }
+        
+        stage('Deploy to EKS') {
+            steps {
+                script {
+                    // Authenticate with AWS EKS
+                    sh "aws eks --region us-east-1 update-kubeconfig --name mycluster"
+                    
+                    // Deploy to EKS // k8s deployments folder
+                    sh "kubectl apply -f deployments/k8s/deployment.yaml --namespace=default"
+                }
+            }
+        }
+    }
+}

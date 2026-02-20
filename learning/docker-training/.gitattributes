@@ -1,0 +1,4 @@
+*.sh text eol=lf
+*.md text eol=lf
+*.pyd text eol=lf
+dockerfile text eol=lf

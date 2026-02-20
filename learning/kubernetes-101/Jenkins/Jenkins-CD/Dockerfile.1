@@ -1,0 +1,14 @@
+# Apache Tomcat Base Image 
+FROM amazonlinux
+ENV JAVA_HOME /opt/jdk11
+ENV PATH $PATH:/opt/jdk11/bin
+RUN yum install wget -y && \
+    yum install gzip -y && \
+    yum install tar -y
+RUN wget https://download.java.net/openjdk/jdk11/ri/openjdk-11+28_linux-x64_bin.tar.gz && \
+    tar zxf openjdk-11+28_linux-x64_bin.tar.gz && \
+    mv jdk-11 /opt/jdk11
+RUN wget https://archive.apache.org/dist/tomcat/tomcat-8/v8.5.82/bin/apache-tomcat-8.5.82.tar.gz && \
+    tar zxf apache-tomcat-8.5.82.tar.gz && \
+    mv apache-tomcat-8.5.82 /opt/tomcat
+CMD  ["/opt/tomcat/bin/catalina.sh", "run"]

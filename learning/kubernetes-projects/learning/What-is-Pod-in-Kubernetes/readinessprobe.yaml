@@ -1,0 +1,7 @@
+readinessProbe:
+   httpGet:
+     path: hello-world/health
+     port: http
+   initialDelaySeconds: 20
+   periodSeconds: 15
+   failureThreshold: 6

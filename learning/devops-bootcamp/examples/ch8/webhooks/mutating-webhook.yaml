@@ -1,0 +1,17 @@
+apiVersion: admissionregistration.k8s.io/v1
+kind: MutatingWebhookConfiguration
+metadata:
+  name: warden-mutating-webhook
+  namespace: validation
+webhooks:
+  - name: warden.validation.svc
+    failurePolicy: Fail
+    sideEffects: None
+    admissionReviewVersions: ["v1","v1beta1"]
+    # Add rule HERE
+    clientConfig:
+      service:
+        name: warden
+        namespace: validation
+        path: /mutate/
+      caBundle: PLACEHOLDER

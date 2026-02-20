@@ -1,0 +1,16 @@
+# FROM ubuntu:22.04
+FROM --platform=linux/amd64 ubuntu:22.04
+ARG DEBIAN_FRONTEND=noninteractive
+RUN apt-get update && apt-get upgrade -y  && \
+apt-get install bash -y && \
+apt-get install sudo -y && \
+apt-get install git -y && \
+apt-get install vim -y && \
+apt-get install openjdk-17-jdk -y && \
+apt-get install maven -y && \
+useradd -ms /bin/bash SPC && usermod -aG sudo SPC && \
+echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
+WORKDIR /home/spring-petclinic
+COPY /spring-petclinic /home/spring-petclinic/
+RUN chown -R SPC:SPC /home/spring-petclinic
+USER SPC

@@ -1,0 +1,101 @@
+# name: "Terraform Pipeline Provision EC2"
+
+# on:
+#  push:
+#    branches: ['master' , 'main']
+#  pull_request:
+#    branches: ['master', 'main']
+
+# permissions:
+#     contents: write   
+
+# env:
+#  # verbosity setting for Terraform logs
+#   TF_LOG: INFO
+#   # Credentials for deployment to AWS
+#   AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+#   AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+#   TF_CLOUD_ORGANIZATION: "prodxcloud"
+#   TF_WORKSPACE: "prodxcloud"
+#   TF_API_TOKEN: ${{ secrets.TF_API_TOKEN}}
+#   CONFIG_DIRECTORY: "./deployments/terraform/terraform-aws-ec2-tf/terraform/"
+
+ 
+# jobs:
+#  terraform:
+#    name: "Terraform Pipeline Provision EC2 with S3 Bucket"
+#    runs-on: ubuntu-latest
+#    defaults:
+#      run:
+#        shell: bash
+#        # We keep Terraform files in the terraform directory.
+#        working-directory: ./deployments/terraform/terraform-aws-ec2-tf/terraform
+ 
+#    steps:
+#      - name: Checkout the repository to the runner
+#        uses: actions/checkout@v2
+ 
+#      - name: Setup Terraform with specified version on the runner
+#        uses: hashicorp/setup-terraform@v2
+#        with:
+#          terraform_version: 1.3.0
+    
+#      - name: Terraform init 
+#        id: init
+#        run: terraform init -lock=false
+#       #  env:
+#       #     TF_CLI_ARGS_init: '-backend-config="token=${{ secrets.TF_API_TOKEN }}"'
+ 
+#      - name: Terraform format
+#        id: fmt
+#        run: terraform fmt
+    
+#      - name: Terraform validate
+#        id: validate
+#        run: terraform validate
+#        env:
+#           GITHUB_TOKEN: ${{ secrets.G_TOKEN}}
+#           TFE_TOKEN: ${{ secrets.TF_API_TOKEN }}
+ 
+#     #  - uses: actions/github-script@v6
+#     #   #  if: github.event_name == 'pull_request'
+#     #    env:
+#     #      PLAN: "terraform\n${{ steps.plan.outputs.stdout }}"
+#     #    with:
+#     #      script: |
+#     #        const output = `#### Terraform Format and Style 🖌\`${{ steps.fmt.outcome }}\`
+#     #        #### Terraform Initialization ⚙️\`${{ steps.init.outcome }}\`
+#     #        #### Terraform Validation 🤖\`${{ steps.validate.outcome }}\`
+#     #        #### Terraform Plan 📖\`${{ steps.plan.outcome }}\`
+ 
+#     #        <details><summary>Show Plan</summary>
+ 
+#     #        \`\`\`\n
+#     #        ${process.env.PLAN}
+#     #        \`\`\`
+ 
+#     #        </details>
+#     #        *Pushed by: @${{ github.actor }}, Action: \`${{ github.event_name }}\`*`;
+ 
+#     #        github.rest.issues.createComment({
+#     #          issue_number: context.issue.number,
+#     #          owner: context.repo.owner,
+#     #          repo: context.repo.repo,
+#     #          body: output
+#     #        })
+ 
+#     #  - name: Terraform Plan Status
+#     #    if: steps.plan.outcome == 'failure'
+#     #    run: exit 1
+ 
+#     #  - name: Terraform Apply
+#     #   #  if: github.ref == 'refs/heads/master' && github.event_name == 'push'
+#     #    run: terraform apply -auto-approve -input=false -lock=false
+#     #    env:
+#     #       TFE_TOKEN: ${{ secrets.TF_API_TOKEN }}
+     
+#      - name: Terraform Destroy All Resources
+#       #  if: github.ref == 'refs/heads/master' && github.event_name == 'push'
+#        run: terraform destroy -auto-approve -input=false -lock=false  
+#        env:
+#           TFE_TOKEN: ${{ secrets.TF_API_TOKEN }}

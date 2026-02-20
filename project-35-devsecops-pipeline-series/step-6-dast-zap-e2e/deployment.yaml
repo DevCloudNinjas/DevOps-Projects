@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dcnbuggy-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dcnbuggy
+  template:
+    metadata:
+      labels:
+        app: dcnbuggy
+    spec:
+      containers:
+      - name: dcnbuggy
+        image: 221650130255.dkr.ecr.us-west-2.amazonaws.com/devcloudninjas
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+# service type loadbalancer       
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: dcnbuggy
+    k8s-app: dcnbuggy
+  name: dcnbuggy
+spec:
+  ports:
+  - name: http
+    port: 80
+    protocol: TCP
+    targetPort: 8080
+  type: LoadBalancer
+  selector:
+    app: dcnbuggy

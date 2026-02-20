@@ -1,0 +1,38 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: warden
+  labels:
+    app: warden
+  namespace: validation
+spec:
+  restartPolicy: OnFailure
+  containers:
+    - name: warden
+      image: REPO/webhooks:latest
+      imagePullPolicy: Always
+      volumeMounts:
+        - name: certs
+          mountPath: "/app/certs"
+          readOnly: true
+  volumes:
+  - name: certs
+    secret:
+      secretName: warden-server-tls
+      items:
+      - key: tls.crt
+        path: wardencrt.pem
+      - key: tls.key
+        path: wardenkey.pem
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: warden
+  namespace: validation
+spec:
+  selector:
+    app: warden
+  ports:
+  - port: 443
+    targetPort: 5000

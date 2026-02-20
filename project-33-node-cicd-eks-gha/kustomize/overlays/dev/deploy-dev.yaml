@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-deployment
+spec:
+  replicas: 1
+  template:
+    spec:
+      containers:
+      - name: my-node-app
+        image: aphraz/node-app:1.1.1-dev
+        imagePullPolicy: Always
+        resources:
+          limits:
+            cpu: "200m"
+            memory: "256Mi"
+          requests:
+            cpu: "100m"
+            memory: "128Mi"

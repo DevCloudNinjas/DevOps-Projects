@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: login-app
+    matchExpressions:
+      - {key: env, operator: In, values: [dev]}
+    
+  template:
+    metadata:
+      name: login
+      labels:
+        app: login-app
+        env: dev
+    spec:
+      serviceAccountName: ed-svc-acc-01
+      automountServiceAccountToken: true
+      containers:
+      - name: login-app
+        image: docker.io/dpthub/edkubectl:1.0

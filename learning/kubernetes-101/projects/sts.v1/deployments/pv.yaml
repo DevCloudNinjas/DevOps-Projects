@@ -1,0 +1,23 @@
+# Persistent Volume Claims
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: sts-mongo-pvc
+spec:
+  storageClassName: sts-aws-gp2
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 20Gi
+---
+#Persistent Volume
+kind: StorageClass
+apiVersion: storage.k8s.io/v1
+metadata:
+  name: sts-aws-gp2
+provisioner: kubernetes.io/aws-ebs
+parameters:
+  type: gp2
+  zones: us-east-1a
+

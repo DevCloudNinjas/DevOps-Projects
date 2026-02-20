@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="350pt" height="50pt" version="1.2" viewBox="0 0 350 50" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xlink="http://www.w3.org/1999/xlink">
+<title> Jenkins Pipeline </title>
+<defs>
+ <g id="checkmark-circle" stroke="#fff">
+  <circle cx="0" cy="0" r="10" fill="#8abf4c" stroke-width="1.5" />
+  <line x1="-4.5" y1="0.5" x2="-2" y2="3" stroke-width="1" />
+  <line x1="-2.5" y1="3" x2="4" y2="-3" stroke-width="1"  />
+ </g>
+</defs>
+
+<g fill="#949191">
+ <rect width="300" height="3" x="25" y="23.5"/>
+ <circle cx="22" cy="25" r="5"/>
+ <circle cx="328" cy="25" r="5"/>
+</g>
+
+<use xlink:href="#checkmark-circle" x="85" y="25" />
+<use xlink:href="#checkmark-circle" x="175" y="25" />
+<circle cx="265" cy="25" r="13" fill="#4a90e2" />
+<use xlink:href="#checkmark-circle" x="265" y="25" />
+
+<g font-family="sans-serif" font-size="10px">
+ <text x="10" y="10">Start</text>
+ <text x="73" y="10">Build</text>
+ <text x="165" y="10">Test</text>
+ <text x="248" y="10" font-weight="bold">Deploy</text>
+ <text x="318" y="10">End</text>
+</g>
+</svg>

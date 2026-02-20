@@ -1,0 +1,18 @@
+FROM ubuntu:20.04
+# Create the "nexus" user and group
+RUN addgroup --system nexus && adduser --system --ingroup nexus nexus
+# Create the /opt/nexus directory with the correct permissions
+RUN mkdir -p /opt/nexus
+# Install required packages and download Nexus
+RUN apt-get update && \
+    apt-get upgrade -y && \
+    apt-get install wget openjdk-8-jdk -y && \
+    wget https://download.sonatype.com/nexus/3/nexus-3.64.0-04-unix.tar.gz -P /opt/nexus/
+# Move and extract Nexus files
+RUN tar -xvf /opt/nexus/nexus-3.64.0-04-unix.tar.gz -C /opt/nexus/ && \
+    rm -f /opt/nexus/nexus-3.64.0-04-unix.tar.gz
+# Set ownership for the Nexus installation directory
+RUN chown -R nexus:nexus /opt/nexus
+# EXPOSE 8081
+USER nexus
+ENTRYPOINT ["/opt/nexus/nexus-3.64.0-04/bin/nexus", "run"]

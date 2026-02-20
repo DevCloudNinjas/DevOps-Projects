@@ -1,0 +1,7 @@
+Dockerfile
+node_modules
+npm-debug.log
+app.py
+Dockerfile-python
+terraform
+kustomize

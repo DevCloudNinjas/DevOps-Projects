@@ -1,0 +1,107 @@
+{
+    "taskDefinitionArn": "arn:aws:ecs:us-east-1:183631309559:task-definition/dks-db:5",
+    "containerDefinitions": [
+        {
+            "name": "dks-db",
+            "image": "postgres:16.4-alpine",
+            "cpu": 0,
+            "portMappings": [
+                {
+                    "name": "db-port",
+                    "containerPort": 5432,
+                    "hostPort": 5432,
+                    "protocol": "tcp",
+                    "appProtocol": "http"
+                }
+            ],
+            "essential": true,
+            "environment": [
+                {
+                    "name": "POSTGRES_USER",
+                    "value": "postgres"
+                },
+                {
+                    "name": "JAVA_ENABLE_DEBUG",
+                    "value": "false"
+                },
+                {
+                    "name": "DB_ROLE_NAME",
+                    "value": "dks-user"
+                },
+                {
+                    "name": "SPRING_PROFILES_ACTIVE",
+                    "value": "dev"
+                },
+                {
+                    "name": "PGPORT",
+                    "value": "5432"
+                },
+                {
+                    "name": "POSTGRES_PASSWORD",
+                    "value": "postgres-password"
+                },
+                {
+                    "name": "DB_NAME",
+                    "value": "dks_db"
+                },
+                {
+                    "name": "DB_HOST",
+                    "value": "dks-db"
+                },
+                {
+                    "name": "DB_ROLE_PASSWORD",
+                    "value": "dks-db-password"
+                }
+            ],
+            "environmentFiles": [],
+            "mountPoints": [
+                {
+                    "sourceVolume": "dks-db-init",
+                    "containerPath": "/docker-entrypoint-initdb.d/0_0_db.sh",
+                    "readOnly": false
+                }
+            ],
+            "volumesFrom": [],
+            "ulimits": [],
+            "systemControls": []
+        }
+    ],
+    "family": "dks-db",
+    "executionRoleArn": "arn:aws:iam::183631309559:role/ecsTaskExecutionRole",
+    "networkMode": "awsvpc",
+    "revision": 5,
+    "volumes": [
+        {
+            "name": "dks-db-init",
+            "host": {
+                "sourcePath": "/home/ec2-user/0_0_db.sh"
+            }
+        }
+    ],
+    "status": "ACTIVE",
+    "requiresAttributes": [
+        {
+            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.18"
+        },
+        {
+            "name": "ecs.capability.task-eni"
+        }
+    ],
+    "placementConstraints": [],
+    "compatibilities": [
+        "EC2"
+    ],
+    "requiresCompatibilities": [
+        "EC2"
+    ],
+    "cpu": "1024",
+    "memory": "1024",
+    "runtimePlatform": {
+        "cpuArchitecture": "ARM64",
+        "operatingSystemFamily": "LINUX"
+    },
+    "registeredAt": "2024-10-29T17:44:06.202Z",
+    "registeredBy": "arn:aws:sts::183631309559:assumed-role/AWSReservedSSO_AWSAdministratorAccess_93465402f0d29076/gojo.satori@devcloudninjas.com",
+    "enableFaultInjection": false,
+    "tags": []
+}

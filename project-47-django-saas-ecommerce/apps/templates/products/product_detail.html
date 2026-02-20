@@ -1,0 +1,26 @@
+{% extends "base.html" %} 
+{% block title %} Buy Product {% endblock title%} 
+{% block script %} <script src="https://js.stripe.com/v3/"></script> {% endblock script%} 
+{% block content %}
+<div class="card-deck">
+  {% for price in prices %}
+  <div class="card">
+ 
+    <div class="card-body">
+      <h5 class="card-title">{{product.name}}</h5>
+      <p class="card-text">{{product.desc}}</p>
+      <div class="card-text">
+        <h5 class="card-text">${{ price.price }}</h5>
+        <form
+          action="{% url 'products:create-checkout-session' price.id %}"
+          method="POST"
+        >
+          {% csrf_token %}
+          <button type="submit" class="btn btn-primary">Checkout</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endblock content %} 

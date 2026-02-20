@@ -1,0 +1,21 @@
+.DS_Store
+.idea/
+/examples/ch6/devops-api/devops-api
+
+examples/ch2/vagrant_docker_example/.vagrant/
+
+.env
+
+## Docsify
+docsify/
+
+## Node
+node_modules/
+
+## VSCode
+.vscode
+.code-workspace
+
+
+## Webpack
+dist/

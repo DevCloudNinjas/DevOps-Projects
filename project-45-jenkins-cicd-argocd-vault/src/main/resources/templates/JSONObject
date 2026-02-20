@@ -1,0 +1,10 @@
+{
+    "policyId": 2,
+    "policyHolderName": "Shubham",
+    "policyType": "Individual",
+    "policyPrice": 10000,
+    "policyStartDate": "10-Sep-2021",
+    "policyEndDate": "10-Sep-2022"
+}
+
+//policy id is auto incrementing. so need not to pass while creating.

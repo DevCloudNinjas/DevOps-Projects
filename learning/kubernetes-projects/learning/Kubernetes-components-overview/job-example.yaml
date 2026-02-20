@@ -1,0 +1,17 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: job-example
+spec:
+  completions: 2
+  parallelism: 2
+  template:
+    metadata:
+      name: counter
+    spec:
+      containers:
+      - name: counter
+        image: ubuntu
+        command: ["bash"]
+        args: ["-c",  "for i in {1..10}; do echo $i; done"]
+      restartPolicy: Never

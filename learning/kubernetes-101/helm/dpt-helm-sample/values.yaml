@@ -1,0 +1,6 @@
+deployment:
+  replicaCount: 3
+service:
+  nodePort: 32000
+  port: 80
+  targetPort: 80

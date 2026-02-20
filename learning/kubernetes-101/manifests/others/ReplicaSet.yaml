@@ -1,0 +1,27 @@
+# Deploy ReplicaSet Controller
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: nginx-rs
+  namespace: prod
+
+spec:
+  replicas: 6
+  selector:
+    matchLabels:
+      app: nginx-app
+    matchExpressions:
+      - {key: tier, operator: In, values: [frontend]}
+    
+  template:
+    metadata:
+      name: nginx-pod
+      labels:
+       app: nginx-app
+       tier: frontend
+    spec:
+      containers:
+      - name: nginx-container
+        image: nginx
+        ports:
+        - containerPort: 80

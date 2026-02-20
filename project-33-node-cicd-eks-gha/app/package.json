@@ -1,0 +1,15 @@
+{
+    "name": "addition-app",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+    "test": "jest"
+    },
+    "dependencies": {
+        "jest": "^29.6.1"
+      },
+    "keywords": [],
+    "author": "Afraz",
+    "license": "MIT"
+    }

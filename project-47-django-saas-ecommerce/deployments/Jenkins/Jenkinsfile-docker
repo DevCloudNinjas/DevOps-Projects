@@ -1,0 +1,26 @@
+pipeline{
+    agent any
+    stages {
+      stage('Build'){ 
+        steps  {
+                sh '''
+                    docker-compose down && docker-compose build --no-cache
+                '''
+                }
+            }
+            stage('Run the Application'){
+                steps {
+                    sh '''
+                docker-compose up -d
+                    '''
+                }
+            }
+            stage('Execute Manuel Tests'){
+                steps {
+                    sh '''
+                        echo 'Migration Operation Completed , Please Check the logs status'
+                    '''
+                }
+            }
+    }
+}

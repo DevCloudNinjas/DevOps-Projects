@@ -1,6 +1,6 @@
 # DevOps & Cloud Projects — Hands-On Learning
 
-Real-world projects for aspiring DevOps engineers, from beginner to advanced.
+Real-world projects for aspiring DevOps engineers, from beginner to advanced. 49 projects, 15 learning tracks, and curated resources — all in one place.
 
 [![Forks][forks-shield]][forks-url] [![Stargazers][stars-shield]][stars-url]
 
@@ -22,7 +22,7 @@ Real-world projects for aspiring DevOps engineers, from beginner to advanced.
 | Symbol | Meaning |
 |--------|---------|
 | 🔬 | Hands-on Lab — includes working code, configs, and/or IaC |
-| 📖 | Tutorial Guide — step-by-step instructions (README only, no code) |
+| 📖 | Tutorial Guide — step-by-step instructions (README-based) |
 | 🟢 | Beginner |
 | 🟡 | Intermediate |
 | 🔴 | Advanced |
@@ -35,7 +35,7 @@ Real-world projects for aspiring DevOps engineers, from beginner to advanced.
 
 | # | Project | Difficulty | Type | Key Tools |
 |---|---------|-----------|------|-----------|
-| 01 | [Java App on AWS 3-Tier Architecture](./project-01-java-aws-3tier) | 🔴 Advanced | 🔬 Lab | Java, Maven, Tomcat, Nginx, RDS, VPC |
+| 01 | [Java App on AWS 3-Tier Architecture](./project-01-java-aws-3tier) | 🔴 Advanced | 🔬 Lab | Java, Maven, Tomcat, Nginx, RDS, VPC, Terraform |
 | 02 | [Scalable VPC Architecture on AWS](./project-02-aws-vpc-architecture) | 🟡 Intermediate | 🔬 Lab | VPC, ALB, CloudWatch, S3 |
 | 04 | [Django App on AWS ECS/ECR](./project-04-django-aws-ecs) | 🟢 Beginner | 🔬 Lab | Django, Docker, ECS, ECR |
 | 05 | [Deploy on Docker via Jenkins & K8s](./project-05-docker-jenkins-k8s) | 🟡 Intermediate | 🔬 Lab | Docker, Jenkins, Kubernetes |
@@ -59,6 +59,25 @@ Real-world projects for aspiring DevOps engineers, from beginner to advanced.
 | 28 | [OpenAI Chatbot UI on EKS](./project-28-openai-chatbot-eks) | 🔴 Advanced | 🔬 Lab | Jenkins, Docker, EKS, Terraform, SonarQube, Trivy |
 | 29 | [3-Tier Voting App with ArgoCD](./project-29-voting-app-argocd) | 🟡 Intermediate | 📖 Guide | ArgoCD, Azure DevOps, K8s |
 | 30 | [Blog App on EKS (Nexus, SonarQube, Trivy)](./project-30-blog-app-eks) | 🔴 Advanced | 📖 Guide | EKS, Jenkins, Nexus, SonarQube, Trivy |
+| 31 | [Cloud Native Monitoring App](./project-31-cloud-native-monitoring) | 🟡 Intermediate | 🔬 Lab | Python, Docker, EKS, Flask |
+| 32 | [Tetris DevSecOps on K8s](./project-32-tetris-devsecops-k8s) | 🔴 Advanced | 🔬 Lab | Jenkins, Docker, K8s, Terraform, SonarQube, Trivy |
+| 33 | [Node.js CI/CD to EKS via GitHub Actions](./project-33-node-cicd-eks-gha) | 🟡 Intermediate | 🔬 Lab | Node.js, GitHub Actions, EKS, Docker |
+| 34 | [Node.js CI/CD to ECS via GH Actions + Terraform](./project-34-node-cicd-ecs-terraform-gha) | 🟡 Intermediate | 🔬 Lab | Node.js, GitHub Actions, ECS, Terraform |
+| 35 | [DevSecOps Pipeline Series (6 Steps)](./project-35-devsecops-pipeline-series) | 🔴 Advanced | 🔬 Lab | Jenkins, Terraform, K8s, SonarCloud, Snyk, ZAP, Docker, ECR |
+| 36 | [AWS Real-Time Deployment (Dev→Prod)](./project-36-aws-realtime-deployment) | 🔴 Advanced | 🔬 Lab | AWS, CI/CD, Multi-environment |
+| 37 | [EKS Terraform Provision](./project-37-eks-terraform-provision) | 🟡 Intermediate | 🔬 Lab | Terraform, EKS, AWS |
+| 38 | [Docker + Terraform 3-Tier Architecture](./project-38-docker-terraform-3tier) | 🟡 Intermediate | 🔬 Lab | Docker, Terraform, 3-Tier |
+| 39 | [GitHub Actions + AWS + Terraform](./project-39-gha-aws-terraform) | 🟡 Intermediate | 🔬 Lab | GitHub Actions, AWS, Terraform |
+| 40 | [K8s Dashboard with Trivy Scanning](./project-40-k8s-dashboard-trivy) | 🟡 Intermediate | 🔬 Lab | Kubernetes, Trivy, Dashboard |
+| 41 | [Online Boutique Microservices](./project-41-online-boutique-microservices) | 🟡 Intermediate | 🔬 Lab | Kubernetes, Microservices |
+| 42 | [Serverless REST API with DynamoDB](./project-42-serverless-api-dynamodb) | 🟡 Intermediate | 🔬 Lab | Terraform, Lambda, API Gateway, DynamoDB |
+| 43 | [ECS Fargate with Terraform](./project-43-ecs-fargate-terraform) | 🟡 Intermediate | 🔬 Lab | ECS, Fargate, ECR, Terraform |
+| 44 | [DevSecOps 101](./project-44-devsecops-101) | 🔴 Advanced | 🔬 Lab | Jenkins, Docker, K8s, SonarQube, Trivy |
+| 45 | [Jenkins CI/CD with ArgoCD & Vault](./project-45-jenkins-cicd-argocd-vault) | 🔴 Advanced | 🔬 Lab | Jenkins, ArgoCD, Vault, SonarQube, JFrog, Trivy, EKS, Prometheus, Grafana |
+| 46 | [EKS Cluster Terraform (Advanced)](./project-46-eks-cluster-terraform-advanced) | 🟡 Intermediate | 🔬 Lab | Terraform, EKS, VPC |
+| 47 | [Django SaaS E-Commerce](./project-47-django-saas-ecommerce) | 🟡 Intermediate | 🔬 Lab | Django, Docker, Multi-tenant |
+| 48 | [Terraform AWS EKS](./project-48-terraform-aws-eks) | 🟡 Intermediate | 🔬 Lab | Terraform, EKS, AWS |
+| 49 | [Text Encryption (Cybersecurity)](./project-49-text-encryption-cybersecurity) | 🟢 Beginner | 🔬 Lab | Python, Cryptography |
 
 ### Azure Projects
 
@@ -78,14 +97,50 @@ Real-world projects for aspiring DevOps engineers, from beginner to advanced.
 
 ---
 
+## Learning Resources
+
+Structured learning tracks, hands-on labs, and study guides. See [learning/](./learning/) for details.
+
+| Track | Description |
+|-------|-------------|
+| [Kubernetes 101](./learning/kubernetes-101) | All-in-one K8s fundamentals |
+| [CKA Exam Prep](./learning/kubernetes-cka-prep) | Certified Kubernetes Administrator prep |
+| [K8s Learning Path](./learning/kubernetes-learning-path) | Beginner to Advanced roadmap |
+| [K8s Projects](./learning/kubernetes-projects) | Practical real-time K8s projects |
+| [Containers Fundamentals](./learning/containers-fundamentals) | Docker & K8s fundamentals labs |
+| [Docker Training](./learning/docker-training) | Hands-on Docker labs |
+| [DevOps 101 Track](./learning/devops-101-track) | 18 beginner projects (CI/CD, AWS, Docker, K8s) |
+| [DevOps 201 Track](./learning/devops-201-track) | 25 intermediate projects (LAMP, Ansible, Terraform, K8s) |
+| [DevOps Bootcamp](./learning/devops-bootcamp) | DevOps onboarding bootcamp |
+| [Linux Hands-On](./learning/linux-hands-on) | Linux studies |
+| [Prometheus Monitoring](./learning/prometheus-monitoring) | Learning Prometheus |
+| [Tool Setup Guides](./learning/tool-setup-guides) | DevOps tool installation guides |
+| [DevOps Interview Prep](./learning/devops-interview-prep) | Interview questions for all DevOps tools |
+| [SRE Interview Prep](./learning/sre-interview-prep) | SRE interview preparation guide |
+
+---
+
+## Reference Resources
+
+See [resources/](./resources/) for details.
+
+| Resource | Description |
+|----------|-------------|
+| [DevOps Tools List](./resources/devops-tools-list) | Curated list of DevOps tools |
+| [GitHub Actions Examples](./resources/github-actions-examples) | Practical GHA examples |
+| [Coding Interview University](./resources/coding-interview-university) | CS study plan |
+
+---
+
 ## Projects by Difficulty
 
-### 🟢 Beginner (2 projects)
+### 🟢 Beginner (4 projects)
 - [03 — Linux Fundamentals](./project-03-linux-fundamentals)
 - [04 — Django App on AWS ECS/ECR](./project-04-django-aws-ecs)
 - [10 — .NET CI/CD with Azure DevOps](./project-10-dotnet-azure-devops)
+- [49 — Text Encryption (Cybersecurity)](./project-49-text-encryption-cybersecurity)
 
-### 🟡 Intermediate (13 projects)
+### 🟡 Intermediate (24 projects)
 - [02 — Scalable VPC Architecture](./project-02-aws-vpc-architecture)
 - [05 — Docker + Jenkins + K8s](./project-05-docker-jenkins-k8s)
 - [08 — 2048 Game on EKS](./project-08-2048-game-eks)
@@ -101,8 +156,21 @@ Real-world projects for aspiring DevOps engineers, from beginner to advanced.
 - [26 — Terraform + GitLab CI/CD](./project-26-terraform-gitlab-cicd)
 - [27 — Reddit App on EKS](./project-27-reddit-eks-argocd)
 - [29 — Voting App with ArgoCD](./project-29-voting-app-argocd)
+- [31 — Cloud Native Monitoring](./project-31-cloud-native-monitoring)
+- [33 — Node.js CI/CD to EKS](./project-33-node-cicd-eks-gha)
+- [34 — Node.js CI/CD to ECS](./project-34-node-cicd-ecs-terraform-gha)
+- [37 — EKS Terraform Provision](./project-37-eks-terraform-provision)
+- [38 — Docker + Terraform 3-Tier](./project-38-docker-terraform-3tier)
+- [39 — GHA + AWS + Terraform](./project-39-gha-aws-terraform)
+- [40 — K8s Dashboard + Trivy](./project-40-k8s-dashboard-trivy)
+- [41 — Online Boutique Microservices](./project-41-online-boutique-microservices)
+- [42 — Serverless API + DynamoDB](./project-42-serverless-api-dynamodb)
+- [43 — ECS Fargate + Terraform](./project-43-ecs-fargate-terraform)
+- [46 — EKS Cluster Terraform Advanced](./project-46-eks-cluster-terraform-advanced)
+- [47 — Django SaaS E-Commerce](./project-47-django-saas-ecommerce)
+- [48 — Terraform AWS EKS](./project-48-terraform-aws-eks)
 
-### 🔴 Advanced (15 projects)
+### 🔴 Advanced (21 projects)
 - [01 — Java AWS 3-Tier](./project-01-java-aws-3tier)
 - [06 — Advanced CI/CD Pipeline](./project-06-advanced-cicd-pipeline)
 - [07 — Azure DevOps + AKS + Terraform](./project-07-azure-devops-aks-terraform)
@@ -115,6 +183,11 @@ Real-world projects for aspiring DevOps engineers, from beginner to advanced.
 - [25 — Petshop Java DevSecOps](./project-25-petshop-devsecops)
 - [28 — OpenAI Chatbot on EKS](./project-28-openai-chatbot-eks)
 - [30 — Blog App on EKS](./project-30-blog-app-eks)
+- [32 — Tetris DevSecOps K8s](./project-32-tetris-devsecops-k8s)
+- [35 — DevSecOps Pipeline Series](./project-35-devsecops-pipeline-series)
+- [36 — AWS Real-Time Deployment](./project-36-aws-realtime-deployment)
+- [44 — DevSecOps 101](./project-44-devsecops-101)
+- [45 — Jenkins CI/CD + ArgoCD + Vault](./project-45-jenkins-cicd-argocd-vault)
 
 ---
 
@@ -122,19 +195,24 @@ Real-world projects for aspiring DevOps engineers, from beginner to advanced.
 
 | Technology | Projects |
 |-----------|----------|
-| Jenkins | 01, 05, 06, 09, 16, 18, 19, 25, 28, 30 |
-| Terraform | 06, 07, 11, 12, 19, 20, 22, 26, 28 |
-| Kubernetes / EKS / AKS | 05, 06, 07, 08, 12, 13, 15, 16, 17, 18, 19, 24, 25, 27, 28, 29, 30 |
-| Docker | 04, 05, 06, 09, 13, 14, 23, 24, 25, 26, 27, 28, 30 |
-| ArgoCD | 16, 18, 27, 29 |
-| SonarQube | 06, 09, 13, 18, 24, 28, 30 |
-| GitHub Actions | 14, 22 |
+| Jenkins | 01, 05, 06, 09, 16, 18, 19, 25, 28, 30, 32, 35, 44, 45 |
+| Terraform | 06, 07, 11, 12, 19, 20, 22, 26, 28, 34, 35, 37, 38, 39, 42, 43, 46, 48 |
+| Kubernetes / EKS / AKS | 05, 06, 07, 08, 12, 13, 15, 16, 17, 18, 19, 24, 25, 27, 28, 29, 30, 31, 32, 33, 35, 37, 40, 41, 45, 46, 48 |
+| Docker | 04, 05, 06, 09, 13, 23, 24, 25, 26, 27, 28, 30, 31, 32, 34, 35, 38, 44, 47 |
+| ArgoCD | 16, 18, 27, 29, 45 |
+| SonarQube / SonarCloud | 06, 09, 13, 18, 24, 28, 30, 35, 44, 45 |
+| GitHub Actions | 14, 22, 33, 34, 39 |
 | GitLab CI/CD | 26 |
 | Azure DevOps | 07, 10, 17, 20, 29 |
 | AWS CodePipeline | 21 |
 | Helm | 06, 15, 18 |
 | Ansible | 06, 25 |
-| Prometheus / Grafana | 06, 09 |
+| Prometheus / Grafana | 06, 09, 45 |
+| Trivy | 09, 28, 32, 40, 44 |
+| HashiCorp Vault | 45 |
+| Snyk | 35 |
+| OWASP ZAP | 35 |
+| Serverless (Lambda) | 22, 42 |
 
 ---
 
@@ -142,40 +220,28 @@ Real-world projects for aspiring DevOps engineers, from beginner to advanced.
 
 ```
 DevOps-Projects/
-├── project-01-java-aws-3tier/          # Java App on AWS 3-Tier Architecture
-├── project-02-aws-vpc-architecture/    # Scalable VPC Architecture on AWS
-├── project-03-linux-fundamentals/      # Linux Fundamentals for DevOps
-├── project-04-django-aws-ecs/          # Django App on AWS ECS/ECR
-├── project-05-docker-jenkins-k8s/      # Deploy on Docker via Jenkins & K8s
-├── project-06-advanced-cicd-pipeline/  # Advanced CI/CD Pipeline
-├── project-07-azure-devops-aks-terraform/ # Azure DevOps with AKS & Terraform
-├── project-08-2048-game-eks/           # 2048 Game on Amazon EKS
-├── project-09-devsecops-netflix-clone/ # DevSecOps Netflix Clone CI/CD
-├── project-10-dotnet-azure-devops/     # .NET CI/CD with Azure DevOps
-├── project-11-aws-2tier-terraform/     # Two-Tier AWS Infra with Terraform
-├── project-12-super-mario-k8s/         # Super Mario on K8s with Terraform
-├── project-13-zomato-clone-devsecops/  # Zomato Clone DevSecOps
-├── project-14-github-actions-android/  # CI/CD with GitHub Actions for Android
-├── project-15-ecommerce-eks-helm/      # E-Commerce 3-Tier on EKS with Helm
-├── project-16-jenkins-argocd-k8s/      # Deploy to K8s with Jenkins & ArgoCD
-├── project-17-aks-azure-devops/        # Deploy to AKS via Azure DevOps
-├── project-18-jenkins-java-full-cicd/  # Jenkins Java Pipeline (Full CI/CD)
-├── project-19-eks-jenkins-terraform/   # EKS + Jenkins + Terraform CI/CD
-├── project-20-azure-terraform-pipeline/ # Azure DevOps + Terraform Pipeline
-├── project-21-aws-codepipeline/        # AWS CodePipeline CI/CD
-├── project-22-aws-serverless/          # AWS Fully Serverless Architecture
-├── project-23-swiggy-clone-ecs/        # Swiggy Clone Blue-Green on ECS
-├── project-24-dotnet-devsecops/        # .NET DevSecOps Pipeline
-├── project-25-petshop-devsecops/       # Petshop Java DevSecOps
-├── project-26-terraform-gitlab-cicd/   # Terraform + GitLab CI/CD on AWS
-├── project-27-reddit-eks-argocd/       # Reddit App on EKS with ArgoCD
-├── project-28-openai-chatbot-eks/      # OpenAI Chatbot UI on EKS
-├── project-29-voting-app-argocd/       # 3-Tier Voting App with ArgoCD
-├── project-30-blog-app-eks/            # Blog App on EKS
+├── project-01 through project-49/    # 49 DevOps projects
+├── learning/                          # 15 learning tracks & study guides
+│   ├── kubernetes-101/
+│   ├── kubernetes-cka-prep/
+│   ├── containers-fundamentals/
+│   ├── docker-training/
+│   ├── devops-101-track/             # 18 beginner projects
+│   ├── devops-201-track/             # 25 intermediate projects
+│   ├── devops-bootcamp/
+│   ├── linux-hands-on/
+│   ├── prometheus-monitoring/
+│   ├── tool-setup-guides/
+│   ├── devops-interview-prep/
+│   └── sre-interview-prep/
+├── resources/                         # Reference materials
+│   ├── devops-tools-list/
+│   ├── github-actions-examples/
+│   └── coding-interview-university/
 ├── CODE_OF_CONDUCT.md
-├── IMPROVEMENTS.md                     # Detailed improvement log
-├── REVIEW-PLAN.md                      # Review strategy document
-└── REVIEW-UPDATES.md                   # Change tracking document
+├── IMPROVEMENTS.md
+├── REVIEW-PLAN.md
+└── REVIEW-UPDATES.md
 ```
 
 ---
@@ -194,10 +260,6 @@ Please review the [Code of Conduct](./CODE_OF_CONDUCT.md) before contributing.
 
 - [Telegram Group](https://t.me/devcloudninjas)
 - [GitHub — DevCloudNinjas](https://github.com/devcloudninjas)
-
-## License
-
-This repository is open source and available for learning purposes.
 
 ---
 

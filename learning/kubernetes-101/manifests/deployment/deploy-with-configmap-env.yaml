@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: httpd-deploy
+
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: db-app
+  template:
+    metadata:
+      name: db-pod
+      labels:
+       app: db-app
+    spec:
+      containers:
+      - name: db-container
+        image: docker.io/mysql
+        envFrom:
+        - configMapRef:
+            name: config
+        ports:
+        - containerPort: 3306

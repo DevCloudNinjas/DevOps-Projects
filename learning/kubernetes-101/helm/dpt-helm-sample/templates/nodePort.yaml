@@ -1,0 +1,17 @@
+# Deploy nodePort Services
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-service
+  labels:
+    app: nginx-app
+
+spec:
+  selector:
+    app: nginx-app
+
+  type: NodePort
+  ports:
+  - nodePort: {{ .Values.service.nodePort }}
+    port: {{ .Values.service.port }}
+    targetPort: {{ .Values.service.targetPort }}

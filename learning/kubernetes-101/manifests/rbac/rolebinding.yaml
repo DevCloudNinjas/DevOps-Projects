@@ -1,0 +1,13 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: list-pods
+  namespace: default
+subjects:
+- kind: Group
+  name: devops
+  apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: Role
+  name: list-pods
+  apiGroup: rbac.authorization.k8s.io

@@ -1,0 +1,7 @@
+1-Intro-to-docker/assets/
+2-Docker-compose/assets/
+3-Docker-swarm/assets/
+4-Microservice/assets/
+2-Docker-compose/1-compose/docker-compose.yml
+*.pptx
+**/cheat/*

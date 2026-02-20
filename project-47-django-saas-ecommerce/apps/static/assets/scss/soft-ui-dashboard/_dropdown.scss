@@ -1,0 +1,83 @@
+.dropdown,
+.dropup {
+  .dropdown-menu {
+    position: absolute;
+    box-shadow: $dropdown-box-shadow;
+    transition: $dropdown-transition;
+    cursor: pointer;
+  }
+
+  .dropdown-toggle {
+    &:after{
+      content: "\f107";
+      font: normal normal normal 14px/1 FontAwesome;
+      border: none;
+      vertical-align: middle;
+      font-weight: $font-weight-bold;
+    }
+    &.show{
+      &:after{
+        transform: $dropdown-toggle-arrow-transform;
+      }
+    }
+    &:after{
+        transition: $dropdown-toggle-arrow-transition;
+    }
+  }
+}
+
+.dropdown {
+  .dropdown-menu {
+    margin-top: $dropdown-mt !important;
+    display: block;
+    opacity: 0;
+    top: 0;
+    transform-origin: $dropdown-transform-origin;
+    pointer-events: none;
+    transform: $dropdown-transform;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    will-change: transform,box-shadow;
+    &.dropdown-menu-end{
+      right: 0;
+      left: auto;
+      &:before{
+        right: $dropdown-animation-arrow-left-position;
+        left: auto;
+      }
+    }
+  }
+
+  .dropdown-menu.show {
+    opacity: 1;
+    pointer-events: auto;
+    visibility: visible;
+    transform: $dropdown-transform-show;
+  }
+
+  .dropdown-menu.show:before {
+    top: $dropdown-hover-arrow-active-top;
+  }
+
+  .dropdown-menu {
+    &:before {
+      font-family: "FontAwesome";
+      content: "\f0d8";
+      position: absolute;
+      top: 0;
+      left: $dropdown-animation-arrow-left-position;
+      right: auto;
+      font-size: $dropdown-animation-arrow-font-size;
+      color: $white;
+      transition: $dropdown-animation-arrow-transition;
+    }
+  }
+
+  .dropdown-item .arrow {
+    transform: $dropdown-subitem-arrow-rotate;
+  }
+}
+
+.dropdown-item {
+  transition: background-color $dropdown-transition-time, color $dropdown-transition-time;
+}

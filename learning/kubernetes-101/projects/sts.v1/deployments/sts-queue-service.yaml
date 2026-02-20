@@ -1,0 +1,16 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: sts-queue
+spec:
+  selector:
+    app: queue
+  ports:
+  - name: console
+    port: 8161
+    targetPort: 8161
+    nodePort: 30010
+
+  - name: endpoint
+    port: 61616
+  type: NodePort

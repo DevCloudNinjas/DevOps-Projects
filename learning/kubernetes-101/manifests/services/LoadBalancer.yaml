@@ -1,0 +1,17 @@
+# Deploy LoadBalancer services
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-service
+  labels:
+    app: nginx-app
+
+spec:
+  selector:
+    app: nginx-app
+
+  type: LoadBalancer
+  ports:
+  - nodePort: 31000
+    port: 80
+    targetPort: 80

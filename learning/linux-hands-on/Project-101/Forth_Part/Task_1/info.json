@@ -1,0 +1,109 @@
+{
+    "Groups": [],
+    "Instances": [
+        {
+            "AmiLaunchIndex": 0,
+            "ImageId": "ami-01cc34ab2709337aa",
+            "InstanceId": "i-0aff1720e6223337a",
+            "InstanceType": "t2.micro",
+            "KeyName": "serdar",
+            "LaunchTime": "2021-11-02T19:37:02.000Z",
+            "Monitoring": {
+                "State": "disabled"
+            },
+            "Placement": {
+                "AvailabilityZone": "us-east-1d",
+                "GroupName": "",
+                "Tenancy": "default"
+            },
+            "PrivateDnsName": "ip-172-31-82-220.ec2.internal",
+            "PrivateIpAddress": "172.31.82.220",
+            "ProductCodes": [],
+            "PublicDnsName": "",
+            "State": {
+                "Code": 0,
+                "Name": "pending"
+            },
+            "StateTransitionReason": "",
+            "SubnetId": "subnet-ed49bccc",
+            "VpcId": "vpc-f52d178f",
+            "Architecture": "x86_64",
+            "BlockDeviceMappings": [],
+            "ClientToken": "74a9bf34-4ad3-46b5-a805-5851875986c4",
+            "EbsOptimized": false,
+            "EnaSupport": true,
+            "Hypervisor": "xen",
+            "NetworkInterfaces": [
+                {
+                    "Attachment": {
+                        "AttachTime": "2021-11-02T19:37:02.000Z",
+                        "AttachmentId": "eni-attach-0f02ba95a87ed3018",
+                        "DeleteOnTermination": true,
+                        "DeviceIndex": 0,
+                        "Status": "attaching"
+                    },
+                    "Description": "",
+                    "Groups": [
+                        {
+                            "GroupName": "my_sec_group",
+                            "GroupId": "sg-0ba45ea3775997176"
+                        }
+                    ],
+                    "Ipv6Addresses": [],
+                    "MacAddress": "12:d7:1d:d4:80:65",
+                    "NetworkInterfaceId": "eni-0dba24100f4c91441",
+                    "OwnerId": "046402772087",
+                    "PrivateDnsName": "ip-172-31-82-220.ec2.internal",
+                    "PrivateIpAddress": "172.31.82.220",
+                    "PrivateIpAddresses": [
+                        {
+                            "Primary": true,
+                            "PrivateDnsName": "ip-172-31-82-220.ec2.internal",
+                            "PrivateIpAddress": "172.31.82.220"
+                        }
+                    ],
+                    "SourceDestCheck": true,
+                    "Status": "in-use",
+                    "SubnetId": "subnet-ed49bccc",
+                    "VpcId": "vpc-f52d178f",
+                    "InterfaceType": "interface"
+                }
+            ],
+            "RootDeviceName": "/dev/xvda",
+            "RootDeviceType": "ebs",
+            "SecurityGroups": [
+                {
+                    "GroupName": "my_sec_group",
+                    "GroupId": "sg-0ba45ea3775997176"
+                }
+            ],
+            "SourceDestCheck": true,
+            "StateReason": {
+                "Code": "pending",
+                "Message": "pending"
+            },
+            "Tags": [
+                {
+                    "Key": "env",
+                    "Value": "serdar"
+                }
+            ],
+            "VirtualizationType": "hvm",
+            "CpuOptions": {
+                "CoreCount": 1,
+                "ThreadsPerCore": 1
+            },
+            "CapacityReservationSpecification": {
+                "CapacityReservationPreference": "open"
+            },
+            "MetadataOptions": {
+                "State": "pending",
+                "HttpTokens": "optional",
+                "HttpPutResponseHopLimit": 1,
+                "HttpEndpoint": "enabled"
+            }
+        }
+    ],
+    "OwnerId": "046402772087",
+    "ReservationId": "r-06204eb5486010c07"
+}

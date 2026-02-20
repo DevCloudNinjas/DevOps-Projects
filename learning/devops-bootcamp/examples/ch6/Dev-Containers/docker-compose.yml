@@ -1,0 +1,21 @@
+version: "3.8"
+services:
+  jodatime:
+    container_name: jodatime
+    build:
+      dockerfile: Dockerfile.joda
+  springpetclinic:
+    container_name: springpetclinic
+    build:
+      dockerfile: Dockerfile.springpetclinic
+  nexusserver:
+    container_name: nexusserver
+    build: 
+      dockerfile: Dockerfile.nexus
+    ports:
+      - "8081:8081"
+    volumes:
+      - nexus:/opt/nexus
+      - nexus:/nexus-data
+volumes:
+  nexus:

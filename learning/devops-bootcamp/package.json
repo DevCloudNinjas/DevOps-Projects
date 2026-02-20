@@ -1,0 +1,55 @@
+{
+  "name": "devops-bootcamp",
+  "version": "1.0.0",
+  "description": "DevCloud Ninjas Bootcamp",
+  "main": "index.js",
+  "directories": {
+    "example": "examples"
+  },
+  "scripts": {
+    "start": "npm run build:dev && npm run serve:docsify",
+    "serve:docsify": "docsify serve --port 3000",
+    "build:dev": "webpack --config webpack.dev.js",
+    "build:prod": "webpack --config webpack.prod.js",
+    "lint": "markdownlint-cli2 docs/**/*.md",
+    "prepare": "husky install",
+    "compare-front-matter": "node ./.husky/front-matter-condenser",
+    "refresh-front-matter": "node ./.husky/front-matter-condenser update"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/devcloudninjas/devops-bootcamp.git"
+  },
+  "keywords": [
+    "devops",
+    "bootcamp"
+  ],
+  "author": "DevCloud Ninjas",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/devcloudninjas/devops-bootcamp/issues"
+  },
+  "homepage": "https://github.com/devcloudninjas/devops-bootcamp#readme",
+  "dependencies": {
+    "chart.js": "^4.3.0",
+    "chartjs-chart-wordcloud": "^4.2.0",
+    "docsify": "^4.11.4",
+    "docsify-cli": "^4.4.2",
+    "docsify-sidebar-collapse": "^1.3.5",
+    "gray-matter": "^4.0.3",
+    "node-stdlib-browser": "^1.2.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.21.8",
+    "@babel/preset-env": "^7.21.5",
+    "babel-loader": "^9.1.2",
+    "cspell": "^8.0.0",
+    "husky": "^9.0.11",
+    "markdownlint-cli2": "^0.15.0",
+    "remark": "^15.0.0",
+    "remark-cli": "^12.0.0",
+    "webpack": "^5.96.1",
+    "webpack-cli": "^5.1.4",
+    "webpack-merge": "^6.0.0"
+  }
+}

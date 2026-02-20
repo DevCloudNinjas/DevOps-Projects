@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-queue
+spec:
+  rules:
+  - host: queue.edshopper.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: sts-queue
+            port:
+              number: 8161
+  ingressClassName: nginx

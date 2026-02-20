@@ -1,0 +1,37 @@
+pipeline{
+    agent any
+    stages {
+      stage('Setup Python Virtual ENV'){ 
+        steps  {
+                 bat '''
+                chmod +x deployments/scripts/commands/envsetup.sh
+                ./deployments/scripts/commands/envsetup.sh
+                    '''
+                }
+            }
+            stage('Perform Data Migration'){
+                steps {
+                    bat '''
+                   chmod +x deployments/scripts/commands/local_migrate.sh
+                   ./deployments/scripts/commands/local_migrate.sh
+                    '''
+                }
+            }
+            stage('Run the Application'){
+                steps {
+                    bat '''
+                       chmod +x run.sh
+                      ./run.sh
+                    '''
+                }
+            }
+            stage('Setup Gunicorn Setup'){
+                steps {
+                    bat '''
+                       chmod +x deployments/scripts/commands/gunicorn.sh
+                       ./deployments/scripts/commands/gunicorn.sh
+                    '''
+                }
+            }
+    }
+}

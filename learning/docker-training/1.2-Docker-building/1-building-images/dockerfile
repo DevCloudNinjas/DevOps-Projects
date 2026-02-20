@@ -1,0 +1,10 @@
+FROM alpine
+
+# Add shell script
+COPY addition.sh /
+
+# Which script to execute when running the container
+ENTRYPOINT ["/addition.sh"]
+
+# Default values to the ENTRYPOINT
+CMD ["0", "0"]

@@ -1,0 +1,12 @@
+.matrix {
+    display: table;
+    background-color: #ffffff;
+    padding: 1px;
+    float: left;
+}
+
+.row {
+    display: table-row;
+    width: auto;
+    clear: both;
+}

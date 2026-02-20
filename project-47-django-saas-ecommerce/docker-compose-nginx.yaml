@@ -1,0 +1,34 @@
+version: '3'
+services:
+  backend:
+    build: .
+    command: sh -c "python3 manage.py makemigrations && python3 manage.py migrate --noinput && python3 manage.py collectstatic --noinput && gunicorn --config gunicorn_config.py multitenantsaas.wsgi:application"
+    restart: always
+    expose:
+      - "8000"
+    volumes:
+      - ./:/app
+      - /var/www/static/:/var/www/static/
+      - /var/certbot/conf:/etc/letsencrypt/:ro
+    env_file:
+      - .env
+
+  nginx:
+    image: nginx:alpine
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - /var/www/static/:/var/www/static/
+      - ./nginx/conf.d/:/etc/nginx/conf.d/
+    depends_on:
+      - backend
+
+  certbot:
+    image: certbot/certbot:latest
+    volumes:
+      - /var/certbot/conf:/etc/letsencrypt/:rw
+      - /var/certbot/www/:/var/www/certbot/:rw
+    depends_on:
+      - nginx

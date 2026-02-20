@@ -1,0 +1,15 @@
+{
+  "name": "docker-frontend-backend-db",
+  "version": "1.0.0",
+  "description": "A tiny web app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.4",
+    "pg": "^7.11.0"
+  }
+}

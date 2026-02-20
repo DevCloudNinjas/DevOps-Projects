@@ -1,0 +1,107 @@
+.content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: grid;
+  grid-template-columns:
+  [left] auto
+  [right] 180px;
+}
+
+.header {
+  grid-column: left / right;
+  font-size: 32px;
+  color: dimgray;
+}
+
+.matrix {
+  grid-column: left;
+  width: auto;
+  background-color: #eee;
+  padding: 1px;
+  display: table;
+  /*float: left;*/
+  border: 1px black solid;
+}
+
+.controls {
+  /*float: left;*/
+  display: grid;
+  grid-template-rows:
+          [next] 160px
+          [level] 70px
+          [score] 70px
+          [buttons] 120px
+          [info ] 60px;
+  padding-left: 15px;
+  padding-right: 15px;
+  background-color: #cbf0cc;
+  grid-column: right;
+  grid-row:  2 / 2;
+  background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
+  border: 1px black solid;
+  border-left: 0;
+}
+
+.controlsNext {
+  grid-row: next;
+  margin-top: 5px;
+}
+
+.controlsScore {
+  grid-row: score;
+}
+
+.controlsLevel {
+  grid-row: level;
+}
+
+.controlsButtons {
+  grid-row: buttons;
+}
+
+.controlsInfo {
+  grid-row: info;
+}
+
+.btn{
+  border: none;
+  color: white;
+  padding: 12px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 5px;
+  margin-top: 10px;
+  width: 100%;
+}
+
+.btnNew {
+  background-color: #4CAF50;
+}
+
+.btnPause {
+  background-color: #f44336;
+}
+
+.gameOver {
+  z-index:  5;
+  font-size: 24px;
+  width: 180px;
+  height: 80px;
+  position: absolute;
+  background-color: #f44336;
+  color: #eeeeee;
+  border-radius: 15px;
+  top: 50%;
+  left: 10%;
+  align-content: center;
+  -webkit-box-shadow: inset 0 10px 10px -10px black;
+  -moz-box-shadow: inset 0 10px 10px -10px black;
+  box-shadow: inset 0 10px 10px -10px black;
+  display:table;
+  vertical-align:middle;
+  text-align:center;
+}

@@ -1,0 +1,5 @@
+Linux is a family of open-source Unix-like operating systems based on the Linux kernel.
+It is an operating system kernel first released on September 17, 1991, by Linus Torvalds.Linux is typically packaged in a Linux distribution.
+Distributions include the Linux kernel and supporting system software and libraries.
+Popular Linux distributions include Debian, Fedora, and Ubuntu. 
+Commercial distributions include Red Hat Enterprise Linux and SUSE Linux Enterprise Server.

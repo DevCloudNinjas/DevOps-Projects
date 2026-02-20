@@ -1,0 +1,51 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  creationTimestamp: null
+  name: validation
+spec: {}
+status: {}
+---
+apiVersion: cert-manager.io/v1
+kind: Issuer
+metadata:
+  name: selfsigned-issuer
+  namespace: validation
+spec:
+  selfSigned: {}
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: validation-ca
+  namespace: validation
+spec:
+  secretName: validation-ca-tls
+  commonName: validation.svc.cluster.local
+  isCA: true
+  issuerRef:
+    name: selfsigned-issuer
+---
+apiVersion: cert-manager.io/v1
+kind: Issuer
+metadata:
+  name: validation-ca-issuer
+  namespace: validation
+spec:
+  ca:
+    secretName: validation-ca-tls
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: warden-server
+  namespace: validation
+spec:
+  secretName: warden-server-tls
+  isCA: false
+  dnsNames:
+  - "warden.validation.svc.cluster.local"
+  - "warden.validation.svc"
+  - "warden"
+  issuerRef:
+    name: validation-ca-issuer

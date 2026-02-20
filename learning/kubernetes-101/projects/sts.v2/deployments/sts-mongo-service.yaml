@@ -1,0 +1,11 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: sts-mongodb
+spec:
+  selector:
+    app: mongodb
+  ports:
+  - name: mongoport
+    port: 27017
+  type: ClusterIP

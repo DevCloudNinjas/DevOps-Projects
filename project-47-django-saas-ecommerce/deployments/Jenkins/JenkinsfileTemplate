@@ -1,0 +1,110 @@
+pipeline{
+    agent any
+     options {
+        buildDiscarder(logRotator(numToKeepStr: '3'))
+      }
+      environment {
+        DOCKERHUB_CREDENTIALS = credentials('globaldockerhub')
+        appName = "server"
+        registry = ""
+        registryCredential = ""
+        projectPath = ""
+        AWS_ACCESS_KEY_ID = credentials('your_aws_access_key_id')
+        AWS_SECRET_ACCESS_KEY = credentials('your_aws_secret_access_key')
+        AWS_REGION = 'your_aws_region'
+        EC2_INSTANCE = 'your_ec2_instance_id'
+        SSH_KEY = credentials('your_ssh_key')
+      }
+    stages {
+
+            stage('Environment'){
+            steps {
+                sh 'python3 --version'
+                    git url: 'https://github.com/joelwembo/django-multitenant-saas-ecommerce-kubernetes.git' 
+                }
+        
+            }
+            stage('Build'){ 
+                steps  {
+                
+                    sh 'docker build -t joelwembo/django_app:latest --no-cache .'
+                }
+            }
+
+            stage('SonarQube Analysis') {
+                environment {
+                    // Set environment variables required for SonarQube scanner
+                    SONAR_SCANNER_HOME = tool 'SonarQube Scanner'
+                }
+                steps {
+                    // Run SonarQube scanner
+                    script {
+                        withSonarQubeEnv('SonarQube Server') {
+                            sh "${env.SONAR_SCANNER_HOME}/bin/sonar-scanner"
+                        }
+                    }
+                }
+           }
+
+            stage('Login') {
+                steps {
+                    sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+                    
+                }
+            }
+
+            stage('trivy Scan') {
+                steps {
+                    sh 'trivy joelwembo/prodxcloud-django-web:latest'
+                }
+            }
+
+           stage('Docker Push') {
+                steps {
+                    sh 'docker images'
+                    sh 'docker images --filter "reference=django_app*"' 
+                    sh 'docker push joelwembo/django_app:latest'
+                }
+            }
+            stage('Run the Application'){
+                steps {
+                    sh 'docker-compose up -d'
+                }
+            }
+
+         stage('Deploy to AWS EC2') {
+            steps {
+                 dir('deployments') {
+                    sh "pwd"
+                    sh "chmod +x -R ./deploy-aws-ec2.sh"
+                    sh 'docker images --filter "reference=django_app*"' 
+                    sh './deploy-aws-ec2.sh'
+                 }
+              
+            }
+        } 
+    }
+
+    post {
+            success {
+                script {
+                    currentBuild.result = 'SUCCESS'
+                    slackSend(color: 'good', message: "Deployment successful! :tada:", channel: "#DEV")
+                    emailext subject: 'Deployment Successful',
+                            body: 'Deployment was successful!',
+                            recipientProviders: [[$class: 'CulpritsRecipientProvider']]
+                }
+            }
+            failure {
+                script {
+                    currentBuild.result = 'FAILURE'
+                    slackSend(color: 'danger', message: "Deployment failed. :x:", channel: "#DEV")
+                    emailext subject: 'Deployment Failed',
+                            body: 'Deployment failed!',
+                            recipientProviders: [[$class: 'CulpritsRecipientProvider']]
+                }
+            }
+
+        }
+
+}

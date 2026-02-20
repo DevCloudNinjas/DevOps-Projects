@@ -1,0 +1,39 @@
+# https://kubernetes.io/docs/concepts/workloads/controllers/deployment/
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dks-api
+  labels:
+    app: dks-api
+spec:
+  selector:
+    matchLabels:
+      app: dks-api
+  replicas: {{ .Values.replicaCount }}
+  template:
+    metadata:
+      annotations:
+        kubectl.kubernetes.io/default-container:  dks-api
+      labels:
+        app: dks-api
+    spec:
+      containers:
+      - name: dks-api
+        image: "{{ .Values.backend.image.repository }}:{{ .Values.backend.image.tag | default .Chart.AppVersion }}"
+        imagePullPolicy: {{ .Values.global.image.pullPolicy }} 
+        livenessProbe:
+          tcpSocket:
+            port: {{ .Values.backend.service.port }} 
+          initialDelaySeconds: 5
+          timeoutSeconds: 5
+          successThreshold: 1
+          failureThreshold: 3
+          periodSeconds: 10
+        envFrom:
+          - configMapRef:
+             name: dks-config
+        ports:
+        - containerPort: {{ .Values.backend.service.port }}
+      name: dks-api
+      restartPolicy: Always
+

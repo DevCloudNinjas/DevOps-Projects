@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>KUBERNETES DASHBOARD</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <script src="app.js"></script>
+</head>
+<body>
+    <h1>KUBERNETES DASHBOARD</h1>
+    <div class="dashboard">
+        <div class="top-section">
+            <div class="storage-used">
+                <span class="percentage"></span><br>
+                Storage Used
+            </div>
+            <div class="memory-utilization">
+                <span class="percentage"></span><br>
+                Memory Used
+            </div>
+            <div class="cpu-utilization">
+                <span class="percentage"></span><br>
+                CPU Used
+            </div>
+        </div>
+        <hr>
+        <div class="bottom-section">
+            <form id="scanForm">
+                <label for="imageInput">Image Name:</label>
+                <input type="text" id="imageInput" name="imageInput">
+                <button type="submit">Scan Image</button>
+            </form>
+            <button id="healthCheckButton">Health Check</button>
+            <div id="healthCheckResult"></div> <!-- Display health check result here -->
+            
+            <div class="namespace-selector">
+                <label for="namespace-dropdown">Select Namespace:</label>
+                <select id="namespace-dropdown"></select>
+            </div>
+            <div class="deployments">
+                <span class="count"></span><br>
+                Number of Deployments
+            </div>
+            <div class="pods-running">
+                <span class="count"></span><br>
+                Number Of Pods Running
+            </div>
+            <div class="services-running">
+                <span class="count"></span><br>
+                Number of Services Running
+            </div>
+            <pre id="scanResults"></pre>
+        </div>
+    </div>
+   
+</body>
+</html>

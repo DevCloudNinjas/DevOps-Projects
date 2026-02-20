@@ -1,0 +1,15 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: api-service-monitor # Name of the ServiceMonitor
+  labels:
+    release: prometheus # Label for release association
+    app: prometheus # Label for identifying the application type
+spec:
+  jobLabel: job # Label to identify the job for Prometheus
+  selector:
+    matchLabels:
+      app: api # Match labels to select pods for monitoring
+  endpoints:
+    - port: web # Port on which the service exposes metrics
+      path: /swagger-stats/metrics # Path to scrape metrics from

@@ -1,0 +1,121 @@
+version: "3.9"
+services:
+  web:
+    image: joelwembo/prodxcloud-django-web:latest
+    container_name: prodxcloud-django-web
+    env_file: .env
+    restart: always
+    build:
+      context: .
+      dockerfile: Dockerfile
+    # environment:
+    #   - DJANGO_SETTINGS_MODULE=multitenantsaas.settings
+    #   - DJANGO_LOG_LEVEL=DEBUG
+    #   - ENV=local
+    #   - POSTGRES_NAME=DB2
+    #   - POSTGRES_USER=postgres
+    #   - POSTGRES_PASS=postgres
+    #   - POSTGRES_HOST=prodxcloud-django-postgresdb
+    #   - POSTGRES_PORT=5432  
+    command:
+      - /bin/sh
+      - -c
+      - |
+        python manage.py makemigrations
+        python manage.py migrate
+        python manage.py runserver 0.0.0.0:8585     
+    ports:
+      - "8585:8585"
+    networks:
+      - web_network
+    volumes:
+       - appdata:/app
+    # depends_on:
+    #   - prodxcloud-django-postgresdb
+      # - redis 
+    # deploy:
+    #   resources:
+    #     limits:
+    #       cpus: '0.001'
+    #       memory: 50M
+    #     reservations:
+    #       cpus: '0.0001'
+    #       memory: 20M 
+  # celery:
+  #   container_name: prodxcloud-django-celery
+  #   build: .
+  #   command: 
+  #      - /bin/sh
+  #      - -c
+  #      - |
+  #       user=django
+  #       group=developers
+  #       environment=C_FORCE_ROOT="yes"
+  #       environment=HOME="/root",USER="django"
+  #       celery -A multitenantsaas worker -l info
+        
+  #   volumes:
+  #     - .:/django_app
+  #   environment:
+  #     - DEBUG=0
+  #     - DJANGO_ALLOWED_HOSTS=localhost 127.0.0.1 172.104.60.217  [::1]
+  #     - CELERY_BROKER_URL="redis://redis:6379/0"
+  #     - CELERY_RESULT_BACKEND="redis://redis:6379/0"
+  #     - broker_connection_retry_on_startup="True"
+  #     - CELERY_TASK_ALWAYS_EAGER=True
+  #     - C_FORCE_ROOT=true
+  #     - BROKER_TRANSPORT="kombu.transport.django"
+  #   depends_on:
+  #     - redis
+  # redis:
+  #     image: "redis:alpine"
+  #     container_name: prodxcloud-django-redis
+  #     ports:
+  #       - '6379:6379'
+  #     expose:
+  #       - "6379"  
+  #     volumes:
+  #         - redisDB:/data
+  #     # networks:
+  #     #     - db_network  #
+  # prodxcloud-django-postgresdb:
+  #   restart: always
+  #   image: postgres:latest
+  #   container_name: prodxcloud-django-postgresdb
+  #   volumes:
+  #     - pgdata:/var/lib/postgresql/data
+  #   environment:
+  #     - POSTGRES_DB=DB2
+  #     - POSTGRES_USER=postgres
+  #     - POSTGRES_PASSWORD=postgres
+  #     - POSTGRES_PORT=5432
+  #     - "POSTGRES_HOST_AUTH_METHOD=trust"
+  #   expose:
+  #      - "5432"
+  #   ports:
+  #      - "5432:5432"
+  #   # networks:
+  #   #    - data_network   
+  # pgadmin:
+  #       restart: always
+  #       image: dpage/pgadmin4
+  #       container_name: prodxcloud-pgadmin 
+  #       # depends_on:
+  #       #   - prodxcloud-django-postgresdb
+  #       ports:
+  #         - "5051:80"
+  #       environment:
+  #         PGADMIN_DEFAULT_EMAIL: joelwembo@outlook.com
+  #         PGADMIN_DEFAULT_PASSWORD: postgres   
+  #         PGADMIN_CONFIG_ENHANCED_COOKIE_PROTECTION: 'False'
+  #         PGADMIN_CONFIG_WTF_CSRF_CHECK_DEFAULT: 'False'
+            
+
+networks:
+  web_network:
+    driver: bridge
+volumes:
+  pgdata:
+  # redisDB:
+  appdata:
+   driver: local

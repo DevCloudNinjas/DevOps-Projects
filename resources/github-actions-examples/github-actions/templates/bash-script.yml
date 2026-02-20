@@ -1,0 +1,22 @@
+name: Run Bash Script
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  run-script:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Run the script
+        run: |
+          chmod u+x ./github-actions/myscript.sh
+          ./github-actions/myscript.sh

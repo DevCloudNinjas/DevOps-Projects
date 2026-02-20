@@ -1,0 +1,36 @@
+{
+    "no-inline-html": {
+        "allowed_elements": [
+            "canvas",
+            "details",
+            "center",
+            "p",
+            "i",
+            "label",
+            "div",
+            "summary",
+            "br",
+            "commit",
+            "ticket",
+            "public"
+        ]
+    },
+    "heading-style": false,
+    "no-trailing-punctuation": false,
+    "first-line-h1": false,
+    "single-h1": false,
+    "siblings_only": true,
+    "line-length": false,
+    "no-space-in-code": false,
+    "no-duplicate-header": false,
+    "header-increment": false,
+    "no-blanks-blockquote": false,
+    "ol-prefix": false,
+    "no-emphasis-as-header": false,
+    "blanks-around-fences": false,
+    "blanks-around-lists": false,
+    "code-block-style": false,
+    "no-emphasis-as-heading": false,
+    "no-duplicate-heading": false,
+    "heading-increment": false
+}

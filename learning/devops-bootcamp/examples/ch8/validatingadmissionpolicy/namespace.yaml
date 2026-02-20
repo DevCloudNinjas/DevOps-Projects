@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Namespace
+
+metadata:
+  name: development
+  labels:
+    environment: development
+    service: myapp
+
+---
+apiVersion: v1
+kind: Namespace
+
+metadata:
+  name: production
+  labels:
+    environment: production
+    service: myapp
+
+

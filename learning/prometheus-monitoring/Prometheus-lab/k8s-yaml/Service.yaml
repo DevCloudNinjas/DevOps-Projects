@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-service
+  labels:
+    job: node-api # Label for identifying the job associated with the service
+    app: api # Label for identifying the application type
+spec:
+  type: ClusterIP
+  selector:
+    app: api # Selector to match pods for this service
+  ports:
+    - name: web # Name of the port
+      protocol: TCP # Protocol used (TCP in this case)
+      port: 3000 # Port on which the service will be available
+      targetPort: 3000 # Target port on the pods

@@ -1,0 +1,27 @@
+.tetromino {
+    float: left; /* fix for  buggy browsers */
+    display: table-column;
+    width: 25px;
+    height: 25px;
+    /* border: 1px solid; */
+    margin: 1px;
+}
+.empty {
+    background-color: lightgray;
+}
+
+.red {
+    background-color: red;
+}
+
+.green {
+    background-color: green;
+}
+
+.blue {
+    background-color: dodgerblue;
+}
+
+.yellow {
+    background-color: #ffbc31;
+}

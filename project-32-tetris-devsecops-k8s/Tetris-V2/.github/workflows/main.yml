@@ -1,0 +1,24 @@
+name: Echo Message and Slack Notification
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  echo-and-notify:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Echo a Message
+        run: echo "Hello from GitHub Actions!"
+
+      - name: Send a Slack Notification
+        if: always()
+        uses: act10ns/slack@v1
+        with:
+          status: ${{ job.status }}
+          steps: ${{ toJson(steps) }}
+          channel: '#git'
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}

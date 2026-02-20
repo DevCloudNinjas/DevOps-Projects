@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-pt
+spec:
+  rules:
+  - host: pt.edshopper.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: sts-position-tracker
+            port:
+              number: 8080
+  ingressClassName: nginx

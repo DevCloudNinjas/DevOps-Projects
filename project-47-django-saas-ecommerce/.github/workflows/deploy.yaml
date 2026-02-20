@@ -1,0 +1,183 @@
+# name: Build and Deploy Django Application
+
+# on:
+#   push:
+#     branches: ['master']
+#   pull_request:
+#     branches: [ "master" ]
+
+# env:
+#   DOCKERHUB_USERNAME: ${{ secrets.DOCKER_USER }}
+#   DOCKERHUB_TOKEN: ${{ secrets.DOCKER_PASSWORD }}
+#   AWS_PRIVATE_KEY: ${{ secrets.AWS_PRIVATE_KEY }}    
+
+# jobs:
+#   django_test:
+#     runs-on: ubuntu-latest
+#     defaults:
+#       run:
+#         working-directory: .
+#     env:
+#       DJANGO_SECRET_KEY: 54g6s%qjfnhbpw0zeoei=$!her*y(p%!&84rs$4l85io
+#       POSTGRES_DB: DB2
+#       POSTGRES_PASSWORD: postgres
+#       POSTGRES_USER: postgres
+#       POSTGRES_HOST: localhost
+#       POSTGRES_PORT: 5432
+#       DB_IGNORE_SSL: "true"
+#     services:
+#       postgres_main:
+#         image: postgres:13
+#         env:
+#           POSTGRES_DB: ${{ env.POSTGRES_DB }}
+#           POSTGRES_USER: ${{ env.POSTGRES_USER }}
+#           POSTGRES_PASSWORD: ${{ env.POSTGRES_PASSWORD }}
+#         ports:
+#           - 5432:5432
+#         options: >-
+#           --health-cmd pg_isready 
+#           --health-interval 10s 
+#           --health-timeout 5s 
+#           --health-retries 5
+#     strategy:
+#       max-parallel: 4
+#       matrix:
+#         python-version: [3.9]
+#     steps:
+#       - uses: actions/checkout@v2
+#       - name: Set up Python ${{ matrix.python-version }}
+#         uses: actions/setup-python@v2
+#         with:
+#           python-version: ${{ matrix.python-version }}
+#       # - name: Install Dependencies
+#       #   run: |
+#       #     python -m pip install --upgrade pip
+#       #     pip install -r requirements.txt
+#       # - name: Run Tests
+#       #   run: |
+#       #       python --version
+
+#   build-and-push:
+#       name: Build Docker image and push to repositories
+#       needs: django_test
+#       runs-on: ubuntu-latest
+#       steps:
+#         - name: Checkout code
+#           uses: actions/checkout@v3
+
+#         - name: Set up Docker Buildx
+#           id: buildx
+#           uses: docker/setup-buildx-action@v2
+
+#         - name: Login to DockerHub
+#           uses: docker/login-action@v2
+#           with:
+#             username: ${{ env.DOCKERHUB_USERNAME }}
+#             password: ${{ env.DOCKERHUB_TOKEN }}
+
+#         - name: Build and push Docker image
+#           uses: docker/build-push-action@v2
+#           with:
+#             context: ./
+#             push: true
+#             dockerfile: ./Dockerfile
+#             tags: joelwembo/prodxcloud-django-web:latest
+
+#   deploy-to-aws-ec2:
+#       needs: build-and-push
+#       runs-on: ubuntu-latest
+#       steps:
+#         - name: Checkout code
+#           uses: actions/checkout@v2
+#         - name: Login to Docker Hub
+#           uses: docker/login-action@v2
+#           with:
+#             username: ${{ env.DOCKERHUB_USERNAME }}
+#             password: ${{ env.DOCKERHUB_TOKEN }}
+        
+#         - name: Set permissions for private key
+#           run: |
+#             echo "${{ env.AWS_PRIVATE_KEY }}" > prodxsecure.pem
+#             chmod 600 prodxsecure.pem
+#         - name: Pull Docker image
+#           run: |
+#             ssh -o StrictHostKeyChecking=no -i prodxsecure.pem ubuntu@47.128.216.140 'sudo docker pull joelwembo/prodxcloud-django-web:latest'
+#         - name: Stop running container
+#           run: |
+#             ssh -o StrictHostKeyChecking=no -i prodxsecure.pem ubuntu@47.128.216.140 'sudo docker stop prodxcloud-django-web || true'
+#             ssh -o StrictHostKeyChecking=no -i prodxsecure.pem ubuntu@47.128.216.140 'sudo docker rm prodxcloud-django-web || true'
+#         - name: Run new container
+#           run: |
+#             ssh -o StrictHostKeyChecking=no -i prodxsecure.pem ubuntu@47.128.216.140 'sudo docker run -d --name prodxcloud -p 8585:8585 joelwembo/prodxcloud-django-web:latest'          
+
+
+
+# name: Build Docker Container & Push to DO Registry
+
+# on:
+#   workflow_call:
+#   workflow_dispatch:
+#   push:
+#     branches: [master]
+#   pull_request:
+#     branches: [master]
+
+# jobs:
+#   test_django_job:
+#     uses: joelwembo/prodxcloud-django/.github/workflows/test-django.yaml@master
+#   build:
+#     runs-on: ubuntu-latest
+#     needs: [test_django_job]
+#     env:
+#       CLUSTER_NAME: prodxcloud-django-web
+#     steps:
+#       - name: Checkout code
+#         uses: actions/checkout@v2
+#       - name: Insall doctl
+#         uses: digitalocean/action-doctl@v2
+#         with:
+#           token: ${{ secrets.DO_API_TOKEN_KEY }}
+#       - name: Login to DO Container Registry with short-lived creds
+#         run: doctl registry login --expiry-seconds 1200
+#       - name: Build container image
+#         working-directory: ./web
+#         run: |
+#           docker build -f Dockerfile \
+#             -t registry.digitalocean.com/cfe-k8s/django-k8s-web:latest \
+#             -t registry.digitalocean.com/cfe-k8s/django-k8s-web:${GITHUB_SHA::7}-${GITHUB_RUN_ID::5} \
+#             .
+#       - name: Push image
+#         run: |
+#           docker push registry.digitalocean.com/cfe-k8s/django-k8s-web --all-tags
+#       - name: K8s cluster kubeconfig file with/ short-lived creds
+#         run: |
+#           doctl kubernetes cluster kubeconfig save --expiry-seconds 600 ${{ env.CLUSTER_NAME }}
+#       - name: Update deployment secrets
+#         run: |
+#           cat << EOF >> web/.env.prod
+#           AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }}
+#           AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }}
+#           DJANGO_SUPERUSER_USERNAME=${{ secrets.DJANGO_SUPERUSER_USERNAME }}
+#           DJANGO_SUPERUSER_PASSWORD=${{ secrets.DJANGO_SUPERUSER_PASSWORD }}
+#           DJANGO_SUERPUSER_EMAIL=${{ secrets.DJANGO_SUERPUSER_EMAIL }}
+#           DJANGO_SECRET_KEY=${{ secrets.DJANGO_SECRET_KEY }}
+#           ENV_ALLOWED_HOST=${{ secrets.ENV_ALLOWED_HOST }}
+#           POSTGRES_DB=${{ secrets.POSTGRES_DB }}
+#           POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }}
+#           POSTGRES_USER=${{ secrets.POSTGRES_USER }}
+#           POSTGRES_HOST=${{ secrets.POSTGRES_HOST }}
+#           POSTGRES_PORT=${{ secrets.POSTGRES_PORT }}
+#           EOF
+#           kubectl delete secret django-k8s-web-prod-env
+#           kubectl create secret generic django-k8s-web-prod-env --from-env-file=web/.env.prod
+#       - name: Update Deployment image
+#         run: |
+#           kubectl set image deployment/django-k8s-web-deployment django-k8s-web=registry.digitalocean.com/cfe-k8s/django-k8s-web:${GITHUB_SHA::7}-${GITHUB_RUN_ID::5}
+#       - name: Wait for rollout to finish
+#         run: |
+#           kubectl rollout status deployment/django-k8s-web-deployment
+#       - name: Post-build Django Commands - Migrate / Collectstatic
+#         run: |
+#           export SINGLE_POD_NAME=$(kubectl get pod -l app=django-k8s-web-deployment -o jsonpath="{.items[0].metadata.name}")
+#           kubectl exec -it $SINGLE_POD_NAME -- bash /app/migrate.sh
+#           kubectl exec -it $SINGLE_POD_NAME -- bash /app/collectstatic.sh

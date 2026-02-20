@@ -1,0 +1,49 @@
+# name: "Terraform Pipeline AWS RDS Postgres"
+ 
+# on:
+#  push:
+#    branches: ['master']
+#  pull_request:
+#    branches: ['master']
+
+# env:
+#  TF_LOG: INFO
+#  # Credentials for deployment to AWS
+#  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+#  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+#  # S3 bucket for the Terraform state
+#  #  BUCKET_TF_STATE: ${{ secrets.BUCKET_TF_STATE}}
+
+#  CONFIG_DIRECTORY: "./deployments/terraform/terraform-provision-aws-rds-postgres/terraform/"
+
+ 
+# jobs:
+#  terraform:
+#    name: "Terraform Pipeline AWS RDS Postgres"
+#    runs-on: ubuntu-latest
+#    defaults:
+#      run:
+#        shell: bash
+#        # We keep Terraform files in the terraform directory.
+#        working-directory: ./deployments/terraform/terraform-provision-aws-rds-postgres/terraform
+ 
+#    steps:
+#      - name: Checkout the repository to the runner
+#        uses: actions/checkout@v2
+ 
+#      - name: Setup Terraform with specified version on the runner
+#        uses: hashicorp/setup-terraform@v2
+#        with:
+#          terraform_version: 1.3.0
+    
+#      - name: Terraform init 
+#        id: init
+#        run: terraform init -lock=false
+ 
+#      - name: Terraform Apply
+#       #  if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+#        run: terraform destroy -auto-approve -input=false -lock=false
+     
+# #     #  - name: Terraform Destroy All Resources
+# #     #    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+# #     #    run: terraform destroy -auto-approve -input=false -lock=false  

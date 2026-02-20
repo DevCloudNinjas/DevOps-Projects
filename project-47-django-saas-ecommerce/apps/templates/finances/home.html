@@ -1,0 +1,110 @@
+<!-- templates/thumbnailer/home.html -->
+{% load widget_tweaks %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Thumbnailer</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+  <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+</head>
+<body>
+  <nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="/">
+        Thumbnailer
+      </a>
+    </div>
+  </nav>
+  <section class="hero is-primary is-fullheight-with-navbar">
+    <div class="hero-body">
+      <div class="container">
+        <h1 class="title is-size-1 has-text-centered">Thumbnail Generator</h1>
+        <p class="subtitle has-text-centered" id="progress-title"></p>
+        <div class="columns is-centered">
+          <div class="column is-8">
+            <form action="{% url 'home' %}" method="POST" enctype="multipart/form-data">
+              {% csrf_token %}
+              <div class="file is-large has-name">
+                <label class="file-label">
+                  {{ form.image_file|add_class:"file-input" }}
+                  <span class="file-cta">
+                    <span class="file-icon"><i class="fas fa-upload"></i></span>
+                    <span class="file-label">Browse image</span>
+                  </span>
+                  <span id="file-name" class="file-name" 
+                    style="background-color: white; color: black; min-width: 450px;">
+                  </span>
+                </label>
+                <input class="button is-link is-large" type="submit" value="Submit">
+              </div>
+              
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <script>
+  var file = document.getElementById('{{form.image_file.id_for_label}}');
+  file.onchange = function() {
+    if(file.files.length > 0) {
+      document.getElementById('file-name').innerHTML = file.files[0].name;
+    }
+  };
+  </script>
+
+  {% if task_id %}
+  <script>
+  var taskUrl = "{% url 'task' task_id=task_id %}";
+  var dots = 1;
+  var progressTitle = document.getElementById('progress-title');
+  updateProgressTitle();
+  var timer = setInterval(function() {
+    updateProgressTitle();
+    axios.get(taskUrl)
+      .then(function(response){
+        var taskStatus = response.data.task_status
+        if (taskStatus === 'SUCCESS') {
+          clearTimer('Check downloads for results');
+          var url = window.location.protocol + '//' + window.location.host + response.data.results.archive_path;
+          var a = document.createElement("a");
+          a.target = '_BLANK';
+          document.body.appendChild(a);
+          a.style = "display: none";
+          a.href = url;
+          a.download = 'results.zip';
+          a.click();
+          document.body.removeChild(a);
+        } else if (taskStatus === 'FAILURE') {
+          clearTimer('An error occurred');
+        }
+      })
+      .catch(function(err){
+        console.log('err', err);
+        clearTimer('An error occurred');
+      });
+  }, 800);
+
+  function updateProgressTitle() {
+    dots++;
+    if (dots > 3) {
+      dots = 1;
+    }
+    progressTitle.innerHTML = 'processing images ';
+    for (var i = 0; i < dots; i++) {
+      progressTitle.innerHTML += '.';
+    }
+  }
+  function clearTimer(message) {
+    clearInterval(timer);
+    progressTitle.innerHTML = message;
+  }
+  </script> 
+  {% endif %}
+</body>
+</html>

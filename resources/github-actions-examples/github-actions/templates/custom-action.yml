@@ -1,0 +1,17 @@
+name: Custom-Action
+
+on: [push]
+
+jobs:
+  my-job:
+    runs-on: ubuntu-latest
+    name: A job to say hello
+    steps:
+      - name: Hello world action step
+        id: hello
+        uses: omenking/barsoom@0.0.6
+        with:
+          name: 'Brown'
+      # Use the output from the `hello` step
+      - name: Get the Output
+        run: echo "The time was ${{ steps.hello.outputs.greeting }}"

@@ -1,0 +1,1 @@
+ecr_repo_name = "flask-application"

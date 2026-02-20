@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: hello-world
+  labels:
+    app: hello
+spec:
+  containers:
+  - name: hello-world-container
+    image: busybox
+    command: ['sh', '-c', 'echo Hello World! && sleep 3600']
+  initContainers:
+  - name: mysql-container
+    image: busybox
+    command:
+      - '/bin/sh'
+      - '-c'
+      - |
+          while true
+          do
+            rt=$(nc -z -w 1 hello-mysql 3306)          
+            if [ $? -eq 0 ]; then
+              echo "DB is UP"
+              break
+            fi
+            echo "DB is not yet reachable;sleep for 10s before retry"
+            sleep 10
+          done

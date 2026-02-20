@@ -1,0 +1,46 @@
+# Deploy Jenkins  application with Liveness and Readiness Probe
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jenkins
+  namespace: default
+  labels:
+    app: jenkins
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: jenkins
+  template:
+    metadata:
+      labels:
+        app: jenkins
+    spec:
+      serviceAccountName: jenkins-admin
+      securityContext:
+        fsGroup: 1000 
+        runAsUser: 1000
+      containers:
+      - name: jenkins
+        image: docker.io/jenkins/jenkins:lts-jdk11
+        ports:
+         - name: httpport
+           containerPort: 8080
+         - name: jnlpport
+           containerPort: 50000
+        livenessProbe:
+            httpGet:
+              path: "/login"
+              port: 8080
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 5
+        readinessProbe:
+            httpGet:
+              path: "/login"
+              port: 8080
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 3

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>DevCloud Ninjas' Bootcamp</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="description" content="Learn the basic of DevOps, CI/CD, Containerization, and Cloud Computing with DevCloud Ninjas' Bootcamp.">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+
+  <link rel="stylesheet" href="css/light.css">
+  <link rel="stylesheet" href="css/dark.css">
+
+  <link rel="icon" type="image/svg+xml" href="/img/favicon.svg">
+  <link rel="alternate icon" href="/img/favicon.ico">
+  <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
+
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inconsolata" rel="stylesheet">
+
+  <script src="https://cdn.jsdelivr.net/npm/quizdown@latest/public/build/quizdown.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/quizdown@latest/public/build/extensions/quizdownKatex.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/quizdown@latest/public/build/extensions/quizdownHighlight.js"></script>
+  <script>quizdown.register(quizdownHighlight).register(quizdownKatex).init()</script>
+
+  <link rel="stylesheet" href="/fontawesome/css/all.min.css" >
+  <link rel="stylesheet" href="css/common.css">
+</head>
+
+<body>
+  <div id="app">Loading...</div>
+  <script src="//unpkg.com/docsify-edit-on-github@1.0.1/index.js"></script>
+
+  <script>
+    window.$docsify = {
+      name: 'Devcloudninja\'s DevOps Bootcamp',
+      repo: 'devcloudninjas/devops-bootcamp',
+      loadSidebar: true,
+      basePath: '/docs/',
+      maxLevel: 0,
+      auto2top: true,
+      search: 'auto', // default
+      plugins: [
+        EditOnGithubPlugin.create(
+          'https://github.com/devcloudninjas/devops-bootcamp/tree/main/docs/'
+        )
+      ],
+      pagination: {
+        previousText: 'Previous Page',
+        nextText: 'Next Page',
+        crossChapter: true
+      },
+      alias: {
+        '/.*/_sidebar.md': '/_sidebar.md'
+      },
+      plugins: [
+        // Dark mode
+        function(hook) {
+          hook.doneEach(function(html, next) {
+            const darkMode = localStorage.getItem("dark_mode") == "true"
+            const darkModeSwitch = document.querySelector("#dark_mode_switch");
+            darkModeSwitch.checked = darkMode;
+            document.styleSheets[1].disabled = !darkMode;
+            document.styleSheets[0].disabled = darkMode;
+            darkModeSwitch.addEventListener('change', (event) => {
+              document.styleSheets[1].disabled = !darkModeSwitch.checked;
+              document.styleSheets[0].disabled = darkModeSwitch.checked;
+              localStorage.setItem("dark_mode", darkModeSwitch.checked ? "true" : "false")
+            })
+            next(html);
+          });
+        },
+
+        // Quizdown
+        function(hook) {
+          hook.doneEach(function () {
+            let node = document.getElementsByClassName('quizdown');
+            const config = {
+              'locale': 'en',
+              'shuffleAnswers': false,
+              'primaryColor': '#24ae1dff',
+            };
+            for (let i = 0; i < node.length; i++) {
+              import(`./src/quizzes/${node[i].firstElementChild.id}`).then(module => {
+                const { rawQuizdown } = module;
+                quizdown.createApp(rawQuizdown, node[i], config);
+              }).catch(error => {
+                console.error("Error importing quiz, make sure the file name matches the quizdown inner div's id: ", error);
+              });
+            }
+          });
+        }
+      ]
+    }
+  </script>
+  <script src="//unpkg.com/docsify-pagination/dist/docsify-pagination.min.js"></script>
+  <script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
+  <script src="//unpkg.com/docsify/lib/plugins/search.min.js"></script>
+  <script src="//unpkg.com/docsify-sidebar-collapse/dist/docsify-sidebar-collapse.min.js"></script>
+
+  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-bash.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-go.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-python.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-groovy.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-makefile.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-json.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-docker.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-hcl.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-yaml.min.js"></script>
+
+  <script>
+    document.addEventListener("keydown", function (e) {
+      if (document.activeElement.nodeName === "INPUT") {
+        return;
+      }
+      var key = e.which || e.keyCode;
+      switch (key) {
+        // Left Arrow
+        case 37:
+          document.getElementsByClassName('pagination-item--previous')[0].firstElementChild.click();
+          break;
+        // Right Arrow
+        case 39:
+          document.getElementsByClassName('pagination-item--next')[0].firstElementChild.click();
+          break;
+      }
+    });
+  </script>
+
+
+  <!-- Import the bundled assets last so all other assets are loaded first -->
+  <script src="dist/main.js"></script>
+</body>
+
+</html>

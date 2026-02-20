@@ -1,0 +1,361 @@
+name: Deploy Flask App to AWS ECS
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Environment to deploy to'
+        required: true
+        default: 'dev'
+        type: choice
+        options:
+          - dev
+          - staging
+          - prod
+      deploy_type:
+        description: 'Deploy or Destroy'
+        required: true
+        default: 'deploy'
+        type: choice
+        options:
+          - deploy
+          - destroy
+
+# Define environment variables
+env:
+  AWS_REGION: us-east-1
+  ECR_REPOSITORY: flask-application
+  ECS_CLUSTER: first-django-cluster
+  ECS_SERVICE: first-django-service
+  TF_WORKING_DIR: .
+
+permissions:
+  id-token: write  # Required for OIDC authentication
+  contents: read   # Required for actions/checkout
+
+
+jobs:
+  # Job to validate Terraform code and provide cost estimates
+  validate-and-plan:
+    name: Validate and Plan
+    runs-on: ubuntu-latest
+    outputs:
+      tfplanExitCode: ${{ steps.tf-plan.outputs.exitcode }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Configure AWS credentials using OIDC
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v3
+        with:
+          role-to-assume: ${{ secrets.AWS_ROLE }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      # Set up Terraform with version management
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: 1.5.0
+
+
+      # Initialize Terraform with state caching
+      - name: Terraform Init
+        working-directory: ${{ env.TF_WORKING_DIR }}
+        run: terraform init
+        
+      # Validate Terraform configuration
+      - name: Terraform Validate
+        working-directory: ${{ env.TF_WORKING_DIR }}
+        run: terraform validate
+
+      # Generate Terraform plan
+      - name: Terraform Plan
+        id: tf-plan
+        working-directory: ${{ env.TF_WORKING_DIR }}
+        run: |
+          export exitcode=0
+          terraform plan -var="ecr_repo_name=${{ env.ECR_REPOSITORY }}" -var="environment=${{ github.event.inputs.environment || 'dev' }}" -detailed-exitcode -no-color -out=tfplan || export exitcode=$?
+          echo "exitcode=$exitcode" >> $GITHUB_OUTPUT
+          
+          # Create a formatted plan output for PR comments
+          terraform show -no-color tfplan > tfplan.txt
+
+      # Upload plan artifact for apply job
+      - name: Upload Terraform Plan
+        uses: actions/upload-artifact@v4
+        with:
+          name: tfplan
+          path: ${{ env.TF_WORKING_DIR }}/tfplan
+
+      # Generate cost estimate using Infracost
+      - name: Generate Infracost estimate
+        uses: infracost/actions/setup@v3
+        if: github.event_name == 'pull_request'
+        with:
+          path: ${{ env.TF_WORKING_DIR }}
+          terraform_plan_flags: -var="ecr_repo_name=${{ env.ECR_REPOSITORY }}" -var="environment=${{ github.event.inputs.environment || 'dev' }}"
+
+      # Comment plan and cost on PR
+      - name: Add Plan Comment
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v6
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const fs = require('fs');
+            const planOutput = fs.readFileSync('${{ env.TF_WORKING_DIR }}/tfplan.txt', 'utf8');
+            const maxGitHubBodyCharacters = 65536;
+            
+            function chunkString(str, size) {
+              const numChunks = Math.ceil(str.length / size);
+              const chunks = new Array(numChunks);
+              
+              for (let i = 0, o = 0; i < numChunks; ++i, o += size) {
+                chunks[i] = str.substr(o, size);
+              }
+              
+              return chunks;
+            }
+            
+            const planChunks = chunkString(planOutput, maxGitHubBodyCharacters - 1000);
+            
+            for (let i = 0; i < planChunks.length; i++) {
+              const title = i === 0 ? '## Terraform Plan Output' : `## Terraform Plan Output (continued ${i+1}/${planChunks.length})`;
+              const body = `
+            ${title}
+            
+            \`\`\`terraform
+            ${planChunks[i]}
+            \`\`\`
+            `;
+              
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                body: body
+              });
+            }
+
+  # Job to build and push Docker image
+  build-image:
+    name: Build and Push Image
+    runs-on: ubuntu-latest
+    needs: validate-and-plan
+    if: |
+      (needs.validate-and-plan.outputs.tfplanExitCode == '2' || github.event_name == 'push' || github.event_name == 'workflow_dispatch') &&
+      github.event.inputs.deploy_type != 'destroy'
+    outputs:
+      image-tag: ${{ steps.build-image.outputs.image-tag }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Configure AWS credentials using OIDC
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          role-to-assume: ${{ secrets.AWS_ROLE }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      # Login to Amazon ECR
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v1
+
+      # Set up Docker Buildx for improved caching
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      # Cache Docker layers to speed up builds
+      - name: Cache Docker layers
+        uses: actions/cache@v3
+        with:
+          path: /tmp/.buildx-cache
+          key: ${{ runner.os }}-buildx-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-buildx-
+
+      # Build and push Docker image with caching
+      - name: Build and push image
+        id: build-image
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          push: true
+          tags: |
+            ${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_REPOSITORY }}:${{ github.sha }}
+            ${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_REPOSITORY }}:latest
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+          build-args: |
+            ENVIRONMENT=${{ github.event.inputs.environment || 'dev' }}
+        
+      # Output the image tag for use in later jobs
+      - name: Set image tag output
+        run: echo "image-tag=${{ github.sha }}" >> $GITHUB_OUTPUT
+
+      # Scan Docker image for vulnerabilities
+      - name: Scan image for vulnerabilities
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: ${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_REPOSITORY }}:${{ github.sha }}
+          format: 'sarif'
+          output: 'trivy-results.sarif'
+          severity: 'CRITICAL,HIGH'
+
+      # Upload vulnerability scan results
+      - name: Upload Trivy scan results
+        uses: github/codeql-action/upload-sarif@v2
+        if: always()
+        with:
+          sarif_file: 'trivy-results.sarif'
+
+  # Job to deploy infrastructure and application
+  deploy:
+    name: Deploy to AWS
+    runs-on: ubuntu-latest
+    needs: [validate-and-plan, build-image]
+    if: |
+      (github.event_name == 'push' || github.event_name == 'workflow_dispatch') &&
+      (github.event.inputs.deploy_type != 'destroy')
+    environment:
+      name: ${{ github.event.inputs.environment || 'dev' }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Configure AWS credentials using OIDC
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          role-to-assume: ${{ secrets.AWS_ROLE }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      # Set up Terraform with version management
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: 1.5.0
+
+      # Download Terraform plan
+      - name: Download Terraform Plan
+        uses: actions/download-artifact@v3
+        with:
+          name: tfplan
+          path: ${{ env.TF_WORKING_DIR }}
+
+      # Initialize Terraform
+      - name: Terraform Init
+        working-directory: ${{ env.TF_WORKING_DIR }}
+        run: terraform init
+
+      # Apply Terraform changes
+      - name: Terraform Apply
+        working-directory: ${{ env.TF_WORKING_DIR }}
+        run: |
+          terraform apply -auto-approve tfplan
+          
+          # Get and store the load balancer URL
+          echo "LB_URL=$(terraform output -raw load_balancer_url)" >> $GITHUB_ENV
+
+      # Force new deployment to ensure latest image is used
+      - name: Force new deployment
+        run: |
+          aws ecs update-service --cluster ${{ env.ECS_CLUSTER }} --service ${{ env.ECS_SERVICE }} --force-new-deployment
+
+      # Wait for service to be stable
+      - name: Wait for service to be stable
+        run: |
+          aws ecs wait services-stable --cluster ${{ env.ECS_CLUSTER }} --services ${{ env.ECS_SERVICE }}
+
+      # Set up CloudWatch alarm monitoring for auto-rollback
+      - name: Set up CloudWatch alarm monitoring
+        run: |
+          # Create a CloudWatch alarm for high error rates
+          aws cloudwatch put-metric-alarm \
+            --alarm-name "${ECS_SERVICE}-high-error-rate" \
+            --alarm-description "Alarm for high error rate in ${ECS_SERVICE}" \
+            --metric-name HTTPCode_Target_5XX_Count \
+            --namespace AWS/ApplicationELB \
+            --statistic Sum \
+            --period 60 \
+            --threshold 10 \
+            --comparison-operator GreaterThanThreshold \
+            --dimensions Name=LoadBalancer,Value=$(aws elbv2 describe-load-balancers --query 'LoadBalancers[0].LoadBalancerArn' --output text | cut -d'/' -f3-) \
+            --evaluation-periods 2 \
+            --alarm-actions "arn:aws:sns:${AWS_REGION}:$(aws sts get-caller-identity --query 'Account' --output text):${ECS_SERVICE}-rollback-topic"
+
+      # Send deployment notification to Discord
+      - name: Send Discord notification
+        uses: appleboy/discord-action@master
+        if: always()
+        with:
+          webhook_id: ${{ secrets.DISCORD_WEBHOOK_ID }}
+          webhook_token: ${{ secrets.DISCORD_WEBHOOK_TOKEN }}
+          color: ${{ job.status == 'success' && '#48f442' || '#ff0000' }}
+          username: "ECS Deployment Bot"
+          message: |
+            ## Deployment ${{ job.status == 'success' && 'Successful ✅' || 'Failed ❌' }}
+            
+            **Environment:** ${{ github.event.inputs.environment || 'dev' }}
+            **Application:** Flask App
+            **URL:** ${{ env.LB_URL }}
+            **Commit:** ${{ github.sha }}
+            **Repository:** ${{ github.repository }}
+            
+            [View Commit Details](${{ github.event.repository.html_url }}/commit/${{ github.sha }})
+            [View Workflow Run](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})
+
+
+  # Job to destroy infrastructure if requested
+  destroy:
+    name: Destroy Infrastructure
+    runs-on: ubuntu-latest
+    needs: validate-and-plan
+    if: |
+      github.event_name == 'workflow_dispatch' &&
+      github.event.inputs.deploy_type == 'destroy'
+    environment:
+      name: ${{ github.event.inputs.environment || 'dev' }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Configure AWS credentials using OIDC
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          role-to-assume: ${{ secrets.AWS_ROLE }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      # Set up Terraform with version management
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: 1.5.0
+
+      # Initialize Terraform
+      - name: Terraform Init
+        working-directory: ${{ env.TF_WORKING_DIR }}
+        run: terraform init
+
+      # Destroy infrastructure
+      - name: Terraform Destroy
+        working-directory: ${{ env.TF_WORKING_DIR }}
+        run: terraform destroy -auto-approve -var="ecr_repo_name=${{ env.ECR_REPOSITORY }}" -var="environment=${{ github.event.inputs.environment || 'dev' }}"
+
+      - name: Send Discord notification
+        uses: appleboy/discord-action@master
+        with:
+          webhook_id: ${{ secrets.DISCORD_WEBHOOK_ID }}
+          webhook_token: ${{ secrets.DISCORD_WEBHOOK_TOKEN }}
+          color: "#48f442"
+          username: "ECS Deployment Bot"
+          message: "✅ Deployment successful! Application is now available at: ${{ env.LB_URL }}"
+      

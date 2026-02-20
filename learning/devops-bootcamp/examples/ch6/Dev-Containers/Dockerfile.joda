@@ -1,0 +1,16 @@
+# FROM ubuntu:22.04
+FROM --platform=linux/amd64 ubuntu:22.04
+ARG DEBIAN_FRONTEND=noninteractive
+RUN apt-get update && apt-get upgrade -y  && \
+apt-get install bash -y && \
+apt-get install sudo -y && \
+apt-get install git -y && \
+apt-get install vim -y && \
+apt-get install openjdk-8-jdk -y && \
+apt-get install maven -y && \
+useradd -ms /bin/bash JODA && usermod -aG sudo JODA && \
+echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
+WORKDIR /home/joda-time
+COPY /joda-time /home/joda-time/
+RUN chown -R JODA:JODA /home/joda-time
+USER JODA

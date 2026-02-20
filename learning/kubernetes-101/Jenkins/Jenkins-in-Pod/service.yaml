@@ -1,0 +1,20 @@
+# Deploy ClusterIP Services
+apiVersion: v1
+kind: Service
+metadata:
+  name: jenkins
+  labels:
+    app: jenkins
+
+spec:
+  selector:
+    app: jenkins
+
+  type: ClusterIP
+  ports:
+    - name: httpport
+      port: 8080
+      targetPort: 8080
+    - name: jnlpport
+      port: 50000
+      targetPort: 50000

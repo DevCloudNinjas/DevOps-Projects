@@ -1,0 +1,51 @@
+pipeline {
+    agent any
+
+    environment {
+        AWS_ACCESS_KEY_ID = credentials('your_aws_access_key_id')
+        AWS_SECRET_ACCESS_KEY = credentials('your_aws_secret_access_key')
+        AWS_REGION = 'your_aws_region'
+        EC2_INSTANCE = 'your_ec2_instance_id'
+        SSH_KEY = credentials('your_ssh_key')
+    }
+
+    stages {
+        stage('Checkout Code') {
+            steps {
+                checkout scm
+            }
+        }
+
+        stage('Copy Application to EC2') {
+            steps {
+                sh "scp -i ${SSH_KEY} -o StrictHostKeyChecking=no -r * ec2-user@${EC2_INSTANCE}:/path/to/destination"
+            }
+        }
+
+        stage('SSH into EC2') {
+            steps {
+                script {
+                    withAWS(region: AWS_REGION, credentials: 'aws-credentials') {
+                        sshCommand remote: ec2_user@${EC2_INSTANCE}, command: '''
+                            # Replace with your setup and deployment commands
+                            cd /path/to/destination
+                            source /path/to/venv/bin/activate
+                            python manage.py migrate
+                            python manage.py collectstatic --noinput
+                            # Add any other Django deployment commands here
+                        '''
+                    }
+                }
+            }
+        }
+    }
+
+    post {
+        success {
+            echo 'Deployment successful!'
+        }
+        failure {
+            echo 'Deployment failed!'
+        }
+    }
+}

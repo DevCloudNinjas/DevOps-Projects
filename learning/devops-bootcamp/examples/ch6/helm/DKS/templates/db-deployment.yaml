@@ -1,0 +1,49 @@
+# https://kubernetes.io/docs/concepts/workloads/controllers/deployment/
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dks-db
+  labels:
+    app: dks-db
+spec:
+  selector:
+    matchLabels:
+      app: dks-db
+  replicas: {{ .Values.replicaCount }}
+  template:
+    metadata:
+      annotations:
+        kubectl.kubernetes.io/default-container:  dks-db
+      labels:
+        app: dks-db
+    spec:
+      containers:
+      - name: dks-db
+        image: postgres:16.4-alpine@sha256:d898b0b78a2627cb4ee63464a14efc9d296884f1b28c841b0ab7d7c42f1fffdf
+        imagePullPolicy: IfNotPresent
+        envFrom:
+          - configMapRef:
+              name: dks-config
+        ports:
+        - containerPort: 5432
+          name: dks-db
+        readinessProbe:
+          exec:
+            command: ["pg_isready", "-U", "$(POSTGRES_USER)"]
+          initialDelaySeconds: 30
+          periodSeconds: 20
+          failureThreshold: 3
+          timeoutSeconds: 10
+        volumeMounts:
+          - name: dks-db-datastore
+            mountPath: /var/lib/postgresql/data
+          - name: init-script
+            mountPath: /docker-entrypoint-initdb.d
+      volumes:
+        - name: dks-db-datastore
+          emptyDir: {}
+        - name: init-script
+          configMap:
+            name: db-init-script
+            defaultMode: 0777 
+

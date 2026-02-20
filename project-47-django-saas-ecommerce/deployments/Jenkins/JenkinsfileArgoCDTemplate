@@ -1,0 +1,34 @@
+pipeline {
+    agent any
+    
+    stages {
+        stage('Build') {
+            steps {
+                // Your build steps here
+                sh 'make build'
+            }
+        }
+        stage('Test') {
+            steps {
+                // Your test steps here
+                sh 'make test'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                // Deploy to Argo CD
+                script {
+                    // Install argocd CLI if not already installed
+                    sh 'curl -sSL -o /usr/local/bin/argocd https://github.com/argoproj/argo-cd/releases/latest/download/argocd-linux-amd64'
+                    sh 'chmod +x /usr/local/bin/argocd'
+
+                    // Login to Argo CD (replace placeholders with your Argo CD credentials)
+                    sh 'argocd login <ARGOCD_SERVER> --insecure --username=<USERNAME> --password=<PASSWORD>'
+                    
+                    // Sync your application with Argo CD (replace placeholders with your application details)
+                    sh 'argocd app sync <APPLICATION_NAME> --namespace <NAMESPACE>'
+                }
+            }
+        }
+    }
+}

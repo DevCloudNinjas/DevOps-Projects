@@ -1,0 +1,33 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tetris
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: tetris
+  template:
+    metadata:
+      labels:
+        app: tetris
+    spec:
+      containers:
+      - name: tetris
+        image: avian19/tetrisv1:latest
+        ports:
+        - containerPort: 3000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: tetris-service
+spec:
+  selector:
+    app: tetris
+  ports:
+  - protocol: TCP
+    port: 80                
+    targetPort: 3000
+  type: LoadBalancer

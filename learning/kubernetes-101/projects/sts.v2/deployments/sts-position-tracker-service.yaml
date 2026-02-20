@@ -1,0 +1,11 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: sts-position-tracker
+spec:
+  selector:
+    app: tracker
+  ports:
+  - name: http
+    port: 8080
+  type: ClusterIP

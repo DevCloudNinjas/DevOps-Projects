@@ -1,0 +1,13 @@
+## Pre-commit hook that checks for spelling
+echo "\033[33mStarting spell check precommit hook...\033[0m"
+git diff --cached --name-only | npx cspell --no-summary --no-progress --no-must-find-files --file-list stdin
+echo "\033[32mSpell Check passed\033[0m"
+echo
+echo "\033[33mStarting front matter precommit hook...\033[0m"
+## Pre-commit hook that condenses section front-matter into master record.
+node .husky/front-matter-condenser.js update
+
+## Pre-commit hook that runs markdown-lintci2
+echo "\033[33mStarting linter precommit hook...\033[0m"
+npm run lint
+echo "\033[32mLinter passed\033[0m"

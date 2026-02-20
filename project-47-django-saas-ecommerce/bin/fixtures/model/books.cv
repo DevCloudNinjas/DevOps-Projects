@@ -1,0 +1,6 @@
+model,id,title,authors,average_rating,isbn,isbn13,langauge_code,num_pages,ratings_count,text_review_count,publication_date,publisher
+book.book,1,Harry Potter and the Half-Blood Prince (Harry Potter  #6),J.K. Rowling,4.57,439785960,439682584,eng,652,2095690,27591,2016-09-01,Scholastic Inc.
+book.book,2,Harry Potter and the Order of the Phoenix (Harry Potter  #5),J.K. Rowling,4.49,439358078,439682584,eng,870,2153167,29221,2004-09-01,Scholastic Inc.
+book.book,3,Harry Potter and the Chamber of Secrets (Harry Potter  #2),J.K. Rowling,4.42,439554896,439682584,eng,352,6333,244,2003-11-01,Scholastic
+book.book,4,Harry Potter and the Prisoner of Azkaban (Harry Potter  #3),J.K. Rowling,4.56,439554896,439682584,eng,435,2339585,36325,2004-05-01,Scholastic Inc.
+book.book,5,Harry Potter Boxed Set  Books 1-5 (Harry Potter  #1-5),J.K. Rowling,4.78,439682584,439682584,eng,2690,41428,164,2012-09-04,Scholastic

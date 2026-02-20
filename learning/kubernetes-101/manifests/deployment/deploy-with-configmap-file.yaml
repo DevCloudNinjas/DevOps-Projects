@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-deploy
+  namespace: dev
+
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: web-app
+    matchExpressions:
+      - {key: tier, operator: In, values: [backend]}
+    
+  template:
+    metadata:
+      name: web-pod
+      labels:
+       app: web-app
+       tier: backend
+    spec:
+      containers:
+      - name: app-container
+        image: docker.io/tomcat
+        ports:
+        - containerPort: 8080
+        volumeMounts:
+        - name: app-config
+          mountPath: "/etc/config"
+          readOnly: true
+      volumes:
+      - name: app-config
+        configMap:
+          name: app-config
+     
+

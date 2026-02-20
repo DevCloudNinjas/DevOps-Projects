@@ -1,0 +1,16 @@
+// See https://containers.dev/implementors/json_reference/ for configuration reference
+{
+"name": "basic configure",
+"customizations": {
+	"vscode": {
+		"extensions": [
+			"mhutchie.git-graph",
+			"phil294.git-log--graph"
+		]
+	}
+},
+"features": {
+	"ghcr.io/devcontainers/features/github-cli:1": {},
+	"ghcr.io/devcontainers/features/terraform:1": {}
+  }
+}

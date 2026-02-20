@@ -1,0 +1,48 @@
+name: Release Workflow
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Build Project
+        run: |
+          echo "Running build scripts..."
+          # Add commands to build/compile your project here.
+          # For example: npm install && npm run build
+
+      - name: Archive Production Artifacts
+        run: |
+          tar -czvf release-${{ github.ref_name }}.tar.gz path/to/your/artifacts
+
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          draft: false
+          prerelease: false
+          body: "Description of the release"
+          assets: |
+            path/to/release-${{ github.ref_name }}.tar.gz
+
+      - name: Upload Release Asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./release-${{ github.ref_name }}.tar.gz
+          asset_name: release-${{ github.ref_name }}.tar.gz
+          asset_content_type: application/gzip

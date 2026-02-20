@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: dks-config
+data:
+  SPRING_PROFILES_ACTIVE: dev
+  JAVA_ENABLE_DEBUG: "false"
+  JAVA_DEBUG_PORT: "5005"
+  DB_HOST: dks-db
+  DB_NAME: dks_db
+  PGPORT: "5432"
+  DB_ROLE_NAME: "dks-user"
+  DB_ROLE_PASSWORD: "dks-password" 
+  POSTGRES_USER: "postgres"
+  POSTGRES_PASSWORD: "postgres-password"
+

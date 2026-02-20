@@ -1,0 +1,142 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: SAM Template for Saas E-Commerce Backend Rest API
+Parameters:
+  AppName:
+    Type: String
+    Description: Application Name. Used for naming resources
+Globals:
+  Function:
+    Timeout: 900
+    MemorySize: 1024
+    Layers:
+    - Ref: LambdaLayer
+    Environment:
+      Variables:
+        productS_DDB_TABLE:
+          Ref: productsDDBTable
+Resources:
+  productsDDBTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName:
+        Fn::Sub: ${AppName}-table
+      BillingMode: PAY_PER_REQUEST
+      AttributeDefinitions:
+      - AttributeName: name
+        AttributeType: S
+      - AttributeName: description
+        AttributeType: S
+      KeySchema:
+      - AttributeName: name
+        KeyType: HASH
+      - AttributeName: description
+        KeyType: RANGE
+      GlobalSecondaryIndexes:
+      - IndexName: description-index
+        KeySchema:
+        - AttributeName: description
+          KeyType: HASH
+        Projection:
+          ProjectionType: ALL
+    Metadata:
+      SamResourceId: productsDDBTable
+  LambdaLayer:
+    Type: AWS::Serverless::LayerVersion
+    Properties:
+      LayerName:
+        Fn::Sub: ${AppName}-lambda-layer
+      Description:
+        Fn::Sub: ${AppName} Lambda Layer
+      ContentUri: s3://cloudapp-ecommerce/7cfbb565612182d24282bfc81fc156fe
+      CompatibleRuntimes:
+      - nodejs16.x
+      RetentionPolicy: Retain
+    Metadata:
+      SamResourceId: LambdaLayer
+  LambdaRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName:
+        Fn::Sub: ${AppName}-lambda-role
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+        - Effect: Allow
+          Principal:
+            Service:
+            - lambda.amazonaws.com
+          Action:
+          - sts:AssumeRole
+      Path: /
+      Policies:
+      - PolicyName: cloudwatch
+        PolicyDocument:
+          Version: '2012-10-17'
+          Statement:
+          - Effect: Allow
+            Action:
+            - logs:CreateLogGroup
+            - logs:CreateLogStream
+            - logs:DescribeLogGroups
+            - logs:DescribeLogStreams
+            - logs:PutLogEvents
+            Resource:
+            - '*'
+      - PolicyName: ddbaccess
+        PolicyDocument:
+          Version: '2012-10-17'
+          Statement:
+          - Effect: Allow
+            Action:
+            - dynamodb:*
+            Resource:
+            - Fn::Sub: arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/${productsDDBTable}/*
+            - Fn::Sub: arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/${productsDDBTable}
+    Metadata:
+      SamResourceId: LambdaRole
+  GetData:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName:
+        Fn::Sub: ${AppName}-get-controller
+      Handler: index.lambdaHandler
+      Runtime: nodejs16.x
+      Description: Get product data from Dynamo DB
+      CodeUri: s3://cloudapp-ecommerce/c19477640ae82382c23af8c9f5937a93
+      Role:
+        Fn::GetAtt: LambdaRole.Arn
+    Metadata:
+      SamResourceId: GetData
+  PutData:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName:
+        Fn::Sub: ${AppName}-put-controller
+      Handler: index.lambdaHandler
+      Runtime: nodejs16.x
+      Description: Add product data to Dynamo DB
+      CodeUri: s3://cloudapp-ecommerce/e5576b79244ad2abf41ce866734df923
+      Role:
+        Fn::GetAtt: LambdaRole.Arn
+    Metadata:
+      SamResourceId: PutData
+Outputs:
+  GetDataArn:
+    Description: ARN of Get Data Lambda Function
+    Value:
+      Fn::GetAtt:
+      - GetData
+      - Arn
+    Export:
+      Name:
+        Fn::Sub: ${AppName}-get-controller-arn
+  PutDataArn:
+    Description: ARN of Put Data Lambda Function
+    Value:
+      Fn::GetAtt:
+      - PutData
+      - Arn
+    Export:
+      Name:
+        Fn::Sub: ${AppName}-put-controller-arn

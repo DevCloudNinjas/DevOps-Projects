@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-webapp
+spec:
+  rules:
+  - host: www.edshopper.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: sts-webapp
+            port:
+              number: 80
+  ingressClassName: nginx

@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: Deployment
+metadata:
+  name: hello-mysql
+spec:
+  volumes:
+    - name: data
+      emptydir: {}
+  containers:
+  - name: mysql
+    image: mysql
+    env:
+    - name: MYSQL_USER
+      value: root
+    - name: MYSQL_ALLOW_EMPTY_PASSWORD
+      value: 'yes'
+    - name: MYSQL_DATABASE
+      value: 'some-app'
+  ports:
+  - containerPort: 3306
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: hello-mysql
+spec:
+  selector:
+    app: hello-mysql
+  ports:
+  - port: 3306

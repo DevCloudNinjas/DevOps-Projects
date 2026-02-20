@@ -1,0 +1,5 @@
+# Create NameSpace
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: prod

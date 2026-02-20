@@ -1,0 +1,9 @@
+# PV
+kind: StorageClass
+apiVersion: storage.k8s.io/v1
+metadata:
+  name: aws-ebs-pv
+provisioner: kubernetes.io/aws-ebs
+parameters:
+  type: gp2
+  zones: us-east-1a

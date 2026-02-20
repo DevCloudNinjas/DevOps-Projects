@@ -1,0 +1,58 @@
+/*
+.reveal .slides {
+  width: 95% !important;
+}
+*/
+ul li ul li {
+  font-size: 60% !important;
+}
+ol li ul li {
+  font-size: 60% !important;
+}
+ol li ol li {
+  font-size: 60% !important;
+}
+
+.reveal img, .reveal video, .reveal iframe {
+    max-width: 75%;
+    max-height: 75%;
+}
+
+.reveal .left-col img,
+.reveal .right-col img,
+.reveal .left-col-small img,
+.reveal .left-col-big img,
+.reveal .right-col-small img,
+.reveal .right-col-small img {
+  max-width: 80%;
+}
+
+.reveal div.left-col {
+	width: 50%;
+	float: left;
+}
+.reveal div.right-col {
+	width: 50%;
+	float: right;
+}
+.reveal div.left-col-small {
+	width: 33%;
+	float: left;
+}
+.reveal div.right-col-big {
+	width: 67%;
+	float: right;
+}
+.reveal div.left-col-big {
+	width: 67%;
+	float: left;
+}
+.reveal div.right-col-small {
+	width: 33%;
+	float: right;
+}
+.clearfix:after {
+	content: "";
+	display: table;
+	clear: both;
+}

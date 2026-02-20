@@ -1,0 +1,19 @@
+apiVersion: monitoring.coreos.com/v1
+kind: AlertmanagerConfig
+metadata:
+  name: alertmanager-config
+  labels:
+    release: prometheus # Label for release association
+spec:
+  route:
+    groupBy: ["severity"] # Group alerts by severity
+    groupWait: 30s # Time to wait for additional alerts before dispatching a group
+    groupInterval: 5m # Interval at which the grouped alerts are sent
+    repeatInterval: 12h # Interval at which to resend notifications for the same alert
+    receiver: "team-notifications" # Default receiver for unmatched alerts
+
+  receivers:
+    - name: "team-notifications" # Name of the receiver
+      emailConfigs:
+        - to: "team@example.com" # Email address to which notifications are sent
+          sendResolved: true # Whether to send notifications when alerts are resolved
