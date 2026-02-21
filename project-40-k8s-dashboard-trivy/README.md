@@ -12,6 +12,11 @@ Welcome to the Kubernetes Dashboard Web Application repository! This web applica
 
 The Kubernetes Dashboard Web Application is built with a combination of HTML, CSS, JavaScript, and Python. It offers a user-friendly interface to monitor system metrics, Kubernetes resources, and perform image scans.
 
+## 🛡️ 2026 DevSecOps Enhancements (What You Will Learn)
+While this project provides a custom Kubernetes dashboard integrated with Trivy, 2026 DevSecOps standards mandate strict controls around administrative interfaces:
+1. **Secure Exposure (Zero Trust):** Custom dashboards that interact with the Kubernetes API must *never* be exposed publicly via a standard LoadBalancer or NodePort. In a DevSecOps environment, this dashboard should be deployed behind an Identity-Aware Proxy (IAP) or accessed exclusively via secure `kubectl port-forward` or an internal VPN.
+2. **RBAC Constriction:** The Python backend interacts with the Kubernetes API. The Service Account executing this pod must be tightly restricted using Role-Based Access Control (RBAC), granting only `watch` and `list` permissions, actively preventing any `create` or `delete` operations even if the dashboard is compromised.
+
 ### **Features** :-
 
 **System Metrics**: The upper section of the dashboard displays the current usage of storage, memory, and CPU resources, giving users a quick overview of the system's health.

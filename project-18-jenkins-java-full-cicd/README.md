@@ -4,6 +4,12 @@
 
 ## 🔗 BLOG URL HERE: https://harshhaa.hashnode.dev/streamlining-cicd-workflow-with-github-jenkins-sonarqube-docker-argocd-and-gitops
 
+## 🛡️ 2026 DevSecOps Enhancements (What You Will Learn)
+This repository's `Jenkinsfile`, `Dockerfile`, and Kubernetes manifests have been heavily refactored from standard CI/CD scripts into a hardened DevSecOps pipeline:
+1. **Container Security:** The `Dockerfile` has been overhauled to ensure the Java application executes as a non-root `spring` user rather than root, significantly shrinking the container's attack surface.
+2. **Automated Vulnerability Scanning:** A mandatory Trivy Image Scan gate now blocks the Jenkins pipeline from proceeding if `CRITICAL` or `HIGH` container vulnerabilities are detected.
+3. **Hardened Kubernetes:** The `deployment.yml` manifest now enforces robust CPU and Memory Resource Quotas, preventing application sprawl, and explicitly drops unnecessary Linux Kernel Capabilities using a strict `securityContext`.
+
 Here are the step-by-step details to set up an **end-to-end Jenkins pipeline for a Java application using SonarQube, Argo CD, Helm, and Kubernetes:**
 
 **Prerequisites:**

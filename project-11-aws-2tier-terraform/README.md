@@ -17,6 +17,11 @@ Welcome to the Terraform project for deploying a Two-Tier architecture on AWS! T
 - **Infrastructure as Code (IaC):** Deploy and manage your infrastructure using Terraform, enabling version control and reproducibility.
 - **Service-Specific Modules:** Each module corresponds to a specific AWS service, allowing for targeted management.
 
+## 🛡️ 2026 DevSecOps Enhancements (What You Will Learn)
+This repository's Terraform modules have been hardened to comply with 2026 AWS Security architectural standards. Note the following improvements:
+1. **Zero Trust EC2 Ingress:** The `web-tier-sg` no longer allows open `0.0.0.0/0` ingress on ports 80/443. The web instances strictly accept traffic downstream from the Application Load Balancer Security Group.
+2. **Encrypted RDS at Rest:** The `aws-rds` module explicitly enforces `storage_encrypted = true` on the database cluster to comply with modern data residency regulations.
+
 ## Getting Started
 
 Follow these steps to deploy the Two-Tier architecture:

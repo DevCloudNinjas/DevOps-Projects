@@ -10,7 +10,11 @@
 * AWS Account
 * Creativity is always a plus 😃
 
-## Django Web Framework
+## 🛡️ 2026 DevSecOps Container Enhancements (What You Will Learn)
+This repository has been hardened against modern container exploitation vectors. The included `Dockerfile` now utilizes several critical Cloud Native security patterns:
+1. **Multi-Stage Builds:** The Dockerfile compiles dependencies in a transient build stage and only copies necessary artifacts to the final image, drastically reducing the attack surface.
+2. **Alpine Base Images:** We replaced heavyweight Ubuntu/Debian bases with ultra-lightweight Alpine Linux, eliminating hundreds of dormant OS vulnerabilities.
+3. **Non-Root Execution:** The Dockerfile creates and switches to an unprivileged user before starting the Django server (`USER appuser`). If the container is compromised, the attacker does not automatically gain root access.
 ***Django is a high-level Python web framework that encourages rapid development and clean, pragmatic design. It is free and open-source, has a thriving and active community, great documentation, and many free and paid-for support options. It uses HTML/CSS/Javascript for the frontend and python for the backend.***
 
 ## What are Dockers and Containers?

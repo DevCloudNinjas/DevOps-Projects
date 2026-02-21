@@ -26,6 +26,12 @@ Clone this Repository
 git clone https://github.com/devcloudninjas/DevOps-Projects.git
 ```
 
+## 🛡️ 2026 DevSecOps Enhancements (What You Will Learn)
+This repository's `buildspec.yml` and `Dockerfile` have been heavily refactored from standard CI/CD scripts into a hardened DevSecOps pipeline:
+1. **Unprivileged Containers:** The container build no longer relies on the vulnerable `nginx:stable-alpine` image running as root. We have migrated to `nginxinc/nginx-unprivileged:alpine`, shifting the execution context to a safe, non-root user.
+2. **Automated Vulnerability Scanning:** A mandatory Trivy Image Scan gate now blocks the AWS CodeBuild pipeline from proceeding if `CRITICAL` or `HIGH` vulnerabilities are detected before pushing to DockerHub.
+3. **Semantic Branch Versioning:** We eradicated the `latest` Docker tag anti-pattern. The registry push uses the dynamic `${CODEBUILD_BUILD_NUMBER}` to ensure every execution is uniquely traceable and immutable.
+
 # **Project Architecture**
 
 ![](https://miro.medium.com/v2/resize:fit:1431/1*9s2m5NLVfW-A3IbDRg3b1w.png)

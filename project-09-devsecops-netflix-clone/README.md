@@ -25,6 +25,12 @@
 - **Step 13** — [Access the Netflix app on the Browser.](https://github.com/DevCloudNinjas/DevOps-Projects/blob/master/project-09-devsecops-netflix-clone/README.md#step-13-access-the-netflix-app-on-the-browser)
 - **Step 14** — [Terminate the AWS EC2 Instances.](https://github.com/DevCloudNinjas/DevOps-Projects/blob/master/project-09-devsecops-netflix-clone/README.md#step-14-terminate-instances)
 
+## 🛡️ 2026 DevSecOps Enhancements (What You Will Learn)
+This repository's `Jenkinsfile` has been significantly refactored from a standard CI/CD script into a hardened DevSecOps pipeline:
+1. **Secrets Management:** The legacy pipeline hardcoded the `TMDB_V3_API_KEY` directly in the source code. This has been purged. The pipeline now correctly relies on the Jenkins Credentials Store `credentials('tmdb-api-key')` to dynamically inject the secret at build time.
+2. **Pipeline Immutability:** We eradicated the `latest` Docker tag anti-pattern. The registry push uses the dynamic `${BUILD_NUMBER}` to ensure every build is precisely traceable.
+3. **Automated Vulnerability Scanning:** A mandatory Trivy scanning gate blocks the pipeline if critical container vulnerabilities are detected before deployment.
+
 ## Step 1: Launch an Ubuntu(22.04) T2 Large Instance
 - Launch an Ubuntu(22.04) T2 Large Instance
 - Launch an AWS T2 Large Instance. Use the image as Ubuntu. You can create a new key pair or use an existing one. Enable HTTP and HTTPS settings in the Security Group and open all ports (not best case to open all ports but just for learning purposes it's okay).

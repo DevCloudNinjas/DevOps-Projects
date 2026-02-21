@@ -12,6 +12,10 @@
 ## Introduction
 Automating deployment processes is crucial for modern web development, enhancing productivity and reliability. In this article, we focus on automating the deployment of a Django web application onto an Ubuntu Server hosted on AWS EC2.
 
+## 🛡️ 2026 DevSecOps Enhancements (What You Will Learn)
+Deploying Django to production requires strict adherence to DevSecOps principles, as many development defaults are highly insecure:
+1. **Production Web Servers:** Running `python manage.py runserver` in production is a critical security vulnerability. This project must transition to using a robust WSGI/ASGI server like **Gunicorn** or **Uvicorn**, ideally placed behind an Nginx reverse proxy to securely handle TLS/SSL termination and prevent slow-loris DDoS attacks.
+2. **Django Secret & Configuration Security:** The Django `SECRET_KEY`, `DEBUG = True`, and database credentials must never be committed to source control. In a DevSecOps deployment, these variables are injected dynamically at runtime via AWS Secrets Manager or HashiCorp Vault.
 
 ### Prerequisites:
 Before we get into the good stuffs, first we need to make sure we have the required services on our local machine or dev server, which are:

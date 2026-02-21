@@ -32,3 +32,8 @@ Code Commit → Jenkins Pipeline
 
 ## Key Technologies
 Jenkins, Terraform, Kubernetes, Docker, SonarCloud, Snyk, OWASP ZAP, AWS ECR, AWS EKS
+
+## 🛡️ 2026 DevSecOps Enhancements (What You Will Learn)
+This series represents a mature 2026 DevSecOps integration, demonstrating a holistic "Shift-Left to Shift-Right" security posture:
+1. **Comprehensive Pipeline Gates:** Instead of bolting on security at the end, this project embeds strict quality and security gates natively. Implementations like **SAST (SonarCloud)** and **SCA (Snyk)** preemptively block vulnerable code and transient dependencies from being built.
+2. **Dynamic Runtime Analysis:** A critical addition is **DAST (OWASP ZAP)** against the live environment. By executing dynamic tests against the running Kubernetes application, we identify complex attack vectors and misconfigurations that static source code analysis inherently misses.

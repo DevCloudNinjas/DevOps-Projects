@@ -6,13 +6,18 @@
 
 ### Agenda:
 
-* Setup Jenkins
-* Setup & Configure Maven and Git
-* Integrating GitHub and Maven with Jenkins
-* Setup Docker Host
-* Integrate Docker with Jenkins
-* Automate the Build and Deploy process using Jenkins
-* Test the deployment
+* Install Jenkins, Java & Maven on AWS EC2
+* Install Docker
+* Integrate Maven and Docker with Jenkins
+* Create Dockerfile and push to Github
+* Build the job on Jenkins
+* Publish the Docker image on the container
+
+## 🛡️ 2026 DevSecOps Enhancements (What You Will Learn)
+This legacy tutorial has been augmented with modern Cloud Native security standards. As you follow the deployment, observe the security improvements in the provided source code:
+1. **Unprivileged Containers:** The `Dockerfile` has been stripped of its default root user. It now formally executes as a restricted user to mitigate container breakout risks.
+2. **Explicit K8s Resource Bounds:** The deployment manifests now enforce strict CPU and Memory `limits` to prevent noisy-neighbor node starvation.
+3. **Immutability:** Static `latest` tagging has been eradicated from the pipeline in favor of traceable, semantic versioning.
 
 ### Prerequisites:
 

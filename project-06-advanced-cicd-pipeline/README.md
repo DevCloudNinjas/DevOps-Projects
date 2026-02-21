@@ -4,6 +4,13 @@
 
 ### These are the steps I followed in the implementation of the entire CI/CD Pipeline.
 
+## 🛡️ 2026 DevSecOps Enhancements (What You Will Learn)
+This repository has been upgraded from a standard CI/CD deployment into a modern DevSecOps pipeline. When reviewing the `Dockerfile` and `Jenkinsfile` integrations, note the following 2026 security practices:
+1. **Unprivileged Container Execution:** We explicitly block the Java microservice from running as a highly-privileged `root` user. Instead, the Dockerfile builds an isolated `appuser` group on a minimal Alpine Linux distribution to run the JAR file.
+2. **Container Immutable Deployments:** We avoid overwriting the `latest` tag in our JFrog repository. Each successfully built artifact receives a unique semantic tag, ensuring Kubernetes deployments are rolling and easily rollback-able.
+
+---
+
 1. [Provisioned the required infrastructure like VPC, Security Group, Ansible Controller Instance, Jenkins Master and Agent Instances using Terraform.](https://github.com/DevCloudNinjas/DevOps-Projects/blob/master/project-06-advanced-cicd-pipeline/Steps/step1.md#L1)
 
 2. [Configured SSH keys for password less authentication between Ansible Controller and Agent nodes.](https://github.com/DevCloudNinjas/DevOps-Projects/blob/master/project-06-advanced-cicd-pipeline/Steps/step2.md#L1)

@@ -14,6 +14,11 @@
 
 Welcome to an immersive DevSecOps learning experience! This project guides you through deploying a Tetris game on AWS EKS while mastering the art of DevSecOps.
 
+## 🛡️ 2026 DevSecOps Enhancements (What You Will Learn)
+This repository's architecture showcases a mature DevSecOps pipeline deployed to EKS:
+1. **Supply Chain Security:** We integrate OWASP Dependency-Check into the CI pipeline to actively scan and block deployments that rely on compromised or vulnerable open-source libraries.
+2. **Zero-Trust GitOps Delivery:** By employing ArgoCD, the deployment model shifts from "push" (where Jenkins holds cluster admin credentials) to "pull". ArgoCD securely syncs state directly from inside the EKS cluster boundary, drastically reducing the external attack surface.
+
 ## Directories 📂
 
 1. **EKS-TF:** Explore Terraform scripts for deploying EKS clusters on AWS.

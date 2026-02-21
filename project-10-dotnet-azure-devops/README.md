@@ -3,7 +3,12 @@
 ![devops](https://imgur.com/gBofYCl.png)
 
 > [!WARNING]
-> **2026 Update:** Microsoft has retired the "Azure DevOps Starter" experience from the Azure Portal. The modern equivalent method to achieve this lab is by creating an **Azure App Service**, navigating to the **Deployment Center** blade on the left, and linking your Azure DevOps repository there. The concepts in this lab remain the same, but the UI has changed.
+> **2026 App Service Update:** Microsoft has officially retired the "Azure DevOps Starter" experience from the Azure Portal. The modern equivalent method to achieve this exact CI/CD pipeline is to manually create an **Azure App Service**, navigate to its **Deployment Center** blade, and link your Azure DevOps repository there. The concepts in this lab remain the same, but the initial GUI scaffolding method has changed.
+
+## 🛡️ 2026 DevSecOps Pipeline Enhancements
+While the initial scaffolding method has changed, the underlying Azure DevOps pipelines remain structurally relevant. Make note of:
+1. **GitHub Actions vs Azure DevOps:** While this project uses Azure Pipelines, note that GitHub Actions encompasses the modern standard for this workload.
+2. **Infrastructure as Code:** A true 2026 deployment would use Terraform/Bicep integrated into the pipeline to provision the WebApp, rather than relying on UI wizards.
 
 ## Overview
 

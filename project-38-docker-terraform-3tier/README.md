@@ -43,6 +43,11 @@ I am going to talk about how to do a classic 3-tier architecture using docker co
  → Database tier: This will host the database.
  ```
 
+## 🛡️ 2026 DevSecOps Enhancements (What You Will Learn)
+This repository demonstrates a legacy Docker-based 3-tier architecture. In a modern 2026 DevSecOps context, the following critical upgrades have been identified:
+1. **Container Privilege De-Escalation:** The provided `Dockerfile` leverages `node:17-alpine` but fails to define an explicitly unprivileged user. To prevent container escapes, modern deployments append a `USER node` directive before executing the CMD.
+2. **Multi-Stage Builds:** The current `Dockerfile` contains source code and entire dependency trees. A true DevSecOps implementation refactors this into a two-stage build (Build & Output), ensuring compilers and build-time secrets never exist in the final production artifact.
+
 ##  ⇥ Task Conditions 
 
 ```

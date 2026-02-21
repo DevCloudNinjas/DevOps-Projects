@@ -19,6 +19,13 @@
 ## Goal
 Goal of this project is to deploy scalable, highly available and secured Java application on 3-tier architecture and provide application access to the end users from public internet.
 
+## 🛡️ 2026 DevSecOps Enhancements (What You Will Learn)
+This project has been upgraded to meet 2026 Cloud Security and DevSecOps standards. As you follow the deployment steps, pay attention to the following modern architectural patterns implemented within the Terraform code:
+
+1. **Zero-Trust Networking (Network Segmentation):** We explicitly dropped `0.0.0.0/0` (open internet) rules from internal database and application tiers. Security Groups now strictly enforce traffic *only* from verified Load Balancers and Bastions.
+2. **Principle of Least Privilege (IAM):** We destroyed overarching `s3:*` wildcards, replacing them with granular, whitelisted API actions (`s3:GetObject`, `s3:PutObect`).
+3. **Automated Infrastructure Scanning:** The project structure has been adapted so external scanners like Checkov/tfsec can easily identify misconfigurations before deployment.
+
 ## Pre-Requisites
 
 1. Create AWS Free Tier account

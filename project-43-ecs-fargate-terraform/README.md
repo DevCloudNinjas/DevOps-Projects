@@ -12,6 +12,11 @@ The application follows this architecture:
 - **Application Load Balancer (ALB)**: Distributes traffic to running ECS tasks.
 - **ECS Tasks & Services**: Define how the container runs and scales dynamically.
 
+## 🛡️ 2026 DevSecOps Enhancements (What You Will Learn)
+This repository demonstrates a foundational ECS Fargate deployment via Terraform. In a 2026 DevSecOps context, we emphasize two critical networking and IAM upgrades:
+1. **Private Networking (VPC Endpoints):** Pulling images from ECR or writing logs to CloudWatch across the public internet is a security vulnerability and incurs NAT Gateway charges. Modern architectures utilize AWS PrivateLink (VPC Endpoints) to ensure sensitive container traffic never leaves the internal AWS backbone.
+2. **IAM Task vs. Execution Roles:** Strict differentiation between IAM roles is enforced. The *Task Execution Role* is scoped purely to allow the ECS agent to pull images and write logs, while the *Task Role* is granted exclusively to the application code itself for interacting with AWS services (e.g., S3 or DynamoDB), enforcing least privilege boundaries.
+
 ## **Prerequisites**
 Ensure you have the following installed:
 - AWS CLI

@@ -2,6 +2,11 @@
 
 ![github-actions](https://imgur.com/Ctznv2m.png)
 
+## 🛡️ 2026 DevSecOps Enhancements (What You Will Learn)
+This repository demonstrates advanced DevSecOps CI/CD patterns using GitHub Actions and Kustomize:
+1. **OIDC AWS Authentication:** The workflow utilizes OpenID Connect (OIDC) to authenticate with AWS. This eliminates the necessity of storing long-lived, static IAM access keys in GitHub Secrets, significantly reducing the risk of credential compromise.
+2. **Environment Isolation via Kustomize:** By leveraging Kustomize overlays (`dev`, `staging`, `prod`), the infrastructure configuration is strictly isolated. This guarantees separation of duties, allowing precise RBAC controls over who can deploy to each specific environment slice.
+
 ## Table of Contents
 
 - [End-to-End CI/CD Pipeline for Simple Node App Deployment on EKS using GitHub Actions](#end-to-end-cicd-pipeline-for-simple-node-app-deployment-on-eks-using-github-actions)

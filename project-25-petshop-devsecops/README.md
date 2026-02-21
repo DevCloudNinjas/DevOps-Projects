@@ -30,6 +30,12 @@ The goal of this project is to deploy a Java-based Petshop application in a secu
 
 * **Ansible** for configuration management
 
+## 🛡️ 2026 DevSecOps Enhancements (What You Will Learn)
+This repository's `Jenkinsfile`, `Dockerfile`, and Kubernetes manifests have been heavily refactored from standard CI/CD scripts into a hardened DevSecOps pipeline:
+1. **Multi-Stage Container Security:** The `Dockerfile` has been overhauled using multi-stage builds to remove all build dependencies from the final image. Furthermore, it now ensures the Java application executes safely under an unprivileged `tomcat` user.
+2. **Automated Vulnerability Scanning:** A mandatory Trivy Image Scan gate blocks the Jenkins pipeline from pushing to DockerHub if `CRITICAL` or `HIGH` vulnerabilities are detected.
+3. **Semantic Branch Versioning & Ephemeral Workloads:** We eradicated the `latest` Docker tag anti-pattern. The registry push and Kubernetes Deployments dynamically use `${BUILD_NUMBER}` to ensure immutable, traceable rollouts.
+
 # **CI/CD Pipeline for Petshop Java-Based Application Deployment**
 
 The Continuous Integration/Continuous Deployment (CI/CD) pipeline is a crucial component in modern software development, enabling teams to deliver high-quality software efficiently and reliably. Below is an explanation of the CI/CD pipeline for the Petshop Java-Based Application, illustrated in the provided image.

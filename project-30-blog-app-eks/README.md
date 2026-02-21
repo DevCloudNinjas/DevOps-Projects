@@ -34,6 +34,11 @@
 - **Step 7:** Assign a custom domain to the deployed application  
 - **Step 8:** Monitor the application
 
+## 🛡️ 2026 DevSecOps Enhancements (What You Will Learn)
+This repository's Jenkins pipeline and Kubernetes deployments have been refactored into a hardened DevSecOps architecture:
+1. **Shift-Left Filesystem Scanning (Trivy FS):** We introduced a `Trivy FS` execution stage that occurs *before* Docker build. This prevents misconfigurations, leaked secrets, or vulnerable dependencies embedded in the source code from ever becoming containerized.
+2. **Kubernetes RBAC and Namespace Isolation:** Deployments are no longer pushed into the `default` namespace using cluster-admin privileges. The Jenkins agent authenticates via a strict Kubernetes Service Account governed by RBAC, tightly scoped only to the `webapps` namespace.
+
 ## **Step 1. Set up Git Repository and create Security Token**
 
 a.&gt; **Create the Repo:** We will need to setup a private git repo, it is assumed you already know how to do one. If not [click here](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-new-repository) to read the official GitHub docs. You can decide to make it *public or private* for production use, it is best to set it to `private` this way it is more secured and not exposed to the public.

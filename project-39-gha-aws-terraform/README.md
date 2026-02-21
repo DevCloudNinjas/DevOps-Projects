@@ -11,6 +11,10 @@
  
  ## 👉 Task Workflow ##
  ![Task Logo](/images/tfc-gh-actions-workflow.png)
+
+## 🛡️ 2026 DevSecOps Enhancements (What You Will Learn)
+This repository leverages Terraform Cloud within the CI/CD pipeline, fulfilling a critical DevSecOps requirement: **Secure Remote State Management**. 
+By utilizing Terraform Cloud (or an S3 backend with DynamoDB locking and KMS encryption), we guarantee that sensitive infrastructure state files (which often contain plaintext secrets, database passwords, and private IPs) are never committed to version control or left exposed on a Jenkins/GitHub Actions runner.
  
  ## 👉 AWS Components Used ##
  ```

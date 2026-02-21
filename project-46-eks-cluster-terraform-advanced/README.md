@@ -24,6 +24,10 @@
 
 * *Terraform understands dependency relationships between resources. For example, if an AWS Kubernetes cluster needs a specific VPC and subnet configurations, Terraform won’t attempt to create the cluster if the VPC and subnet failed to create with the proper configuration.*
 
+## 🛡️ 2026 DevSecOps Enhancements (What You Will Learn)
+This repository demonstrates a legacy method of providing AWS credentials to Terraform Cloud via static Access Keys. In a 2026 DevSecOps context, this represents a severe credential leakage risk. 
+Modern deployments utilize **Dynamic Workload Identity (OIDC - OpenID Connect)**. By establishing an OIDC trust relationship between AWS IAM and Terraform Cloud, Terraform dynamically requests short-lived, ephemeral STS credentials to provision the cluster, entirely eliminating the need for hardcoded `AWS_ACCESS_KEY_ID` variables.
+
 ------
 ## :loudspeaker: ᴛᴇʀʀᴀғᴏʀᴍ: ᴘʀᴇʀᴇǫᴜɪsɪᴛᴇs
 

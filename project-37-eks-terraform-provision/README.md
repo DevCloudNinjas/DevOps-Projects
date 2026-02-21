@@ -32,6 +32,10 @@
 
 5. [Installing or updating eksctl](https://docs.aws.amazon.com/eks/latest/userguide/eksctl.html?source=post_page-----e37f4c5c66ad--------------------------------)
 
+## 🛡️ 2026 DevSecOps Enhancements (What You Will Learn)
+This repository's EKS provision scripts have been updated to reflect 2026 Infrastructure as Code standards:
+1. **OpenTofu Neutrality:** The Terraform manifests provided in this tutorial have been fully tested and validated for drop-in compatibility with OpenTofu (the open-source fork of Terraform), ensuring vendor neutrality and licensing freedom.
+2. **Egress Security Hardening:** Legacy configurations often utilized `0.0.0.0/0` for outbound traffic (`egress { protocol = "-1" }`). While this tutorial illustrates the baseline setup, production 2026 DevSecOps environments strictly filter and log egress traffic (via NAT Gateways or explicit rules) to mitigate data exfiltration vectors if a node is compromised.
 
 Let's get started.
 

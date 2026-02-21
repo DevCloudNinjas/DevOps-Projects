@@ -3,6 +3,11 @@
 ## Deploying an App built with Python using Flask and psutil on ECR and Kubernete
 This is a monitoring app built with python, and it would be contanerized with docker and deployed to EkS
 
+## 🛡️ 2026 DevSecOps Enhancements (What You Will Learn)
+This project's programmatic deployment methodology via Boto3 and Python has been formalized into a DevSecOps approach:
+1. **IAM Least Privilege & STS:** Python scripts (like `ecr.py` and `eks.py`) that interact directly with AWS APIs require strict IAM boundary enforcement. They must be executed utilizing short-lived AWS STS credentials or Kubernetes IRSA (IAM Roles for Service Accounts) to prevent long-lived credential leakage.
+2. **Container OS Hardening:** The `Dockerfile` has been optimized. To comply with modern standards, the internal Flask server should be run utilizing an unprivileged user context, mitigating the blast radius if the `psutil` or `Flask` dependencies ever suffer from a zero-day exploit.
+
 ### Prerequisites
 - Learn Docker and How to containerize a Python application
 - Creating Dockerfile

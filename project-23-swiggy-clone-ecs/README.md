@@ -28,6 +28,12 @@ AWS CodePipeline is a fully managed continuous integration and continuous delive
 
 ## GitHub Source Code Repo: [HERE](https://github.com/devcloudninjas/DevOps-Projects/tree/master/project-23-swiggy-clone-ecs/Swiggy_clone)
 
+## 🛡️ 2026 DevSecOps Enhancements (What You Will Learn)
+This repository's `buildspec.yaml` and `Dockerfile` have been heavily refactored from standard CI/CD scripts into a hardened DevSecOps pipeline:
+1. **Multi-Stage Container Security:** The application's `Dockerfile` has been optimized using multi-stage builds. Production images are now devoid of build tooling, and the Node.js application executes safely via the unprivileged `node` user rather than root.
+2. **Automated Vulnerability Scanning:** A mandatory Trivy Image Scan gate blocks the AWS CodeBuild pipeline from successfully building if `CRITICAL` or `HIGH` vulnerabilities are detected.
+3. **Semantic Branch Versioning:** CodeBuild dynamically tags the Docker image push with `${CODEBUILD_BUILD_NUMBER}`, completely eliminating the fragile `latest` tag anti-pattern during ECS deployments.
+
 # **Step:-1 : Create a Sonar Server**
 
 1. To run Static Code Analysis we need a sonar server.

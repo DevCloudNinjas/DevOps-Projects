@@ -12,6 +12,12 @@
 ## Goal
 Deploy a Modular and Scalable Virtual Network Architecture with Amazon VPC.
 
+## 🛡️ 2026 DevSecOps Enhancements (What You Will Learn)
+This project architecture has been updated to model 2026 best practices for Cloud engineers. Pay special attention to:
+1. **Network Segmentation via Transit Gateway:** Learning to isolate internet-facing Bastion VPCs from completely private application VPCs.
+2. **S3 Block Public Access:** How we configured the S3 configurations to actively deny public ACLs and force-encrypt application configuration objects.
+3. **Session Manager (SSM) over SSH:** Why we utilize AWS Systems Manager (`AmazonSSMManagedInstanceCore` in the IAM role) to completely eliminate public port 22 exposure on modern private nodes.
+
 ## Pre-Requisites
 1. You must be having an [AWS account](https://aws.amazon.com/) to create infrastructure resources on AWS cloud.
 2. [Source Code](https://github.com/DevCloudNinjas/DevOps-Projects/blob/master/project-02-aws-vpc-architecture/html-web-app)

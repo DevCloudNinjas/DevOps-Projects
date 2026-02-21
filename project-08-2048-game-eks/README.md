@@ -22,13 +22,19 @@
 ***I set up an Amazon EKS cluster, configuring the required resources and network settings using AWS services. This step included authentication and permissions setup to interact with the EKS cluster.***
 
 ## ✅ Deployment: 
-***The containerized 2048 game was deployed on the EKS cluster using Kubernetes. I defined Kubernetes deployment and service YAML files to ensure the application's efficient management and availability.***
+***The containerized 2048 game was deployed on the EKS cluster using Kubernetes. I defined Kubernetes Deployment (which provides replication and self-healing) and Service YAML files to ensure the application's efficient management and availability.***
 
 ## ✅ Scaling and Management: 
-***I explored Kubernetes's scaling capabilities, adjusting the number of application replicas based on demand. This ensured the game could handle varying levels of user traffic seamlessly***
+***I explored Kubernetes's scaling capabilities by utilizing a Deployment rather than a raw Pod, adjusting the number of application replicas based on demand. This ensured the game could handle varying levels of user traffic seamlessly***
 
 ## ✅ Application Exposure: 
-***To make the 2048 game accessible to users, I created a Kubernetes service to expose it securely over the internet. Additionally, I could have implemented an Ingress controller for more advanced routing***
+***To make the 2048 game accessible to users, I created a Kubernetes service (Type: LoadBalancer) to expose it securely over the internet. Additionally, I could have implemented an Ingress controller for more advanced routing***
+
+## 🛡️ 2026 DevSecOps Enhancements (What You Will Learn)
+This repository uses modern, enterprise-ready Kubernetes manifests:
+1. **Deployments over Pods:** The legacy tutorial deployed a bare `Pod`. We upgraded this to a formal Kubernetes `Deployment` (`2048-deployment.yaml`). Never deploy naked Pods to production, as they cannot self-heal if the Node dies.
+2. **Resource Quotas:** The Deployment manifest defines exact CPU and Memory limits, preventing this application from starving other workloads on the EKS cluster.
+3. **Restricted Security Contexts:** The container is specifically instructed to drop all Linux capabilities (`ALL`) and prevent accidental privilege escalation.
 
 ### Step 1: Create an EKS cluster
 ![Alt text](image.png)
@@ -105,29 +111,40 @@ kubectl get nodes
 sudo yum install nano -y
 ```
 
-### Step 5: Create a new POD in EKS for the 2048 game
+### Step 5: Create a new Deployment in EKS for the 2048 game
 
-```
-apiVersion: v1
-kind: Pod
+```yaml
+# Note: Refer to the 2048-deployment.yaml in this repository for the full secure 
+# configuration including resource limits and dropped capabilities.
+apiVersion: apps/v1
+kind: Deployment
 metadata:
-   name: 2048-pod
-   labels:
-      app: 2048-ws
+  name: deployment-2048
+  labels:
+    app: 2048-ws
 spec:
-   containers:
-   - name: 2048-container
-     image: blackicebird/2048
-     ports:
-       - containerPort: 80
+  replicas: 1
+  selector:
+    matchLabels:
+      app: 2048-ws
+  template:
+    metadata:
+      labels:
+        app: 2048-ws
+    spec:
+      containers:
+      - name: 2048-container
+        image: blackicebird/2048
+        ports:
+          - containerPort: 80
 ```
 
-```
-# apply the config file to create the pod
-kubectl apply -f 2048-pod.yaml
-#pod/2048-pod created
+```bash
+# apply the config file to create the deployment
+kubectl apply -f 2048-deployment.yaml
+# deployment.apps/deployment-2048 created
 
-# view the newly created pod
+# view the newly created pods
 kubectl get pods
 ```
 

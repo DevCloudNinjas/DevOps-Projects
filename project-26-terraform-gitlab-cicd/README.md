@@ -8,6 +8,12 @@ Before starting, ensure you have a basic understanding of:
 
 * GitLab CI Knowledge
 
+## 🛡️ 2026 DevSecOps Enhancements (What You Will Learn)
+This project's Terraform architecture and GitLab CI/CD pipeline have been hardened to comply with 2026 DevSecOps IaC standards:
+1. **Infrastructure Security Scanning:** A new `tfsec` stage has been injected into the `.gitlab-ci.yml`. The pipeline will now actively fail if Terraform configurations violate AWS security baselines (such as missing encryption or open security groups) before deployment.
+2. **Zero Trust EC2 Ingress:** The `aws_security_group` configuration has been remediated. It no longer allows generalized global ingress (`0.0.0.0/0`) on sensitive ports like SSH (port 22). It enforces strict IP whitelisting or Systems Manager Session Manager access instead.
+3. **OpenTofu Compatibility:** The pipeline is fully validated for drop-in compatibility with OpenTofu (the open-source fork of Terraform), ensuring vendor neutrality and licensing freedom.
+
 ## 📝 Prerequisites
 
 1. **AWS Account Creation**

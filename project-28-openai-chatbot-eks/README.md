@@ -30,6 +30,11 @@ ChatBOT is an AI-powered conversational agent trained on extensive human convers
 
 By implementing DevSecOps practices and leveraging modern technologies like Kubernetes, Docker, and Jenkins, we’re ensuring the secure, scalable, and efficient deployment of ChatBOT, enhancing user engagement and satisfaction.
 
+## 🛡️ 2026 DevSecOps Enhancements (What You Will Learn)
+This repository's `Jenkinsfile` and Terraform architectures have been heavily refactored from legacy deployment scripts into a hardened DevSecOps pipeline:
+1. **Semantic Branch Versioning & Ephemeral Workloads:** We eradicated the dangerous `latest` Docker tag anti-pattern. Instead of repeatedly pushing over the `latest` tag (which breaks rollbacks and caching), the registry push and Kubernetes Deployments dynamically use `${BUILD_NUMBER}` to ensure immutable, traceable rollouts.
+2. **Standardized IaC Provisioning:** Previously, this project relied on implicit, undocumented AWS CLI bash scripts to spin up the EKS cluster. During the Sprint 2 infrastructure pass, this was formalized into declarative Terraform code, providing an auditable and reproducible cluster state.
+
 # **STEPS:**
 
 **Step:1 :- Create Jenkins Server.**

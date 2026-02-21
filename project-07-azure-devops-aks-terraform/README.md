@@ -14,6 +14,12 @@ In this tutorial/lab, you will learn:
 - Test your deployed Azure resources using automated testing
 - Reviewing monitoring and alerting using Application & Container Insights
 
+## 🛡️ 2026 DevSecOps Enhancements (What You Will Learn)
+This repository has been upgraded to model 2026 Cloud Security protocols. While progressing through the labs, note the following architectural improvements:
+1. **Unprivileged AKS Deployments:** Our Kubernetes manifests no longer run applications as `root`. We actively drop all unnecessary kernel capabilities to restrict blast radius during a potential container breakout.
+2. **Terraform Cloud Backends:** Legacy local state files or basic storage accounts have been migrated to utilize secure, encrypted, and locked remote Terraform backends to prevent state corruption across CI/CD runners. 
+3. **Automated Infrastructure Scanning:** The pipeline is pre-configured to easily adopt `tfsec`/`checkov` steps before applying the Azure infrastructure.
+
 This setup is based on a somewhat "real-life" scenario and setup mirrors an example of a real-world setup!
 
 ## Tutorial/labs format

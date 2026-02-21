@@ -12,6 +12,12 @@ We’ll delve into each aspect of this process, from setting up the infrastructu
 
 Join us as we unravel the intricacies of DevSecOps, combining the agility of modern development practices with the robustness of security and operational excellence. By the end of this journey, you’ll gain valuable insights into building resilient and secure cloud-native applications, empowering you to embrace DevSecOps principles in your own projects with confidence and success. Let’s dive in! 🌐🔐
 
+## 🛡️ 2026 DevSecOps Enhancements (What You Will Learn)
+This repository's `Jenkinsfile` and Kubernetes deployment strategy have been heavily refactored from standard CI/CD scripts into a hardened DevSecOps pipeline:
+1. **Zero-Trust GitOps Deployment:** By leveraging ArgoCD, the EKS cluster no longer requires inbound credentials from Jenkins. Jenkins merely builds and pushes the image (and updates the manifest branch), while ArgoCD securely pulls the state from inside the cluster, adhering to Zero-Trust boundaries.
+2. **Automated Vulnerability Scanning:** A mandatory Trivy Image Scan gate blocks the Jenkins pipeline from pushing to DockerHub if `CRITICAL` or `HIGH` vulnerabilities are detected in the Reddit application container.
+3. **Semantic Branch Versioning & Ephemeral Workloads:** We eradicated the `latest` Docker tag anti-pattern. The registry push and ArgoCD Syncs dynamically use the Jenkins `${BUILD_NUMBER}` to ensure immutable, traceable rollouts.
+
 ---
 
 ## 🤝 Why ArgoCD and AWS EKS?

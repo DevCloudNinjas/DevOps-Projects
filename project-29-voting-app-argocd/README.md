@@ -36,6 +36,11 @@ PostgreSQL Database (PostgreSQL): Stores the final vote count.
 
 The user votes on the frontend, the vote is processed and stored in Redis, then the worker updates the final count in PostgreSQL, and the results are shown on a results page. All components run in separate Docker containers for scalability and isolation.
 
+## 🛡️ 2026 DevSecOps Enhancements (What You Will Learn)
+This repository's Azure DevOps CI pipeline and Kubernetes deployments have been modernized to align with 2026 DevSecOps container standards:
+1. **Deprecation of `docker-compose` for Production:** While `docker-compose` remains in the tutorial for local testing, the pedagogical focus now explicitly warns that it is not suitable for production. We enforce the migration to Kubernetes (AKS) via ArgoCD for resilient, scalable container orchestration.
+2. **Semantic Image Versioning:** The CI pipeline (Step 5) has been refactored to ban `latest` tags. Azure DevOps now dynamically tags Docker images with `$(Build.BuildId)`, ensuring immutable, traceable rollouts through the Azure Container Registry (ACR).
+
 Lets Begin…
 
 ## **1\. Clone and deploy the App locally using docker-compose**

@@ -22,6 +22,10 @@ In addition to creating an example pipeline, we'll also add enhanced capabilitie
 
 * Demonstrating how we can scale with multiple deployments
 
+## 🛡️ 2026 DevSecOps Enhancements (What You Will Learn)
+This repository's Terraform modules have been hardened to comply with 2026 Cloud Security architectural standards:
+1. **Zero Trust Integration:** The `servicebus.tf` no longer deploys the Azure Service Bus namespace with global internet exposure.
+2. **Strict Ingress Control:** The configuration explicitly sets `public_network_access_enabled = false` (or explicitly restricts it to trusted Azure boundaries) and sets the `default_action` to `Deny` payloads lacking explicit authorization.
 
 > *If you'd like to skip straight to the download of the example pipeline and Terraform code, it can be found on* [*GitHub*](https://github.com/devcloudninjas/DevOps-Projects/tree/master/project-20-azure-terraform-pipeline/terraform)*.*
 

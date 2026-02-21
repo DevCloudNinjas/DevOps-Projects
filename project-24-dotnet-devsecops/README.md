@@ -10,6 +10,11 @@ We will be deploying a .NET-based application. This is an everyday use case scen
 
 This project shows the detailed metric i.e. CPU Performance of our instance where this project is launched.
 
+## 🛡️ 2026 DevSecOps Enhancements (What You Will Learn)
+This repository's CI/CD workflows and Docker configurations were significantly hardened to comply with 2026 DevSecOps standards:
+1. **GitHub Actions Hardening:** The `.github/workflows/ci-build.yaml` has been upgraded to replace deprecated, End-of-Life Node.js 12 actions (e.g., `actions/checkout@v2` -> `v4`), thwarting known remote code execution vulnerabilities in legacy runners.
+2. **Shift-Left Container Security:** The build pipeline incorporates a strict Trivy scan. It automatically interrogates the `.NET` Docker image for CVEs, actively rejecting any build exhibiting `CRITICAL` or `HIGH` severity vulnerabilities before it ever reaches the repository or Kubernetes.
+
 ## **Steps:-**
 
 **Step 1** — Create an Ubuntu T2 Large Instance with 30GB storage

@@ -41,6 +41,10 @@ if the docker build fails when the whole pipeline will become a failure and Jenk
 
 13. After merging the feature branch into the main branch, ArgoCD will pull the changes and deploy the application into Kubernetes.
 
+## 🛡️ 2026 DevSecOps Enhancements (What You Will Learn)
+This repository represents a fantastic foundational DevSecOps pipeline utilizing Jenkins, SonarQube, Trivy, and HashiCorp Vault. In a 2026 context, we emphasize the **Dynamic Secrets** capability of Vault. 
+Instead of Vault merely acting as a static Key-Value store to inject AWS credentials into the Jenkins pipeline (which could still be dumped if the Jenkins runner is compromised), modern implementations utilize Vault's AWS Secrets Engine to generate *ephemeral, short-lived, dynamic STS tokens* per pipeline run that automatically expire, eliminating the risk of long-lived credential theft.
+
 ### PreRequisites
 1. JDK 
 1. Git 

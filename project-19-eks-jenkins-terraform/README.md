@@ -10,6 +10,12 @@ Are you looking to streamline your application delivery process and automate you
 
 We'll start with the basics and gradually dive deeper into the technical details, so you'll find this guide helpful whether you're a beginner or an experienced DevOps engineer. By the end of this article, you'll have a fully functional EKS cluster and a simple containerized application up and running, with a CI/CD pipeline that automates the entire process from code to production.
 
+## 🛡️ 2026 DevSecOps Enhancements (What You Will Learn)
+This repository's `Jenkinsfile` and `deployment.yaml` have been rigorously hardened to comply with 2026 Supply Chain Security protocols:
+1. **Supply Chain Security:** The legacy pipeline utilized an extremely dangerous anti-pattern: checking out a third-party Git repository (`github.com/vishal2505/...`) to execute untrusted code. Our `Jenkinsfile` has been corrected to use the secure, context-aware `checkout scm` declarative method.
+2. **Container Provenance:** The `deployment.yaml` no longer pulls the ambiguous and vulnerable `latest` Nginx tag. We have pinned it to a secure, Alpine-based version (`nginx:1.25.3-alpine`).
+3. **Cluster Protection:** The Nginx deployment is now sandboxed using robust CPU and Memory `resources` constraints and drops all extended Kernel privileges via `securityContext`.
+
 ### Let's get started and explore the world of EKS, CI/CD, and automation
 
 ### **What we'll build**
