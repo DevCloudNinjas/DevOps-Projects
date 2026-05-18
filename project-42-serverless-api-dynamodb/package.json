@@ -1,0 +1,10 @@
+{
+  "name": "terraform-serverless-rest-api-dynamodb",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Shared Node dependencies for the serverless API DynamoDB examples.",
+  "license": "MIT",
+  "dependencies": {
+    "winston": "^3.10.0"
+  }
+}

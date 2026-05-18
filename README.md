@@ -1,6 +1,8 @@
-# DevOps & Cloud Projects — Hands-On Learning
+# DevOps & Cloud Portfolio Lab
 
-Real-world projects for aspiring DevOps engineers, from beginner to advanced. 49 projects, 15 learning tracks, and curated resources — all in one place.
+A production-minded DevOps portfolio lab with 49 hands-on projects across Terraform, AWS, Azure, Kubernetes, CI/CD, DevSecOps, monitoring, serverless, and cloud-native application delivery.
+
+This repository is designed to prove practical engineering judgment: infrastructure as code, secure defaults, repeatable validation, cost-aware cloud labs, documented runbooks, and portfolio-ready flagship case studies.
 
 [![Forks][forks-shield]][forks-url] [![Stargazers][stars-shield]][stars-url]
 
@@ -11,11 +13,56 @@ Real-world projects for aspiring DevOps engineers, from beginner to advanced. 49
 
 ---
 
+## Start Here
+
+If you are reviewing this repo for hiring, collaboration, or learning, start with the flagship projects below. They are the highest-signal examples and show the repository's strongest DevOps patterns.
+
+| Flagship | What It Demonstrates | Best For |
+|---|---|---|
+| [OpenAI Chatbot UI on EKS](./project-28-openai-chatbot-eks) | AI app containerization, EKS delivery, Terraform, Jenkins, security hardening | DevSecOps + platform delivery |
+| [Django SaaS E-Commerce](./project-47-django-saas-ecommerce) | Multi-tenant Django app, Docker, health checks, secure env handling | Application platform engineering |
+| [Terraform AWS EKS](./project-48-terraform-aws-eks) | EKS provisioning, Kubernetes app deployment, secrets templating | Infrastructure as code |
+| [Cloud Native Monitoring App](./project-31-cloud-native-monitoring) | Python service, Docker, monitoring workflow, local validation | Observability fundamentals |
+| [Online Boutique Microservices](./project-41-online-boutique-microservices) | Kubernetes microservices, local cluster manifests, service topology | Microservices operations |
+
+## Portfolio Story
+
+This repo started as a broad DevOps learning collection and has been hardened into a structured portfolio lab. The latest modernization pass added:
+
+- A machine-readable catalog for all 49 projects through `project.yaml` files.
+- Root-level quality commands through `make quality`, `make list-projects`, and `make validate-project`.
+- CI for changed-project validation and local quality gates.
+- Updated Docker, GitHub Actions, Kubernetes, and Terraform baselines where safe.
+- Security baselines for secrets, Dockerfiles, Terraform, Kubernetes, and CI/CD.
+- Flagship runbooks for the strongest showcase projects.
+
+## Architecture Map
+
+```mermaid
+flowchart LR
+    reviewer["Reviewer / Hiring Manager"] --> readme["Root README"]
+    readme --> flagship["5 Flagship Case Studies"]
+    readme --> catalog["49 Project Catalog"]
+    readme --> docs["Docs Site"]
+
+    flagship --> app["Apps: Django, Node, AI Chatbot"]
+    flagship --> infra["IaC: Terraform, EKS, ECS, VPC"]
+    flagship --> delivery["Delivery: GitHub Actions, Jenkins, ArgoCD"]
+    flagship --> security["Security: Trivy, SAST, Secret Hygiene"]
+    flagship --> ops["Ops: Monitoring, Runbooks, Quality Gates"]
+
+    catalog --> metadata["project.yaml Metadata"]
+    docs --> baselines["Reusable Security Baselines"]
+    docs --> runbooks["Portfolio Runbooks"]
+```
+
 ## Quick Start
 
 1. Clone the repo: `git clone https://github.com/DevCloudNinjas/DevOps-Projects.git`
-2. Pick a project from the index below based on your skill level and interests
-3. Follow the README inside each project folder
+2. Install the local tooling: `python3 -m pip install -r tools/requirements.txt`
+3. List projects: `make list-projects`
+4. Validate the repo: `make quality`
+5. Open a flagship project and follow its README/runbook
 
 ## Local Quality Gate
 

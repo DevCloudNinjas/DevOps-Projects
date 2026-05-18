@@ -13,6 +13,8 @@ nav:
       - IaC and Kubernetes: iac-kubernetes-solid-runbook.md
   - Flagship Docs:
       - Overview: flagship/index.md
+  - Marketing:
+      - Overview: marketing/index.md
   - Security Baselines:
       - Overview: security-baselines/index.md
       - Kubernetes: security-baselines/kubernetes.md
