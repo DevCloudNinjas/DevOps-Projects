@@ -1,0 +1,15 @@
+{
+  "name": "supply-chain-security-lab",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Tiny app for container supply-chain security exercises.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "lint": "node --check server.js"
+  },
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}
+

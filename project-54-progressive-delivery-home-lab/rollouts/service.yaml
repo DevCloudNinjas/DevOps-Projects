@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: demo-rollout
+  namespace: progressive-delivery
+spec:
+  selector:
+    app: demo-rollout
+  ports:
+    - name: http
+      port: 80
+      targetPort: 80
+

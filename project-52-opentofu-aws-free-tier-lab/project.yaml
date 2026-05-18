@@ -1,0 +1,25 @@
+schema_version: 1
+project:
+  number: 52
+  slug: opentofu-aws-free-tier-lab
+  name: OpenTofu AWS Free-Tier Lab
+classification: learning
+status: cloud_lab
+deployability: iac_ready
+stack:
+- OpenTofu
+- Terraform
+- AWS
+- EC2
+- VPC
+cloud:
+- aws
+iac:
+- terraform
+ci_cd: []
+cost_risk: medium
+security_posture: baseline
+validation:
+  command: test -f main.tf -a -f versions.tf
+notes: Student AWS free-tier IaC lab with explicit destroy and cost warnings.
+

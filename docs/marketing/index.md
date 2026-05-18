@@ -6,7 +6,7 @@ Use this page to turn the repository into a visible DevOps portfolio instead of 
 
 Short headline:
 
-> Cloud and DevOps portfolio lab with 49 hands-on projects across Terraform, AWS, Azure, Kubernetes, CI/CD, DevSecOps, monitoring, and cloud-native delivery.
+> Cloud and DevOps portfolio lab with 54 hands-on projects across Terraform, AWS, Azure, Kubernetes, CI/CD, DevSecOps, monitoring, and cloud-native delivery.
 
 Longer version:
 
@@ -26,7 +26,7 @@ Longer version:
 ```text
 I just finished modernizing my DevOps and Cloud Engineering portfolio lab.
 
-It includes 49 hands-on projects covering:
+It includes 54 hands-on projects covering:
 
 - Terraform and AWS infrastructure
 - Azure DevOps and AKS workflows
@@ -34,6 +34,7 @@ It includes 49 hands-on projects covering:
 - CI/CD with GitHub Actions, Jenkins, GitLab, and ArgoCD
 - DevSecOps with Trivy, SAST, secret hygiene, and security baselines
 - Monitoring, runbooks, and local quality gates
+- New student-friendly labs for GitOps, OpenTelemetry, OpenTofu, supply-chain security, and progressive delivery
 
 The part I am most proud of is not just the number of projects. It is the engineering cleanup around them: project metadata, validation tooling, docs, security baselines, updated runtimes, and repeatable quality checks.
 
@@ -108,7 +109,7 @@ Repo: https://github.com/DevCloudNinjas/DevOps-Projects/tree/master/project-47-d
 ## LinkedIn Post 5: Lessons Learned
 
 ```text
-One thing I learned while modernizing a 49-project DevOps portfolio:
+One thing I learned while modernizing a 54-project DevOps portfolio:
 
 The hard part is not adding more tools. The hard part is making the repo trustworthy.
 
@@ -150,4 +151,3 @@ What I learned:
 
 What I would improve next:
 ```
-

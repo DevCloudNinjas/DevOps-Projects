@@ -1,0 +1,36 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
+metadata:
+  name: demo-rollout
+  namespace: progressive-delivery
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: demo-rollout
+  template:
+    metadata:
+      labels:
+        app: demo-rollout
+    spec:
+      containers:
+        - name: app
+          image: nginxdemos/hello:0.4
+          ports:
+            - containerPort: 80
+          resources:
+            requests:
+              cpu: 25m
+              memory: 32Mi
+            limits:
+              cpu: 100m
+              memory: 128Mi
+  strategy:
+    canary:
+      steps:
+        - setWeight: 25
+        - pause: { duration: 30s }
+        - setWeight: 50
+        - pause: { duration: 30s }
+        - setWeight: 100
+

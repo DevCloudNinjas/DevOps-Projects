@@ -1,0 +1,23 @@
+schema_version: 1
+project:
+  number: 50
+  slug: argocd-gitops-home-lab
+  name: ArgoCD GitOps Home Lab
+classification: learning
+status: local_lab
+deployability: kubernetes_ready
+stack:
+- Kubernetes
+- ArgoCD
+- GitOps
+- Kind
+cloud: []
+iac: []
+ci_cd:
+- argocd
+cost_risk: low
+security_posture: baseline
+validation:
+  command: kubectl apply --dry-run=client -f k8s/
+notes: Local GitOps lab designed for Kind or Minikube with no cloud cost.
+

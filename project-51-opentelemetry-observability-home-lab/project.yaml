@@ -1,0 +1,25 @@
+schema_version: 1
+project:
+  number: 51
+  slug: opentelemetry-observability-home-lab
+  name: OpenTelemetry Observability Home Lab
+classification: learning
+status: local_lab
+deployability: container_ready
+stack:
+- Python
+- Flask
+- OpenTelemetry
+- Grafana
+- Prometheus
+- Tempo
+- Docker Compose
+cloud: []
+iac: []
+ci_cd: []
+cost_risk: low
+security_posture: baseline
+validation:
+  command: docker compose config
+notes: Local observability lab for traces, metrics, and logs using Docker Compose.
+

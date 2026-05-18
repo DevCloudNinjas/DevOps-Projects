@@ -1,0 +1,24 @@
+schema_version: 1
+project:
+  number: 53
+  slug: supply-chain-security-lab
+  name: Supply Chain Security Lab
+classification: learning
+status: ci_lab
+deployability: ci_cd_ready
+stack:
+- Docker
+- Trivy
+- SBOM
+- Cosign
+- GitHub Actions
+cloud: []
+iac: []
+ci_cd:
+- github-actions
+cost_risk: low
+security_posture: devsecops
+validation:
+  command: node --check app/server.js
+notes: Local and CI-based container supply-chain security lab for students.
+

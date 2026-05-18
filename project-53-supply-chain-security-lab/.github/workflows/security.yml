@@ -1,0 +1,35 @@
+name: Supply Chain Security Lab
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - "project-53-supply-chain-security-lab/**"
+
+permissions:
+  contents: read
+  security-events: write
+
+jobs:
+  image-security:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build image
+        run: docker build -t supply-chain-demo:${{ github.sha }} project-53-supply-chain-security-lab/app
+
+      - name: Scan image with Trivy
+        uses: aquasecurity/trivy-action@0.32.0
+        with:
+          image-ref: supply-chain-demo:${{ github.sha }}
+          format: table
+          severity: HIGH,CRITICAL
+          exit-code: "1"
+
+      - name: Generate SBOM
+        uses: anchore/sbom-action@v0
+        with:
+          image: supply-chain-demo:${{ github.sha }}
+          format: spdx-json
+

@@ -1,0 +1,22 @@
+schema_version: 1
+project:
+  number: 54
+  slug: progressive-delivery-home-lab
+  name: Progressive Delivery Home Lab
+classification: learning
+status: local_lab
+deployability: kubernetes_ready
+stack:
+- Kubernetes
+- Argo Rollouts
+- Progressive Delivery
+- Canary Deployment
+cloud: []
+iac: []
+ci_cd: []
+cost_risk: low
+security_posture: baseline
+validation:
+  command: kubectl apply --dry-run=client -f rollouts/
+notes: Local Kind or Minikube lab for canary releases and rollback.
+

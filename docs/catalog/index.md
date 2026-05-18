@@ -5,6 +5,7 @@ The root [README](https://github.com/DevCloudNinjas/DevOps-Projects#readme) is t
 Use this docs section for cross-repository navigation:
 
 - Start with the root project index when choosing a lab.
+- Use projects 50-54 for modern, student-friendly 2026 home labs: GitOps, OpenTelemetry, OpenTofu, supply-chain security, and progressive delivery.
 - Use [flagship docs](../flagship/index.md) for mature examples that combine multiple DevOps practices.
 - Use [runbooks](../runbooks/index.md) before making broad infrastructure or Kubernetes changes.
 - Use [security baselines](../security-baselines/index.md) as review checklists before opening a pull request.

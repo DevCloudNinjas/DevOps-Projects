@@ -1,6 +1,6 @@
 # DevOps & Cloud Portfolio Lab
 
-A production-minded DevOps portfolio lab with 49 hands-on projects across Terraform, AWS, Azure, Kubernetes, CI/CD, DevSecOps, monitoring, serverless, and cloud-native application delivery.
+A production-minded DevOps portfolio lab with 54 hands-on projects across Terraform, AWS, Azure, Kubernetes, CI/CD, DevSecOps, monitoring, serverless, and cloud-native application delivery.
 
 This repository is designed to prove practical engineering judgment: infrastructure as code, secure defaults, repeatable validation, cost-aware cloud labs, documented runbooks, and portfolio-ready flagship case studies.
 
@@ -29,7 +29,7 @@ If you are reviewing this repo for hiring, collaboration, or learning, start wit
 
 This repo started as a broad DevOps learning collection and has been hardened into a structured portfolio lab. The latest modernization pass added:
 
-- A machine-readable catalog for all 49 projects through `project.yaml` files.
+- A machine-readable catalog for all 54 projects through `project.yaml` files.
 - Root-level quality commands through `make quality`, `make list-projects`, and `make validate-project`.
 - CI for changed-project validation and local quality gates.
 - Updated Docker, GitHub Actions, Kubernetes, and Terraform baselines where safe.
@@ -42,7 +42,7 @@ This repo started as a broad DevOps learning collection and has been hardened in
 flowchart LR
     reviewer["Reviewer / Hiring Manager"] --> readme["Root README"]
     readme --> flagship["5 Flagship Case Studies"]
-    readme --> catalog["49 Project Catalog"]
+    readme --> catalog["54 Project Catalog"]
     readme --> docs["Docs Site"]
 
     flagship --> app["Apps: Django, Node, AI Chatbot"]
@@ -139,6 +139,7 @@ metadata issues. CI runs the same commands in `.github/workflows/local-quality-g
 | 47 | [Django SaaS E-Commerce](./project-47-django-saas-ecommerce) | 🟡 Intermediate | 🔬 Lab | Django, Docker, Multi-tenant |
 | 48 | [Terraform AWS EKS](./project-48-terraform-aws-eks) | 🟡 Intermediate | 🔬 Lab | Terraform, EKS, AWS |
 | 49 | [Text Encryption (Cybersecurity)](./project-49-text-encryption-cybersecurity) | 🟢 Beginner | 🔬 Lab | Python, Cryptography |
+| 52 | [OpenTofu AWS Free-Tier Lab](./project-52-opentofu-aws-free-tier-lab) | 🟡 Intermediate | 🔬 Lab | OpenTofu, Terraform, AWS, VPC, EC2 |
 
 ### Azure Projects
 
@@ -156,6 +157,10 @@ metadata issues. CI runs the same commands in `.github/workflows/local-quality-g
 |---|---------|-----------|------|-----------|
 | 03 | [Linux Fundamentals for DevOps](./project-03-linux-fundamentals) | 🟢 Beginner | 📖 Guide | Linux, Shell |
 | 14 | [CI/CD with GitHub Actions for Android](./project-14-github-actions-android) | 🟡 Intermediate | 🔬 Lab | GitHub Actions, Android, Gradle |
+| 50 | [ArgoCD GitOps Home Lab](./project-50-argocd-gitops-home-lab) | 🟡 Intermediate | 🔬 Lab | ArgoCD, GitOps, Kubernetes, Kind |
+| 51 | [OpenTelemetry Observability Home Lab](./project-51-opentelemetry-observability-home-lab) | 🟡 Intermediate | 🔬 Lab | OpenTelemetry, Grafana, Prometheus, Tempo, Docker Compose |
+| 53 | [Supply Chain Security Lab](./project-53-supply-chain-security-lab) | 🟡 Intermediate | 🔬 Lab | Docker, Trivy, SBOM, Cosign, GitHub Actions |
+| 54 | [Progressive Delivery Home Lab](./project-54-progressive-delivery-home-lab) | 🟡 Intermediate | 🔬 Lab | Argo Rollouts, Kubernetes, Canary Deployment |
 
 ---
 
@@ -203,7 +208,7 @@ See [resources/](./resources/) for details.
 - [10 — .NET CI/CD with Azure DevOps](./project-10-dotnet-azure-devops)
 - [49 — Text Encryption (Cybersecurity)](./project-49-text-encryption-cybersecurity)
 
-### 🟡 Intermediate (28 projects)
+### 🟡 Intermediate (33 projects)
 - [02 — Scalable VPC Architecture](./project-02-aws-vpc-architecture)
 - [05 — Docker + Jenkins + K8s](./project-05-docker-jenkins-k8s)
 - [08 — 2048 Game on EKS](./project-08-2048-game-eks)
@@ -232,6 +237,11 @@ See [resources/](./resources/) for details.
 - [46 — EKS Cluster Terraform Advanced](./project-46-eks-cluster-terraform-advanced)
 - [47 — Django SaaS E-Commerce](./project-47-django-saas-ecommerce)
 - [48 — Terraform AWS EKS](./project-48-terraform-aws-eks)
+- [50 — ArgoCD GitOps Home Lab](./project-50-argocd-gitops-home-lab)
+- [51 — OpenTelemetry Observability Home Lab](./project-51-opentelemetry-observability-home-lab)
+- [52 — OpenTofu AWS Free-Tier Lab](./project-52-opentofu-aws-free-tier-lab)
+- [53 — Supply Chain Security Lab](./project-53-supply-chain-security-lab)
+- [54 — Progressive Delivery Home Lab](./project-54-progressive-delivery-home-lab)
 
 ### 🔴 Advanced (17 projects)
 - [01 — Java AWS 3-Tier](./project-01-java-aws-3tier)
@@ -259,19 +269,20 @@ See [resources/](./resources/) for details.
 | Technology | Projects |
 |-----------|----------|
 | Jenkins | 01, 05, 06, 09, 16, 18, 19, 25, 28, 30, 32, 35, 44, 45 |
-| Terraform | 06, 07, 11, 12, 19, 20, 22, 26, 28, 34, 35, 37, 38, 39, 42, 43, 46, 48 |
-| Kubernetes / EKS / AKS | 05, 06, 07, 08, 12, 13, 15, 16, 17, 18, 19, 24, 25, 27, 28, 29, 30, 31, 32, 33, 35, 37, 40, 41, 45, 46, 48 |
-| Docker | 04, 05, 06, 09, 13, 23, 24, 25, 26, 27, 28, 30, 31, 32, 34, 35, 38, 44, 47 |
-| ArgoCD | 16, 18, 27, 29, 45 |
+| Terraform / OpenTofu | 06, 07, 11, 12, 19, 20, 22, 26, 28, 34, 35, 37, 38, 39, 42, 43, 46, 48, 52 |
+| Kubernetes / EKS / AKS | 05, 06, 07, 08, 12, 13, 15, 16, 17, 18, 19, 24, 25, 27, 28, 29, 30, 31, 32, 33, 35, 37, 40, 41, 45, 46, 48, 50, 54 |
+| Docker | 04, 05, 06, 09, 13, 23, 24, 25, 26, 27, 28, 30, 31, 32, 34, 35, 38, 44, 47, 51, 53 |
+| ArgoCD / Argo Rollouts | 16, 18, 27, 29, 45, 50, 54 |
 | SonarQube / SonarCloud | 06, 09, 13, 18, 24, 28, 30, 35, 44, 45 |
-| GitHub Actions | 14, 22, 33, 34, 39 |
+| GitHub Actions | 14, 22, 33, 34, 39, 53 |
 | GitLab CI/CD | 26 |
 | Azure DevOps | 07, 10, 17, 20, 29 |
 | AWS CodePipeline | 21 |
 | Helm | 06, 15, 18 |
 | Ansible | 06, 25 |
-| Prometheus / Grafana | 06, 09, 45 |
-| Trivy | 09, 28, 32, 40, 44 |
+| Prometheus / Grafana | 06, 09, 45, 51 |
+| OpenTelemetry | 51 |
+| Trivy / Supply Chain Security | 09, 28, 32, 40, 44, 53 |
 | HashiCorp Vault | 45 |
 | Snyk | 35 |
 | OWASP ZAP | 35 |
@@ -283,7 +294,7 @@ See [resources/](./resources/) for details.
 
 ```
 DevOps-Projects/
-├── project-01 through project-49/    # 49 DevOps projects
+├── project-01 through project-54/    # 54 DevOps projects
 ├── learning/                          # 15 learning tracks & study guides
 │   ├── kubernetes-101/
 │   ├── kubernetes-cka-prep/

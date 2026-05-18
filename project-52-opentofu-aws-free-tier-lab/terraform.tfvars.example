@@ -1,0 +1,5 @@
+aws_region       = "us-east-1"
+project_name     = "opentofu-free-tier-lab"
+create_instance  = true
+allowed_ssh_cidr = "YOUR_PUBLIC_IP/32"
+

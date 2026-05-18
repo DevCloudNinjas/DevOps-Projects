@@ -61,6 +61,11 @@ Classification values are `learning` or `deployable`. Cost risk is `low`, `mediu
 | 47 | [Django Multitenant SaaS Ecommerce](project-47-django-saas-ecommerce/project.yaml) | deployable | local_validated | container_ready | aws | high | hardened | `make test` |
 | 48 | [Terraform AWS EKS Provisioning](project-48-terraform-aws-eks/project.yaml) | deployable | cloud_lab | iac_ready | aws | high | hardened | `terraform fmt -check` |
 | 49 | [Text Encryption Cybersecurity Demo](project-49-text-encryption-cybersecurity/project.yaml) | learning | local_demo | local_only | none | low | baseline | `node --check main.js` |
+| 50 | [ArgoCD GitOps Home Lab](project-50-argocd-gitops-home-lab/project.yaml) | learning | local_lab | kubernetes_ready | none | low | baseline | `kubectl apply --dry-run=client -f k8s/` |
+| 51 | [OpenTelemetry Observability Home Lab](project-51-opentelemetry-observability-home-lab/project.yaml) | learning | local_lab | container_ready | none | low | baseline | `docker compose config` |
+| 52 | [OpenTofu AWS Free-Tier Lab](project-52-opentofu-aws-free-tier-lab/project.yaml) | learning | cloud_lab | iac_ready | aws | medium | baseline | `test -f main.tf -a -f versions.tf` |
+| 53 | [Supply Chain Security Lab](project-53-supply-chain-security-lab/project.yaml) | learning | ci_lab | ci_cd_ready | none | low | devsecops | `node --check app/server.js` |
+| 54 | [Progressive Delivery Home Lab](project-54-progressive-delivery-home-lab/project.yaml) | learning | local_lab | kubernetes_ready | none | low | baseline | `kubectl apply --dry-run=client -f rollouts/` |
 
 ## Validation
 
