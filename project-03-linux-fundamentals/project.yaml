@@ -1,0 +1,19 @@
+schema_version: 1
+project:
+  number: 3
+  slug: linux-fundamentals
+  name: Linux Fundamentals for Cloud and DevOps
+classification: learning
+status: reference
+deployability: reference_only
+stack:
+- Linux
+- Shell
+cloud: []
+iac: []
+ci_cd: []
+cost_risk: low
+security_posture: baseline
+validation:
+  command: test -f README.md
+notes: Documentation-only learning assignment.

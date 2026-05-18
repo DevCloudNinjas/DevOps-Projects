@@ -2,7 +2,7 @@
 {{- $fullName := include "sampleapp.fullname" . -}}
 {{- $serviceName := include "sampleapp.name" . -}}
 {{- $servicePort := .Values.service.port -}}
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: {{ $fullName }}
@@ -30,7 +30,10 @@ spec:
       http:
         paths:
           - path: /
+            pathType: Prefix
             backend:
-              serviceName: {{ $serviceName }}
-              servicePort: {{ $servicePort }} 
+              service:
+                name: {{ $serviceName }}
+                port:
+                  number: {{ $servicePort }}
 {{- end }}

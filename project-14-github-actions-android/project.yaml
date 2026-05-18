@@ -1,0 +1,21 @@
+schema_version: 1
+project:
+  number: 14
+  slug: github-actions-android
+  name: Android CI/CD with GitHub Actions
+classification: deployable
+status: ci_lab
+deployability: ci_cd_ready
+stack:
+- Android
+- Gradle
+- GitHub Actions
+cloud: []
+iac: []
+ci_cd:
+- github-actions
+cost_risk: low
+security_posture: baseline
+validation:
+  command: ./android-demo-app/gradlew -p android-demo-app tasks
+notes: Android demo app with GitHub Actions CI/CD flow.

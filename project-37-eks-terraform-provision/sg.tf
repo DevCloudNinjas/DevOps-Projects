@@ -4,11 +4,11 @@ resource "aws_security_group" "allow_tls" {
   vpc_id      = aws_vpc.main.id
 
   ingress {
-    description = "TLS from VPC"
+    description = "SSH from admin CIDRs"
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
+    cidr_blocks = var.admin_cidr_blocks
   }
 
   egress {

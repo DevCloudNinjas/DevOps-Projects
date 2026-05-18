@@ -1,4 +1,4 @@
-FROM python:3.8-slim as release
+FROM python:3.11-slim-bookworm AS release
 
 WORKDIR /app
 

@@ -126,7 +126,7 @@ You will have to install them.
 
 Now that we have our app, we proceed to containerise it. Here goes the `Dockerfile` for this app.
 ```
-FROM node:17-alpine
+FROM node:24-alpine
 
 WORKDIR /usr/src/app
 
@@ -136,6 +136,7 @@ RUN npm install
 COPY . .
 
 EXPOSE 3001
+USER node
 CMD [ "node", "index.js" ]
 ```
 
@@ -198,7 +199,7 @@ app.listen(port, () => console.log(`Frontend app listening on port ${port}!`))
 
 This app is calling the REST api we created earlier using request package and displaying the data as a table. The api url is taken from a environment variable. The Dockerfile for this app is exactly the same from the middle tier but for the port. We are using the port 3000.
 ```
-FROM node:10-alpine
+FROM node:24-alpine
 
 WORKDIR /usr/src/app
 
@@ -207,7 +208,8 @@ COPY package*.json ./
 RUN npm install
 COPY . .
 
-EXPOSE 3001
+EXPOSE 3000
+USER node
 CMD [ "node", "index.js" ]
 ```
 
@@ -266,7 +268,7 @@ services:
       - network-frontend
 
   db:
-    image: postgres:11.2-alpine
+    image: postgres:16-alpine
     environment:
       POSTGRES_USER: demo_user
       POSTGRES_PASSWORD: demo_user
@@ -292,7 +294,7 @@ networks:
 Creating network "docker-frontend-backend-db_network-backend" with the default driver
 Creating network "docker-frontend-backend-db_network-frontend" with the default driver
 Building api
-Step 1/7 : FROM node:10-alpine
+Step 1/8 : FROM node:24-alpine
  ---> d7c77d094be1
 Step 2/7 : WORKDIR /usr/src/app
  ---> Using cache
@@ -309,14 +311,14 @@ Step 5/7 : COPY . .
 Step 6/7 : EXPOSE 3001
  ---> Using cache
  ---> c327df3d45a1
-Step 7/7 : CMD [ "node", "index.js" ]
+Step 8/8 : CMD [ "node", "index.js" ]
  ---> Using cache
  ---> 188ce85bbe45
 
 Successfully built 188ce85bbe45
 Successfully tagged docker-frontend-backend-db_api:latest
 Building webapp
-Step 1/7 : FROM node:17-alpine
+Step 1/8 : FROM node:24-alpine
  ---> d7c77d094be1
 Step 2/7 : WORKDIR /usr/src/app
  ---> Using cache
@@ -413,7 +415,7 @@ $ docker ps
 CONTAINER ID        IMAGE                               COMMAND                  CREATED             STATUS              PORTS                    NAMES
 adf24f72e32a        docker-frontend-backend-db_webapp   "node index.js"          25 hours ago        Up 7 minutes        0.0.0.0:3000->3000/tcp   docker-frontend-backend-db_webapp_1
 aa97936f829d        docker-frontend-backend-db_api      "node index.js"          25 hours ago        Up 7 minutes        3001/tcp                 docker-frontend-backend-db_api_1
-44d732a8f10d        postgres:11.2-alpine                "docker-entrypoint.s…"   25 hours ago        Up 7 minutes        5432/tcp                 docker-frontend-backend-db_db_1
+44d732a8f10d        postgres:16-alpine                  "docker-entrypoint.s…"   25 hours ago        Up 7 minutes        5432/tcp                 docker-frontend-backend-db_db_1
 ```
 
 ##  ⇥ Thanks for watching... !!! 

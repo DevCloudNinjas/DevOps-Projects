@@ -1,0 +1,25 @@
+schema_version: 1
+project:
+  number: 1
+  slug: java-aws-3tier
+  name: Java Application on AWS 3-Tier Architecture
+classification: deployable
+status: cloud_lab
+deployability: iac_ready
+stack:
+- Java
+- Spring Boot
+- Maven
+- Tomcat
+- Nginx
+- MySQL
+cloud:
+- aws
+iac:
+- terraform
+ci_cd: []
+cost_risk: high
+security_posture: baseline
+validation:
+  command: terraform -chdir=terraform fmt -check
+notes: Provisioning EC2/RDS/VPC resources can create ongoing AWS spend.

@@ -1,0 +1,27 @@
+schema_version: 1
+project:
+  number: 47
+  slug: django-saas-ecommerce
+  name: Django Multitenant SaaS Ecommerce
+classification: deployable
+status: local_validated
+deployability: container_ready
+stack:
+- Python
+- Django
+- Celery
+- Redis
+- PostgreSQL
+- Docker
+- Terraform
+- Kubernetes
+cloud:
+- aws
+iac:
+- terraform
+ci_cd: []
+cost_risk: high
+security_posture: hardened
+validation:
+  command: make test
+notes: Full Django SaaS app with compose, Kubernetes, tests, and AWS deployment assets.

@@ -1,0 +1,23 @@
+schema_version: 1
+project:
+  number: 31
+  slug: cloud-native-monitoring
+  name: Cloud Native Monitoring App
+classification: deployable
+status: local_validated
+deployability: container_ready
+stack:
+- Python
+- Flask
+- Docker
+- ECR
+- EKS
+cloud:
+- aws
+iac: []
+ci_cd: []
+cost_risk: medium
+security_posture: hardened
+validation:
+  command: make test
+notes: Flask monitoring app with Makefile and healthcheck tests.

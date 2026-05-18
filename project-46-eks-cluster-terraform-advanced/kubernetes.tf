@@ -22,9 +22,39 @@ resource "kubernetes_deployment" "project102" {
         }
       }
       spec {
+        security_context {
+          seccomp_profile {
+            type = "RuntimeDefault"
+          }
+        }
+
         container {
-          image = "nginx:1.7.8"
+          image = "nginx:1.27-alpine"
           name  = "project102"
+
+          port {
+            container_port = 80
+          }
+
+          liveness_probe {
+            http_get {
+              path = "/"
+              port = 80
+            }
+
+            initial_delay_seconds = 15
+            period_seconds        = 20
+          }
+
+          readiness_probe {
+            http_get {
+              path = "/"
+              port = 80
+            }
+
+            initial_delay_seconds = 5
+            period_seconds        = 10
+          }
 
           resources {
             limits = {
@@ -35,6 +65,10 @@ resource "kubernetes_deployment" "project102" {
               cpu    = "250m"
               memory = "50Mi"
             }
+          }
+
+          security_context {
+            allow_privilege_escalation = false
           }
         }
       }
@@ -49,7 +83,7 @@ resource "kubernetes_service" "project102" {
 
   spec {
     selector = {
-      test = "myproject102App"
+      test = "Myproject102App"
     }
     port {
       port        = 80

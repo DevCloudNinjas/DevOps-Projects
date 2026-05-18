@@ -1,0 +1,21 @@
+schema_version: 1
+project:
+  number: 2
+  slug: aws-vpc-architecture
+  name: Scalable AWS VPC Architecture
+classification: learning
+status: cloud_lab
+deployability: reference_only
+stack:
+- HTML
+- Linux scripts
+- VPC design
+cloud:
+- aws
+iac: []
+ci_cd: []
+cost_risk: medium
+security_posture: baseline
+validation:
+  command: test -f README.md
+notes: Architecture lab with sample policies and scripts.

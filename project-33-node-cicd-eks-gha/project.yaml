@@ -1,0 +1,25 @@
+schema_version: 1
+project:
+  number: 33
+  slug: node-cicd-eks-gha
+  name: Node CI/CD to EKS with GitHub Actions
+classification: deployable
+status: local_validated
+deployability: ci_cd_ready
+stack:
+- Node.js
+- Docker
+- Kubernetes
+- Kustomize
+- Terraform
+cloud:
+- aws
+iac:
+- terraform
+ci_cd:
+- github-actions
+cost_risk: high
+security_posture: hardened
+validation:
+  command: make test
+notes: Node app with tests, Makefile, Kustomize overlays, and EKS Terraform.

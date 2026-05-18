@@ -47,6 +47,8 @@ Modify the system prompt in `utils/index.ts`.
 
 ## Deploy
 
+For the full EKS/Jenkins portfolio walkthrough, including architecture, cost controls, security validation, and destroy steps, see [../docs/portfolio-runbook.md](../docs/portfolio-runbook.md).
+
 **Vercel**
 
 Host your own live version of Chatbot UI with Vercel.
@@ -92,11 +94,14 @@ Create a .env.local file in the root of the repo with your OpenAI API Key:
 
 ```bash
 OPENAI_API_KEY=YOUR_KEY
+ALLOW_SERVER_OPENAI_API_KEY=true
 ```
 
 > You can set `OPENAI_API_HOST` where access to the official OpenAI host is restricted or unavailable, allowing users to configure an alternative host for their specific needs.
 
 > Additionally, if you have multiple OpenAI Organizations, you can set `OPENAI_ORGANIZATION` to specify one.
+
+Use `.env.example` as a starting point for local or containerized configuration.
 
 **4. Run App**
 
@@ -112,13 +117,18 @@ You should be able to start chatting.
 
 When deploying the application, the following environment variables can be set:
 
-| Environment Variable  | Default value                  | Description                                             |
-| --------------------- | ------------------------------ | ------------------------------------------------------- |
-| OPENAI_API_KEY        |                                | The default API key used for authentication with OpenAI |
-| DEFAULT_MODEL         | `gpt-3.5-turbo`                | The default model to use on new conversations           |
-| DEFAULT_SYSTEM_PROMPT | [see here](utils/app/const.ts) | The defaut system prompt to use on new conversations    |
+| Environment Variable         | Default value                  | Description                                                                 |
+| ---------------------------- | ------------------------------ | --------------------------------------------------------------------------- |
+| OPENAI_API_KEY               |                                | Server-side OpenAI API key. Only used by API routes when explicitly allowed |
+| ALLOW_SERVER_OPENAI_API_KEY  | `false`                        | Set to `true` to allow API routes to fall back to `OPENAI_API_KEY`          |
+| OPENAI_API_HOST              | `https://api.openai.com`       | OpenAI-compatible API host                                                   |
+| OPENAI_ORGANIZATION          |                                | Optional OpenAI organization header                                          |
+| GOOGLE_API_KEY               |                                | Server-side Google Custom Search API key for Google search plugin fallback  |
+| GOOGLE_CSE_ID                |                                | Server-side Google Custom Search Engine ID fallback                          |
+| DEFAULT_MODEL                | `gpt-3.5-turbo`                | The default model to use on new conversations                                |
+| DEFAULT_SYSTEM_PROMPT        | [see here](utils/app/const.ts) | The default system prompt to use on new conversations                        |
 
-If you do not provide an OpenAI API key with `OPENAI_API_KEY`, users will have to provide their own key.
+By default, users must provide their own OpenAI API key in the app. To use `OPENAI_API_KEY` from the server environment, set `ALLOW_SERVER_OPENAI_API_KEY=true`.
 If you don't have an OpenAI API key, you can get one [here](https://platform.openai.com/account/api-keys).
 
 ## Contact

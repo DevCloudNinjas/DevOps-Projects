@@ -15,7 +15,7 @@ spec:
         kubernetes.io/hostname: test-worker-2
       containers:
       - name: redis
-        image: redis:alpine
+        image: redis:7.4-alpine
         ports:
         - containerPort: 6379
         readinessProbe:

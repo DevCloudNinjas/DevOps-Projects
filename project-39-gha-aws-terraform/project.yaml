@@ -1,0 +1,24 @@
+schema_version: 1
+project:
+  number: 39
+  slug: gha-aws-terraform
+  name: GitHub Actions with AWS and Terraform
+classification: deployable
+status: cloud_lab
+deployability: ci_cd_ready
+stack:
+- Node.js
+- Docker
+- Terraform
+- GitHub Actions
+cloud:
+- aws
+iac:
+- terraform
+ci_cd:
+- github-actions
+cost_risk: medium
+security_posture: baseline
+validation:
+  command: terraform fmt -check
+notes: GitHub Actions pipeline for AWS IaC and container deployment.

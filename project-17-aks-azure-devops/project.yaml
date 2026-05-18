@@ -1,0 +1,21 @@
+schema_version: 1
+project:
+  number: 17
+  slug: aks-azure-devops
+  name: Deploying an App to AKS with Azure DevOps
+classification: learning
+status: reference
+deployability: reference_only
+stack:
+- AKS
+- Azure DevOps
+cloud:
+- azure
+iac: []
+ci_cd:
+- azure-devops
+cost_risk: medium
+security_posture: baseline
+validation:
+  command: test -f README.md
+notes: Short AKS and Azure DevOps deployment guide.

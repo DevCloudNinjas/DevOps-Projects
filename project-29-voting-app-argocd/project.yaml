@@ -1,0 +1,23 @@
+schema_version: 1
+project:
+  number: 29
+  slug: voting-app-argocd
+  name: Three-Tier Voting App with Argo CD and Azure DevOps
+classification: learning
+status: reference
+deployability: reference_only
+stack:
+- Microservices
+- Argo CD
+- Azure DevOps
+cloud:
+- azure
+iac: []
+ci_cd:
+- azure-devops
+- argocd
+cost_risk: medium
+security_posture: baseline
+validation:
+  command: test -f README.md
+notes: README-focused microservice voting app delivery walkthrough.

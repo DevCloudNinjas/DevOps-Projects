@@ -1,0 +1,22 @@
+schema_version: 1
+project:
+  number: 11
+  slug: aws-2tier-terraform
+  name: Two-Tier AWS Infrastructure with Terraform
+classification: deployable
+status: cloud_lab
+deployability: iac_ready
+stack:
+- Terraform
+- EC2
+- VPC
+cloud:
+- aws
+iac:
+- terraform
+ci_cd: []
+cost_risk: medium
+security_posture: baseline
+validation:
+  command: terraform fmt -check
+notes: Terraform two-tier AWS infrastructure sample.

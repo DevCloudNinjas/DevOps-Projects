@@ -25,7 +25,7 @@ from .models import PaymentHistory, Price, Product
 
 
 CACHE_TTL = getattr(settings, 'CACHE_TTL', DEFAULT_TIMEOUT)
-stripe.api_key = 'sk_test_51LXmPhI1Paqp8Qt3Tca8GhuEe1FI2bKbkscog7ORAiGRL00QsAKVgMaSwQ8RXUnM4Y3GwVC2BHLdZwoswI8dY0ax00GBNzBHsK'
+stripe.api_key = settings.STRIPE_SECRET_KEY
 
 
 # @cache_page(timeout=60 * 30)  # cache for 30 minutes

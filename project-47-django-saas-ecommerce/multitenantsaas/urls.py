@@ -4,12 +4,14 @@ from django.views import generic
 from django.urls import include, path, re_path
 from django.conf.urls.static import static
 from django.conf import settings
+from django.http import JsonResponse
 
 # Graphql
 # graphQL
 from apps.finances.schema import schema
 from graphene_django.views import GraphQLView
 from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.http import require_GET
 
 # Django Rest Framework
 from rest_framework import routers, permissions , views, serializers, status
@@ -34,6 +36,11 @@ from apps.products import urls as product_urls
 from apps.snippets.views import SnippetsViewSet
 from apps.finances.views import AccountViewSet , TransactionViewSet, CategoryViewSet
 from apps.products.views import ProductViewSet , CreateStripeCheckoutSessionView
+
+
+@require_GET
+def healthz(request):
+    return JsonResponse({"status": "ok"}, headers={"Cache-Control": "no-store"})
 
 
 router = routers.DefaultRouter()
@@ -65,6 +72,7 @@ schema_view = get_schema_view(
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('healthz', healthz, name='healthz'),
     path("api/v1/", include(router.urls)),
     path("",  include(router.urls)),
     path('home', include(home_urls)),
@@ -78,7 +86,6 @@ urlpatterns = [
         name="create-checkout-session",
     ),
     path("graphql", csrf_exempt(GraphQLView.as_view(graphiql=True, schema=schema))),
-    path("__debug__/", include("debug_toolbar.urls")),
     path("data-browser/", include("data_browser.urls")),
     # path('ledger/', include('django_ledger.urls', namespace='django_ledger')),
  
@@ -90,6 +97,9 @@ urlpatterns = [
             cache_timeout=0), name='schema-redoc'),   
     
 ]
+
+if settings.DEBUG:
+    urlpatterns.append(path("__debug__/", include("debug_toolbar.urls")))
 
 # Media Assets
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

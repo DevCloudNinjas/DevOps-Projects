@@ -57,6 +57,13 @@ variable "instance_keyName" {
   default = "prodxsecure"
 }
 
+variable "private_key_path" {
+  description = "Local path to the SSH private key used by provisioners. Keep the key outside git and pass this with TF_VAR_private_key_path or a local tfvars file."
+  type        = string
+  default     = ""
+  sensitive   = true
+}
+
 variable "instance_secgroupname" {
   description = "This is a security Group Name"
   type        = string

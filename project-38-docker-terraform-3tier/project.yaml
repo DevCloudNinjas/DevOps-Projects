@@ -1,0 +1,23 @@
+schema_version: 1
+project:
+  number: 38
+  slug: docker-terraform-3tier
+  name: Docker and Terraform Three-Tier Architecture
+classification: deployable
+status: cloud_lab
+deployability: iac_ready
+stack:
+- Node.js
+- Docker Compose
+- Terraform
+- RDS
+cloud:
+- aws
+iac:
+- terraform
+ci_cd: []
+cost_risk: high
+security_posture: hardened
+validation:
+  command: docker compose config
+notes: Local compose app plus AWS three-tier Terraform configuration.

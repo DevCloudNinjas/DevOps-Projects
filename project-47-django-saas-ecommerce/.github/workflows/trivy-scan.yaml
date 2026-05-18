@@ -14,15 +14,15 @@ on:
 jobs:
   trivyScanDockerImage:
     name: trivy scan ( Docker Image security scanner )
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-24.04
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
       - name: Build an image from Dockerfile
         run: |
           docker build -t docker.io/joelwembo/prodxcloud-django-web:latest .
       - name: Run Trivy vulnerability scanner
-        uses: aquasecurity/trivy-action@master
+        uses: aquasecurity/trivy-action@v0.36.0
         with:
           image-ref: 'docker.io/joelwembo/prodxcloud-django-web:latest'
           format: 'table'

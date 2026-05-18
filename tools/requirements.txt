@@ -2,3 +2,4 @@
 # Testing dependencies
 hypothesis>=6.0
 pytest>=7.0
+PyYAML>=6.0

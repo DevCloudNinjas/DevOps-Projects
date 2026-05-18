@@ -1,0 +1,26 @@
+schema_version: 1
+project:
+  number: 42
+  slug: serverless-api-dynamodb
+  name: Serverless REST API with DynamoDB
+classification: deployable
+status: cloud_lab
+deployability: iac_ready
+stack:
+- Node.js
+- Lambda
+- API Gateway
+- DynamoDB
+- SAM
+- Terraform
+cloud:
+- aws
+iac:
+- terraform
+- sam
+ci_cd: []
+cost_risk: medium
+security_posture: hardened
+validation:
+  command: terraform -chdir=terraform fmt -check
+notes: Serverless API provisioned by Terraform/SAM with hardened templates.

@@ -30,5 +30,4 @@ spec:
              allowPrivilegeEscalation: false
              capabilities:
                drop:
-               - ALL
-       - containerPort: 80
+                 - ALL

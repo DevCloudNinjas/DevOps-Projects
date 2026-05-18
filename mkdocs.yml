@@ -1,0 +1,26 @@
+site_name: DevOps Projects Documentation
+site_description: Catalog, runbooks, flagship guides, and reusable security baselines for the DevOps Projects repository.
+repo_url: https://github.com/DevCloudNinjas/DevOps-Projects
+docs_dir: docs
+theme:
+  name: mkdocs
+nav:
+  - Home: index.md
+  - Catalog:
+      - Overview: catalog/index.md
+  - Runbooks:
+      - Overview: runbooks/index.md
+      - IaC and Kubernetes: iac-kubernetes-solid-runbook.md
+  - Flagship Docs:
+      - Overview: flagship/index.md
+  - Security Baselines:
+      - Overview: security-baselines/index.md
+      - Kubernetes: security-baselines/kubernetes.md
+      - Terraform: security-baselines/terraform.md
+      - Dockerfile: security-baselines/dockerfile.md
+      - CI/CD: security-baselines/cicd.md
+      - Secrets: security-baselines/secrets.md
+markdown_extensions:
+  - admonition
+  - toc:
+      permalink: true

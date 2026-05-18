@@ -1,0 +1,23 @@
+schema_version: 1
+project:
+  number: 23
+  slug: swiggy-clone-ecs
+  name: Swiggy Clone Blue-Green ECS Deployment
+classification: deployable
+status: cloud_lab
+deployability: ci_cd_ready
+stack:
+- Node.js
+- Docker
+- ECS
+- CodePipeline
+cloud:
+- aws
+iac: []
+ci_cd:
+- aws-codepipeline
+cost_risk: medium
+security_posture: devsecops
+validation:
+  command: npm --prefix Swiggy_clone install --package-lock-only --ignore-scripts
+notes: ECS blue-green deployment with buildspec/appspec.

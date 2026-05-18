@@ -1,0 +1,24 @@
+schema_version: 1
+project:
+  number: 19
+  slug: eks-jenkins-terraform
+  name: EKS Cluster and App Delivery with Jenkins and Terraform
+classification: deployable
+status: cloud_lab
+deployability: ci_cd_ready
+stack:
+- Terraform
+- EKS
+- Kubernetes
+- Jenkins
+cloud:
+- aws
+iac:
+- terraform
+ci_cd:
+- jenkins
+cost_risk: high
+security_posture: baseline
+validation:
+  command: terraform -chdir=tf-aws-eks fmt -check
+notes: AWS EKS infrastructure plus Jenkins deployment manifests.

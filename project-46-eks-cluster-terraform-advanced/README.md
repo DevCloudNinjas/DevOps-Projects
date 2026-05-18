@@ -52,6 +52,18 @@ Modern deployments utilize **Dynamic Workload Identity (OIDC - OpenID Connect)**
 
 ***Let’s get started — buckle up Chuck!!***
 
+## Solid Defaults
+
+The example now keeps public EKS API access and demo node ingress behind variables instead of hard-coded open CIDRs:
+
+```bash
+terraform plan \
+  -var='cluster_endpoint_public_access_cidrs=["203.0.113.10/32"]' \
+  -var='admin_cidr_block=203.0.113.10/32'
+```
+
+The sample Kubernetes deployment includes HTTP readiness/liveness probes, resource requests/limits, and a runtime default seccomp profile. The service selector matches the deployment labels so `kubectl get endpoints terraform-project102` can resolve pods after the workload is created.
+
 ------
 
 ### 𝟷| sᴇᴛ ᴜᴘ ғɪʟᴇ sʏsᴛᴇᴍ

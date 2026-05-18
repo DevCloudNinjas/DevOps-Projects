@@ -3,7 +3,15 @@ version: '3.6'
 services:
   chatgpt:
     build: .
+    image: chatbot-ui:dev
     ports:
       - 3000:3000
     environment:
       - 'OPENAI_API_KEY='
+      - 'ALLOW_SERVER_OPENAI_API_KEY=false'
+    healthcheck:
+      test: ['CMD', 'wget', '-qO-', 'http://127.0.0.1:3000/api/health']
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 20s

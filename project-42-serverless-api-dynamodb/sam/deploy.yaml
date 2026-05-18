@@ -50,7 +50,7 @@ Resources:
         Fn::Sub: ${AppName} Lambda Layer
       ContentUri: s3://cloudapp-ecommerce/7cfbb565612182d24282bfc81fc156fe
       CompatibleRuntimes:
-      - nodejs16.x
+      - nodejs20.x
       RetentionPolicy: Retain
     Metadata:
       SamResourceId: LambdaLayer
@@ -101,7 +101,7 @@ Resources:
       FunctionName:
         Fn::Sub: ${AppName}-get-controller
       Handler: index.lambdaHandler
-      Runtime: nodejs16.x
+      Runtime: nodejs20.x
       Description: Get product data from Dynamo DB
       CodeUri: s3://cloudapp-ecommerce/c19477640ae82382c23af8c9f5937a93
       Role:
@@ -114,7 +114,7 @@ Resources:
       FunctionName:
         Fn::Sub: ${AppName}-put-controller
       Handler: index.lambdaHandler
-      Runtime: nodejs16.x
+      Runtime: nodejs20.x
       Description: Add product data to Dynamo DB
       CodeUri: s3://cloudapp-ecommerce/e5576b79244ad2abf41ce866734df923
       Role:

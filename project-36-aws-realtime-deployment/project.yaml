@@ -1,0 +1,23 @@
+schema_version: 1
+project:
+  number: 36
+  slug: aws-realtime-deployment
+  name: AWS Real-Time Dev to Pre-Prod to Production Deployment
+classification: deployable
+status: cloud_lab
+deployability: ci_cd_ready
+stack:
+- HTML
+- Nginx
+- CodeBuild
+- CodeDeploy
+cloud:
+- aws
+iac: []
+ci_cd:
+- aws-codepipeline
+cost_risk: medium
+security_posture: hardened
+validation:
+  command: test -f buildspec.yml -a -f appspec.yml
+notes: Environment-isolated AWS deployment lab.

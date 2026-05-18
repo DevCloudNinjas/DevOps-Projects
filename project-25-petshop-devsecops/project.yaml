@@ -1,0 +1,21 @@
+schema_version: 1
+project:
+  number: 25
+  slug: petshop-devsecops
+  name: Petshop Java DevSecOps Deployment
+classification: learning
+status: reference
+deployability: reference_only
+stack:
+- Java
+- Docker
+- Kubernetes
+- CI/CD
+cloud: []
+iac: []
+ci_cd: []
+cost_risk: medium
+security_posture: devsecops
+validation:
+  command: test -f README.md
+notes: README-focused Petshop DevSecOps deployment walkthrough.

@@ -1,0 +1,26 @@
+schema_version: 1
+project:
+  number: 18
+  slug: jenkins-java-full-cicd
+  name: Java Full CI/CD with Jenkins, SonarQube, Argo CD, Helm, and Kubernetes
+classification: deployable
+status: devsecops_lab
+deployability: ci_cd_ready
+stack:
+- Java
+- Spring Boot
+- Maven
+- Docker
+- Kubernetes
+- Helm
+- SonarQube
+cloud: []
+iac: []
+ci_cd:
+- jenkins
+- argocd
+cost_risk: medium
+security_posture: devsecops
+validation:
+  command: mvn -q -f spring-boot-app/pom.xml test
+notes: Spring Boot app and manifests for full CI/CD lab.

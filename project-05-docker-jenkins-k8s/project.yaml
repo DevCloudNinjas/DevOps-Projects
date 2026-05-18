@@ -1,0 +1,23 @@
+schema_version: 1
+project:
+  number: 5
+  slug: docker-jenkins-k8s
+  name: Java App with Docker, Jenkins, and Kubernetes
+classification: deployable
+status: cloud_lab
+deployability: ci_cd_ready
+stack:
+- Java
+- Maven
+- Docker
+- Kubernetes
+cloud:
+- aws
+iac: []
+ci_cd:
+- jenkins
+cost_risk: medium
+security_posture: baseline
+validation:
+  command: kubectl apply --dry-run=client -f hello-world/regapp-deploy.yml -f hello-world/regapp-service.yml
+notes: Jenkins-on-EC2 lab deploying a Java web app container.

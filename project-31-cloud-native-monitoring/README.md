@@ -44,7 +44,7 @@ This will start the Flask server on **`localhost:5000`**. Navigate to [http://lo
 
 ```yml
 # Use the official Python image as the base image
-FROM python:3.9-slim-buster
+FROM python:3.11-slim-bookworm
 
 # Set the working directory in the container
 WORKDIR /app

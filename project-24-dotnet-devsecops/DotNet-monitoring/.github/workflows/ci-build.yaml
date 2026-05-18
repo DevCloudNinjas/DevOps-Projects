@@ -37,7 +37,7 @@ jobs:
           path: tests/TestResults/
 
       - name: "Publish test results"
-        uses: EnricoMi/publish-unit-test-result-action@v1
+        uses: EnricoMi/publish-unit-test-result-action@v2
         if: ${{ always() }}
         with:
           files: tests/TestResults/TestResults.xml
@@ -66,7 +66,7 @@ jobs:
 
       - name: "Trigger AKS release pipeline"
         if: github.ref == 'refs/heads/master'
-        uses: benc-uk/workflow-dispatch@v1
+        uses: benc-uk/workflow-dispatch@v1.3.2
         with:
           workflow: "CD Release - AKS"
           token: ${{ secrets.GH_PAT }}

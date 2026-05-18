@@ -1,0 +1,22 @@
+schema_version: 1
+project:
+  number: 37
+  slug: eks-terraform-provision
+  name: Provision EKS Cluster with Terraform
+classification: deployable
+status: cloud_lab
+deployability: iac_ready
+stack:
+- Terraform
+- EKS
+- VPC
+cloud:
+- aws
+iac:
+- terraform
+ci_cd: []
+cost_risk: high
+security_posture: hardened
+validation:
+  command: terraform fmt -check
+notes: Raw Terraform EKS provisioning with recent hardening edits.

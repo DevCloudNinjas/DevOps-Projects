@@ -1,0 +1,23 @@
+schema_version: 1
+project:
+  number: 26
+  slug: terraform-gitlab-cicd
+  name: AWS Infrastructure with Terraform and GitLab CI/CD
+classification: deployable
+status: cloud_lab
+deployability: ci_cd_ready
+stack:
+- Terraform
+- GitLab CI
+- AWS
+cloud:
+- aws
+iac:
+- terraform
+ci_cd:
+- gitlab-ci
+cost_risk: medium
+security_posture: baseline
+validation:
+  command: terraform fmt -check -recursive
+notes: Modular AWS Terraform project with GitLab CI configuration.

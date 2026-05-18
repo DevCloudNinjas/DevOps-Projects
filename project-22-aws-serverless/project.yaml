@@ -1,0 +1,23 @@
+schema_version: 1
+project:
+  number: 22
+  slug: aws-serverless
+  name: AWS Fully Serverless Architecture with CI/CD
+classification: deployable
+status: cloud_lab
+deployability: iac_ready
+stack:
+- Node.js
+- Lambda
+- API Gateway
+- Terraform
+cloud:
+- aws
+iac:
+- terraform
+ci_cd: []
+cost_risk: medium
+security_posture: baseline
+validation:
+  command: terraform fmt -check
+notes: Serverless API with Terraform and Node.js Lambda source.

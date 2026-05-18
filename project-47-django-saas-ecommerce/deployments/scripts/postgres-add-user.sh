@@ -1,9 +1,23 @@
-sudo passwd postgres
-su - postgres
-createuser sonar
-psql
-ALTER USER sonar WITH ENCRYPTED password 'postgres';
-CREATE DATABASE sonarqube OWNER sonar;
-GRANT ALL PRIVILEGES ON DATABASE sonarqube to sonar;
-\q
-exit
+#!/usr/bin/env bash
+set -euo pipefail
+
+: "${SONAR_DB_PASSWORD:?Set SONAR_DB_PASSWORD before creating the Sonar database user.}"
+
+SONAR_DB_USER="${SONAR_DB_USER:-sonar}"
+SONAR_DB_NAME="${SONAR_DB_NAME:-sonarqube}"
+
+sudo -u postgres psql <<SQL
+DO
+\$\$
+BEGIN
+   IF NOT EXISTS (SELECT FROM pg_catalog.pg_roles WHERE rolname = '${SONAR_DB_USER}') THEN
+      CREATE ROLE ${SONAR_DB_USER} LOGIN;
+   END IF;
+END
+\$\$;
+
+ALTER USER ${SONAR_DB_USER} WITH ENCRYPTED PASSWORD '${SONAR_DB_PASSWORD}';
+SELECT 'CREATE DATABASE ${SONAR_DB_NAME} OWNER ${SONAR_DB_USER}'
+WHERE NOT EXISTS (SELECT FROM pg_database WHERE datname = '${SONAR_DB_NAME}')\gexec
+GRANT ALL PRIVILEGES ON DATABASE ${SONAR_DB_NAME} TO ${SONAR_DB_USER};
+SQL

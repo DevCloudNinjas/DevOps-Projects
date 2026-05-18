@@ -1,0 +1,24 @@
+schema_version: 1
+project:
+  number: 6
+  slug: advanced-cicd-pipeline
+  name: Advanced CI/CD Pipeline with DevOps Tools
+classification: deployable
+status: devsecops_lab
+deployability: ci_cd_ready
+stack:
+- Java
+- Maven
+- Docker
+- Kubernetes
+- SonarQube
+cloud:
+- aws
+iac: []
+ci_cd:
+- jenkins
+cost_risk: medium
+security_posture: devsecops
+validation:
+  command: mvn -q -DskipTests=false test
+notes: Pipeline lab with Jenkins, Kubernetes manifests, and security tooling.

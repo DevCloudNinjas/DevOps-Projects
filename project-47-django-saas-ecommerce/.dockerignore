@@ -27,6 +27,10 @@ apps/static/assets/.temp
 *.pytest_cache
 .coverage
 # database & logs
+.env
+.env.*
+*.pem
+*.key
 *.sqlite3
 *.log
 

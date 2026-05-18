@@ -1,0 +1,12 @@
+{
+  "project_roots": [
+    {
+      "name": "numbered-root-projects",
+      "glob": "project-*",
+      "description": "Top-level numbered DevOps project directories"
+    }
+  ],
+  "validation": {
+    "quality_gate": "python -m tools.quality_gate --project {project} ."
+  }
+}

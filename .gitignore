@@ -6,6 +6,10 @@
 .DS_Store
 Thumbs.db
 .env
+.env.*
+*.env
+!.env.example
+!*.env.example
 .venv/
 venv/
 ENV/
@@ -24,6 +28,7 @@ REVIEW-UPDATES.md
 # Application Dependencies
 node_modules/
 __pycache__/
+.pytest_cache/
 *.pyc
 *.pyo
 target/
@@ -36,10 +41,12 @@ dist/
 .terraform/
 *.tfstate
 *.tfstate.*
+*.tfplan
 crash.log
 crash.*.log
 *.tfvars
 *.tfvars.json
+!*.tfvars.example
 override.tf
 override.tf.json
 *_override.tf

@@ -1,5 +1,5 @@
 module "vpc" {
-  source = "../modules/aws-vpc"
+  source = "./modules/aws-vpc"
 
   vpc-name        = var.VPC-NAME
   vpc-cidr        = var.VPC-CIDR
@@ -24,7 +24,7 @@ module "vpc" {
 }
 
 module "security-group" {
-  source = "../modules/security-group"
+  source = "./modules/security-group"
 
   vpc-name    = var.VPC-NAME
   alb-sg-name = var.ALB-SG-NAME
@@ -35,7 +35,7 @@ module "security-group" {
 }
 
 module "rds" {
-  source = "../modules/aws-rds"
+  source = "./modules/aws-rds"
 
   sg-name              = var.SG-NAME
   private-subnet-name1 = var.PRIVATE-SUBNET1
@@ -50,7 +50,7 @@ module "rds" {
 }
 
 module "alb" {
-  source = "../modules/alb-tg"
+  source = "./modules/alb-tg"
 
   public-subnet-name1 = var.PUBLIC-SUBNET1
   public-subnet-name2 = var.PUBLIC-SUBNET2
@@ -63,7 +63,7 @@ module "alb" {
 }
 
 module "iam" {
-  source = "../modules/aws-iam"
+  source = "./modules/aws-iam"
 
   iam-role              = var.IAM-ROLE
   iam-policy            = var.IAM-POLICY
@@ -73,7 +73,7 @@ module "iam" {
 }
 
 module "autoscaling" {
-  source = "../modules/aws-autoscaling"
+  source = "./modules/aws-autoscaling"
 
   ami_name              = var.AMI-NAME
   launch-template-name  = var.LAUNCH-TEMPLATE-NAME
@@ -89,12 +89,12 @@ module "autoscaling" {
 }
 
 module "route53" {
-  source = "../modules/aws-waf-cdn-acm-route53"
+  source = "./modules/aws-waf-cdn-acm-route53"
 
   domain-name  = var.DOMAIN-NAME
   cdn-name     = var.CDN-NAME
   alb-name     = var.ALB-NAME
   web_acl_name = var.WEB-ACL-NAME
 
-  depends_on = [ module.autoscaling ]
+  depends_on = [module.autoscaling]
 }

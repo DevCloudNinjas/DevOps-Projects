@@ -1,8 +1,8 @@
 # Use an official Python runtime as a parent image
-FROM python:3.11-slim-bullseye as build
+FROM python:3.11-slim-bookworm AS build
 # Set environment variables
-ENV PYTHONDONTWRITEBYTECODE 1
-ENV PYTHONUNBUFFERED 1
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
 # Set the working directory in the container
 WORKDIR /app
 # Copy the requirements file into the container at /app
@@ -12,7 +12,6 @@ COPY media /app/
 COPY multitenantsaas /app/
 # COPY staticfiles /app/
 COPY tests /app/
-COPY .env /app/
 COPY manage.py /app/
 
 
@@ -26,14 +25,19 @@ RUN pip install -r requirements.txt
 
 COPY . /app/
 
+RUN chmod +x /app/server-entrypoint.sh
+
 # Run vulnerability scan on build image
 # FROM build AS vulnscan
 # COPY --from=aquasec/trivy:latest /usr/local/bin/trivy /usr/local/bin/trivy
 # RUN trivy rootfs --no-progress /
 
 EXPOSE 8585
-EXPOSE 8000
-EXPOSE 80
+
+HEALTHCHECK --interval=30s --timeout=5s --start-period=30s --retries=3 \
+  CMD python -c "import os, urllib.request; urllib.request.urlopen('http://127.0.0.1:%s/healthz' % os.environ.get('PORT', '8585'), timeout=3).read()" || exit 1
+
+ENTRYPOINT ["/app/server-entrypoint.sh"]
 
 # ## New Solution
 

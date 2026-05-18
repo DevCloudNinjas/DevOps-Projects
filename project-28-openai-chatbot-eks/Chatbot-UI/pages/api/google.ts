@@ -1,7 +1,16 @@
 import { Message } from '@/types/chat';
 import { GoogleBody, GoogleSource } from '@/types/google';
 import { OPENAI_API_HOST } from '@/utils/app/const';
-import { cleanSourceText } from '@/utils/server/google';
+import {
+  cleanSourceText,
+  isPublicHTTPURL,
+  readLimitedText,
+} from '@/utils/server/google';
+import {
+  RequestValidationError,
+  resolveOpenAIAPIKey,
+  validateChatBody,
+} from '@/utils/server/request';
 import { Readability } from '@mozilla/readability';
 import endent from 'endent';
 import jsdom, { JSDOM } from 'jsdom';
@@ -9,20 +18,44 @@ import { NextApiRequest, NextApiResponse } from 'next';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse<any>) => {
   try {
+    if (req.method !== 'POST') {
+      return res.status(405).json({ error: 'Method not allowed' });
+    }
+
     const { messages, key, model, googleAPIKey, googleCSEId } =
       req.body as GoogleBody;
 
+    validateChatBody({ model, messages, key, prompt: req.body?.prompt });
+    const apiKey = resolveOpenAIAPIKey(key);
+
+    const searchAPIKey = googleAPIKey?.trim() || process.env.GOOGLE_API_KEY;
+    const searchCSEId = googleCSEId?.trim() || process.env.GOOGLE_CSE_ID;
+    if (!searchAPIKey || !searchCSEId) {
+      throw new RequestValidationError('Google search credentials are required');
+    }
+
     const userMessage = messages[messages.length - 1];
+    const query = userMessage.content.trim().slice(0, 500);
 
     const googleRes = await fetch(
-      `https://customsearch.googleapis.com/customsearch/v1?key=${
-        googleAPIKey ? googleAPIKey : process.env.GOOGLE_API_KEY
-      }&cx=${
-        googleCSEId ? googleCSEId : process.env.GOOGLE_CSE_ID
-      }&q=${userMessage.content.trim()}&num=5`,
+      `https://customsearch.googleapis.com/customsearch/v1?${new URLSearchParams(
+        {
+          key: searchAPIKey,
+          cx: searchCSEId,
+          q: query,
+          num: '5',
+        },
+      )}`,
     );
 
+    if (!googleRes.ok) {
+      throw new Error(`Google API returned status ${googleRes.status}`);
+    }
+
     const googleData = await googleRes.json();
+    if (!Array.isArray(googleData.items)) {
+      return res.status(200).json({ answer: 'No Google search results found.' });
+    }
 
     const sources: GoogleSource[] = googleData.items.map((item: any) => ({
       title: item.title,
@@ -36,17 +69,27 @@ const handler = async (req: NextApiRequest, res: NextApiResponse<any>) => {
     const sourcesWithText: any = await Promise.all(
       sources.map(async (source) => {
         try {
+          if (!isPublicHTTPURL(source.link)) {
+            return null;
+          }
+
           const timeoutPromise = new Promise((_, reject) =>
             setTimeout(() => reject(new Error('Request timed out')), 5000),
           );
 
           const res = (await Promise.race([
-            fetch(source.link),
+            fetch(source.link, { redirect: 'manual' }),
             timeoutPromise,
-          ])) as any;
+          ])) as Response;
 
-          // if (res) {
-          const html = await res.text();
+          if (!res.ok) {
+            return null;
+          }
+
+          const html = await readLimitedText(res);
+          if (!html) {
+            return null;
+          }
 
           const virtualConsole = new jsdom.VirtualConsole();
           virtualConsole.on('error', (error) => {
@@ -111,7 +154,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse<any>) => {
     const answerRes = await fetch(`${OPENAI_API_HOST}/v1/chat/completions`, {
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${key ? key : process.env.OPENAI_API_KEY}`,
+        Authorization: `Bearer ${apiKey}`,
         ...(process.env.OPENAI_ORGANIZATION && {
           'OpenAI-Organization': process.env.OPENAI_ORGANIZATION,
         }),
@@ -132,12 +175,24 @@ const handler = async (req: NextApiRequest, res: NextApiResponse<any>) => {
       }),
     });
 
+    if (!answerRes.ok) {
+      throw new Error(`OpenAI API returned status ${answerRes.status}`);
+    }
+
     const { choices: choices2 } = await answerRes.json();
-    const answer = choices2[0].message.content;
+    const answer = choices2?.[0]?.message?.content;
+    if (!answer) {
+      throw new Error('OpenAI API returned an empty answer');
+    }
 
     res.status(200).json({ answer });
   } catch (error) {
-    return new Response('Error', { status: 500 });
+    if (error instanceof RequestValidationError) {
+      return res.status(error.status).json({ error: error.message });
+    }
+
+    console.error(error);
+    return res.status(500).json({ error: 'Error' });
   }
 };
 

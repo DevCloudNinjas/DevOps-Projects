@@ -32,7 +32,7 @@ resource "aws_security_group" "sg" {
         from_port   = 22                            # Specify the starting port for inbound traffic
         to_port     = 22                            # Specify the ending port for inbound traffic
         protocol    = "tcp"                         # Specify the protocol (TCP in this case)
-        cidr_blocks = ["0.0.0.0/0"]                 # Allow inbound traffic from any IP address
+        cidr_blocks = var.admin_cidr_blocks         # Restrict SSH to known admin ranges
     }
 
     # Define an egress rule allowing all outbound traffic (any port, any protocol) to any IP address

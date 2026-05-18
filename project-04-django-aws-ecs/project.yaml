@@ -1,0 +1,21 @@
+schema_version: 1
+project:
+  number: 4
+  slug: django-aws-ecs
+  name: Django Application on AWS ECS and ECR
+classification: deployable
+status: cloud_lab
+deployability: container_ready
+stack:
+- Python
+- Django
+- Docker
+cloud:
+- aws
+iac: []
+ci_cd: []
+cost_risk: medium
+security_posture: baseline
+validation:
+  command: python3 -m compileall .
+notes: Containerized Django app intended for ECS/ECR deployment.

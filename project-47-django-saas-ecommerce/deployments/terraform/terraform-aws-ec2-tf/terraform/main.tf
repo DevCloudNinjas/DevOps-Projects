@@ -96,7 +96,7 @@ resource "aws_instance" "project-iac-2" {
     type        = "ssh"
     host        = self.public_ip
     user        = "ubuntu"
-    private_key = file("./prodxsecure.pem")
+    private_key = var.private_key_path != "" ? file(var.private_key_path) : null
   }
 }
 
@@ -104,4 +104,3 @@ resource "aws_instance" "project-iac-2" {
 output "ec2instance" {
   value = aws_instance.project-iac-2.public_ip
 }
-

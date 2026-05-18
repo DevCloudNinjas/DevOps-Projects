@@ -1,0 +1,25 @@
+schema_version: 1
+project:
+  number: 28
+  slug: openai-chatbot-eks
+  name: OpenAI Chatbot UI on EKS with Jenkins and Terraform
+classification: deployable
+status: devsecops_lab
+deployability: ci_cd_ready
+stack:
+- Next.js
+- TypeScript
+- OpenAI API
+- Docker
+- EKS
+cloud:
+- aws
+iac:
+- terraform
+ci_cd:
+- jenkins
+cost_risk: high
+security_posture: devsecops
+validation:
+  command: npm --prefix Chatbot-UI test
+notes: Chatbot UI with local hardening/test work and EKS deployment materials.

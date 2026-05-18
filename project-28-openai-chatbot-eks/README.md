@@ -35,6 +35,16 @@ This repository's `Jenkinsfile` and Terraform architectures have been heavily re
 1. **Semantic Branch Versioning & Ephemeral Workloads:** We eradicated the dangerous `latest` Docker tag anti-pattern. Instead of repeatedly pushing over the `latest` tag (which breaks rollbacks and caching), the registry push and Kubernetes Deployments dynamically use `${BUILD_NUMBER}` to ensure immutable, traceable rollouts.
 2. **Standardized IaC Provisioning:** Previously, this project relied on implicit, undocumented AWS CLI bash scripts to spin up the EKS cluster. During the Sprint 2 infrastructure pass, this was formalized into declarative Terraform code, providing an auditable and reproducible cluster state.
 
+## Portfolio-Grade Runbook
+
+For the architecture diagram, secure configuration checklist, deploy commands, run validation, cost controls, and destroy procedure, see [docs/portfolio-runbook.md](docs/portfolio-runbook.md).
+
+Key artifacts:
+
+- App README and local configuration: [Chatbot-UI/README.md](Chatbot-UI/README.md)
+- Kubernetes manifest: [Chatbot-UI/k8s/chatbot-ui.yaml](Chatbot-UI/k8s/chatbot-ui.yaml)
+- Terraform variables example: [Chatbot-UI/EKS-TF/terraform.tfvars.example](Chatbot-UI/EKS-TF/terraform.tfvars.example)
+
 # **STEPS:**
 
 **Step:1 :- Create Jenkins Server.**

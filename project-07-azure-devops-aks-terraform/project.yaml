@@ -1,0 +1,24 @@
+schema_version: 1
+project:
+  number: 7
+  slug: azure-devops-aks-terraform
+  name: Azure DevOps Journey with AKS and Terraform
+classification: learning
+status: cloud_lab
+deployability: ci_cd_ready
+stack:
+- Azure DevOps
+- AKS
+- Terraform
+- .NET
+cloud:
+- azure
+iac:
+- terraform
+ci_cd:
+- azure-devops
+cost_risk: high
+security_posture: baseline
+validation:
+  command: test -f README.md
+notes: Multi-lab Azure DevOps and AKS walkthrough.

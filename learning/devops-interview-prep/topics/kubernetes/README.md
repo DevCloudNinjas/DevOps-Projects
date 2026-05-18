@@ -2142,7 +2142,7 @@ Secrets let you store and manage sensitive information (passwords, ssh keys, etc
 <details>
 <summary>How to create a Secret from a key and value?</summary><br><b>
 
-`kubectl create secret generic some-secret --from-literal=password='donttellmypassword'`
+`kubectl create secret generic some-secret --from-literal=password='REPLACE_WITH_A_LAB_SECRET'`
 
 </b></details>
 

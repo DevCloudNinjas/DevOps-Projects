@@ -1,0 +1,22 @@
+schema_version: 1
+project:
+  number: 48
+  slug: terraform-aws-eks
+  name: Terraform AWS EKS Provisioning
+classification: deployable
+status: cloud_lab
+deployability: iac_ready
+stack:
+- Terraform
+- EKS
+- Kubernetes
+cloud:
+- aws
+iac:
+- terraform
+ci_cd: []
+cost_risk: high
+security_posture: hardened
+validation:
+  command: terraform fmt -check
+notes: EKS Terraform project with Kubernetes deployment templates.

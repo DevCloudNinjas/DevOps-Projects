@@ -1,0 +1,150 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://devcloudninjas.local/project.schema.json",
+  "title": "DevOps Projects metadata",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "project",
+    "classification",
+    "status",
+    "deployability",
+    "stack",
+    "cloud",
+    "iac",
+    "ci_cd",
+    "cost_risk",
+    "security_posture",
+    "validation",
+    "notes"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "project": {
+      "type": "object",
+      "required": [
+        "number",
+        "slug",
+        "name"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "number": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "slug": {
+          "type": "string",
+          "pattern": "^[a-z0-9][a-z0-9-]*$"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "classification": {
+      "enum": [
+        "learning",
+        "deployable"
+      ]
+    },
+    "status": {
+      "enum": [
+        "reference",
+        "local_demo",
+        "local_lab",
+        "local_validated",
+        "ci_lab",
+        "cloud_lab",
+        "devsecops_lab"
+      ]
+    },
+    "deployability": {
+      "enum": [
+        "reference_only",
+        "local_only",
+        "container_ready",
+        "kubernetes_ready",
+        "iac_ready",
+        "ci_cd_ready"
+      ]
+    },
+    "stack": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1
+    },
+    "cloud": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "aws",
+          "azure",
+          "gcp"
+        ]
+      }
+    },
+    "iac": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "terraform",
+          "sam",
+          "cloudformation",
+          "helm"
+        ]
+      }
+    },
+    "ci_cd": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "jenkins",
+          "github-actions",
+          "gitlab-ci",
+          "azure-devops",
+          "aws-codepipeline",
+          "argocd"
+        ]
+      }
+    },
+    "cost_risk": {
+      "enum": [
+        "low",
+        "medium",
+        "high"
+      ]
+    },
+    "security_posture": {
+      "enum": [
+        "baseline",
+        "devsecops",
+        "hardened",
+        "needs_review"
+      ]
+    },
+    "validation": {
+      "type": "object",
+      "required": [
+        "command"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "command": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "notes": {
+      "type": "string",
+      "minLength": 1
+    }
+  }
+}

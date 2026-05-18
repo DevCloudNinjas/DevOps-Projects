@@ -1,0 +1,28 @@
+schema_version: 1
+project:
+  number: 44
+  slug: devsecops-101
+  name: DevSecOps 101 Spring Boot Pipeline
+classification: deployable
+status: devsecops_lab
+deployability: ci_cd_ready
+stack:
+- Java
+- Spring Boot
+- Maven
+- Jenkins
+- Docker
+- Kubernetes
+- Vault
+- SonarQube
+- Trivy
+cloud:
+- aws
+iac: []
+ci_cd:
+- jenkins
+cost_risk: medium
+security_posture: devsecops
+validation:
+  command: ./mvnw test
+notes: End-to-end DevSecOps lab with Spring Boot and multiple security tools.

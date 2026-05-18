@@ -2,14 +2,14 @@ terraform {
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = "3.26.0"
+      version = "~> 4.67"
     }
     random = {
       source  = "hashicorp/random"
-      version = "3.0.1"
+      version = "~> 3.6"
     }
   }
-  required_version = ">= 1.1.0"
+  required_version = ">= 1.6.0"
 
   cloud {
     organization = "Harshhaa-Dev-Projects"

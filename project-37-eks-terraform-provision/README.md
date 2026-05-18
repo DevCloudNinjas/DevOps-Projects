@@ -20,6 +20,16 @@
 * Kubectl
 * VScode
 
+## Safer Example Defaults
+
+This example now exposes SSH ingress as `admin_cidr_blocks` instead of using an unrestricted `0.0.0.0/0` rule. The checked-in default uses the documentation-only CIDR `203.0.113.0/24`; before applying, override it with your operator IP range:
+
+```bash
+terraform plan -var='admin_cidr_blocks=["203.0.113.10/32"]'
+```
+
+The Terraform block also pins the AWS provider and requires Terraform/OpenTofu `>= 1.3.0`. Keep the remote backend placeholders in `eks-backend-terra.tf` as local values until you create your own S3 bucket and DynamoDB lock table.
+
 ## References
 
 1. [Install Terraform](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli?source=post_page-----e37f4c5c66ad--------------------------------)
@@ -93,7 +103,7 @@ terraform {
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = "4.66.1"
+      version = "~> 5.0"
     }
   }
 }

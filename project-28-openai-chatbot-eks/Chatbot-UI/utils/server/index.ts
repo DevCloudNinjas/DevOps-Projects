@@ -24,13 +24,13 @@ export class OpenAIError extends Error {
 export const OpenAIStream = async (
   model: OpenAIModel,
   systemPrompt: string,
-  key: string,
+  apiKey: string,
   messages: Message[],
 ) => {
   const res = await fetch(`${OPENAI_API_HOST}/v1/chat/completions`, {
     headers: {
       'Content-Type': 'application/json',
-      Authorization: `Bearer ${key ? key : process.env.OPENAI_API_KEY}`,
+      Authorization: `Bearer ${apiKey}`,
       ...(process.env.OPENAI_ORGANIZATION && {
         'OpenAI-Organization': process.env.OPENAI_ORGANIZATION,
       }),

@@ -1,5 +1,10 @@
 import { OpenAIModel, OpenAIModelID, OpenAIModels } from '@/types/openai';
 import { OPENAI_API_HOST } from '@/utils/app/const';
+import {
+  parseJSONBody,
+  resolveOpenAIAPIKey,
+  validationErrorResponse,
+} from '@/utils/server/request';
 
 export const config = {
   runtime: 'edge',
@@ -7,17 +12,18 @@ export const config = {
 
 const handler = async (req: Request): Promise<Response> => {
   try {
-    const { key } = (await req.json()) as {
+    const { key } = await parseJSONBody<{
       key: string;
-    };
+    }>(req);
+    const apiKey = resolveOpenAIAPIKey(key);
 
     const response = await fetch(`${OPENAI_API_HOST}/v1/models`, {
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${key ? key : process.env.OPENAI_API_KEY}`,
+        Authorization: `Bearer ${apiKey}`,
         ...(process.env.OPENAI_ORGANIZATION && {
           'OpenAI-Organization': process.env.OPENAI_ORGANIZATION,
-        })
+        }),
       },
     });
 
@@ -52,6 +58,11 @@ const handler = async (req: Request): Promise<Response> => {
 
     return new Response(JSON.stringify(models), { status: 200 });
   } catch (error) {
+    const validationResponse = validationErrorResponse(error);
+    if (validationResponse) {
+      return validationResponse;
+    }
+
     console.error(error);
     return new Response('Error', { status: 500 });
   }

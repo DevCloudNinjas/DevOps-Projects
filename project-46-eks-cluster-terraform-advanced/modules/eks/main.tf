@@ -50,7 +50,7 @@ resource "aws_security_group" "node_group_one" {
     to_port   = 80
     protocol  = "tcp"
 
-    cidr_blocks = ["0.0.0.0/0"]
+    cidr_blocks = [var.admin_cidr_block]
   }
   egress {
     from_port   = 0

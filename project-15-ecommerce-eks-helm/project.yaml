@@ -1,0 +1,21 @@
+schema_version: 1
+project:
+  number: 15
+  slug: ecommerce-eks-helm
+  name: E-Commerce Three-Tier App on EKS with Helm
+classification: learning
+status: reference
+deployability: reference_only
+stack:
+- EKS
+- Helm
+- Three-tier app
+cloud:
+- aws
+iac: []
+ci_cd: []
+cost_risk: high
+security_posture: baseline
+validation:
+  command: test -f README.md
+notes: README-focused EKS/Helm architecture walkthrough.

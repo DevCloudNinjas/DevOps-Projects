@@ -1,0 +1,81 @@
+name: Changed Project Validation
+
+on:
+  push:
+    branches: ["main", "master"]
+  pull_request:
+    branches: ["main", "master"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  changed-projects:
+    name: Build changed project matrix
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.matrix.outputs.matrix }}
+      has_projects: ${{ steps.matrix.outputs.has_projects }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install tool dependencies
+        run: python -m pip install -r tools/requirements.txt
+
+      - name: Validate project metadata
+        run: python -m tools.list_projects --validate-metadata --format json
+
+      - name: Build changed project matrix
+        id: matrix
+        env:
+          BASE_REF: ${{ github.event.pull_request.base.sha || github.event.before }}
+          HEAD_REF: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: |
+          set -euo pipefail
+          base_ref="${BASE_REF:-}"
+          head_ref="${HEAD_REF:-HEAD}"
+          if [ -z "$base_ref" ] || ! git rev-parse --verify "${base_ref}^{commit}" >/dev/null 2>&1; then
+            base_ref="$(git rev-parse "${head_ref}^" 2>/dev/null || git rev-parse "$head_ref")"
+          fi
+          matrix="$(python -m tools.list_projects --changed-from "$base_ref" --changed-to "$head_ref" --format github-matrix)"
+          echo "matrix=${matrix}" >> "$GITHUB_OUTPUT"
+          python - "$matrix" >> "$GITHUB_OUTPUT" <<'PY'
+          import json
+          import sys
+
+          matrix = json.loads(sys.argv[1])
+          print(f"has_projects={str(bool(matrix['include'])).lower()}")
+          PY
+
+  validate-projects:
+    name: Validate ${{ matrix.path }}
+    needs: changed-projects
+    if: needs.changed-projects.outputs.has_projects == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix: ${{ fromJson(needs.changed-projects.outputs.matrix) }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install tool dependencies
+        run: python -m pip install -r tools/requirements.txt
+
+      - name: Run project quality gate
+        run: make validate-project PROJECT="${{ matrix.path }}"

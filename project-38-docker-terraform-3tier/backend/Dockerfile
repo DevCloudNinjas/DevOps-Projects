@@ -1,4 +1,4 @@
-FROM node:10-alpine
+FROM node:24-alpine
 
 WORKDIR /usr/src/app
 
@@ -8,4 +8,5 @@ RUN npm install
 COPY . .
 
 EXPOSE 3001
+USER node
 CMD [ "node", "index.js" ]

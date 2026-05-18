@@ -13,23 +13,23 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v1
+        uses: aws-actions/configure-aws-credentials@v4
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1  
 
       - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v1
+        uses: hashicorp/setup-terraform@v3
         with:
           backend-config: |
             bucket = "terraformbackendaccess"
             key    = "terraformbackendaccess.tfstate"
             region = "us-east-1"
-          terraform_version: 1.4.2
+          terraform_version: 1.9.8
       
       - name: Initialize Terraform
         working-directory: ./terraform

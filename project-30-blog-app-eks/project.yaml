@@ -1,0 +1,26 @@
+schema_version: 1
+project:
+  number: 30
+  slug: blog-app-eks
+  name: Blog App on EKS with Jenkins and Security Tools
+classification: deployable
+status: devsecops_lab
+deployability: ci_cd_ready
+stack:
+- Java
+- Maven
+- Docker
+- EKS
+- Nexus
+- SonarQube
+- Trivy
+cloud:
+- aws
+iac: []
+ci_cd:
+- jenkins
+cost_risk: high
+security_posture: devsecops
+validation:
+  command: mvn -q -f app/pom.xml test
+notes: Blog app with Jenkinsfiles, Kubernetes manifests, and security tooling notes.

@@ -37,8 +37,8 @@ resource "aws_eks_cluster" "eks" {
   # the Kubernetes control plane to make calls to AWS API operations on your behalf
   role_arn = aws_iam_role.eks_cluster.arn
 
-  # Desired Kubernetes master version
-  version = "1.19"
+  # Kubernetes version supported by EKS and AL2 managed node groups.
+  version = "1.32"
 
   vpc_config {
     # Indicates whether or not the Amazon EKS private API server endpoint is enabled
@@ -46,6 +46,8 @@ resource "aws_eks_cluster" "eks" {
 
     # Indicates whether or not the Amazon EKS public API server endpoint is enabled
     endpoint_public_access = true
+
+    public_access_cidrs = var.cluster_endpoint_public_access_cidrs
 
     # Must be in at least two different availability zones
     subnet_ids = [

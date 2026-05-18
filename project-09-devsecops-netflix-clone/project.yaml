@@ -1,0 +1,23 @@
+schema_version: 1
+project:
+  number: 9
+  slug: devsecops-netflix-clone
+  name: Netflix Clone DevSecOps CI/CD with Monitoring
+classification: deployable
+status: devsecops_lab
+deployability: ci_cd_ready
+stack:
+- Jenkins
+- Docker
+- Monitoring
+- Clone app
+cloud:
+- aws
+iac: []
+ci_cd:
+- jenkins
+cost_risk: medium
+security_posture: devsecops
+validation:
+  command: test -f jenkinsfile
+notes: Security-focused CI/CD walkthrough for a clone app.

@@ -1,0 +1,4 @@
+# Copy to terraform.tfvars and replace with the current operator/admin public IP.
+# Keep terraform.tfvars local; do not commit live operator IPs or environment details.
+
+cluster_endpoint_public_access_cidrs = ["203.0.113.10/32"]

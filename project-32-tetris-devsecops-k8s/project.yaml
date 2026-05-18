@@ -1,0 +1,25 @@
+schema_version: 1
+project:
+  number: 32
+  slug: tetris-devsecops-k8s
+  name: Tetris DevSecOps Kubernetes Pipeline
+classification: deployable
+status: devsecops_lab
+deployability: ci_cd_ready
+stack:
+- Node.js
+- Docker
+- Kubernetes
+- Terraform
+- Jenkins
+cloud:
+- aws
+iac:
+- terraform
+ci_cd:
+- jenkins
+cost_risk: high
+security_posture: devsecops
+validation:
+  command: npm --prefix Tetris-V1 test --if-present
+notes: Tetris apps plus EKS and Jenkins Terraform assets.

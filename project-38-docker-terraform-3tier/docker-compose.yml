@@ -23,7 +23,7 @@ services:
       - network-frontend
 
   db:
-    image: postgres:11.2-alpine
+    image: postgres:16-alpine
     environment:
       POSTGRES_USER: demo_user
       POSTGRES_PASSWORD: demo_user

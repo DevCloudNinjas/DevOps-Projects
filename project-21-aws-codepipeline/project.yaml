@@ -1,0 +1,25 @@
+schema_version: 1
+project:
+  number: 21
+  slug: aws-codepipeline
+  name: AWS CodePipeline Video Streaming App
+classification: deployable
+status: cloud_lab
+deployability: ci_cd_ready
+stack:
+- React
+- Vite
+- Docker
+- CodePipeline
+- CodeBuild
+- CodeDeploy
+cloud:
+- aws
+iac: []
+ci_cd:
+- aws-codepipeline
+cost_risk: medium
+security_posture: baseline
+validation:
+  command: npm run build
+notes: Video streaming app with AWS developer tools deployment files.

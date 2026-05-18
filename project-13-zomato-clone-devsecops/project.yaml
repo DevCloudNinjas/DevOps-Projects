@@ -1,0 +1,21 @@
+schema_version: 1
+project:
+  number: 13
+  slug: zomato-clone-devsecops
+  name: Zomato Clone Secure DevSecOps Deployment
+classification: learning
+status: reference
+deployability: reference_only
+stack:
+- DevSecOps
+- CI/CD
+- Clone app
+cloud:
+- aws
+iac: []
+ci_cd: []
+cost_risk: medium
+security_posture: devsecops
+validation:
+  command: test -f README.md
+notes: External-source walkthrough with security pipeline concepts.

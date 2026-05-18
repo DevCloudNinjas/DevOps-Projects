@@ -1,21 +1,27 @@
 name: "Terraform-Destroy-Infrastructure"
 
 on:
-  push:
-    branches:
-      - master
-  pull_request:
+  workflow_dispatch:
+    inputs:
+      confirm_destroy:
+        description: "Type destroy to confirm Terraform destroy."
+        required: true
+        type: string
   
 jobs:
   terraform:
     name: "Terraform-Destroy-Infrastructure"
     runs-on: ubuntu-latest
+    if: github.event.inputs.confirm_destroy == 'destroy'
+    defaults:
+      run:
+        working-directory: project-39-gha-aws-terraform
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v1
+        uses: hashicorp/setup-terraform@v3
         with:
           # terraform_version: 0.13.0:
           cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
@@ -30,7 +36,7 @@ jobs:
 
       - name: Terraform Plan
         id: plan
-        run: terraform plan -no-color
+        run: terraform plan -destroy -no-color
         continue-on-error: true
 
       - name: Terraform Plan Status
@@ -38,5 +44,4 @@ jobs:
         run: exit 1
 
       - name: Terraform Destroy
-        if: github.ref == 'refs/heads/master' && github.event_name == 'push'
         run: terraform destroy -auto-approve

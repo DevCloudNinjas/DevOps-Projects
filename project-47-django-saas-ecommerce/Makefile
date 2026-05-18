@@ -89,6 +89,16 @@ start-engine:
 	@ python3.11 manage.py migrate
 	@ python3.11 manage.py runserver 0.0.0.0:8585
 
+check:
+	@ DEBUG=False SECRET_KEY='local-validation-secret-with-more-than-fifty-randomish-characters-12345' ALLOWED_HOSTS=localhost,127.0.0.1 SECURE_SSL_REDIRECT=True SESSION_COOKIE_SECURE=True CSRF_COOKIE_SECURE=True python manage.py check --deploy --fail-level WARNING
+	@ DEBUG=False SECRET_KEY='local-validation-secret-with-more-than-fifty-randomish-characters-12345' ALLOWED_HOSTS=testserver,localhost,127.0.0.1 SECURE_SSL_REDIRECT=False SESSION_COOKIE_SECURE=False CSRF_COOKIE_SECURE=False python manage.py test tests.test_healthcheck --noinput
+
+compose-config:
+	@ docker compose config --quiet
+
+shellcheck:
+	@ bash -n server-entrypoint.sh deployments/scripts/postgres-add-user.sh
+
 
 build:
 

@@ -45,7 +45,7 @@ spec:
   selector:
     app: aspnetcore
 ---
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: aspnetcore
@@ -56,6 +56,9 @@ spec:
     - http:
         paths:
           - path: /
+            pathType: Prefix
             backend:
-              serviceName: aspnetcore
-              servicePort: 80
+              service:
+                name: aspnetcore
+                port:
+                  number: 80

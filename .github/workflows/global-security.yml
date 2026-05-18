@@ -23,8 +23,15 @@ jobs:
         uses: trufflesecurity/trufflehog@main
         with:
           path: ./
+          extra_args: --debug --only-verified
+
+      - name: TruffleHog Pull Request Diff Scan
+        if: github.event_name == 'pull_request'
+        uses: trufflesecurity/trufflehog@main
+        with:
+          path: ./
           base: ${{ github.event.pull_request.base.sha }}
-          head: ${{ github.ref }}
+          head: ${{ github.event.pull_request.head.sha }}
           extra_args: --debug --only-verified
 
   iac-security:

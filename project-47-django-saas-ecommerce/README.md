@@ -4,7 +4,7 @@
 ![image](https://raw.githubusercontent.com/DevCloudNinjas/django-multitenant-saas-ecommerce/main/media/Screenshot.png)
 
 - [@DevCloud Ninjas](https://www.devcloudninjas.com)
-- [@X](twitter.com/devcloudninjas)
+- [@X](https://twitter.com/devcloudninjas)
 - [@Linkedin](https://www.linkedin.com/company/devcloudninjas)
 
 
@@ -16,6 +16,17 @@ Automating deployment processes is crucial for modern web development, enhancing
 Deploying Django to production requires strict adherence to DevSecOps principles, as many development defaults are highly insecure:
 1. **Production Web Servers:** Running `python manage.py runserver` in production is a critical security vulnerability. This project must transition to using a robust WSGI/ASGI server like **Gunicorn** or **Uvicorn**, ideally placed behind an Nginx reverse proxy to securely handle TLS/SSL termination and prevent slow-loris DDoS attacks.
 2. **Django Secret & Configuration Security:** The Django `SECRET_KEY`, `DEBUG = True`, and database credentials must never be committed to source control. In a DevSecOps deployment, these variables are injected dynamically at runtime via AWS Secrets Manager or HashiCorp Vault.
+
+## Portfolio-Grade Runbook
+
+For the architecture diagram, local/Docker/AWS/Kubernetes deploy paths, run validation, cost controls, security checklist, and destroy procedure, see [docs/portfolio-runbook.md](docs/portfolio-runbook.md).
+
+Key artifacts:
+
+- Runtime environment template: [.env.example](.env.example)
+- Docker Compose entrypoint: [docker-compose.yml](docker-compose.yml)
+- Kubernetes tutorial manifest: [deployment.yaml](deployment.yaml)
+- EC2 Terraform variables example: [deployments/terraform/terraform-aws-ec2-tf/terraform/terraform.tfvars.example](deployments/terraform/terraform-aws-ec2-tf/terraform/terraform.tfvars.example)
 
 ### Prerequisites:
 Before we get into the good stuffs, first we need to make sure we have the required services on our local machine or dev server, which are:
@@ -127,7 +138,6 @@ http://127.0.0.1:8585/data-browser/
 
 
 # GraphQL
-![Alt text](image.png)
 http://127.0.0.1:8585/graphql
 
 # Extensions
@@ -178,8 +188,6 @@ Thank you for Reading !! 🙌🏻, see you in the next article.🤘
 # For more information about the author visit
 
 - [@DevCloud Ninjas](https://www.devcloudninjas.com)
-- [@X](twitter.com/devcloudninjas)
+- [@X](https://twitter.com/devcloudninjas)
 - [@Linkedin](https://www.linkedin.com/company/devcloudninjas)
-
-
 

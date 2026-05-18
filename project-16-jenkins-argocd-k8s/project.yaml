@@ -1,0 +1,21 @@
+schema_version: 1
+project:
+  number: 16
+  slug: jenkins-argocd-k8s
+  name: Jenkins and Argo CD Kubernetes Deployment
+classification: learning
+status: reference
+deployability: reference_only
+stack:
+- Jenkins
+- Argo CD
+- Kubernetes
+cloud: []
+iac: []
+ci_cd:
+- jenkins
+cost_risk: medium
+security_posture: baseline
+validation:
+  command: test -f README.md
+notes: End-to-end CI/CD concept walkthrough.

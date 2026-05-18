@@ -1,0 +1,21 @@
+schema_version: 1
+project:
+  number: 40
+  slug: k8s-dashboard-trivy
+  name: Kubernetes Dashboard with Trivy
+classification: deployable
+status: local_demo
+deployability: local_only
+stack:
+- Node.js
+- Python
+- Kubernetes
+- Trivy
+cloud: []
+iac: []
+ci_cd: []
+cost_risk: low
+security_posture: devsecops
+validation:
+  command: node --check app.js && python3 -m py_compile systeminfo.py
+notes: Local dashboard concept integrated with Trivy and health data.

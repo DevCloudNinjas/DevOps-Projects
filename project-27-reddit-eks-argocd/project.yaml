@@ -1,0 +1,23 @@
+schema_version: 1
+project:
+  number: 27
+  slug: reddit-eks-argocd
+  name: Reddit App on EKS with Argo CD and Monitoring
+classification: learning
+status: reference
+deployability: reference_only
+stack:
+- EKS
+- Argo CD
+- Monitoring
+- DevSecOps
+cloud:
+- aws
+iac: []
+ci_cd:
+- argocd
+cost_risk: medium
+security_posture: devsecops
+validation:
+  command: test -f README.md
+notes: README-focused EKS, Argo CD, and monitoring walkthrough.

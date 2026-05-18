@@ -1,4 +1,5 @@
-python manage.py makemigrations
+#!/usr/bin/env sh
+set -eu
 
 until python manage.py migrate
 do
@@ -8,8 +9,8 @@ done
 
 python manage.py collectstatic --noinput
 
-python manage.py createsuperuser --noinput
+if [ "${DJANGO_CREATE_SUPERUSER:-false}" = "true" ]; then
+    python manage.py createsuperuser --noinput
+fi
 
-# gunicorn multitenantsaas.wsgi --bind 0.0.0.0:8000 --workers 4 --threads 4
-# for debug
-python3 manage.py runserver 0.0.0.0:8585
+exec gunicorn multitenantsaas.wsgi:application --bind 0.0.0.0:${PORT:-8585} --workers "${GUNICORN_WORKERS:-3}" --threads "${GUNICORN_THREADS:-2}" --timeout "${GUNICORN_TIMEOUT:-60}"

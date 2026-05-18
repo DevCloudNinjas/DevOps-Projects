@@ -298,7 +298,7 @@ _This issue can be solved by creating our own Docker Image with the appropriate 
 _To create the Dockerfile we will use the official Image of Tomcat and with it will mention the step to copy the contents from the directory /webapps.dist to /webapps:_
 
 ```
-FROM  tomcat:latest
+FROM tomcat:10.1-jdk17-temurin
 RUN cp -R /usr/local/tomcat/webapps.dist/* /usr/local/tomcat/webapps
 ```
 
@@ -458,7 +458,7 @@ _Now in our Dockerfile, we need to mention the location of this WAR file and cop
 **Dockerfile:**
 
 ```
-FROM  tomcat:latest
+FROM tomcat:10.1-jdk17-temurin
 RUN cp -R /usr/local/tomcat/webapps.dist/* /usr/local/tomcat/webapps
 COPY ./*.war /usr/local/tomcat/webapps
 ```

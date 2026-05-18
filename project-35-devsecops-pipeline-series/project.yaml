@@ -1,0 +1,28 @@
+schema_version: 1
+project:
+  number: 35
+  slug: devsecops-pipeline-series
+  name: Progressive DevSecOps Pipeline Series
+classification: deployable
+status: devsecops_lab
+deployability: ci_cd_ready
+stack:
+- Java
+- Maven
+- Jenkins
+- Docker
+- Kubernetes
+- SonarCloud
+- Snyk
+- ZAP
+cloud:
+- aws
+iac:
+- terraform
+ci_cd:
+- jenkins
+cost_risk: medium
+security_posture: devsecops
+validation:
+  command: mvn -q -f step-2-sast-sonarcloud/pom.xml test
+notes: Six-step progressive DevSecOps pipeline from infra through DAST.

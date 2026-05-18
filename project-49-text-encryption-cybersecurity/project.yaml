@@ -1,0 +1,19 @@
+schema_version: 1
+project:
+  number: 49
+  slug: text-encryption-cybersecurity
+  name: Text Encryption Cybersecurity Demo
+classification: learning
+status: local_demo
+deployability: local_only
+stack:
+- JavaScript
+- Cryptography
+cloud: []
+iac: []
+ci_cd: []
+cost_risk: low
+security_posture: baseline
+validation:
+  command: node --check main.js
+notes: Small browser/JavaScript encryption learning project.

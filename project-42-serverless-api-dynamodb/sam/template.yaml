@@ -47,7 +47,7 @@ Resources:
       Description: !Sub '${AppName} Lambda Layer'
       ContentUri: lambda-layer/
       CompatibleRuntimes:
-        - nodejs16.x
+        - nodejs20.x
       RetentionPolicy: Retain
   LambdaRole:
     Type: AWS::IAM::Role
@@ -92,7 +92,7 @@ Resources:
     Properties:
       FunctionName: !Sub '${AppName}-get-controller'
       Handler: index.lambdaHandler
-      Runtime: nodejs16.x
+      Runtime: nodejs20.x
       Description: Get product data from Dynamo DB
       CodeUri: functions/get-controller/
       Role:
@@ -102,7 +102,7 @@ Resources:
     Properties:
       FunctionName: !Sub '${AppName}-put-controller'
       Handler: index.lambdaHandler
-      Runtime: nodejs16.x
+      Runtime: nodejs20.x
       Description: Add product data to Dynamo DB
       CodeUri: functions/put-controller/
       Role:

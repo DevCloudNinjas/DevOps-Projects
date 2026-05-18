@@ -28,12 +28,14 @@ jobs:
       - name: Run consolidation scan (dry-run)
         id: scan
         run: |
-          python -m tools.repo_consolidation DevOps-Projects \
+          set +e
+          python -m tools.repo_consolidation . \
             --dry-run \
             --report-output scan-report.txt \
             2>&1 | tee scan-output.log
-          echo "exit_code=${PIPESTATUS[0]}" >> "$GITHUB_OUTPUT"
-        continue-on-error: true
+          exit_code=${PIPESTATUS[0]}
+          echo "exit_code=${exit_code}" >> "$GITHUB_OUTPUT"
+          exit 0
 
       - name: Upload scan report
         if: always()
@@ -87,7 +89,7 @@ jobs:
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 title: title,
-                body: `## Repo Consolidation Scan Results\n\nThe scheduled scan detected issues that need attention.\n\n\`\`\`\n${report}\n\`\`\`\n\nRun \`python -m tools.repo_consolidation DevOps-Projects --dry-run\` locally to review.`,
+                body: `## Repo Consolidation Scan Results\n\nThe scheduled scan detected issues that need attention.\n\n\`\`\`\n${report}\n\`\`\`\n\nRun \`python -m tools.repo_consolidation . --dry-run\` locally to review.`,
                 labels: ['repo-consolidation'],
               });
             }

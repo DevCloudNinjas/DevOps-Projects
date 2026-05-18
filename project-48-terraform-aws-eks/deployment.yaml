@@ -14,28 +14,82 @@ spec:
       labels:
         app: laravel
     spec:
+      securityContext:
+        seccompProfile:
+          type: RuntimeDefault
       containers:
-      - name: laravel-app
-        image: devopscalvine/laravel-aws-eks
-        ports:
-        - containerPort: 80 
-        env:
-        - name: DB_HOST
-          value: localhost
-        - name: DB_DATABASE
-          value: laravel_aws_eks
-        - name: DB_USERNAME
-          value: app 
-        - name: DB_PASSWORD
-          value: password
-      - name: mysql
-        image: mysql:5 
-        env:
-        - name: MYSQL_DATABASE
-          value: laravel_aws_eks
-        - name: MYSQL_USER
-          value: app
-        - name: MYSQL_PASSWORD
-          value: password 
-        - name: MYSQL_ROOT_PASSWORD
-          value: password 
+        - name: laravel-app
+          image: devopscalvine/laravel-aws-eks
+          ports:
+            - containerPort: 80
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 80
+            initialDelaySeconds: 10
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 80
+            initialDelaySeconds: 30
+            periodSeconds: 20
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128Mi
+            limits:
+              cpu: 500m
+              memory: 512Mi
+          securityContext:
+            allowPrivilegeEscalation: false
+          env:
+            - name: DB_HOST
+              value: localhost
+            - name: DB_DATABASE
+              value: laravel_aws_eks
+            - name: DB_USERNAME
+              value: app
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: laravel-db-secret
+                  key: password
+        - name: mysql
+          image: mysql:8.4
+          ports:
+            - containerPort: 3306
+          readinessProbe:
+            tcpSocket:
+              port: 3306
+            initialDelaySeconds: 20
+            periodSeconds: 10
+          livenessProbe:
+            tcpSocket:
+              port: 3306
+            initialDelaySeconds: 60
+            periodSeconds: 30
+          resources:
+            requests:
+              cpu: 250m
+              memory: 512Mi
+            limits:
+              cpu: "1"
+              memory: 1Gi
+          securityContext:
+            allowPrivilegeEscalation: false
+          env:
+            - name: MYSQL_DATABASE
+              value: laravel_aws_eks
+            - name: MYSQL_USER
+              value: app
+            - name: MYSQL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: laravel-db-secret
+                  key: password
+            - name: MYSQL_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: laravel-db-secret
+                  key: root-password

@@ -1,0 +1,28 @@
+schema_version: 1
+project:
+  number: 45
+  slug: jenkins-cicd-argocd-vault
+  name: Jenkins CI/CD with Argo CD and Vault
+classification: deployable
+status: devsecops_lab
+deployability: ci_cd_ready
+stack:
+- Java
+- Jenkins
+- Argo CD
+- Vault
+- Docker
+- Kubernetes
+- SonarQube
+- Trivy
+cloud:
+- aws
+iac: []
+ci_cd:
+- jenkins
+- argocd
+cost_risk: medium
+security_posture: devsecops
+validation:
+  command: test -f Jenkinsfile
+notes: Production-like CI/CD lab with Vault and Argo CD.

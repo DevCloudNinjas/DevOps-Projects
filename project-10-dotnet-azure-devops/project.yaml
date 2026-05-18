@@ -1,0 +1,22 @@
+schema_version: 1
+project:
+  number: 10
+  slug: dotnet-azure-devops
+  name: .NET CI/CD with Azure App Service
+classification: learning
+status: reference
+deployability: reference_only
+stack:
+- .NET
+- Azure DevOps
+- Azure App Service
+cloud:
+- azure
+iac: []
+ci_cd:
+- azure-devops
+cost_risk: medium
+security_posture: baseline
+validation:
+  command: test -f README.md
+notes: Modernized notes for Azure App Service deployment path.

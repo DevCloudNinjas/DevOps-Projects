@@ -1,0 +1,17 @@
+# Copy to terraform.tfvars and replace all values with resources owned by this lab.
+# Do not commit terraform.tfvars, kubeconfig files, private keys, or cloud credentials.
+
+vpc-name            = "project-28-demo-vpc"
+igw-name            = "project-28-demo-igw"
+rt-name2            = "project-28-demo-public-rt-b"
+subnet-name         = "project-28-demo-public-subnet-a"
+subnet-name2        = "project-28-demo-public-subnet-b"
+security-group-name = "project-28-demo-eks-sg"
+
+iam-role-eks    = "project-28-demo-eks-cluster-role"
+iam-role-node   = "project-28-demo-eks-node-role"
+iam-policy-eks  = "project-28-demo-eks-cluster-policy"
+iam-policy-node = "project-28-demo-eks-node-policy"
+
+cluster-name       = "project-28-chatbot-demo"
+eksnode-group-name = "project-28-chatbot-nodes"

@@ -1,0 +1,20 @@
+schema_version: 1
+project:
+  number: 8
+  slug: 2048-game-eks
+  name: 2048 Game on Amazon EKS
+classification: deployable
+status: cloud_lab
+deployability: kubernetes_ready
+stack:
+- Kubernetes
+- 2048 game
+cloud:
+- aws
+iac: []
+ci_cd: []
+cost_risk: medium
+security_posture: baseline
+validation:
+  command: kubectl apply --dry-run=client -f 2048-deployment.yaml -f mygame-svc.yaml
+notes: Simple Kubernetes workload targeting EKS.

@@ -2,10 +2,12 @@ pipeline{
     agent any
     tools{
         jdk 'jdk17'
-        nodejs 'node19'
+        nodejs 'node20'
     }
     environment {
         SCANNER_HOME=tool 'sonar-scanner'
+        DOCKER_IMAGE='notharshhaa/chatbot-ui'
+        IMAGE_TAG="${BUILD_NUMBER}"
     }
     stages {
         stage('Checkout from Git'){
@@ -15,7 +17,7 @@ pipeline{
         }
         stage('Install Dependencies') {
             steps {
-                sh "npm install"
+                sh "npm ci"
             }
         }
         stage("Sonarqube Analysis "){
@@ -48,16 +50,15 @@ pipeline{
             steps{
                 script{
                    withDockerRegistry(credentialsId: 'docker', toolName: 'docker'){   
-                       sh "docker build -t chatbot ."
-                       sh "docker tag chatbot NotHarshhaa/chatbot:latest "
-                       sh "docker push NotHarshhaa/chatbot:latest "
+                       sh "docker build -t ${DOCKER_IMAGE}:${IMAGE_TAG} ."
+                       sh "docker push ${DOCKER_IMAGE}:${IMAGE_TAG}"
                     }
                 }
             }
         }
         stage("TRIVY"){
             steps{
-                sh "trivy image NotHarshhaa/chatbot:latest > trivy.json" 
+                sh "trivy image ${DOCKER_IMAGE}:${IMAGE_TAG} > trivy.json"
             }
         }
         stage ("Remove container") {
@@ -68,7 +69,7 @@ pipeline{
         }
         stage('Deploy to container'){
             steps{
-                sh 'docker run -d --name chatbot -p 3000:3000 NotHarshhaa/chatbot:latest'
+                sh 'docker run -d --name chatbot -p 3000:3000 -e ALLOW_SERVER_OPENAI_API_KEY=false ${DOCKER_IMAGE}:${IMAGE_TAG}'
             }
         }
         stage('Deploy to kubernetes'){
@@ -76,6 +77,7 @@ pipeline{
                 withAWS(credentials: 'aws-key', region: 'us-east-1'){
                 script{
                     withKubeConfig(caCertificate: '', clusterName: '', contextName: '', credentialsId: 'k8s', namespace: '', restrictKubeConfigAccess: false, serverUrl: '') {
+                       sh 'sed -i "s|image: .*|image: ${DOCKER_IMAGE}:${IMAGE_TAG}|" k8s/chatbot-ui.yaml'
                        sh 'kubectl apply -f k8s/chatbot-ui.yaml'
                   }
                 }

@@ -334,7 +334,7 @@ resource "aws_lambda_function" "api_lambda" {
   handler          = "index.handler"
   source_code_hash = filebase64sha256(var.artifact_location)
 
-  runtime = "nodejs16.x"
+  runtime = "nodejs20.x"
 
   vpc_config {
     subnet_ids         = [for s in aws_subnet.private_subnet : s.id]

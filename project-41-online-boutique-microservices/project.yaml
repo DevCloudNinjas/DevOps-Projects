@@ -1,0 +1,21 @@
+schema_version: 1
+project:
+  number: 41
+  slug: online-boutique-microservices
+  name: Online Boutique Microservices Assignment
+classification: deployable
+status: local_lab
+deployability: kubernetes_ready
+stack:
+- Kubernetes
+- Microservices
+- Kind
+- Load testing
+cloud: []
+iac: []
+ci_cd: []
+cost_risk: low
+security_posture: baseline
+validation:
+  command: kubectl apply --dry-run=client -f deploy
+notes: Google Online Boutique manifests for local cluster validation.

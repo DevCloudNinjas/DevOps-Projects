@@ -17,6 +17,21 @@ Real-world projects for aspiring DevOps engineers, from beginner to advanced. 49
 2. Pick a project from the index below based on your skill level and interests
 3. Follow the README inside each project folder
 
+## Local Quality Gate
+
+Run the fast repository checks before opening a pull request:
+
+```bash
+python3 -m pip install -r tools/requirements.txt
+python3 -m pytest tools/tests/test_quality_gate.py -q
+python3 -m tools.quality_gate .
+```
+
+The gate is intentionally local and cloud-independent. It checks for tracked files
+that are now ignored, common secret patterns outside intentional scanner fixtures,
+plain YAML syntax, shell syntax, Python syntax, and practical Node package lock
+metadata issues. CI runs the same commands in `.github/workflows/local-quality-gate.yml`.
+
 ## Legend
 
 | Symbol | Meaning |

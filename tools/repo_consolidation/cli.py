@@ -4,6 +4,8 @@ Usage:
     python -m tools.repo_consolidation <repo_root> [--dry-run] [--report-output PATH] [--verbose]
 """
 
+from __future__ import annotations
+
 import argparse
 import logging
 import sys

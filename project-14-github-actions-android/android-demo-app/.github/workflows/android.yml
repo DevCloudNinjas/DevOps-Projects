@@ -46,7 +46,7 @@ jobs:
       run: ./gradlew jacocoTest
       
     - name: Cache SonarQube packages
-      uses: actions/cache@v3
+      uses: actions/cache@v4
       with:
           path: ~/.sonar/cache
           key: ${{ runner.os }}-sonar
@@ -54,7 +54,7 @@ jobs:
    
    
     - name: Cache Gradle packages
-      uses: actions/cache@v3
+      uses: actions/cache@v4
       with:
           path: ~/.gradle/caches
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}
@@ -67,7 +67,7 @@ jobs:
       run: ./gradlew sonarqube -Dsonar.projectKey=android-demo-app
       
     - name: Date and Time
-      run: echo "::set-output name=current_date_time::$(date +"%d-%m-%Y-%H-%I-%M-%S")"
+      run: echo "current_date_time=$(date +"%d-%m-%Y-%H-%I-%M-%S")" >> "$GITHUB_OUTPUT"
       id : date
 
     - name: Copy APK files to a directory
@@ -131,7 +131,7 @@ jobs:
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         AWS_DEFAULT_REGION: 'us-east-1'
 
-    - uses: jfrog/setup-jfrog-cli@v3
+    - uses: jfrog/setup-jfrog-cli@v4
       with:
         version: latest
       env:

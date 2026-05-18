@@ -1,0 +1,21 @@
+schema_version: 1
+project:
+  number: 24
+  slug: dotnet-devsecops
+  name: DotNet Monitoring DevSecOps Pipeline
+classification: deployable
+status: devsecops_lab
+deployability: ci_cd_ready
+stack:
+- .NET
+- Docker
+- Kubernetes
+- Monitoring
+cloud: []
+iac: []
+ci_cd: []
+cost_risk: medium
+security_posture: devsecops
+validation:
+  command: dotnet test DotNet-monitoring
+notes: Nested DotNet monitoring app with deployment and test assets.

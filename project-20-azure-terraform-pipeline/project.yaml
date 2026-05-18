@@ -1,0 +1,23 @@
+schema_version: 1
+project:
+  number: 20
+  slug: azure-terraform-pipeline
+  name: Azure DevOps Terraform Pipeline
+classification: deployable
+status: cloud_lab
+deployability: ci_cd_ready
+stack:
+- Terraform
+- Azure DevOps
+- Azure Service Bus
+cloud:
+- azure
+iac:
+- terraform
+ci_cd:
+- azure-devops
+cost_risk: medium
+security_posture: baseline
+validation:
+  command: terraform -chdir=terraform fmt -check
+notes: Azure infrastructure deployment via Azure DevOps pipeline.

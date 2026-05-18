@@ -246,7 +246,7 @@ git push -u origin dev
 
 ```yaml
 # .gitlab-ci.yml
-image: hashicorp/terraform:latest
+image: hashicorp/terraform:1.9
 
 variables:
   TF_LOG: DEBUG

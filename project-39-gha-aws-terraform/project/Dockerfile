@@ -1,8 +1,8 @@
 # Use an official Node runtime as a parent image
-FROM node:12.7.0-alpine
+FROM node:24-alpine
 
 # Add Maintainer info
-MAINTAINER harshhaareddy <harshhaa03@gmail.com>
+LABEL maintainer="harshhaareddy <harshhaa03@gmail.com>"
 
 # Set the working directory to /app
 WORKDIR '/app'
@@ -11,7 +11,7 @@ WORKDIR '/app'
 COPY package.json .
 
 # Install any needed packages specified in package.json
-RUN yarn
+RUN npm install
 
 # Copying the rest of the code to the working directory
 COPY . .
@@ -20,4 +20,5 @@ COPY . .
 EXPOSE 4000
 
 # Run index.js when the container launches
+USER node
 CMD ["node", "index.js"]

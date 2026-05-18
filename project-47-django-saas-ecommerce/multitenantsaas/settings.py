@@ -3,6 +3,7 @@ import datetime
 from pathlib import Path
 import socket 
 from decouple import config
+from django.core.exceptions import ImproperlyConfigured
 from unipath import Path
 from dotenv import load_dotenv
 
@@ -12,40 +13,59 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 CORE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
-# SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = config('SECRET_KEY', default='54g6s%qjfnhbpw0zeoei=$!her*y(p%!&84rs$4l85io')
-SECRET_KEY=config('SECRET_KEY', default = os.environ.get("DJANGO_SECRET_KEY", "54g6s%qjfnhbpw0zeoei=$!her*y(p%!&84rs$4l85io"))
+def csv_config(name, default=""):
+    return [item.strip() for item in config(name, default=default).split(",") if item.strip()]
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG=config('DEBUG', default=True, cast=bool)
+DEBUG=config('DEBUG', default=False, cast=bool)
+
+# SECURITY WARNING: keep the secret key used in production secret!
+SECRET_KEY=config(
+    'SECRET_KEY',
+    default=os.environ.get("DJANGO_SECRET_KEY", "dev-insecure-secret-key-change-me" if DEBUG else None),
+)
+
+if not SECRET_KEY:
+    raise ImproperlyConfigured("Set SECRET_KEY or DJANGO_SECRET_KEY when DEBUG is disabled.")
 
 if DEBUG:
     hostname, _, ips = socket.gethostbyname_ex(socket.gethostname())
     INTERNAL_IPS = [ip[: ip.rfind(".")] + ".1" for ip in ips] + ["10.0.2.2", "host.docker.internal", "47.128.216.140"]
     
 # ALLOWED_HOSTS = [os.getenv("ALLOWED_PORTS")]
-ALLOWED_HOSTS=['*']
+ALLOWED_HOSTS=csv_config('ALLOWED_HOSTS', default='localhost,127.0.0.1,[::1]')
 
 # Cors Settings
-BACKEND_DOMAIN='http://172.104.60.217:8585/'
-PAYMENT_SUCCESS_URL='http://172.104.60.217:8585/api/v1/products/success/'
-PAYMENT_CANCEL_URL='http://172.104.60.217:8585/api/v1/products/cancel/'
-CORS_ORIGIN_ALLOW_ALL=True
+BACKEND_DOMAIN=config('BACKEND_DOMAIN', default='http://localhost:8585/')
+PAYMENT_SUCCESS_URL=config('PAYMENT_SUCCESS_URL', default=f'{BACKEND_DOMAIN.rstrip("/")}/api/v1/products/success/')
+PAYMENT_CANCEL_URL=config('PAYMENT_CANCEL_URL', default=f'{BACKEND_DOMAIN.rstrip("/")}/api/v1/products/cancel/')
+CORS_ORIGIN_ALLOW_ALL=config('CORS_ORIGIN_ALLOW_ALL', default=False, cast=bool)
+STRIPE_PUBLISHABLE_KEY=config('STRIPE_PUBLISHABLE_KEY', default='')
+STRIPE_SECRET_KEY=config('STRIPE_SECRET_KEY', default='')
+STRIPE_WEBHOOK_SECRET=config('STRIPE_WEBHOOK_SECRET', default='')
 
-CORS_ALLOWED_ORIGINS = [
+CORS_ALLOWED_ORIGINS = csv_config('CORS_ALLOWED_ORIGINS') or [
     "http://127.0.0.1",
     "http://localhost",
-    "https://792jz173sj.execute-api.us-east-1.amazonaws.com",
-    "https://socialcloudsync.com",
-    "http://52.90.4.135",
-    "http://52.90.4.135:8585"
 ]
 
-CORS_ALLOW_CREDENTIALS=True
+CORS_ALLOW_CREDENTIALS=config('CORS_ALLOW_CREDENTIALS', default=False, cast=bool)
+
+SECURE_SSL_REDIRECT=config('SECURE_SSL_REDIRECT', default=not DEBUG, cast=bool)
+SESSION_COOKIE_SECURE=config('SESSION_COOKIE_SECURE', default=not DEBUG, cast=bool)
+CSRF_COOKIE_SECURE=config('CSRF_COOKIE_SECURE', default=not DEBUG, cast=bool)
+SECURE_HSTS_SECONDS=config('SECURE_HSTS_SECONDS', default=31536000 if not DEBUG else 0, cast=int)
+SECURE_HSTS_INCLUDE_SUBDOMAINS=config('SECURE_HSTS_INCLUDE_SUBDOMAINS', default=not DEBUG, cast=bool)
+SECURE_HSTS_PRELOAD=config('SECURE_HSTS_PRELOAD', default=not DEBUG, cast=bool)
+SECURE_CONTENT_TYPE_NOSNIFF=True
+X_FRAME_OPTIONS='DENY'
+DATA_UPLOAD_MAX_MEMORY_SIZE=config('DATA_UPLOAD_MAX_MEMORY_SIZE', default=2621440, cast=int)
+FILE_UPLOAD_MAX_MEMORY_SIZE=config('FILE_UPLOAD_MAX_MEMORY_SIZE', default=2621440, cast=int)
 
 # Django data browser
 # References : https://pypi.org/project/django-data-browser/
-DATA_BROWSER_FE_DSN="https://af64f22b81994a0e93b82a32add8cb2b@o390136.ingest.sentry.io/5231151"
+DATA_BROWSER_FE_DSN=config('DATA_BROWSER_FE_DSN', default='')
 
 # Application definition # # # # #
 INSTALLED_APPS = [
@@ -57,8 +77,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'debug_toolbar',
-    'django_extensions',
     'rest_framework',
     "corsheaders",
     'graphene_django',
@@ -77,6 +95,12 @@ INSTALLED_APPS = [
     'template_timings_panel'
 ]
 
+if DEBUG:
+    INSTALLED_APPS += [
+        'debug_toolbar',
+        'django_extensions',
+    ]
+
 
 TENANT_APPS = ["client_app"]
 
@@ -94,16 +118,18 @@ TENANT_APPS = ["client_app"]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    "corsheaders.middleware.CorsMiddleware",
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    "corsheaders.middleware.CorsMiddleware",
-    "debug_toolbar.middleware.DebugToolbarMiddleware",
     # "django_tenants.middleware.main.TenantMainMiddleware"
 ]
+
+if DEBUG:
+    MIDDLEWARE.append("debug_toolbar.middleware.DebugToolbarMiddleware")
 
 DEBUG_TOOLBAR_PANELS = [
         'debug_toolbar.panels.versions.VersionsPanel',
@@ -166,8 +192,8 @@ DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.postgresql',
 #         'NAME': os.environ.get("POSTGRES_NAME", "DB4"),
-#         'USER': os.environ.get("POSTGRES_USER", "postgres"),
-#         'PASSWORD': os.environ.get("POSTGRES_PASSWORD", "postgres"),
+#         'USER': os.environ["POSTGRES_USER"],
+#         'PASSWORD': os.environ["POSTGRES_PASSWORD"],
 #         'HOST': os.environ.get("POSTGRES_HOST", "prodxcloud-django-postgresdb"),
 #         'PORT': int(os.environ.get("POSTGRES_PORT", "5432")),
 #     }
@@ -218,17 +244,19 @@ REST_FRAMEWORK = {
 
     'PAGE_SIZE': 20,
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.AllowAny',
+        'rest_framework.permissions.IsAuthenticated',
     ],
     'DEFAULT_RENDERER_CLASSES': [
         'rest_framework.renderers.JSONRenderer',
-        'rest_framework.renderers.BrowsableAPIRenderer',
     ],
-    # 'DEFAULT_AUTHENTICATION_CLASSES': (
-    #     'rest_framework_simplejwt.authentication.JWTAuthentication',
-    #     'rest_framework.authentication.SessionAuthentication',
-    # ), 
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ),
 }
+
+if DEBUG:
+    REST_FRAMEWORK['DEFAULT_RENDERER_CLASSES'].append('rest_framework.renderers.BrowsableAPIRenderer')
 
 
 # Internationalization #
@@ -287,7 +315,7 @@ STATICFILES_DIRS = (
 CELERY_BROKER_URL=os.environ.get("CELERY_BROKER", "redis://redis:6379/0")
 CELERY_RESULT_BACKEND = os.environ.get("CELERY_RESULT_BACKEND", "redis://redis:6379/0")
 CELERY_BROKER_TRANSPORT_URL=os.environ.get("CELERY_RESULT_BACKEND", "redis://redis:6379/0")
-# CELERY_RESULT_BACKEND= os.environ.get("CELERY_RESULT_BACKEND", "db+postgresql://postgres:postgres@172.104.60.217/DB2") 
+# CELERY_RESULT_BACKEND= os.environ["CELERY_RESULT_BACKEND"]
 BROKER_URL=os.environ.get("BROKER_URL", "redis://redis:6379/1")
 CELERY_ACCEPT_CONTENT=['application/json']
 CELERY_TASK_SERIALIZER='json'
@@ -310,8 +338,8 @@ BROKER_TRANSPORT="kombu.transport.django"
 
 #Parameters for SMTP EMAIL EmailBackend
 EMAIL_BACKEND='django.core.mail.backends.smtp.EmailBackend'
-EMAIL_USE_TLS=os.environ.get("EMAIL_USE_TLS", True)
-EMAIL_HOST=os.environ.get("EMAIL_HOST", "smtp.gmail.com")
-EMAIL_HOST_USER=os.environ.get("EMAIL_HOST_USER", "notifyprodtestemail1@gmail.com")
-EMAIL_HOST_PASSWORD=os.environ.get("EMAIL_HOST_PASSWORD", "Michael@5151")
+EMAIL_USE_TLS=config("EMAIL_USE_TLS", default=True, cast=bool)
+EMAIL_HOST=os.environ.get("EMAIL_HOST", "localhost")
+EMAIL_HOST_USER=os.environ.get("EMAIL_HOST_USER", "")
+EMAIL_HOST_PASSWORD=os.environ.get("EMAIL_HOST_PASSWORD", "")
 EMAIL_PORT=os.environ.get("EMAIL_PORT", 587)

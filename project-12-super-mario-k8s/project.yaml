@@ -1,0 +1,22 @@
+schema_version: 1
+project:
+  number: 12
+  slug: super-mario-k8s
+  name: Super Mario on Kubernetes with Terraform
+classification: learning
+status: reference
+deployability: reference_only
+stack:
+- Kubernetes
+- Terraform
+- Game deployment
+cloud:
+- aws
+iac:
+- terraform
+ci_cd: []
+cost_risk: medium
+security_posture: baseline
+validation:
+  command: test -f README.md
+notes: README-focused EKS/Terraform game deployment walkthrough.
