@@ -4,6 +4,7 @@ Runbooks are repeatable procedures for validating or operating repository exampl
 
 Available runbooks:
 
+- [Student Implementation Guide](student-implementation-guide.md): safe step-by-step workflow for students using their own credentials.
 - [IaC and Kubernetes Example Runbook](../iac-kubernetes-solid-runbook.md): Terraform formatting, Terraform validation, and Kubernetes dry-run checks for EKS/Terraform examples.
 
 Runbook conventions:

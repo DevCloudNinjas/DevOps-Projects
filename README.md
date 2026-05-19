@@ -64,6 +64,25 @@ flowchart LR
 4. Validate the repo: `make quality`
 5. Open a flagship project and follow its README/runbook
 
+## For Students: How to Use Any Project
+
+Each project is meant to be replicated with your own local tools, cloud account, and credentials.
+
+Use this workflow:
+
+1. Read the project README from top to bottom.
+2. Check `project.yaml` for cost risk, deployability, tools, and validation command.
+3. Install only the prerequisites listed for that project.
+4. Copy example config files such as `.env.example`, `terraform.tfvars.example`, or `*.template.yaml`.
+5. Add your own credentials locally. Never commit real credentials.
+6. Run the validation or dry-run command before deploying.
+7. Deploy to your own local cluster or cloud account.
+8. Observe logs, dashboards, app URLs, or infrastructure outputs.
+9. Run cleanup commands and confirm resources are deleted.
+10. Write a short learning report about what worked, what failed, and what you fixed.
+
+For the full checklist, see the [Student Implementation Guide](./docs/runbooks/student-implementation-guide.md). For new projects, use the [Project README Template](./docs/project-readme-template.md).
+
 ## Local Quality Gate
 
 Run the fast repository checks before opening a pull request:

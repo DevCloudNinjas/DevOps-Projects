@@ -10,7 +10,9 @@ nav:
       - Overview: catalog/index.md
   - Runbooks:
       - Overview: runbooks/index.md
+      - Student Implementation Guide: runbooks/student-implementation-guide.md
       - IaC and Kubernetes: iac-kubernetes-solid-runbook.md
+  - Project README Template: project-readme-template.md
   - Flagship Docs:
       - Overview: flagship/index.md
   - Marketing:
