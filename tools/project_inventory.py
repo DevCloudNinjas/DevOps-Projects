@@ -15,6 +15,32 @@ from tools.quality_gate import QualityGate, _print_report
 
 DEFAULT_METADATA_PATH = Path("tools/project_metadata.json")
 
+LEARNING_PATHS = (
+    "cloud-foundations",
+    "containers",
+    "ci-cd",
+    "infrastructure-as-code",
+    "kubernetes",
+    "devsecops",
+    "observability",
+    "serverless",
+    "platform-engineering",
+    "security",
+)
+
+LEARNER_BADGES = (
+    "beginner-friendly",
+    "local-first",
+    "free-tier-aware",
+    "cloud-cost-risk",
+    "portfolio-ready",
+    "team-workflow",
+    "security-focused",
+    "needs-cloud-account",
+    "cleanup-required",
+    "capstone",
+)
+
 
 @dataclass(frozen=True)
 class Project:
@@ -76,6 +102,18 @@ def validate_metadata(repo_root: Path, metadata: dict | None = None) -> list[str
             continue
         if Path(pattern).is_absolute() or ".." in Path(pattern).parts:
             errors.append(f"project_roots[{index}].glob must stay inside the repository")
+
+    conventions = metadata.get("learner_metadata", {})
+    if conventions:
+        if not isinstance(conventions, dict):
+            errors.append("learner_metadata must be an object when provided")
+        else:
+            paths = conventions.get("learning_paths", [])
+            badges = conventions.get("badges", [])
+            if not isinstance(paths, list) or set(paths) - set(LEARNING_PATHS):
+                errors.append("learner_metadata.learning_paths must use the supported learning path tags")
+            if not isinstance(badges, list) or set(badges) - set(LEARNER_BADGES):
+                errors.append("learner_metadata.badges must use the supported learner badge tags")
 
     if not discover_projects(repo_root, metadata):
         errors.append("metadata did not discover any projects")

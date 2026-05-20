@@ -18,6 +18,5 @@ ci_cd:
 cost_risk: low
 security_posture: baseline
 validation:
-  command: kubectl apply --dry-run=client -f k8s/
+  command: make validate
 notes: Local GitOps lab designed for Kind or Minikube with no cloud cost.
-

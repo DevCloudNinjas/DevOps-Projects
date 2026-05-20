@@ -420,7 +420,7 @@ pipeline {
     stages {
         stage('Git Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/DevCloudNinjas/DevOps-Projects/tree/main/project-30-blog-app-eks/.git'
+                git branch: 'main', url: 'https://github.com/DevCloudNinjas/DevOps-Projects/tree/master/project-30-blog-app-eks/.git'
             }
         }
         stage('Compile') {

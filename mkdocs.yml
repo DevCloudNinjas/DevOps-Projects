@@ -8,6 +8,16 @@ nav:
   - Home: index.md
   - Catalog:
       - Overview: catalog/index.md
+      - Project Picker: catalog/project-picker.md
+  - Learning Paths:
+      - Overview: learning-paths/index.md
+      - Beginner: learning-paths/beginner.md
+      - Docker/Kubernetes: learning-paths/docker-kubernetes.md
+      - Terraform/IaC: learning-paths/terraform-iac.md
+      - CI/CD: learning-paths/cicd.md
+      - DevSecOps: learning-paths/devsecops.md
+      - AWS: learning-paths/aws.md
+      - Platform Engineering 2026: learning-paths/platform-engineering-2026.md
   - Runbooks:
       - Overview: runbooks/index.md
       - Student Implementation Guide: runbooks/student-implementation-guide.md

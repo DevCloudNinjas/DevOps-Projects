@@ -4,7 +4,7 @@
 
 # 👉 Blog Link: https://devcloudninjas.hashnode.dev/zomato-clone-secure-deployment-with-devsecops-cicd
 
-# 👉 Project Source Code: https://github.com/DevCloudNinjas/DevOps-Projects/tree/main/project-13-zomato-clone-devsecops
+# 👉 Project Source Code: https://github.com/DevCloudNinjas/DevOps-Projects/tree/master/project-13-zomato-clone-devsecops
 
 ## ✌️ Samples
 ![Samples](https://miro.medium.com/v2/resize:fit:750/format:webp/1*xVxk3tSbk9yA6hel60t13g.png)

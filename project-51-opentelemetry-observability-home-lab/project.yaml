@@ -20,6 +20,5 @@ ci_cd: []
 cost_risk: low
 security_posture: baseline
 validation:
-  command: docker compose config
+  command: make validate
 notes: Local observability lab for traces, metrics, and logs using Docker Compose.
-

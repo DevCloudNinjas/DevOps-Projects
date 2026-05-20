@@ -8,5 +8,31 @@
   ],
   "validation": {
     "quality_gate": "python -m tools.quality_gate --project {project} ."
+  },
+  "learner_metadata": {
+    "learning_paths": [
+      "cloud-foundations",
+      "containers",
+      "ci-cd",
+      "infrastructure-as-code",
+      "kubernetes",
+      "devsecops",
+      "observability",
+      "serverless",
+      "platform-engineering",
+      "security"
+    ],
+    "badges": [
+      "beginner-friendly",
+      "local-first",
+      "free-tier-aware",
+      "cloud-cost-risk",
+      "portfolio-ready",
+      "team-workflow",
+      "security-focused",
+      "needs-cloud-account",
+      "cleanup-required",
+      "capstone"
+    ]
   }
 }

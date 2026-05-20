@@ -20,6 +20,5 @@ ci_cd: []
 cost_risk: medium
 security_posture: baseline
 validation:
-  command: test -f main.tf -a -f versions.tf
+  command: make validate
 notes: Student AWS free-tier IaC lab with explicit destroy and cost warnings.
-

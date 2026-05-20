@@ -3,6 +3,8 @@ import subprocess
 from pathlib import Path
 
 from tools.project_inventory import (
+    LEARNER_BADGES,
+    LEARNING_PATHS,
     Project,
     discover_projects,
     list_main,
@@ -51,6 +53,36 @@ def test_validate_metadata_rejects_parent_glob(tmp_path: Path) -> None:
     errors = validate_metadata(tmp_path, metadata)
 
     assert any("inside the repository" in error for error in errors)
+
+
+def test_validate_metadata_accepts_learner_conventions(tmp_path: Path) -> None:
+    (tmp_path / "project-01-alpha").mkdir()
+    metadata = {
+        "project_roots": [{"glob": "project-*"}],
+        "learner_metadata": {
+            "learning_paths": list(LEARNING_PATHS),
+            "badges": list(LEARNER_BADGES),
+        },
+    }
+
+    errors = validate_metadata(tmp_path, metadata)
+
+    assert errors == []
+
+
+def test_validate_metadata_rejects_unknown_learner_badges(tmp_path: Path) -> None:
+    (tmp_path / "project-01-alpha").mkdir()
+    metadata = {
+        "project_roots": [{"glob": "project-*"}],
+        "learner_metadata": {
+            "learning_paths": ["kubernetes"],
+            "badges": ["mystery-badge"],
+        },
+    }
+
+    errors = validate_metadata(tmp_path, metadata)
+
+    assert any("learner_metadata.badges" in error for error in errors)
 
 
 def test_projects_for_changed_files_maps_nested_paths() -> None:

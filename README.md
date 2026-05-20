@@ -71,7 +71,7 @@ Each project is meant to be replicated with your own local tools, cloud account,
 Use this workflow:
 
 1. Read the project README from top to bottom.
-2. Check `project.yaml` for cost risk, deployability, tools, and validation command.
+2. Check `project.yaml` for cost risk, deployability, tools, estimated time, prerequisites, learning paths, badges, and validation command.
 3. Install only the prerequisites listed for that project.
 4. Copy example config files such as `.env.example`, `terraform.tfvars.example`, or `*.template.yaml`.
 5. Add your own credentials locally. Never commit real credentials.
@@ -82,6 +82,30 @@ Use this workflow:
 10. Write a short learning report about what worked, what failed, and what you fixed.
 
 For the full checklist, see the [Student Implementation Guide](./docs/runbooks/student-implementation-guide.md). For new projects, use the [Project README Template](./docs/project-readme-template.md).
+
+Use [LEARNING_TRACKER.md](./LEARNING_TRACKER.md) as a personal template for time planning, prerequisites, validation notes, cleanup, and portfolio evidence.
+
+### Learner Metadata Conventions
+
+Projects may include an optional `learning` section in `project.yaml`:
+
+```yaml
+learning:
+  estimated_time: 4-6 hours
+  prerequisites:
+    - Docker basics
+    - AWS account with budget alert
+  learning_paths:
+    - containers
+    - ci-cd
+  badges:
+    - local-first
+    - portfolio-ready
+```
+
+Learning paths: `cloud-foundations`, `containers`, `ci-cd`, `infrastructure-as-code`, `kubernetes`, `devsecops`, `observability`, `serverless`, `platform-engineering`, `security`.
+
+Badges: `beginner-friendly`, `local-first`, `free-tier-aware`, `cloud-cost-risk`, `portfolio-ready`, `team-workflow`, `security-focused`, `needs-cloud-account`, `cleanup-required`, `capstone`.
 
 ## Local Quality Gate
 

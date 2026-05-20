@@ -6,7 +6,7 @@
 
 ## Detailed Project Blob Link : https://devcloudninjas.hashnode.dev/deployment-of-super-mario-on-kubernetes-using-terraform
 
-## Project Source Code : https://github.com/DevCloudNinjas/DevOps-Projects/tree/main/project-12-super-mario-k8s
+## Project Source Code : https://github.com/DevCloudNinjas/DevOps-Projects/tree/master/project-12-super-mario-k8s
 
 # Thank you
 Thank you for taking the time to work on this tutorial/labs. Let me know what you thought!

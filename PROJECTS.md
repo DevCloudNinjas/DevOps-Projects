@@ -8,6 +8,28 @@ Required fields: `schema_version`, `project.number`, `project.slug`, `project.na
 
 Classification values are `learning` or `deployable`. Cost risk is `low`, `medium`, or `high`. Security posture is `baseline`, `devsecops`, `hardened`, or `needs_review`.
 
+Optional learner fields live under `learning` and help students choose the right project without changing the deployability catalog:
+
+```yaml
+learning:
+  estimated_time: 2-4 hours
+  prerequisites:
+    - Docker basics
+    - GitHub account
+  learning_paths:
+    - containers
+    - ci-cd
+  badges:
+    - local-first
+    - beginner-friendly
+```
+
+Supported learning paths are `cloud-foundations`, `containers`, `ci-cd`, `infrastructure-as-code`, `kubernetes`, `devsecops`, `observability`, `serverless`, `platform-engineering`, and `security`.
+
+Supported learner badges are `beginner-friendly`, `local-first`, `free-tier-aware`, `cloud-cost-risk`, `portfolio-ready`, `team-workflow`, `security-focused`, `needs-cloud-account`, `cleanup-required`, and `capstone`.
+
+Use [LEARNING_TRACKER.md](LEARNING_TRACKER.md) as a student worksheet for tracking selected projects, prerequisites, validation evidence, cleanup, and portfolio notes.
+
 ## Projects
 
 | # | Project | Classification | Status | Deployability | Cloud | Cost | Security | Validation |

@@ -3,6 +3,7 @@
 This site collects the repository's reusable learning and operations material:
 
 - [Catalog](catalog/index.md): how to navigate projects, learning tracks, and reusable resources.
+- [Learning paths](learning-paths/index.md): sequenced routes through the 54 projects by student goal.
 - [Runbooks](runbooks/index.md): repeatable operating procedures for local validation and lab maintenance.
 - [Flagship docs](flagship/index.md): high-signal project guides worth treating as primary examples.
 - [Project README template](project-readme-template.md): standard README structure for student-replicable labs.

@@ -142,6 +142,65 @@
         }
       }
     },
+    "learning": {
+      "type": "object",
+      "description": "Optional learner-facing metadata that helps students choose and sequence projects.",
+      "additionalProperties": false,
+      "properties": {
+        "estimated_time": {
+          "type": "string",
+          "description": "Human-readable completion estimate, for example '2-4 hours', '1 day', or '2-3 days'.",
+          "pattern": "^[0-9]+(\\.[0-9]+)?(-[0-9]+(\\.[0-9]+)?)?\\s+(minutes?|hours?|days?|weeks?)$"
+        },
+        "prerequisites": {
+          "type": "array",
+          "description": "Concrete skills, tools, accounts, or prior projects students should have before starting.",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "learning_paths": {
+          "type": "array",
+          "description": "Canonical path tags used to group projects into study sequences.",
+          "items": {
+            "enum": [
+              "cloud-foundations",
+              "containers",
+              "ci-cd",
+              "infrastructure-as-code",
+              "kubernetes",
+              "devsecops",
+              "observability",
+              "serverless",
+              "platform-engineering",
+              "security"
+            ]
+          },
+          "uniqueItems": true
+        },
+        "badges": {
+          "type": "array",
+          "description": "Learner badge tags from the repository badge convention.",
+          "items": {
+            "enum": [
+              "beginner-friendly",
+              "local-first",
+              "free-tier-aware",
+              "cloud-cost-risk",
+              "portfolio-ready",
+              "team-workflow",
+              "security-focused",
+              "needs-cloud-account",
+              "cleanup-required",
+              "capstone"
+            ]
+          },
+          "uniqueItems": true
+        }
+      }
+    },
     "notes": {
       "type": "string",
       "minLength": 1

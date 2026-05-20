@@ -1,5 +1,10 @@
 # Project 50: ArgoCD GitOps Home Lab
 
+![Level](https://img.shields.io/badge/level-beginner--friendly-brightgreen)
+![Cost](https://img.shields.io/badge/cost-local--only-blue)
+![Cloud](https://img.shields.io/badge/cloud-not--required-lightgrey)
+![Workflow](https://img.shields.io/badge/workflow-GitOps-purple)
+
 Student-friendly GitOps lab for running a simple Kubernetes app locally with Kind or Minikube and deploying it through ArgoCD.
 
 ## What You Learn
@@ -9,27 +14,36 @@ Student-friendly GitOps lab for running a simple Kubernetes app locally with Kin
 - How to structure app manifests for dev/staging style promotion
 - How sync, drift, rollback, and health checks work
 
-## Home Lab Cost
+## Architecture
 
-Local only. No cloud account required.
+```mermaid
+flowchart LR
+  Student["Student edits Git repo"] --> AppManifest["k8s/ manifests"]
+  AppManifest --> ArgoApp["ArgoCD Application"]
+  ArgoApp --> ArgoCD["ArgoCD controller"]
+  ArgoCD --> Cluster["Kind or Minikube cluster"]
+  Cluster --> Workload["hello-gitops Deployment + Service"]
+```
 
 ## Prerequisites
 
 - Docker
-- Kind or Minikube
+- Kind for the one-command workflow, or Minikube if you prefer manual setup
 - `kubectl`
 - ArgoCD CLI, optional but useful
 
-## Lab Flow
+## One-Command Local Workflow
 
-1. Create a local cluster.
-2. Install ArgoCD.
-3. Apply the sample app manifests once to understand the app.
-4. Apply the ArgoCD `Application` manifest.
-5. Change the image tag or replica count in Git.
-6. Watch ArgoCD reconcile the cluster.
+```bash
+make validate
+make up
+make logs
+make down
+```
 
-## Quick Start
+`make up` creates a local Kind cluster named `gitops-lab`, installs ArgoCD, and applies `argocd/application.yaml`.
+
+## Manual Quick Start
 
 ```bash
 kind create cluster --name gitops-lab
@@ -42,16 +56,31 @@ kubectl get applications -n argocd
 
 Update `argocd/application.yaml` so `repoURL` points to your fork before using it with a real GitHub repo.
 
-## Local Manifest Check
+## Validation
 
 ```bash
-kubectl apply --dry-run=client -f k8s/
+make validate
 ```
 
-## Clean Up
+This parses the Kubernetes and ArgoCD YAML locally, so it works before a cluster or ArgoCD CRD exists.
+
+## Troubleshooting
+
+- `no matches for kind "Application"`: install ArgoCD before applying the manifest to a cluster; `make validate` is only a local YAML check.
+- `repoURL` sync fails: fork this repository and update `argocd/application.yaml` to your fork URL and branch.
+- App namespace missing: confirm `syncOptions` still includes `CreateNamespace=true`.
+- Kind cluster already exists: run `make down`, or use `CLUSTER=my-gitops-lab make up`.
+
+## Cleanup
 
 ```bash
-kind delete cluster --name gitops-lab
+make down
+```
+
+For Minikube users:
+
+```bash
+minikube delete
 ```
 
 ## Stretch Goals
@@ -60,4 +89,3 @@ kind delete cluster --name gitops-lab
 - Add ArgoCD sync waves.
 - Add image automation.
 - Break the deployment and use ArgoCD rollback.
-
