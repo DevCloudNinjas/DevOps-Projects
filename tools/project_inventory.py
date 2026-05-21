@@ -100,7 +100,9 @@ def validate_metadata(repo_root: Path, metadata: dict | None = None) -> list[str
             errors.append(f"project_roots[{index}].glob must be a non-empty string")
             continue
         if Path(pattern).is_absolute() or ".." in Path(pattern).parts:
-            errors.append(f"project_roots[{index}].glob must stay inside the repository")
+            errors.append(
+                f"project_roots[{index}].glob must stay inside the repository"
+            )
 
     conventions = metadata.get("learner_metadata", {})
     if conventions:
