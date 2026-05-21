@@ -32,7 +32,9 @@ def _write_metadata(repo: Path) -> None:
     }
     tools_dir = repo / "tools"
     tools_dir.mkdir(exist_ok=True)
-    tools_dir.joinpath("project_metadata.json").write_text(json.dumps(metadata), encoding="utf-8")
+    tools_dir.joinpath("project_metadata.json").write_text(
+        json.dumps(metadata), encoding="utf-8"
+    )
 
 
 def test_discover_projects_from_metadata(tmp_path: Path) -> None:
@@ -43,7 +45,10 @@ def test_discover_projects_from_metadata(tmp_path: Path) -> None:
 
     projects = discover_projects(tmp_path)
 
-    assert [project.path for project in projects] == ["project-01-alpha", "project-02-beta"]
+    assert [project.path for project in projects] == [
+        "project-01-alpha",
+        "project-02-beta",
+    ]
     assert projects[0].id == "project-01-alpha"
 
 
@@ -87,8 +92,18 @@ def test_validate_metadata_rejects_unknown_learner_badges(tmp_path: Path) -> Non
 
 def test_projects_for_changed_files_maps_nested_paths() -> None:
     projects = [
-        Project(id="one", path="project-01-alpha", name="project-01-alpha", source="test"),
-        Project(id="two", path="project-02-beta", name="project-02-beta", source="test"),
+        Project(
+            id="one",
+            path="project-01-alpha",
+            name="project-01-alpha",
+            source="test",
+        ),
+        Project(
+            id="two",
+            path="project-02-beta",
+            name="project-02-beta",
+            source="test",
+        ),
     ]
 
     changed = projects_for_changed_files(
@@ -99,7 +114,9 @@ def test_projects_for_changed_files_maps_nested_paths() -> None:
     assert [project.path for project in changed] == ["project-02-beta"]
 
 
-def test_list_main_outputs_github_matrix_for_changed_projects(tmp_path: Path, capsys) -> None:
+def test_list_main_outputs_github_matrix_for_changed_projects(
+    tmp_path: Path, capsys
+) -> None:
     _run(["git", "init"], tmp_path)
     _run(["git", "config", "user.email", "test@example.com"], tmp_path)
     _run(["git", "config", "user.name", "Test User"], tmp_path)

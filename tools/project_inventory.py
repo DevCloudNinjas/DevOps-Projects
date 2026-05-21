@@ -12,7 +12,6 @@ from typing import Iterable
 
 from tools.quality_gate import QualityGate, _print_report
 
-
 DEFAULT_METADATA_PATH = Path("tools/project_metadata.json")
 
 LEARNING_PATHS = (
@@ -111,9 +110,13 @@ def validate_metadata(repo_root: Path, metadata: dict | None = None) -> list[str
             paths = conventions.get("learning_paths", [])
             badges = conventions.get("badges", [])
             if not isinstance(paths, list) or set(paths) - set(LEARNING_PATHS):
-                errors.append("learner_metadata.learning_paths must use the supported learning path tags")
+                errors.append(
+                    "learner_metadata.learning_paths must use the supported learning path tags"
+                )
             if not isinstance(badges, list) or set(badges) - set(LEARNER_BADGES):
-                errors.append("learner_metadata.badges must use the supported learner badge tags")
+                errors.append(
+                    "learner_metadata.badges must use the supported learner badge tags"
+                )
 
     if not discover_projects(repo_root, metadata):
         errors.append("metadata did not discover any projects")
@@ -138,14 +141,18 @@ def changed_files(repo_root: Path, base_ref: str, head_ref: str = "HEAD") -> lis
     raise RuntimeError(f"could not compute changed files: {last_error}")
 
 
-def projects_for_changed_files(projects: Iterable[Project], paths: Iterable[str]) -> list[Project]:
+def projects_for_changed_files(
+    projects: Iterable[Project], paths: Iterable[str]
+) -> list[Project]:
     """Return projects that contain at least one changed path."""
 
     by_path = {project.path: project for project in projects}
     selected: dict[str, Project] = {}
     for changed_path in paths:
         for project_path, project in by_path.items():
-            if changed_path == project_path or changed_path.startswith(f"{project_path}/"):
+            if changed_path == project_path or changed_path.startswith(
+                f"{project_path}/"
+            ):
                 selected[project_path] = project
     return sorted(selected.values(), key=lambda project: project.path)
 
@@ -168,23 +175,48 @@ def _format_projects(projects: list[Project], output_format: str) -> str:
     if output_format == "json":
         return json.dumps([asdict(project) for project in projects], indent=2)
     if output_format == "github-matrix":
-        return json.dumps({"include": [asdict(project) for project in projects]}, separators=(",", ":"))
+        return json.dumps(
+            {"include": [asdict(project) for project in projects]},
+            separators=(",", ":"),
+        )
     return "\n".join(project.path for project in projects)
 
 
 def build_list_parser() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser(description="List projects discovered from repository metadata.")
-    parser.add_argument("--repo-root", default=".", help="Repository root. Defaults to current directory.")
-    parser.add_argument("--metadata", default=None, help="Metadata JSON path. Defaults to tools/project_metadata.json.")
+    parser = argparse.ArgumentParser(
+        description="List projects discovered from repository metadata."
+    )
+    parser.add_argument(
+        "--repo-root",
+        default=".",
+        help="Repository root. Defaults to current directory.",
+    )
+    parser.add_argument(
+        "--metadata",
+        default=None,
+        help="Metadata JSON path. Defaults to tools/project_metadata.json.",
+    )
     parser.add_argument(
         "--format",
         choices=("plain", "json", "github-matrix"),
         default="plain",
         help="Output format.",
     )
-    parser.add_argument("--changed-from", default=None, help="Git base ref for changed-project detection.")
-    parser.add_argument("--changed-to", default="HEAD", help="Git head ref for changed-project detection.")
-    parser.add_argument("--validate-metadata", action="store_true", help="Validate metadata before listing.")
+    parser.add_argument(
+        "--changed-from",
+        default=None,
+        help="Git base ref for changed-project detection.",
+    )
+    parser.add_argument(
+        "--changed-to",
+        default="HEAD",
+        help="Git head ref for changed-project detection.",
+    )
+    parser.add_argument(
+        "--validate-metadata",
+        action="store_true",
+        help="Validate metadata before listing.",
+    )
     return parser
 
 
@@ -209,9 +241,18 @@ def list_main(argv: list[str] | None = None) -> int:
 
 
 def build_validate_parser() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser(description="Validate one project with the local quality gate.")
-    parser.add_argument("project", help="Project path, for example project-31-cloud-native-monitoring.")
-    parser.add_argument("--repo-root", default=".", help="Repository root. Defaults to current directory.")
+    parser = argparse.ArgumentParser(
+        description="Validate one project with the local quality gate."
+    )
+    parser.add_argument(
+        "project",
+        help="Project path, for example project-31-cloud-native-monitoring.",
+    )
+    parser.add_argument(
+        "--repo-root",
+        default=".",
+        help="Repository root. Defaults to current directory.",
+    )
     return parser
 
 

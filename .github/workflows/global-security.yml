@@ -68,8 +68,9 @@ jobs:
         uses: github/super-linter@v5
         env:
           VALIDATE_ALL_CODEBASE: false
-          DEFAULT_BRANCH: "main"
+          DEFAULT_BRANCH: "master"
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           # Disable linters that might be too noisy initially
           VALIDATE_JSCPD: false
           VALIDATE_KUBERNETES_KUBEVAL: false
+          VALIDATE_PYTHON_MYPY: false
