@@ -1,7 +1,7 @@
 # DevOps Projects Student Portal
 
 <section class="portal-hero">
-  <div class="portal-hero__copy">
+  <div class="portal-hero-copy">
     <p class="eyebrow">2026 DevOps portfolio lab</p>
     <h1>Build real DevOps projects at home, then show the proof.</h1>
     <p class="lede">
