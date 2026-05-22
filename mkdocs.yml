@@ -4,6 +4,8 @@ repo_url: https://github.com/DevCloudNinjas/DevOps-Projects
 docs_dir: docs
 theme:
   name: mkdocs
+extra_css:
+  - stylesheets/portal.css
 nav:
   - Home: index.md
   - Catalog:

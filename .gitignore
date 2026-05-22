@@ -36,6 +36,7 @@ build/
 bin/
 obj/
 dist/
+site/
 
 # Terraform / OpenTofu
 .terraform/
