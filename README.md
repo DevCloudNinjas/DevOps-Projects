@@ -21,7 +21,7 @@ This repository is designed to prove practical engineering judgment: infrastruct
 
 ---
 
-## Website
+## Site
 
 The student portal is the best entry point for browsing, choosing, and safely running projects:
 
@@ -31,13 +31,13 @@ The student portal is the best entry point for browsing, choosing, and safely ru
 - [Contribute improvements](./CONTRIBUTING.md)
 - [Ask for help without exposing secrets](./SUPPORT.md)
 
-The website is static and privacy-first. It does not require accounts, forms, analytics, cookies, or shared credentials.
+The site is static and privacy-first. It does not require accounts, forms, analytics, cookies, or shared credentials.
 
 ---
 
 ## Start Here
 
-If you are reviewing this repo for hiring, collaboration, or learning, start with the flagship projects below. They are the highest-signal examples and show the repository's strongest DevOps patterns.
+If you are reviewing this repository for hiring, collaboration, or learning, start with the flagship projects below. They are the highest-signal examples and show the repository's strongest DevOps patterns.
 
 | Flagship | What It Demonstrates | Best For |
 |---|---|---|
@@ -49,7 +49,7 @@ If you are reviewing this repo for hiring, collaboration, or learning, start wit
 
 ## Portfolio Story
 
-This repo started as a broad DevOps learning collection and has been hardened into a structured portfolio lab. The latest modernization pass added:
+This repository started as a broad DevOps learning collection and has been hardened into a structured portfolio lab. The latest modernization pass added:
 
 - A machine-readable catalog for all 54 projects through `project.yaml` files.
 - Root-level quality commands through `make quality`, `make list-projects`, and `make validate-project`.
@@ -80,10 +80,10 @@ flowchart LR
 
 ## Quick Start
 
-1. Clone the repo: `git clone https://github.com/DevCloudNinjas/DevOps-Projects.git`
+1. Clone the repository: `git clone https://github.com/DevCloudNinjas/DevOps-Projects.git`
 2. Install the local tooling: `python3 -m pip install -r tools/requirements.txt`
 3. List projects: `make list-projects`
-4. Validate the repo: `make quality`
+4. Validate the repository: `make quality`
 5. Open a flagship project and follow its README/runbook
 
 ## For Students: How to Use Any Project
@@ -357,7 +357,7 @@ See [resources/](./resources/) for details.
 
 ## Repository Structure
 
-```
+```text
 DevOps-Projects/
 ├── project-01 through project-54/    # 54 DevOps projects
 ├── learning/                          # 15 learning tracks & study guides

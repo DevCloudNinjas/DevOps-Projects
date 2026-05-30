@@ -2,11 +2,11 @@
 
 ## What Changed
 
-- 
+- TBD
 
 ## Affected Path
 
-- 
+- TBD
 
 ## Why This Is Needed
 
@@ -37,4 +37,4 @@ Project-specific checks:
 
 ## Live Environment Verification Still Needed
 
-- 
+- TBD

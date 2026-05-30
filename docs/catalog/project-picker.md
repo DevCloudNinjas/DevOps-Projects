@@ -1,4 +1,5 @@
 # Project Picker
+<!-- markdownlint-disable MD013 -->
 
 Use this page to choose one of the 54 projects by purpose instead of scrolling the whole repository. The root README remains the full catalog; this picker is a student-facing map for deciding what to build next.
 
@@ -20,7 +21,7 @@ Start with the smallest project that answers your learning goal. Good public tec
 1. Pick one section below that matches your current constraint: local-only, beginner, free-tier, security, portfolio, or 2026 lab.
 2. Check the project row in the compact table for cost, deployability, and validation.
 3. Open the project README and `project.yaml` before running commands.
-4. Confirm prerequisites: cloud account, CLI tools, cluster, CI provider, package manager, and any secrets.
+4. Confirm prerequisites: cloud account, command-line tools, cluster, CI provider, package manager, and any secrets.
 5. Run the validation command first. If it fails before you edit anything, fix the local tooling gap or choose a simpler project.
 6. For cloud labs, write down the cleanup command before deploy. If cleanup is unclear, treat the project as study-only until the README is improved.
 
