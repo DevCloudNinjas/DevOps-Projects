@@ -1,0 +1,17 @@
+{
+  "name": "devops-projects-portal",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "python3 tools/build_starlight_content.py && astro build",
+    "dev": "python3 tools/build_starlight_content.py && astro dev",
+    "preview": "astro preview",
+    "sync": "python3 tools/build_starlight_content.py && astro sync"
+  },
+  "dependencies": {
+    "@astrojs/starlight": "^0.39.2",
+    "astro": "^6.4.2"
+  },
+  "devDependencies": {}
+}

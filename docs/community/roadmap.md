@@ -53,9 +53,9 @@ Improve repository trust signals by tracking practical security hygiene:
 
 The goal is not a badge-only score. The goal is safer day-to-day contribution.
 
-### Material for MkDocs Search
+### Astro Starlight Search
 
-Keep improving the Material for MkDocs experience where it clearly improves navigation, search, and copyable commands.
+Keep improving the Astro Starlight experience where it clearly improves navigation, search, internal project discovery, and copyable commands.
 
 Desired improvements:
 

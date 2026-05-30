@@ -26,12 +26,15 @@ This repository is designed to prove practical engineering judgment: infrastruct
 The student portal is the best entry point for browsing, choosing, and safely running projects:
 
 - [Open the DevOps Projects Student Portal](https://devcloudninjas.github.io/DevOps-Projects/)
-- [Pick a project](./docs/catalog/project-picker.md)
-- [Run projects safely with your own credentials](./docs/runbooks/credentials-and-cost-safety.md)
+- [Pick a project](https://devcloudninjas.github.io/DevOps-Projects/catalog/project-picker/)
+- [Browse internal project guides](https://devcloudninjas.github.io/DevOps-Projects/projects/)
+- [Run projects safely with your own credentials](https://devcloudninjas.github.io/DevOps-Projects/runbooks/credentials-and-cost-safety/)
 - [Contribute improvements](./CONTRIBUTING.md)
 - [Ask for help without exposing secrets](./SUPPORT.md)
 
-The site is static and privacy-first. It does not require accounts, forms, analytics, cookies, or shared credentials.
+The site is an Astro Starlight portal with internal pages for every project.
+It is static and privacy-first. It does not require accounts, forms,
+analytics, cookies, or shared credentials.
 
 ---
 
@@ -65,7 +68,7 @@ flowchart LR
     reviewer["Reviewer / Hiring Manager"] --> readme["Root README"]
     readme --> flagship["5 Flagship Case Studies"]
     readme --> catalog["54 Project Catalog"]
-    readme --> docs["Docs Site"]
+    readme --> docs["Astro Starlight Portal"]
 
     flagship --> app["Apps: Django, Node, AI Chatbot"]
     flagship --> infra["IaC: Terraform, EKS, ECS, VPC"]
@@ -103,7 +106,7 @@ Use this workflow:
 9. Run cleanup commands and confirm resources are deleted.
 10. Write a short learning report about what worked, what failed, and what you fixed.
 
-For the full checklist, see the [Student Implementation Guide](./docs/runbooks/student-implementation-guide.md). For new projects, use the [Project README Template](./docs/project-readme-template.md).
+For the full checklist, see the [Student Implementation Guide](https://devcloudninjas.github.io/DevOps-Projects/runbooks/student-implementation-guide/). For new projects, use the [Project README Template](https://devcloudninjas.github.io/DevOps-Projects/project-readme-template/).
 
 Use [LEARNING_TRACKER.md](./LEARNING_TRACKER.md) as a personal template for time planning, prerequisites, validation notes, cleanup, and portfolio evidence.
 

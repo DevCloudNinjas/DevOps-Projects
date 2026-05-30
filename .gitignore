@@ -29,6 +29,8 @@ REVIEW-UPDATES.md
 node_modules/
 __pycache__/
 .pytest_cache/
+.astro/
+/src/content/docs/
 *.pyc
 *.pyo
 target/

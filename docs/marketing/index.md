@@ -19,7 +19,7 @@ Longer version:
 - Flagship project 28: `project-28-openai-chatbot-eks`
 - Flagship project 47: `project-47-django-saas-ecommerce`
 - Flagship project 48: `project-48-terraform-aws-eks`
-- Docs site entry: `docs/index.md`
+- Docs site entry: `src/content/docs/index.mdx`
 
 ## LinkedIn Post 1: Portfolio Launch
 

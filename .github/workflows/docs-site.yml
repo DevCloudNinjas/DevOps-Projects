@@ -12,23 +12,31 @@ permissions:
 
 jobs:
   build:
-    name: Build MkDocs site
+    name: Build Astro Starlight site
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.12"
 
-      - name: Install documentation dependencies
-        run: python -m pip install -r tools/requirements.txt
+      - name: Install dependencies
+        run: |
+          python -m pip install -r tools/requirements.txt
+          npm ci
 
-      - name: Build documentation
-        run: python -m mkdocs build --strict
+      - name: Build documentation portal
+        run: npm run build
 
   deploy:
     name: Deploy to GitHub Pages
@@ -47,16 +55,24 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.12"
 
-      - name: Install documentation dependencies
-        run: python -m pip install -r tools/requirements.txt
+      - name: Install dependencies
+        run: |
+          python -m pip install -r tools/requirements.txt
+          npm ci
 
-      - name: Build documentation
-        run: python -m mkdocs build --strict
+      - name: Build documentation portal
+        run: npm run build
 
       - name: Configure Pages
         uses: actions/configure-pages@v5
@@ -66,7 +82,7 @@ jobs:
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: site
+          path: dist
 
       - name: Deploy to GitHub Pages
         id: deployment

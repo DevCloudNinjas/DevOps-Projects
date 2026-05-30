@@ -1,4 +1,4 @@
-.PHONY: help quality list-projects validate-project test-tools
+.PHONY: help quality list-projects validate-project test-tools build-site
 
 PYTHON ?= python3
 PROJECT ?=
@@ -9,7 +9,8 @@ help:
 		'  make quality                         Run tool tests and the repository quality gate' \
 		'  make list-projects                   List metadata-discovered root projects' \
 		'  make validate-project PROJECT=<path> Validate one project with the quality gate' \
-		'  make test-tools                       Run tool unit tests'
+		'  make test-tools                       Run tool unit tests' \
+		'  make build-site                       Build the Astro Starlight learning portal'
 
 quality: test-tools
 	$(PYTHON) -m tools.quality_gate .
@@ -23,3 +24,6 @@ validate-project:
 
 test-tools:
 	$(PYTHON) -m pytest tools/tests tools/repo_consolidation/tests -q
+
+build-site:
+	npm run build

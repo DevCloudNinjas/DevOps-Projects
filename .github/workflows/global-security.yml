@@ -74,3 +74,4 @@ jobs:
           VALIDATE_JSCPD: false
           VALIDATE_KUBERNETES_KUBEVAL: false
           VALIDATE_PYTHON_MYPY: false
+          VALIDATE_TYPESCRIPT_STANDARD: false
