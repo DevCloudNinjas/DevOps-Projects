@@ -5,6 +5,7 @@
 :root[data-theme="light"],
 :root[data-theme="dark"] {
   color-scheme: light;
+
   --portal-ink: #12140f;
   --portal-text: #34382f;
   --portal-muted: #4d5348;
