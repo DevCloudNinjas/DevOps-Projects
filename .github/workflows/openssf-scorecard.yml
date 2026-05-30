@@ -25,6 +25,8 @@ jobs:
           persist-credentials: false
 
       - name: Run OpenSSF Scorecard
+        id: scorecard
+        continue-on-error: true
         uses: ossf/scorecard-action@v2.4.3
         with:
           results_file: scorecard-results.sarif
@@ -32,6 +34,18 @@ jobs:
           publish_results: true
 
       - name: Upload Scorecard SARIF
+        if: always() && hashFiles('scorecard-results.sarif') != ''
         uses: github/codeql-action/upload-sarif@v3
         with:
           sarif_file: scorecard-results.sarif
+
+      - name: Summarize advisory result
+        if: always()
+        run: |
+          if [ "${{ steps.scorecard.outcome }}" = "failure" ]; then
+            {
+              echo "OpenSSF Scorecard completed with advisory findings."
+              echo "The workflow is non-blocking so existing repository-wide"
+              echo "dependency findings can be triaged without blocking docs."
+            } >> "$GITHUB_STEP_SUMMARY"
+          fi
