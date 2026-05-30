@@ -275,6 +275,16 @@ mobile-starlight-toc .dropdown {
   border-color: #72c76d;
 }
 
+.portal-button.utility {
+  background: transparent;
+  color: var(--portal-muted);
+  font-weight: 750;
+}
+
+.portal-button.utility:hover {
+  color: var(--portal-ink);
+}
+
 .hero-metrics {
   background:
     linear-gradient(180deg, rgb(16 18 15 / 90%), rgb(16 18 15 / 98%)),

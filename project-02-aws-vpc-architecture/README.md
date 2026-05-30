@@ -1,7 +1,5 @@
 # Deploy Scalable VPC Architecture on AWS Cloud
 
-![AWS-Cloud](https://imgur.com/AXD50yl.png)
-
 ### TABLE OF CONTENTS
 1. [Goal](https://github.com/DevCloudNinjas/DevOps-Projects/blob/master/project-02-aws-vpc-architecture/README.md#goal)
 2. [Pre-Requisites](https://github.com/DevCloudNinjas/DevOps-Projects/blob/master/project-02-aws-vpc-architecture/README.md#pre-requisites)
@@ -64,6 +62,3 @@ Customize the application dependencies mentioned below on AWS EC2 instance and c
 ***If you are planning to use this repo for learning, please hit the star. Thanks!***
 
 #### Author by [DevCloud Ninjas](https://github.com/DevCloudNinjas)
-
-
-![](https://imgur.com/ZdiaMeo.gif)

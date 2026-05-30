@@ -179,8 +179,9 @@ def rewrite_project_readme_links(text: str, project_dir: str) -> str:
     def replace_image(match: re.Match[str]) -> str:
         alt, raw_target = match.group(1), match.group(2)
         target, title = split_markdown_destination(raw_target)
+        target = normalize_external_image_url(target)
         if is_external_or_anchor(target):
-            return match.group(0)
+            return f"![{alt}]({target}{title})"
         source_path, _ = repo_source_path(project_dir, target)
         raw_path = quote(source_path, safe="/:@")
         return f"![{alt}]({GITHUB_RAW}/{raw_path}{title})"
@@ -239,6 +240,15 @@ def is_external_or_anchor(target: str) -> bool:
         lower.startswith(("http://", "https://", "mailto:", "tel:", "#"))
         or "://" in lower
     )
+
+
+def normalize_external_image_url(target: str) -> str:
+    parsed = urlsplit(target)
+    if parsed.netloc.lower() == "imgur.com" and re.search(
+        r"\.(png|jpe?g|gif|webp)$", parsed.path, flags=re.IGNORECASE
+    ):
+        return f"https://i.imgur.com{parsed.path}"
+    return target
 
 
 def strip_first_h1(text: str) -> str:
@@ -414,16 +424,17 @@ def write_project_pages(projects: list[dict]) -> None:
 {tags}</div>
 
 <div class="source-callout">
-  <strong>Stay in the portal first.</strong>
+  <strong>Use the guide first.</strong>
   <p>
-    This page contains the project guide. Use GitHub only when you need
-    source files, a fork, or deeper code review.
+    The full learning guide is on this page. Open the repository files only
+    when a step asks you to inspect code, fork the project, or download raw
+    assets.
   </p>
   <div class="button-row">
-    <a class="portal-button primary" href="{GITHUB_TREE}/{project['dir']}">View source on GitHub</a>
-    <a class="portal-button" href="{site_path('/runbooks/credentials-and-cost-safety/')}">
+    <a class="portal-button primary" href="{site_path('/runbooks/credentials-and-cost-safety/')}">
       Read safety guide
     </a>
+    <a class="portal-button utility" href="{GITHUB_TREE}/{project['dir']}">Project files on GitHub</a>
   </div>
 </div>
 """
