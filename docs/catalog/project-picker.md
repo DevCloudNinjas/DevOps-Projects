@@ -2,13 +2,49 @@
 
 Use this page to choose one of the 54 projects by purpose instead of scrolling the whole repository. The root README remains the full catalog; this picker is a student-facing map for deciding what to build next.
 
-## Filter Method
+## Fast Decision Guide
 
-1. Pick a learning path from the table below.
-2. Prefer `low` cost projects when practicing locally or using a student budget.
-3. Prefer `reference_only` projects when you want to study a workflow before deploying.
-4. Prefer `container_ready`, `kubernetes_ready`, `iac_ready`, or `ci_cd_ready` when you want a hands-on build.
-5. Read the project README, then check `project.yaml` for validation, cost risk, and deployability before running commands.
+Start with the smallest project that answers your learning goal. Good public technical docs use clear headings, short tables, and links to deeper pages instead of repeating every detail; this picker follows that pattern so students can decide quickly and then move into the project README.
+
+| If you care most about... | Choose by... | Best first move |
+|---|---|---|
+| Avoiding surprise bills | `cost_risk: low`, `cloud: []`, or `status: local_lab` | Start with projects 40, 41, 49, 50, 51, 53, or 54. |
+| Practicing with real cloud | `cloud: aws` or `cloud: azure` plus `cost_risk` | Use medium-cost labs first; reserve high-cost EKS projects for portfolio work. |
+| Having the right access | `cloud`, `iac`, and `ci_cd` fields | Confirm AWS, Azure, GitHub, GitLab, Jenkins, or Azure DevOps credentials before setup. |
+| Proving the work is valid | `validation.command` | Run the listed validation before and after changes. Prefer projects with `make validate` or `make test` for repeatable labs. |
+| Cleaning up safely | `cost_risk`, `iac`, and project README cleanup notes | For Terraform/OpenTofu projects, identify the destroy command before creating resources. |
+| Building a learning path | `deployability` and project purpose | Move from `reference_only` to `local_only`, then containers, Kubernetes, IaC, and CI/CD. |
+
+## How To Choose
+
+1. Pick one section below that matches your current constraint: local-only, beginner, free-tier, security, portfolio, or 2026 lab.
+2. Check the project row in the compact table for cost, deployability, and validation.
+3. Open the project README and `project.yaml` before running commands.
+4. Confirm prerequisites: cloud account, CLI tools, cluster, CI provider, package manager, and any secrets.
+5. Run the validation command first. If it fails before you edit anything, fix the local tooling gap or choose a simpler project.
+6. For cloud labs, write down the cleanup command before deploy. If cleanup is unclear, treat the project as study-only until the README is improved.
+
+## Recommended Starting Points
+
+| Scenario | Projects | Why these fit |
+|---|---|---|
+| Local-first, no cloud account | [40](https://github.com/DevCloudNinjas/DevOps-Projects/tree/master/project-40-k8s-dashboard-trivy), [41](https://github.com/DevCloudNinjas/DevOps-Projects/tree/master/project-41-online-boutique-microservices), [49](https://github.com/DevCloudNinjas/DevOps-Projects/tree/master/project-49-text-encryption-cybersecurity), [50](https://github.com/DevCloudNinjas/DevOps-Projects/tree/master/project-50-argocd-gitops-home-lab), [51](https://github.com/DevCloudNinjas/DevOps-Projects/tree/master/project-51-opentelemetry-observability-home-lab), [53](https://github.com/DevCloudNinjas/DevOps-Projects/tree/master/project-53-supply-chain-security-lab), [54](https://github.com/DevCloudNinjas/DevOps-Projects/tree/master/project-54-progressive-delivery-home-lab) | Low cost, no cloud provider in metadata, and good for repeated practice. |
+| Beginner-friendly | [03](https://github.com/DevCloudNinjas/DevOps-Projects/tree/master/project-03-linux-fundamentals), [14](https://github.com/DevCloudNinjas/DevOps-Projects/tree/master/project-14-github-actions-android), [40](https://github.com/DevCloudNinjas/DevOps-Projects/tree/master/project-40-k8s-dashboard-trivy), [49](https://github.com/DevCloudNinjas/DevOps-Projects/tree/master/project-49-text-encryption-cybersecurity), [51](https://github.com/DevCloudNinjas/DevOps-Projects/tree/master/project-51-opentelemetry-observability-home-lab) | Lower blast radius and simpler validation than EKS or multi-cloud projects. |
+| Free-tier or cloud-aware practice | [11](https://github.com/DevCloudNinjas/DevOps-Projects/tree/master/project-11-aws-2tier-terraform), [22](https://github.com/DevCloudNinjas/DevOps-Projects/tree/master/project-22-aws-serverless), [34](https://github.com/DevCloudNinjas/DevOps-Projects/tree/master/project-34-node-cicd-ecs-terraform-gha), [39](https://github.com/DevCloudNinjas/DevOps-Projects/tree/master/project-39-gha-aws-terraform), [42](https://github.com/DevCloudNinjas/DevOps-Projects/tree/master/project-42-serverless-api-dynamodb), [43](https://github.com/DevCloudNinjas/DevOps-Projects/tree/master/project-43-ecs-fargate-terraform), [52](https://github.com/DevCloudNinjas/DevOps-Projects/tree/master/project-52-opentofu-aws-free-tier-lab) | Cloud practice without starting from the highest-cost EKS catalog entries. Project 52 is the clearest free-tier-oriented lab, but still has `medium` cost risk. |
+| Security and DevSecOps | [06](https://github.com/DevCloudNinjas/DevOps-Projects/tree/master/project-06-advanced-cicd-pipeline), [09](https://github.com/DevCloudNinjas/DevOps-Projects/tree/master/project-09-devsecops-netflix-clone), [24](https://github.com/DevCloudNinjas/DevOps-Projects/tree/master/project-24-dotnet-devsecops), [35](https://github.com/DevCloudNinjas/DevOps-Projects/tree/master/project-35-devsecops-pipeline-series), [40](https://github.com/DevCloudNinjas/DevOps-Projects/tree/master/project-40-k8s-dashboard-trivy), [44](https://github.com/DevCloudNinjas/DevOps-Projects/tree/master/project-44-devsecops-101), [45](https://github.com/DevCloudNinjas/DevOps-Projects/tree/master/project-45-jenkins-cicd-argocd-vault), [53](https://github.com/DevCloudNinjas/DevOps-Projects/tree/master/project-53-supply-chain-security-lab) | Metadata marks these as `devsecops` or directly security-focused. |
+| Flagship or portfolio-ready | [28](https://github.com/DevCloudNinjas/DevOps-Projects/tree/master/project-28-openai-chatbot-eks), [31](https://github.com/DevCloudNinjas/DevOps-Projects/tree/master/project-31-cloud-native-monitoring), [33](https://github.com/DevCloudNinjas/DevOps-Projects/tree/master/project-33-node-cicd-eks-gha), [35](https://github.com/DevCloudNinjas/DevOps-Projects/tree/master/project-35-devsecops-pipeline-series), [47](https://github.com/DevCloudNinjas/DevOps-Projects/tree/master/project-47-django-saas-ecommerce), [48](https://github.com/DevCloudNinjas/DevOps-Projects/tree/master/project-48-terraform-aws-eks) | Stronger end-to-end story, but several have high cloud cost risk. Validate locally before provisioning. |
+| 2026 home labs | [50](https://github.com/DevCloudNinjas/DevOps-Projects/tree/master/project-50-argocd-gitops-home-lab), [51](https://github.com/DevCloudNinjas/DevOps-Projects/tree/master/project-51-opentelemetry-observability-home-lab), [52](https://github.com/DevCloudNinjas/DevOps-Projects/tree/master/project-52-opentofu-aws-free-tier-lab), [53](https://github.com/DevCloudNinjas/DevOps-Projects/tree/master/project-53-supply-chain-security-lab), [54](https://github.com/DevCloudNinjas/DevOps-Projects/tree/master/project-54-progressive-delivery-home-lab) | Modern platform topics: GitOps, observability, OpenTofu, supply-chain security, and progressive delivery. |
+
+## Learning Path Ladder
+
+| Step | Goal | Suggested projects |
+|---|---|---|
+| 1 | Fundamentals and local validation | [03](https://github.com/DevCloudNinjas/DevOps-Projects/tree/master/project-03-linux-fundamentals), [49](https://github.com/DevCloudNinjas/DevOps-Projects/tree/master/project-49-text-encryption-cybersecurity) |
+| 2 | Containers and app packaging | [04](https://github.com/DevCloudNinjas/DevOps-Projects/tree/master/project-04-django-aws-ecs), [31](https://github.com/DevCloudNinjas/DevOps-Projects/tree/master/project-31-cloud-native-monitoring), [51](https://github.com/DevCloudNinjas/DevOps-Projects/tree/master/project-51-opentelemetry-observability-home-lab) |
+| 3 | Kubernetes delivery | [41](https://github.com/DevCloudNinjas/DevOps-Projects/tree/master/project-41-online-boutique-microservices), [50](https://github.com/DevCloudNinjas/DevOps-Projects/tree/master/project-50-argocd-gitops-home-lab), [54](https://github.com/DevCloudNinjas/DevOps-Projects/tree/master/project-54-progressive-delivery-home-lab) |
+| 4 | Infrastructure as code | [11](https://github.com/DevCloudNinjas/DevOps-Projects/tree/master/project-11-aws-2tier-terraform), [42](https://github.com/DevCloudNinjas/DevOps-Projects/tree/master/project-42-serverless-api-dynamodb), [52](https://github.com/DevCloudNinjas/DevOps-Projects/tree/master/project-52-opentofu-aws-free-tier-lab) |
+| 5 | CI/CD and GitOps | [14](https://github.com/DevCloudNinjas/DevOps-Projects/tree/master/project-14-github-actions-android), [18](https://github.com/DevCloudNinjas/DevOps-Projects/tree/master/project-18-jenkins-java-full-cicd), [33](https://github.com/DevCloudNinjas/DevOps-Projects/tree/master/project-33-node-cicd-eks-gha) |
+| 6 | Security and portfolio capstone | [35](https://github.com/DevCloudNinjas/DevOps-Projects/tree/master/project-35-devsecops-pipeline-series), [47](https://github.com/DevCloudNinjas/DevOps-Projects/tree/master/project-47-django-saas-ecommerce), [53](https://github.com/DevCloudNinjas/DevOps-Projects/tree/master/project-53-supply-chain-security-lab) |
 
 ## Purpose Filters
 

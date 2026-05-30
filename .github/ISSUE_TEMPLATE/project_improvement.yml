@@ -1,0 +1,63 @@
+name: Project improvement
+description: Suggest a clearer, safer, or more reproducible project improvement.
+title: "[Improvement]: "
+labels:
+  - enhancement
+body:
+  - type: input
+    id: path
+    attributes:
+      label: Project or path
+      description: Which project, docs page, or repository tool should change?
+      placeholder: project-50-argocd-gitops-home-lab
+    validations:
+      required: true
+  - type: dropdown
+    id: improvement_type
+    attributes:
+      label: Improvement type
+      options:
+        - Clearer student steps
+        - Safer credentials or secret handling
+        - Cost warning or cleanup
+        - Validation command
+        - Observability or troubleshooting
+        - CI/CD reproducibility
+        - Infrastructure hardening
+        - Metadata or catalog
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: Current problem
+      description: What is confusing, risky, flaky, outdated, or missing?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Suggested change
+      description: Describe the smallest change that would improve the project.
+    validations:
+      required: true
+  - type: textarea
+    id: safety
+    attributes:
+      label: Safety and operability impact
+      description: Explain any impact on credentials, costs, cleanup, rollback, validation, or cloud resources.
+  - type: textarea
+    id: references
+    attributes:
+      label: References
+      description: Link to relevant docs, commands, screenshots without secrets, or examples.
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Pre-checks
+      options:
+        - label: I checked the existing README, `project.yaml`, and cleanup guidance for this path.
+          required: true
+        - label: This request does not include private credentials or sensitive logs.
+          required: true

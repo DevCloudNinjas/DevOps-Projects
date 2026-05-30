@@ -1,0 +1,97 @@
+name: Bug report
+description: Report a reproducible problem in a project, command, workflow, or repository tool.
+title: "[Bug]: "
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting a bug. Do not include real credentials, tokens, kubeconfigs, `.env` files, `*.tfvars`, Terraform state, private keys, or unsanitized logs.
+  - type: input
+    id: path
+    attributes:
+      label: Affected path
+      description: Repository path, project directory, workflow, or documentation page.
+      placeholder: project-31-cloud-native-monitoring/README.md
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - Documentation
+        - Local validation
+        - Docker or containers
+        - Kubernetes
+        - Terraform or OpenTofu
+        - CI/CD
+        - Cloud deployment
+        - Security tooling
+        - Repository tooling
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+      description: What did you expect to happen?
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+      description: What happened instead?
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Steps to reproduce
+      description: Include exact commands and the directory where each command was run.
+      placeholder: |
+        1. cd project-...
+        2. run ...
+        3. see ...
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Sanitized logs or error output
+      description: Paste the smallest useful log excerpt. Remove secrets and private account data.
+      render: shell
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Include operating system, shell, Docker, Python, Node, Terraform/OpenTofu, kubectl, cloud CLI, or other relevant versions.
+      placeholder: |
+        OS:
+        Python:
+        Docker:
+        kubectl:
+        Terraform/OpenTofu:
+        Cloud CLI:
+    validations:
+      required: true
+  - type: textarea
+    id: validation
+    attributes:
+      label: Validation attempted
+      description: List quality gates or project validation commands you ran.
+      placeholder: |
+        make quality
+        make validate-project PROJECT=...
+  - type: checkboxes
+    id: safety
+    attributes:
+      label: Safety checks
+      options:
+        - label: I removed secrets, tokens, account IDs, and private data from this issue.
+          required: true
+        - label: I checked the project README and relevant cleanup instructions.
+          required: true

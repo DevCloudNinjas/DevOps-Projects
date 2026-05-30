@@ -1,5 +1,7 @@
 # Repo Consolidation — Link & Secret Remediation Pipeline
 # Testing dependencies
 hypothesis>=6.0
+mkdocs>=1.6
+mkdocs-material>=9.6
 pytest>=7.0
 PyYAML>=6.0

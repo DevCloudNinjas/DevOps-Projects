@@ -4,12 +4,34 @@ A production-minded DevOps portfolio lab with 54 hands-on projects across Terraf
 
 This repository is designed to prove practical engineering judgment: infrastructure as code, secure defaults, repeatable validation, cost-aware cloud labs, documented runbooks, and portfolio-ready flagship case studies.
 
-[![Forks][forks-shield]][forks-url] [![Stargazers][stars-shield]][stars-url]
+[![Docs Site][docs-shield]][docs-url] [![Local Quality Gate][quality-shield]][quality-url] [![OpenSSF Scorecard][scorecard-shield]][scorecard-url] [![License: MIT][license-shield]][license-url] [![Forks][forks-shield]][forks-url] [![Stargazers][stars-shield]][stars-url]
 
+[docs-shield]: https://img.shields.io/github/actions/workflow/status/devcloudninjas/DevOps-Projects/docs-site.yml?branch=master&label=docs&style=for-the-badge&logo=githubactions&logoColor=white
+[docs-url]: https://devcloudninjas.github.io/DevOps-Projects/
+[quality-shield]: https://img.shields.io/github/actions/workflow/status/devcloudninjas/DevOps-Projects/local-quality-gate.yml?branch=master&label=quality&style=for-the-badge&logo=githubactions&logoColor=white
+[quality-url]: https://github.com/devcloudninjas/DevOps-Projects/actions/workflows/local-quality-gate.yml
+[scorecard-shield]: https://img.shields.io/github/actions/workflow/status/devcloudninjas/DevOps-Projects/openssf-scorecard.yml?branch=master&label=openssf%20scorecard&style=for-the-badge&logo=openssf&logoColor=white
+[scorecard-url]: https://github.com/devcloudninjas/DevOps-Projects/actions/workflows/openssf-scorecard.yml
+[license-shield]: https://img.shields.io/github/license/devcloudninjas/DevOps-Projects?style=for-the-badge
+[license-url]: ./LICENSE
 [forks-shield]: https://img.shields.io/github/forks/devcloudninjas/DevOps-Projects?style=for-the-badge&logo=github&logoColor=white&color=orange
 [forks-url]: https://github.com/devcloudninjas/DevOps-Projects/network/members
 [stars-shield]: https://img.shields.io/github/stars/devcloudninjas/DevOps-Projects.svg?style=for-the-badge&logo=github&logoColor=white&color=brightgreen
 [stars-url]: https://github.com/devcloudninjas/DevOps-Projects/stargazers
+
+---
+
+## Website
+
+The student portal is the best entry point for browsing, choosing, and safely running projects:
+
+- [Open the DevOps Projects Student Portal](https://devcloudninjas.github.io/DevOps-Projects/)
+- [Pick a project](./docs/catalog/project-picker.md)
+- [Run projects safely with your own credentials](./docs/runbooks/credentials-and-cost-safety.md)
+- [Contribute improvements](./CONTRIBUTING.md)
+- [Ask for help without exposing secrets](./SUPPORT.md)
+
+The website is static and privacy-first. It does not require accounts, forms, analytics, cookies, or shared credentials.
 
 ---
 

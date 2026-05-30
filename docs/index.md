@@ -1,4 +1,6 @@
-# DevOps Projects Student Portal
+---
+title: DevOps Projects Student Portal
+---
 
 <section class="portal-hero">
   <div class="portal-hero-copy">
@@ -10,8 +12,9 @@
       engineering.
     </p>
     <div class="hero-actions">
-      <a class="button button-primary" href="catalog/project-picker/">Pick a project</a>
-      <a class="button button-secondary" href="learning-paths/">Choose a learning path</a>
+      <a class="button button-primary" href="catalog/project-picker.html">Pick a project</a>
+      <a class="button button-secondary" href="learning-paths/index.html">Choose a learning path</a>
+      <a class="button button-tertiary" href="runbooks/credentials-and-cost-safety.html">Read the safety guide</a>
     </div>
   </div>
   <div class="hero-panel" aria-label="Repository snapshot">
@@ -54,22 +57,22 @@
   <p class="section-kicker">Start fast</p>
   <h2>Choose the route that matches your goal.</h2>
   <div class="path-grid">
-    <a class="path-card accent-green" href="learning-paths/beginner/">
+    <a class="path-card accent-green" href="learning-paths/beginner.html">
       <span>01</span>
       <strong>Beginner track</strong>
       <p>Linux, first app delivery, simple CI/CD, and one local GitOps lab.</p>
     </a>
-    <a class="path-card accent-cyan" href="learning-paths/docker-kubernetes/">
+    <a class="path-card accent-cyan" href="learning-paths/docker-kubernetes.html">
       <span>02</span>
       <strong>Containers and clusters</strong>
       <p>Docker packaging, Kubernetes manifests, GitOps, and canary delivery.</p>
     </a>
-    <a class="path-card accent-amber" href="learning-paths/terraform-iac/">
+    <a class="path-card accent-amber" href="learning-paths/terraform-iac.html">
       <span>03</span>
       <strong>Infrastructure as code</strong>
       <p>Terraform, OpenTofu, VPCs, EKS, ECS, serverless, and cleanup habits.</p>
     </a>
-    <a class="path-card accent-coral" href="learning-paths/devsecops/">
+    <a class="path-card accent-coral" href="learning-paths/devsecops.html">
       <span>04</span>
       <strong>DevSecOps</strong>
       <p>Trivy, SBOMs, signing, secrets hygiene, and secure pipeline design.</p>
@@ -116,6 +119,40 @@
   </div>
 </section>
 
+<section class="trust-panel" aria-labelledby="before-you-deploy">
+  <div class="trust-copy">
+    <p class="section-kicker">Before you deploy</p>
+    <h2 id="before-you-deploy">Practice like a real engineer: verify, control cost, and clean up.</h2>
+    <p>
+      Every lab is meant to run with student-owned tools and credentials. Start
+      with local validation, keep secrets out of commits, and finish with proof
+      that resources were removed.
+    </p>
+  </div>
+  <div class="trust-list">
+    <div>
+      <strong>No login</strong>
+      <span>Static docs only, with no account or tracking requirement.</span>
+    </div>
+    <div>
+      <strong>Own credentials</strong>
+      <span>Use local profiles, test accounts, and private environment files.</span>
+    </div>
+    <div>
+      <strong>Cost-aware</strong>
+      <span>Check free-tier assumptions before creating cloud resources.</span>
+    </div>
+    <div>
+      <strong>Cleanup-first</strong>
+      <span>Plan teardown commands before the first deploy.</span>
+    </div>
+    <div>
+      <strong>Quality gate</strong>
+      <span>Run validation checks before sharing portfolio evidence.</span>
+    </div>
+  </div>
+</section>
+
 <section class="workflow-strip">
   <div>
     <span>1</span>
@@ -139,22 +176,40 @@
   </div>
 </section>
 
+<section class="audience-grid" aria-label="Recommended next steps by audience">
+  <a href="catalog/project-picker.html">
+    <span>Learners</span>
+    <strong>Find a lab that matches your current skill level.</strong>
+    <p>Filter by topic, cost, deployability, and portfolio value.</p>
+  </a>
+  <a href="community/contributing.html">
+    <span>Contributors</span>
+    <strong>Improve a project without changing the learning flow.</strong>
+    <p>Use the contribution guide for structure, checks, and review notes.</p>
+  </a>
+  <a href="community/support.html">
+    <span>Reviewers</span>
+    <strong>Check safety, clarity, and reproducibility first.</strong>
+    <p>Use the support path to report broken steps or risky assumptions.</p>
+  </a>
+</section>
+
 <section class="resource-grid">
-  <a href="catalog/project-picker/">
+  <a href="catalog/project-picker.html">
     <strong>Project Picker</strong>
     <p>Browse all 54 projects by purpose, cost, and deployability.</p>
   </a>
-  <a href="runbooks/student-implementation-guide/">
+  <a href="runbooks/student-implementation-guide.html">
     <strong>Student Guide</strong>
     <p>Follow the repeatable workflow for running any project safely.</p>
   </a>
-  <a href="security-baselines/">
+  <a href="security-baselines/index.html">
     <strong>Security Baselines</strong>
     <p>Review reusable checklists for CI/CD, Docker, Terraform, and secrets.</p>
   </a>
-  <a href="marketing/">
-    <strong>Marketing Kit</strong>
-    <p>Turn completed labs into LinkedIn posts and portfolio case studies.</p>
+  <a href="community/contributing.html">
+    <strong>Contribution Guide</strong>
+    <p>Help keep labs reproducible, current, and safe for students.</p>
   </a>
 </section>
 

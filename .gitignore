@@ -37,6 +37,7 @@ bin/
 obj/
 dist/
 /site/
+/.cache/
 
 # Terraform / OpenTofu
 .terraform/

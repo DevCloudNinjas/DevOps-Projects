@@ -1,0 +1,54 @@
+name: Documentation fix
+description: Report unclear, missing, stale, or incorrect documentation.
+title: "[Docs]: "
+labels:
+  - documentation
+body:
+  - type: input
+    id: path
+    attributes:
+      label: Documentation path
+      description: Which README, runbook, guide, or docs page needs attention?
+      placeholder: docs/runbooks/student-implementation-guide.md
+    validations:
+      required: true
+  - type: dropdown
+    id: docs_type
+    attributes:
+      label: Documentation issue type
+      options:
+        - Broken command
+        - Missing prerequisite
+        - Missing cost warning
+        - Missing cleanup step
+        - Confusing explanation
+        - Broken link
+        - Outdated tool or version
+        - Typo or formatting
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: issue
+    attributes:
+      label: What needs to change?
+      description: Describe the documentation problem and why it matters.
+    validations:
+      required: true
+  - type: textarea
+    id: suggested_text
+    attributes:
+      label: Suggested wording or fix
+      description: Optional. Share concise replacement text or the command that should be documented.
+  - type: textarea
+    id: validation
+    attributes:
+      label: How you checked it
+      description: Tell us whether you ran the command, followed the guide, or compared it with current tool docs.
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Safety checks
+      options:
+        - label: I did not include secrets, private account data, or sensitive screenshots.
+          required: true
