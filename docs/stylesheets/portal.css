@@ -129,9 +129,10 @@ body {
 }
 
 .md-content__inner:has(.portal-hero) {
-  margin: 0 auto;
+  margin-inline: auto !important;
   max-width: 1240px;
   padding-inline: clamp(1rem, 3vw, 2rem);
+  width: min(100%, 1240px);
 }
 
 .portal-hero,
@@ -146,11 +147,10 @@ body {
 }
 
 .portal-hero {
-  align-items: stretch;
+  align-items: start;
   display: grid;
   gap: clamp(1rem, 2vw, 1.5rem);
   grid-template-columns: minmax(0, 1.08fr) minmax(360px, 0.72fr);
-  min-height: 500px;
 }
 
 .portal-hero-copy {
@@ -162,8 +162,8 @@ body {
   box-shadow: var(--shadow);
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  padding: clamp(2rem, 4vw, 3.2rem);
+  justify-content: flex-start;
+  padding: clamp(2rem, 3.6vw, 3rem);
 }
 
 .eyebrow,
@@ -180,10 +180,10 @@ body {
 }
 
 .portal-hero h1 {
-  font-size: clamp(3rem, 5.2vw, 4.45rem);
-  line-height: 0.96;
-  margin: 0.35em 0;
-  max-width: 12ch;
+  font-size: clamp(2.8rem, 4.4vw, 3.9rem);
+  line-height: 1;
+  margin: 0.45em 0 0.4em;
+  max-width: 16ch;
 }
 
 .section-band h2,
@@ -536,7 +536,7 @@ body {
   }
 
   .portal-hero h1 {
-    font-size: clamp(3rem, 6.3vw, 4.35rem);
+    font-size: clamp(2.9rem, 5.8vw, 4rem);
     max-width: 16ch;
   }
 
@@ -572,8 +572,8 @@ body {
   }
 
   .portal-hero h1 {
-    font-size: clamp(2.65rem, 12vw, 4.8rem);
-    max-width: 10ch;
+    font-size: clamp(2.35rem, 8vw, 3.8rem);
+    max-width: 16ch;
   }
 
   .showcase-copy {
