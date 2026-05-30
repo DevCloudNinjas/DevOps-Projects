@@ -115,6 +115,25 @@ body {
   padding-bottom: 2.4rem;
 }
 
+.md-main__inner:has(.portal-hero) {
+  margin-top: 0;
+  max-width: none;
+}
+
+.md-main__inner:has(.portal-hero) .md-sidebar {
+  display: none;
+}
+
+.md-content:has(.portal-hero) {
+  max-width: none;
+}
+
+.md-content__inner:has(.portal-hero) {
+  margin: 0 auto;
+  max-width: 1180px;
+  padding-inline: clamp(1rem, 3vw, 2rem);
+}
+
 .portal-hero,
 .section-band,
 .showcase-grid,
@@ -129,9 +148,9 @@ body {
 .portal-hero {
   align-items: stretch;
   display: grid;
-  gap: 1.5rem;
-  grid-template-columns: minmax(0, 1.15fr) minmax(320px, 0.85fr);
-  min-height: 520px;
+  gap: clamp(1rem, 2vw, 1.5rem);
+  grid-template-columns: minmax(520px, 1.05fr) minmax(320px, 0.75fr);
+  min-height: 500px;
 }
 
 .portal-hero-copy {
@@ -161,8 +180,10 @@ body {
 }
 
 .portal-hero h1 {
+  font-size: clamp(3rem, 6vw, 4.9rem);
+  line-height: 0.94;
   margin: 0.45em 0;
-  max-width: 720px;
+  max-width: 680px;
 }
 
 .section-band h2,
@@ -213,7 +234,8 @@ body {
   color: #fff;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  gap: clamp(1.25rem, 3vw, 2rem);
+  justify-content: flex-start;
   overflow: hidden;
   padding: 1.25rem;
 }
@@ -236,7 +258,7 @@ body {
   color: var(--green);
   display: block;
   font-family: Georgia, "Times New Roman", serif;
-  font-size: 3.8rem;
+  font-size: clamp(3rem, 6vw, 4.6rem);
   line-height: 1;
 }
 
@@ -504,6 +526,20 @@ body {
   border-color: var(--line);
 }
 
+@media (width <= 1180px) {
+  .portal-hero {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .portal-hero h1 {
+    max-width: 12ch;
+  }
+
+  .hero-panel {
+    min-height: 0;
+  }
+}
+
 @media (width <= 920px) {
   .rst-content h1,
   .md-typeset h1 {
@@ -530,12 +566,32 @@ body {
     min-height: 0;
   }
 
+  .portal-hero h1 {
+    font-size: clamp(2.65rem, 12vw, 4.8rem);
+    max-width: 10ch;
+  }
+
   .showcase-copy {
     position: static;
   }
 }
 
 @media (width <= 640px) {
+  .portal-hero,
+  .section-band,
+  .showcase-grid,
+  .workflow-strip,
+  .trust-panel,
+  .audience-grid,
+  .resource-grid,
+  .privacy-note {
+    margin: 1rem 0;
+  }
+
+  .md-content__inner:has(.portal-hero) {
+    padding-inline: 0.75rem;
+  }
+
   .rst-content h1,
   .md-typeset h1 {
     font-size: 2.25rem;
@@ -551,7 +607,24 @@ body {
     padding: 1rem;
   }
 
+  .eyebrow,
+  .section-kicker {
+    font-size: 0.68rem;
+  }
+
+  .portal-hero h1 {
+    font-size: 2.15rem;
+    line-height: 1;
+    max-width: 100%;
+  }
+
+  .portal-hero .lede {
+    font-size: 0.82rem;
+    line-height: 1.5;
+  }
+
   .button {
+    min-height: 44px;
     width: 100%;
   }
 
@@ -561,6 +634,10 @@ body {
 
   .metric-grid div {
     min-height: 112px;
+  }
+
+  .metric-grid strong {
+    font-size: 2.8rem;
   }
 
   .lab-list a {
