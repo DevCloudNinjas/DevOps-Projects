@@ -130,7 +130,7 @@ body {
 
 .md-content__inner:has(.portal-hero) {
   margin: 0 auto;
-  max-width: 1180px;
+  max-width: 1240px;
   padding-inline: clamp(1rem, 3vw, 2rem);
 }
 
@@ -149,7 +149,7 @@ body {
   align-items: stretch;
   display: grid;
   gap: clamp(1rem, 2vw, 1.5rem);
-  grid-template-columns: minmax(520px, 1.05fr) minmax(320px, 0.75fr);
+  grid-template-columns: minmax(0, 1.08fr) minmax(360px, 0.72fr);
   min-height: 500px;
 }
 
@@ -180,10 +180,10 @@ body {
 }
 
 .portal-hero h1 {
-  font-size: clamp(3rem, 6vw, 4.9rem);
-  line-height: 0.94;
-  margin: 0.45em 0;
-  max-width: 680px;
+  font-size: clamp(3rem, 5.2vw, 4.45rem);
+  line-height: 0.96;
+  margin: 0.35em 0;
+  max-width: 12ch;
 }
 
 .section-band h2,
@@ -526,13 +526,18 @@ body {
   border-color: var(--line);
 }
 
-@media (width <= 1180px) {
+@media (max-width: 1280px) {
   .portal-hero {
     grid-template-columns: minmax(0, 1fr);
   }
 
+  .portal-hero-copy {
+    min-height: 0;
+  }
+
   .portal-hero h1 {
-    max-width: 12ch;
+    font-size: clamp(3rem, 6.3vw, 4.35rem);
+    max-width: 16ch;
   }
 
   .hero-panel {
@@ -540,7 +545,7 @@ body {
   }
 }
 
-@media (width <= 920px) {
+@media (max-width: 920px) {
   .rst-content h1,
   .md-typeset h1 {
     font-size: 2.7rem;
@@ -576,7 +581,7 @@ body {
   }
 }
 
-@media (width <= 640px) {
+@media (max-width: 640px) {
   .portal-hero,
   .section-band,
   .showcase-grid,
