@@ -1,4 +1,4 @@
-/* stylelint-disable custom-property-pattern, no-descending-specificity, selector-class-pattern */
+/* stylelint-disable custom-property-pattern, media-feature-range-notation, no-descending-specificity, selector-class-pattern */
 
 :root {
   --ink: #12120f;
