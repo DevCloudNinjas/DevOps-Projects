@@ -35,7 +35,7 @@ Customize the application dependencies mentioned below on AWS EC2 instance and c
 2. Build VPC network ( 172.32.0.0/16 ) for deploying Highly Available and Auto Scalable application servers as per the architecture shown above.
 3. Create NAT Gateway in Public Subnet and update Private Subnet associated Route Table accordingly to route the default traffic to NAT for outbound internet connection.
 4. Create Transit Gateway and associate both VPCs to the Transit Gateway  for private communication.
-5. Create Internet Gateway for each VPC and Public Subnet associated Route Table accordingly to route the default traffic to IGW for inbound/outbound internet connection.
+5. Create internet gateway for each VPC and Public Subnet associated Route Table accordingly to route the default traffic to IGW for inbound/outbound internet connection.
 6. Create Cloudwatch Log Group with two Log Streams to store the VPC Flow Logs of both VPCs.
 7. Enable Flow Logs for both VPCs and push the Flow Logs to Cloudwatch Log Groups and store the logs in the respective Log Stream for each VPC.
 8. Create Security Group for bastion host allowing port 22 from public.
