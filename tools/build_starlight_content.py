@@ -114,64 +114,56 @@ def parse_project_yaml(text: str) -> dict:
     if yaml is not None:
         return yaml.safe_load(text)
 
-    lines = [line.rstrip() for line in text.splitlines()]
-    root: dict[str, object] = {}
-    stack: list[tuple[int, dict[str, object] | list[object]]] = [(0, root)]
+    data: dict[str, object] = {}
+    section: dict[str, object] | None = None
+    list_key: str | None = None
 
-    def current_container(indent: int) -> dict[str, object] | list[object]:
-        while stack and stack[-1][0] >= indent:
-            stack.pop()
-        return stack[-1][1] if stack else root
-
-    i = 0
-    while i < len(lines):
-        raw = lines[i]
+    for line_number, raw in enumerate(text.splitlines(), start=1):
         if not raw.strip() or raw.lstrip().startswith("#"):
-            i += 1
             continue
 
+        stripped = raw.strip()
         indent = len(raw) - len(raw.lstrip(" "))
-        line = raw.strip()
-        container = current_container(indent)
 
-        if line.startswith("- "):
-            value = parse_scalar(line[2:].strip())
-            if not isinstance(container, list):
-                raise ValueError(f"Unexpected list item at line {i + 1}: {line}")
-            container.append(value)
-            i += 1
+        if list_key is not None:
+            if stripped.startswith("- "):
+                assert isinstance(data[list_key], list)
+                data[list_key].append(parse_scalar(stripped[2:].strip()))
+                continue
+            if indent == 0:
+                list_key = None
+            else:
+                raise ValueError(f"Unexpected nested line at {line_number}: {stripped}")
+
+        if indent == 0:
+            if ":" not in stripped:
+                raise ValueError(f"Malformed line {line_number}: {stripped}")
+            key, value = stripped.split(":", 1)
+            key = key.strip()
+            value = value.strip()
+
+            section = None
+            if value:
+                data[key] = parse_scalar(value)
+            elif key in {"stack", "cloud", "iac", "ci_cd"}:
+                data[key] = []
+                list_key = key
+            else:
+                data[key] = {}
+                section = data[key]  # type: ignore[assignment]
             continue
 
-        if ":" not in line:
-            raise ValueError(f"Malformed line {i + 1}: {line}")
+        if section is None:
+            raise ValueError(f"Unexpected indented line {line_number}: {stripped}")
+        if ":" not in stripped:
+            raise ValueError(f"Malformed nested line {line_number}: {stripped}")
 
-        key, value = line.split(":", 1)
+        key, value = stripped.split(":", 1)
         key = key.strip()
         value = value.strip()
+        section[key] = parse_scalar(value)
 
-        if value:
-            assert isinstance(container, dict)
-            container[key] = parse_scalar(value)
-            i += 1
-            continue
-
-        lookahead = i + 1
-        while lookahead < len(lines) and (
-            not lines[lookahead].strip() or lines[lookahead].lstrip().startswith("#")
-        ):
-            lookahead += 1
-
-        if lookahead < len(lines) and lines[lookahead].strip().startswith("- "):
-            new_container: dict[str, object] | list[object] = []
-        else:
-            new_container = {}
-
-        assert isinstance(container, dict)
-        container[key] = new_container
-        stack.append((indent - 1 if isinstance(new_container, list) else indent, new_container))
-        i += 1
-
-    return root
+    return data
 
 
 def project_tools(project: dict) -> list[str]:
