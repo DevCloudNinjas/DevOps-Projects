@@ -71,6 +71,7 @@ export default defineConfig({
           items: [
             { label: 'Security Baselines', link: '/security-baselines/' },
             { label: 'Project README Template', link: '/project-readme-template/' },
+            { label: 'Tags', link: '/tags/' },
             { label: 'Flagship Docs', link: '/flagship/' },
             { label: 'Community', link: '/community/' },
             { label: 'Marketing', link: '/marketing/' },

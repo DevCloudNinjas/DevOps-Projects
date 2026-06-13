@@ -66,6 +66,9 @@ TOOL_LABELS = {
     "aws": "AWS",
     "azure": "Azure",
     "azure-devops": "Azure DevOps",
+    "codebuild": "CodeBuild",
+    "codepipeline": "CodePipeline",
+    "docker-compose": "Docker Compose",
     "ci/cd": "CI/CD",
     "ecr": "ECR",
     "ecs": "ECS",
@@ -74,6 +77,15 @@ TOOL_LABELS = {
     "gitlab-ci": "GitLab CI",
     "opentofu": "OpenTofu",
     "route53": "Route 53",
+    "terraform": "Terraform",
+    "jenkins": "Jenkins",
+    "kubernetes": "Kubernetes",
+    "linux-scripts": "Linux Scripts",
+    "monitoring": "Monitoring",
+    "nginx": "Nginx",
+    "python": "Python",
+    "spring-boot": "Spring Boot",
+    "vpc": "VPC",
 }
 
 
@@ -92,7 +104,31 @@ def unique_items(*groups: list[str]) -> list[str]:
 
 def display_tool(item: str) -> str:
     stripped = item.strip()
-    return TOOL_LABELS.get(stripped.lower(), stripped)
+    label = TOOL_LABELS.get(stripped.lower())
+    if label:
+        return label
+
+    words = [part for part in re.split(r"[-_/]+", stripped) if part]
+    if not words:
+        return stripped
+
+    def humanize_word(word: str) -> str:
+        lower = word.lower()
+        if lower in {"aws", "eks", "ecs", "ecr", "ec2", "vpc", "iam", "rds", "sns", "sqs", "elb", "alb", "nlb"}:
+            return lower.upper()
+        if lower == "cd":
+            return "CD"
+        if lower == "devops":
+            return "DevOps"
+        if lower == "devsecops":
+            return "DevSecOps"
+        if lower == "opentelemetry":
+            return "OpenTelemetry"
+        if lower == "opentofu":
+            return "OpenTofu"
+        return lower.capitalize()
+
+    return " ".join(humanize_word(word) for word in words)
 
 
 def parse_scalar(value: str) -> object:
@@ -567,6 +603,17 @@ def github_heading_slug(text: str) -> str:
     return plain
 
 
+def tag_slug(tag: str) -> str:
+    slug = display_tool(tag).strip().lower()
+    slug = slug.replace("&", " and ")
+    slug = re.sub(r"[^a-z0-9]+", "-", slug)
+    return slug.strip("-")
+
+
+def tag_href(tag: str) -> str:
+    return site_path(f"/tags/{tag_slug(tag)}/")
+
+
 def demote_markdown_headings(text: str) -> str:
     def replace(match: re.Match[str]) -> str:
         level = min(len(match.group(1)) + 3, 6)
@@ -685,27 +732,31 @@ def hero_route_link(route: dict[str, str]) -> str:
 
 def project_card(project: dict) -> str:
     tool_tags = "".join(
-        f"<span>{escape_html(tool)}</span>" for tool in project["tools"][:6]
+        f'<a href="{tag_href(tool)}">{escape_html(display_tool(tool))}</a>'
+        for tool in project["tools"][:6]
     )
     href = project_path(project)
-    return f"""  <a class="project-card" href="{href}">
-    <div class="lab-card-top">
-      <span class="status-pill">Project {project['number']:02d}</span>
-      <span class="level-pill">{project['skill_level']}</span>
+    return f"""  <article class="project-card">
+    <a class="project-card-link" href="{href}" aria-label="Open {escape_html(project['name'])}"></a>
+    <div class="project-card-body">
+      <div class="lab-card-top">
+        <span class="status-pill">Project {project['number']:02d}</span>
+        <span class="level-pill">{project['skill_level']}</span>
+      </div>
+      <strong>{escape_html(project['name'])}</strong>
+      <p>{escape_html(project['notes'])}</p>
+      <dl class="lab-card-facts">
+        <div><dt>Time</dt><dd>{project['time_estimate']}</dd></div>
+        <div><dt>Cost</dt><dd>{project['cost_risk']}</dd></div>
+        <div><dt>Cleanup</dt><dd>{project['cleanup_available']}</dd></div>
+        <div><dt>Local</dt><dd>{project['works_locally']}</dd></div>
+        <div><dt>Cloud creds</dt><dd>{project['needs_cloud_credentials']}</dd></div>
+        <div><dt>Reviewed</dt><dd>{project['last_reviewed']}</dd></div>
+      </dl>
+      <div class="project-tags" aria-label="Tools used">{tool_tags}</div>
+      <p class="proof-line"><span>Proof:</span> {escape_html(project['outcome_proof'])}</p>
     </div>
-    <strong>{escape_html(project['name'])}</strong>
-    <p>{escape_html(project['notes'])}</p>
-    <dl class="lab-card-facts">
-      <div><dt>Time</dt><dd>{project['time_estimate']}</dd></div>
-      <div><dt>Cost</dt><dd>{project['cost_risk']}</dd></div>
-      <div><dt>Cleanup</dt><dd>{project['cleanup_available']}</dd></div>
-      <div><dt>Local</dt><dd>{project['works_locally']}</dd></div>
-      <div><dt>Cloud creds</dt><dd>{project['needs_cloud_credentials']}</dd></div>
-      <div><dt>Reviewed</dt><dd>{project['last_reviewed']}</dd></div>
-    </dl>
-    <div class="project-tags" aria-label="Tools used">{tool_tags}</div>
-    <p class="proof-line"><span>Proof:</span> {escape_html(project['outcome_proof'])}</p>
-  </a>"""
+  </article>"""
 
 
 def project_path(project: dict) -> str:
@@ -727,7 +778,8 @@ def write_project_index(projects: list[dict]) -> None:
     content = f"""{frontmatter("Projects", order=1, description=description)}
 Every project now has an internal guide page and a standard lab card. Use the
 fields to compare level, time, cost, tools, cleanup, credentials, local
-support, review date, and portfolio proof before you open a lab.
+support, review date, and portfolio proof before you open a lab. Tool tags are
+clickable and open matching project collections.
 
 <div class="project-grid">
 {cards}
@@ -798,7 +850,87 @@ def project_summary(project: dict) -> str:
 
 def project_tags(project: dict) -> str:
     tags = project["tools"] or ["DevOps"]
-    return "".join(f"  <span>{escape_html(tag)}</span>\n" for tag in tags)
+    return "".join(
+        f'  <a href="{tag_href(tag)}">{escape_html(display_tool(tag))}</a>\n'
+        for tag in tags
+    )
+
+
+def tag_catalog(projects: list[dict]) -> list[dict[str, object]]:
+    catalog: dict[str, dict[str, object]] = {}
+    for project in projects:
+        for tool in project["tools"] or ["DevOps"]:
+            label = display_tool(tool)
+            slug = tag_slug(label)
+            entry = catalog.setdefault(
+                slug,
+                {"slug": slug, "label": label, "count": 0, "projects": []},
+            )
+            entry["count"] = int(entry["count"]) + 1
+            entry["projects"].append(project)
+    return sorted(catalog.values(), key=lambda item: (-int(item["count"]), str(item["label"]).lower()))
+
+
+def tag_card(tag: dict[str, object]) -> str:
+    projects = tag["projects"][:4]
+    examples = "".join(
+        f"<span>#{project['number']:02d}</span>" for project in projects
+    )
+    href = site_path(f"/tags/{tag['slug']}/")
+    return f"""  <a class="tag-card" href="{href}">
+    <strong>{escape_html(str(tag['label']))}</strong>
+    <p>{int(tag['count'])} project{'s' if int(tag['count']) != 1 else ''}</p>
+    <div class="tag-card-examples">{examples}</div>
+  </a>"""
+
+
+def write_tag_pages(projects: list[dict]) -> None:
+    tag_dir = TARGET_DOCS / "tags"
+    tag_dir.mkdir(parents=True, exist_ok=True)
+    catalog = tag_catalog(projects)
+    tag_cards = "\n".join(tag_card(tag) for tag in catalog)
+    content = f"""{frontmatter("Tags", description="Browse DevOps projects by tool and topic tag.")}
+Tags are clickable everywhere in the portal. Use this index when you want to jump
+from a tool name to every project that uses it.
+
+<div class="tag-grid">
+{tag_cards}
+</div>
+    """
+    (tag_dir / "index.md").write_text(content, encoding="utf-8")
+
+    for tag in catalog:
+        related_projects = tag["projects"]
+        related_cards = "\n".join(project_card(project) for project in related_projects)
+        related_titles = ", ".join(project["name"] for project in related_projects[:8])
+        page = f"""{frontmatter(
+            str(tag["label"]),
+            description=f"Projects that use {tag['label']}.",
+        )}
+## {escape_html(str(tag['label']))}
+
+<div class="portal-panel">
+  <p class="section-kicker">Tag archive</p>
+  <h3>{int(tag['count'])} matching project{'s' if int(tag['count']) != 1 else ''}</h3>
+  <p>
+    Click the cards below to open the project guide, or use the other tag chips
+    inside each card to pivot into related topics.
+  </p>
+  <div class="button-row">
+    <a class="portal-button primary" href="{site_path('/tags/')}">Back to all tags</a>
+    <a class="portal-button utility" href="{site_path('/projects/')}">Browse all projects</a>
+  </div>
+</div>
+
+## Matching Projects
+
+{related_cards}
+
+## Sample Matches
+
+{related_titles}
+"""
+        (tag_dir / f"{tag['slug']}.md").write_text(page, encoding="utf-8")
 
 
 def architecture_nodes(project: dict) -> list[str]:
@@ -1128,6 +1260,7 @@ def main() -> None:
     write_homepage(projects)
     write_start_here_page()
     write_project_pages(projects)
+    write_tag_pages(projects)
     write_project_index(projects)
     write_catalog_overrides(projects)
 

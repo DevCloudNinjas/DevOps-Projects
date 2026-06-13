@@ -219,6 +219,7 @@ mobile-starlight-toc .dropdown {
 .start-route-card,
 .path-card,
 .step-card,
+.tag-card,
 .lab-panel,
 .lab-warning,
 .source-callout {
@@ -393,6 +394,7 @@ mobile-starlight-toc .dropdown {
 }
 
 .tag-cloud span,
+.project-tags a,
 .project-tags span,
 .status-pill {
   border: 1px solid color-mix(in srgb, currentcolor, transparent 68%);
@@ -400,6 +402,18 @@ mobile-starlight-toc .dropdown {
   color: inherit;
   font-size: 0.8rem;
   padding: 0.34rem 0.58rem;
+}
+
+.project-tags a {
+  background: #fffdf7;
+  text-decoration: none;
+}
+
+.project-tags a:hover,
+.project-tags a:focus-visible {
+  background: var(--portal-accent-soft);
+  border-color: #7bcf72;
+  color: var(--portal-ink);
 }
 
 .portal-grid,
@@ -434,6 +448,7 @@ mobile-starlight-toc .dropdown {
 .start-route-card,
 .path-card,
 .step-card,
+.tag-card,
 .portal-panel,
 .lab-panel,
 .lab-warning,
@@ -444,10 +459,25 @@ mobile-starlight-toc .dropdown {
 }
 
 .project-card {
-  display: grid;
-  gap: 0.8rem;
+  display: block;
   min-height: 26rem;
   text-decoration: none;
+  position: relative;
+}
+
+.project-card-link {
+  inset: 0;
+  position: absolute;
+  z-index: 1;
+}
+
+.project-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  min-height: 100%;
+  position: relative;
+  z-index: 2;
 }
 
 .start-route-card {
@@ -467,14 +497,16 @@ mobile-starlight-toc .dropdown {
 .project-card *,
 .start-route-card *,
 .path-card *,
-.step-card * {
+.step-card *,
+.tag-card * {
   text-decoration: none;
 }
 
 .project-card strong,
 .start-route-card strong,
 .path-card strong,
-.step-card strong {
+.step-card strong,
+.tag-card strong {
   color: var(--portal-ink);
   display: block;
   font-size: 1.05rem;
@@ -484,7 +516,8 @@ mobile-starlight-toc .dropdown {
 .project-card p,
 .start-route-card p,
 .path-card p,
-.step-card p {
+.step-card p,
+.tag-card p {
   color: var(--portal-muted);
   margin: 0;
 }
@@ -508,14 +541,18 @@ mobile-starlight-toc .dropdown {
 .project-card:hover,
 .portal-button:hover,
 .start-route-card:hover,
-.path-card:hover {
+.path-card:hover,
+.tag-card:hover {
   border-color: var(--portal-ink);
   transform: translateY(-2px);
 }
 
 .project-card:focus-visible,
+.project-card:focus-within,
 .start-route-card:focus-visible,
 .path-card:focus-visible,
+.tag-card:focus-visible,
+.tag-card:focus-within,
 .portal-button:focus-visible {
   outline: 3px solid #16806f;
   outline-offset: 3px;
@@ -580,22 +617,65 @@ mobile-starlight-toc .dropdown {
   border: 1px solid var(--portal-line-soft);
   border-radius: 0.35rem;
   min-width: 0;
-  padding: 0.5rem;
+  min-height: 4.4rem;
+  padding: 0.48rem 0.5rem;
 }
 
 .lab-card-facts dt {
   color: var(--portal-soft);
-  font-size: 0.72rem;
+  font-size: 0.68rem;
   font-weight: 850;
+  line-height: 1.1;
   text-transform: uppercase;
 }
 
 .lab-card-facts dd {
   color: var(--portal-ink);
-  font-size: 0.92rem;
+  font-size: 0.83rem;
   font-weight: 800;
-  margin: 0.1rem 0 0;
-  overflow-wrap: anywhere;
+  line-height: 1.15;
+  margin: 0.14rem 0 0;
+  overflow-wrap: normal;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.tag-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 11rem), 1fr));
+}
+
+.tag-card {
+  display: grid;
+  gap: 0.5rem;
+  text-decoration: none;
+}
+
+.tag-card strong {
+  color: var(--portal-ink);
+  font-size: 1rem;
+}
+
+.tag-card p {
+  color: var(--portal-muted);
+  margin: 0;
+}
+
+.tag-card-examples {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.tag-card-examples span {
+  background: #f7f2e6;
+  border: 1px solid var(--portal-line-soft);
+  border-radius: 999px;
+  color: var(--portal-soft);
+  font-size: 0.72rem;
+  font-weight: 850;
+  padding: 0.28rem 0.5rem;
 }
 
 .proof-line {
