@@ -66,26 +66,42 @@ TOOL_LABELS = {
     "aws": "AWS",
     "azure": "Azure",
     "azure-devops": "Azure DevOps",
+    "api-gateway": "API Gateway",
+    "aks": "AKS",
+    "aws-codepipeline": "AWS CodePipeline",
+    "clone-app": "Clone App",
     "codebuild": "CodeBuild",
+    "codedeploy": "CodeDeploy",
     "codepipeline": "CodePipeline",
+    "dynamodb": "DynamoDB",
+    "game-deployment": "Game Deployment",
     "docker-compose": "Docker Compose",
     "ci/cd": "CI/CD",
     "ecr": "ECR",
     "ecs": "ECS",
     "eks": "EKS",
+    "html": "HTML",
     "github-actions": "GitHub Actions",
     "gitlab-ci": "GitLab CI",
+    "linux-scripts": "Linux Scripts",
+    ".net": ".NET",
+    "net": ".NET",
+    "mysql": "MySQL",
+    "node-js": "Node.js",
+    "nodejs": "Node.js",
     "opentofu": "OpenTofu",
     "route53": "Route 53",
+    "sam": "SAM",
+    "sonarqube": "SonarQube",
     "terraform": "Terraform",
     "jenkins": "Jenkins",
     "kubernetes": "Kubernetes",
-    "linux-scripts": "Linux Scripts",
     "monitoring": "Monitoring",
     "nginx": "Nginx",
     "python": "Python",
     "spring-boot": "Spring Boot",
     "vpc": "VPC",
+    "vpc-design": "VPC design",
 }
 
 
@@ -104,16 +120,22 @@ def unique_items(*groups: list[str]) -> list[str]:
 
 def display_tool(item: str) -> str:
     stripped = item.strip()
-    label = TOOL_LABELS.get(stripped.lower())
+    lowered = stripped.lower()
+    normalized = re.sub(r"[\s_]+", "-", lowered)
+    label = TOOL_LABELS.get(lowered) or TOOL_LABELS.get(normalized)
     if label:
         return label
 
-    words = [part for part in re.split(r"[-_/]+", stripped) if part]
+    words = [part for part in re.split(r"[-_/\s]+", stripped) if part]
     if not words:
         return stripped
 
     def humanize_word(word: str) -> str:
         lower = word.lower()
+        if lower == "html":
+            return "HTML"
+        if lower == "mysql":
+            return "MySQL"
         if lower in {"aws", "eks", "ecs", "ecr", "ec2", "vpc", "iam", "rds", "sns", "sqs", "elb", "alb", "nlb"}:
             return lower.upper()
         if lower == "cd":
@@ -126,9 +148,12 @@ def display_tool(item: str) -> str:
             return "OpenTelemetry"
         if lower == "opentofu":
             return "OpenTofu"
+        if lower == "node":
+            return "Node"
         return lower.capitalize()
 
-    return " ".join(humanize_word(word) for word in words)
+    display = " ".join(humanize_word(word) for word in words)
+    return display.replace("Node Js", "Node.js")
 
 
 def parse_scalar(value: str) -> object:
