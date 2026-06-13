@@ -478,6 +478,13 @@ mobile-starlight-toc .dropdown {
   min-height: 100%;
   position: relative;
   z-index: 2;
+  pointer-events: none;
+}
+
+.project-card-body a {
+  pointer-events: auto;
+  position: relative;
+  z-index: 3;
 }
 
 .start-route-card {
