@@ -16,9 +16,9 @@ templates, architecture prompts, cleanup logs, and interview explanation notes.
     project clearly on GitHub, LinkedIn, and interviews.
   </p>
   <div class="button-row">
-    <a class="portal-button primary" href="../catalog/start-here/">Pick a learning route</a>
-    <a class="portal-button secondary" href="../projects/">Choose a project</a>
-    <a class="portal-button utility" href="../support/">Support the free portal</a>
+    <a class="portal-button primary" href="/DevOps-Projects/catalog/start-here/">Pick a learning route</a>
+    <a class="portal-button secondary" href="/DevOps-Projects/projects/">Choose a project</a>
+    <a class="portal-button utility" href="/DevOps-Projects/support/">Support the free portal</a>
   </div>
 </div>
 

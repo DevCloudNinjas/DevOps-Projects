@@ -16,9 +16,9 @@ implementation help.
     and support sessions for students or junior engineers.
   </p>
   <div class="button-row">
-    <a class="portal-button primary" href="../catalog/start-here/">Review learning routes</a>
-    <a class="portal-button secondary" href="../runbooks/credentials-and-cost-safety/">Review safety guide</a>
-    <a class="portal-button utility" href="../accelerator/">See guided support</a>
+    <a class="portal-button primary" href="/DevOps-Projects/catalog/start-here/">Review learning routes</a>
+    <a class="portal-button secondary" href="/DevOps-Projects/runbooks/credentials-and-cost-safety/">Review safety guide</a>
+    <a class="portal-button utility" href="/DevOps-Projects/accelerator/">See guided support</a>
   </div>
 </div>
 
@@ -93,8 +93,8 @@ support depth, live delivery, and whether custom materials are needed.
 
 ## Next Step
 
-Start with the [Start Here](../catalog/start-here/) routes and the
-[Credentials and Cost Safety](../runbooks/credentials-and-cost-safety/) guide.
+Start with the [Start Here](/DevOps-Projects/catalog/start-here/) routes and the
+[Credentials and Cost Safety](/DevOps-Projects/runbooks/credentials-and-cost-safety/) guide.
 Then choose whether the group needs self-serve templates from the
-[Premium Kit](../premium-kit/) or live support through the
-[Accelerator](../accelerator/).
+[Premium Kit](/DevOps-Projects/premium-kit/) or live support through the
+[Accelerator](/DevOps-Projects/accelerator/).

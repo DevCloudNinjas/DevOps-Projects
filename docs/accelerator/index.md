@@ -17,9 +17,9 @@ reviewable GitHub evidence.
     a recruiter, engineer, or mentor can understand.
   </p>
   <div class="button-row">
-    <a class="portal-button primary" href="../catalog/start-here/">Choose your route</a>
-    <a class="portal-button secondary" href="../premium-kit/">Review the premium kit</a>
-    <a class="portal-button utility" href="../support/">Support the project</a>
+    <a class="portal-button primary" href="/DevOps-Projects/catalog/start-here/">Choose your route</a>
+    <a class="portal-button secondary" href="/DevOps-Projects/premium-kit/">Review the premium kit</a>
+    <a class="portal-button utility" href="/DevOps-Projects/support/">Support the project</a>
   </div>
 </div>
 
@@ -97,6 +97,6 @@ Use these questions before accepting someone into the Accelerator:
 
 ## Next Step
 
-Start with the [Start Here](../catalog/start-here/) route, then use the
-[Premium Kit](../premium-kit/) if you want self-serve templates before joining a
+Start with the [Start Here](/DevOps-Projects/catalog/start-here/) route, then use the
+[Premium Kit](/DevOps-Projects/premium-kit/) if you want self-serve templates before joining a
 guided cohort.

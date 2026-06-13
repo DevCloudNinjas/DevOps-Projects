@@ -17,9 +17,9 @@ interrupting the learning experience.
     projects.
   </p>
   <div class="button-row">
-    <a class="portal-button primary" href="../premium-kit/">Get the premium kit</a>
-    <a class="portal-button secondary" href="../accelerator/">Join the accelerator</a>
-    <a class="portal-button utility" href="../for-schools/">Use this in a classroom</a>
+    <a class="portal-button primary" href="/DevOps-Projects/premium-kit/">Get the premium kit</a>
+    <a class="portal-button secondary" href="/DevOps-Projects/accelerator/">Join the accelerator</a>
+    <a class="portal-button utility" href="/DevOps-Projects/for-schools/">Use this in a classroom</a>
   </div>
 </div>
 
@@ -85,6 +85,6 @@ Bad sponsorship looks like:
 
 ## Next Step
 
-Use the [Premium Kit](../premium-kit/) for paid self-serve resources, the
-[Accelerator](../accelerator/) for guided support, or [For Schools](../for-schools/)
+Use the [Premium Kit](/DevOps-Projects/premium-kit/) for paid self-serve resources, the
+[Accelerator](/DevOps-Projects/accelerator/) for guided support, or [For Schools](/DevOps-Projects/for-schools/)
 for classroom and team use.
