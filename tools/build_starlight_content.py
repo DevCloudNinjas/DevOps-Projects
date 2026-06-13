@@ -168,7 +168,7 @@ def parse_project_yaml(text: str) -> dict:
 
         assert isinstance(container, dict)
         container[key] = new_container
-        stack.append((indent + 1, new_container))
+        stack.append((indent - 1 if isinstance(new_container, list) else indent, new_container))
         i += 1
 
     return root
