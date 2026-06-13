@@ -1,9 +1,15 @@
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
 
+const isVercel = process.env.VERCEL === '1' || process.env.VERCEL === 'true';
+const base = isVercel ? '/' : '/DevOps-Projects';
+const site = isVercel
+  ? `https://${process.env.VERCEL_URL ?? 'devops-projects.vercel.app'}`
+  : 'https://devcloudninjas.github.io';
+
 export default defineConfig({
-  site: 'https://devcloudninjas.github.io',
-  base: '/DevOps-Projects',
+  site,
+  base,
   integrations: [
     starlight({
       title: 'DevOps Projects',

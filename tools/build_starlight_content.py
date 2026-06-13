@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import json
 import posixpath
+import os
 import re
 import shutil
 from pathlib import Path
@@ -17,7 +18,7 @@ except ModuleNotFoundError:  # pragma: no cover - exercised in Vercel build only
 REPO_ROOT = Path(__file__).resolve().parents[1]
 SOURCE_DOCS = REPO_ROOT / "docs"
 TARGET_DOCS = REPO_ROOT / "src" / "content" / "docs"
-SITE_BASE = "/DevOps-Projects"
+SITE_BASE = "/" if os.environ.get("VERCEL") in {"1", "true"} else "/DevOps-Projects"
 GITHUB_REPO = "https://github.com/DevCloudNinjas/DevOps-Projects"
 GITHUB_TREE = f"{GITHUB_REPO}/tree/master"
 GITHUB_BLOB = f"{GITHUB_REPO}/blob/master"
