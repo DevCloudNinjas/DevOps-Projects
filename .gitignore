@@ -83,3 +83,4 @@ id_rsa.pub
 *.sqlite3
 db.sqlite3
 *.db
+.vercel

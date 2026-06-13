@@ -13,13 +13,6 @@ export default defineConfig({
       favicon: '/favicon.svg',
       lastUpdated: true,
       pagefind: true,
-      social: [
-        {
-          icon: 'github',
-          label: 'GitHub repository',
-          href: 'https://github.com/DevCloudNinjas/DevOps-Projects',
-        },
-      ],
       tableOfContents: {
         minHeadingLevel: 2,
         maxHeadingLevel: 3,
@@ -29,8 +22,14 @@ export default defineConfig({
         {
           label: 'Start Here',
           items: [
+            { label: 'Start Here', link: '/catalog/start-here/' },
             { label: 'Catalog Overview', link: '/catalog/' },
             { label: 'Project Picker', link: '/catalog/project-picker/' },
+            { label: 'Beginner Route', link: '/learning-paths/beginner/' },
+            { label: 'Docker/Kubernetes Route', link: '/learning-paths/docker-kubernetes/' },
+            { label: 'AWS/Terraform Route', link: '/learning-paths/terraform-iac/' },
+            { label: 'DevSecOps Route', link: '/learning-paths/devsecops/' },
+            { label: 'Portfolio Route', link: '/flagship/' },
             { label: 'Run Safely', link: '/runbooks/' },
           ],
         },
@@ -69,6 +68,16 @@ export default defineConfig({
             { label: 'Flagship Docs', link: '/flagship/' },
             { label: 'Community', link: '/community/' },
             { label: 'Marketing', link: '/marketing/' },
+          ],
+        },
+        {
+          label: 'Support',
+          collapsed: true,
+          items: [
+            { label: 'Support The Project', link: '/support/' },
+            { label: 'Premium Kit', link: '/premium-kit/' },
+            { label: 'Accelerator', link: '/accelerator/' },
+            { label: 'For Schools And Teams', link: '/for-schools/' },
           ],
         },
       ],

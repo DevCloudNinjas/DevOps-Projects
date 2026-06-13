@@ -103,6 +103,10 @@ starlight-theme-select select {
   color: var(--portal-ink) !important;
 }
 
+starlight-theme-select {
+  display: none !important;
+}
+
 .header {
   background: var(--portal-panel) !important;
   border-bottom-color: var(--portal-line-soft) !important;
@@ -175,6 +179,17 @@ body:has(.hero-lab) .main-pane h1[id="_top"] {
   width: 1px;
 }
 
+body:has(.hero-lab) .content-panel:has(h1[id="_top"]) {
+  height: 0;
+  min-height: 0;
+  overflow: hidden;
+  padding-block: 0 !important;
+}
+
+body:has(.hero-lab) .content-panel:has(.hero-lab) {
+  padding-top: clamp(1rem, 2vw, 1.4rem) !important;
+}
+
 .right-sidebar {
   color: var(--portal-muted);
 }
@@ -201,8 +216,11 @@ mobile-starlight-toc .dropdown {
 .portal-panel,
 .project-summary,
 .project-card,
+.start-route-card,
 .path-card,
 .step-card,
+.lab-panel,
+.lab-warning,
 .source-callout {
   border: 1px solid color-mix(in srgb, var(--sl-color-gray-3), transparent 28%);
   border-radius: 0.5rem;
@@ -213,7 +231,7 @@ mobile-starlight-toc .dropdown {
   background:
     radial-gradient(circle at 12% 16%, rgb(255 209 102 / 45%), transparent 13rem),
     linear-gradient(145deg, #fff, var(--portal-panel-strong));
-  padding: clamp(1.5rem, 4vw, 3rem);
+  padding: clamp(1.35rem, 3.2vw, 2.35rem);
 }
 
 .eyebrow,
@@ -229,10 +247,10 @@ mobile-starlight-toc .dropdown {
 .hero-copy h1 {
   color: var(--portal-ink);
   font-family: Georgia, "Times New Roman", serif;
-  font-size: 4.2rem;
+  font-size: 3.7rem;
   line-height: 0.98;
   margin-block: 0.4em;
-  max-width: 12ch;
+  max-width: 16ch;
 }
 
 .hero-copy p:not(.eyebrow),
@@ -293,6 +311,50 @@ mobile-starlight-toc .dropdown {
   padding: 1.25rem;
 }
 
+.sl-markdown-content .hero-panel-label {
+  color: #9ee493;
+  font-size: 0.8rem;
+  font-weight: 900;
+  letter-spacing: 0.14em;
+  margin: 0 0 0.9rem;
+  text-transform: uppercase;
+}
+
+.hero-route-list {
+  display: grid;
+  gap: 0.65rem;
+}
+
+.hero-route-list a {
+  background: rgb(255 255 255 / 8%);
+  border: 1px solid rgb(255 255 255 / 14%);
+  border-radius: 0.45rem;
+  color: #f5f2e6;
+  display: grid;
+  gap: 0.18rem;
+  padding: 0.8rem;
+  text-decoration: none;
+}
+
+.hero-route-list a:hover,
+.hero-route-list a:focus-visible {
+  background: rgb(158 228 147 / 15%);
+  border-color: #9ee493;
+}
+
+.hero-route-list span {
+  color: #d9f5d6;
+  font-size: 0.75rem;
+  font-weight: 850;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.hero-route-list strong {
+  color: #fffef9;
+  font-size: 1rem;
+}
+
 .metric-grid {
   display: grid;
   gap: 0.8rem;
@@ -303,7 +365,7 @@ mobile-starlight-toc .dropdown {
   background: rgb(255 255 255 / 8%);
   border: 1px solid rgb(255 255 255 / 14%);
   border-radius: 0.45rem;
-  min-height: 8rem;
+  min-height: 6.8rem;
   padding: 1rem;
 }
 
@@ -311,7 +373,7 @@ mobile-starlight-toc .dropdown {
   color: #9ee493;
   display: block;
   font-family: Georgia, "Times New Roman", serif;
-  font-size: 4.2rem;
+  font-size: 3.65rem;
   line-height: 1;
 }
 
@@ -326,6 +388,10 @@ mobile-starlight-toc .dropdown {
   margin-top: 1.6rem;
 }
 
+.tag-cloud.compact {
+  margin-top: 1rem;
+}
+
 .tag-cloud span,
 .project-tags span,
 .status-pill {
@@ -338,8 +404,10 @@ mobile-starlight-toc .dropdown {
 
 .portal-grid,
 .project-grid,
+.start-route-grid,
 .path-grid,
-.step-grid {
+.step-grid,
+.lab-detail-grid {
   display: grid;
   gap: 1rem;
 }
@@ -349,18 +417,26 @@ mobile-starlight-toc .dropdown {
 }
 
 .project-grid {
-  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
+}
+
+.start-route-grid {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 13.5rem), 1fr));
 }
 
 .path-grid,
-.step-grid {
+.step-grid,
+.lab-detail-grid {
   grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
 }
 
 .project-card,
+.start-route-card,
 .path-card,
 .step-card,
 .portal-panel,
+.lab-panel,
+.lab-warning,
 .source-callout {
   background: var(--portal-panel);
   color: var(--portal-ink);
@@ -370,22 +446,33 @@ mobile-starlight-toc .dropdown {
 .project-card {
   display: grid;
   gap: 0.8rem;
+  min-height: 26rem;
+  text-decoration: none;
+}
+
+.start-route-card {
+  display: grid;
+  gap: 0.65rem;
   min-height: 15rem;
   text-decoration: none;
 }
 
 .path-card,
 .step-card {
+  display: grid;
+  gap: 0.65rem;
   text-decoration: none;
 }
 
 .project-card *,
+.start-route-card *,
 .path-card *,
 .step-card * {
   text-decoration: none;
 }
 
 .project-card strong,
+.start-route-card strong,
 .path-card strong,
 .step-card strong {
   color: var(--portal-ink);
@@ -395,20 +482,39 @@ mobile-starlight-toc .dropdown {
 }
 
 .project-card p,
+.start-route-card p,
 .path-card p,
 .step-card p {
   color: var(--portal-muted);
   margin: 0;
 }
 
+.start-route-card span {
+  color: var(--portal-warn);
+  font-size: 0.78rem;
+  font-weight: 850;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.start-route-card small,
+.path-card small {
+  color: var(--portal-muted);
+  display: block;
+  font-weight: 750;
+  line-height: 1.55;
+}
+
 .project-card:hover,
 .portal-button:hover,
+.start-route-card:hover,
 .path-card:hover {
   border-color: var(--portal-ink);
   transform: translateY(-2px);
 }
 
 .project-card:focus-visible,
+.start-route-card:focus-visible,
 .path-card:focus-visible,
 .portal-button:focus-visible {
   outline: 3px solid #16806f;
@@ -419,7 +525,7 @@ mobile-starlight-toc .dropdown {
   background: linear-gradient(145deg, #fff, var(--portal-panel-strong));
   display: grid;
   gap: 1rem;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 8rem), 1fr));
   margin-block: 1rem 1.5rem;
   padding: 1rem;
 }
@@ -445,12 +551,159 @@ mobile-starlight-toc .dropdown {
   padding: 0.14rem 0.3rem;
 }
 
+.lab-card-top {
+  align-items: center;
+  display: flex;
+  gap: 0.5rem;
+  justify-content: space-between;
+}
+
+.level-pill {
+  background: var(--portal-accent-soft);
+  border: 1px solid #72c76d;
+  border-radius: 999px;
+  color: var(--portal-accent-strong);
+  font-size: 0.78rem;
+  font-weight: 850;
+  padding: 0.34rem 0.58rem;
+}
+
+.lab-card-facts {
+  display: grid;
+  gap: 0.45rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin: 0;
+}
+
+.lab-card-facts div {
+  background: #f7f2e6;
+  border: 1px solid var(--portal-line-soft);
+  border-radius: 0.35rem;
+  min-width: 0;
+  padding: 0.5rem;
+}
+
+.lab-card-facts dt {
+  color: var(--portal-soft);
+  font-size: 0.72rem;
+  font-weight: 850;
+  text-transform: uppercase;
+}
+
+.lab-card-facts dd {
+  color: var(--portal-ink);
+  font-size: 0.92rem;
+  font-weight: 800;
+  margin: 0.1rem 0 0;
+  overflow-wrap: anywhere;
+}
+
+.proof-line {
+  border-top: 1px solid var(--portal-line-soft);
+  color: var(--portal-muted);
+  font-weight: 700;
+  line-height: 1.55;
+  padding-top: 0.7rem;
+}
+
+.proof-line span {
+  color: var(--portal-ink);
+  font-weight: 850;
+}
+
+.lab-panel,
+.lab-warning {
+  box-shadow: none;
+}
+
+.lab-panel strong {
+  color: var(--portal-ink);
+  display: block;
+  line-height: 1.35;
+  margin-top: 0.35rem;
+}
+
+.architecture-flow {
+  align-items: stretch;
+  display: grid;
+  gap: 0.65rem;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  margin-block: 1rem 1.5rem;
+}
+
+.architecture-flow span {
+  align-items: center;
+  background: #fffef9;
+  border: 1px solid var(--portal-line);
+  border-radius: 0.45rem;
+  color: var(--portal-ink);
+  display: flex;
+  font-weight: 850;
+  justify-content: center;
+  min-height: 5rem;
+  padding: 0.75rem;
+  position: relative;
+  text-align: center;
+}
+
+.architecture-flow span:not(:last-child)::after {
+  color: var(--portal-accent-strong);
+  content: "->";
+  font-weight: 900;
+  position: absolute;
+  right: -0.55rem;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+}
+
+.lab-checklist {
+  background: #fffef9;
+  border: 1px solid var(--portal-line-soft);
+  border-radius: 0.5rem;
+  padding: 1rem 1rem 1rem 1.5rem;
+}
+
+.lab-warning {
+  background: #fff6ea;
+  border-color: #d28f63;
+}
+
+.lab-warning strong {
+  color: var(--portal-warn);
+}
+
+.lab-warning p {
+  margin: 0.35rem 0 0;
+}
+
 .source-callout {
   margin-block: 1rem 1.5rem;
 }
 
 .source-callout p {
   margin-block: 0.2rem 0;
+}
+
+.external-image-reference {
+  background: #fffef9;
+  border: 1px solid var(--portal-line-soft);
+  border-radius: 0.5rem;
+  display: grid;
+  gap: 0.25rem;
+  margin-block: 1rem;
+  padding: 0.9rem;
+}
+
+.external-image-reference strong {
+  color: var(--portal-ink);
+}
+
+.source-heading-anchor {
+  display: block;
+  height: 0;
+  overflow: hidden;
+  scroll-margin-top: 6rem;
 }
 
 .sl-markdown-content :is(code:not(pre code), kbd) {
@@ -468,10 +721,17 @@ mobile-starlight-toc .dropdown {
 .sl-markdown-content table {
   background: rgb(255 254 249 / 82%);
   border: 1px solid var(--portal-line-soft);
+  box-shadow: inset -18px 0 16px -22px var(--portal-muted);
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+  width: max-content;
 }
 
 .sl-markdown-content :is(th, td) {
   border-color: var(--portal-line-soft);
+  min-width: 7.5rem;
+  vertical-align: top;
 }
 
 .sl-markdown-content th {
@@ -501,8 +761,16 @@ a[href="#_top"],
 @media (width <= 1000px) {
   .hero-lab,
   .portal-grid,
-  .project-summary {
+  .architecture-flow {
     grid-template-columns: 1fr;
+  }
+
+  .architecture-flow span:not(:last-child)::after {
+    bottom: -0.85rem;
+    left: 50%;
+    right: auto;
+    top: auto;
+    transform: translateX(-50%) rotate(90deg);
   }
 
   .hero-copy h1 {
@@ -512,14 +780,26 @@ a[href="#_top"],
 }
 
 @media (width <= 640px) {
+  .hero-lab {
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+  }
+
   .hero-copy,
   .hero-metrics {
     padding: 1rem;
   }
 
   .hero-copy h1 {
-    font-size: 2.45rem;
+    font-size: 2.15rem;
+    margin-block: 0.32em;
     max-width: 100%;
+  }
+
+  .hero-copy p:not(.eyebrow),
+  .hero-lede {
+    font-size: 1rem;
+    line-height: 1.55;
   }
 
   .metric strong {
@@ -527,10 +807,16 @@ a[href="#_top"],
   }
 
   .portal-button {
+    min-height: 2.55rem;
+    padding-block: 0.65rem;
     width: 100%;
   }
 
   .metric-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .project-card {
+    min-height: auto;
   }
 }
