@@ -9,7 +9,10 @@ import shutil
 from pathlib import Path
 from urllib.parse import quote, unquote, urlsplit
 
-import yaml
+try:  # PyYAML is available locally, but Vercel's build image may not include it.
+    import yaml
+except ModuleNotFoundError:  # pragma: no cover - exercised in Vercel build only
+    yaml = None
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 SOURCE_DOCS = REPO_ROOT / "docs"
@@ -89,6 +92,86 @@ def unique_items(*groups: list[str]) -> list[str]:
 def display_tool(item: str) -> str:
     stripped = item.strip()
     return TOOL_LABELS.get(stripped.lower(), stripped)
+
+
+def parse_scalar(value: str) -> object:
+    if not value:
+        return ""
+    if value.startswith(("'", '"')) and value.endswith(("'", '"')):
+        return value[1:-1]
+    if re.fullmatch(r"-?\d+", value):
+        return int(value)
+    if value.lower() == "true":
+        return True
+    if value.lower() == "false":
+        return False
+    if value == "[]":
+        return []
+    return value
+
+
+def parse_project_yaml(text: str) -> dict:
+    if yaml is not None:
+        return yaml.safe_load(text)
+
+    lines = [line.rstrip() for line in text.splitlines()]
+    root: dict[str, object] = {}
+    stack: list[tuple[int, dict[str, object] | list[object]]] = [(0, root)]
+
+    def current_container(indent: int) -> dict[str, object] | list[object]:
+        while stack and stack[-1][0] >= indent:
+            stack.pop()
+        return stack[-1][1] if stack else root
+
+    i = 0
+    while i < len(lines):
+        raw = lines[i]
+        if not raw.strip() or raw.lstrip().startswith("#"):
+            i += 1
+            continue
+
+        indent = len(raw) - len(raw.lstrip(" "))
+        line = raw.strip()
+        container = current_container(indent)
+
+        if line.startswith("- "):
+            value = parse_scalar(line[2:].strip())
+            if not isinstance(container, list):
+                raise ValueError(f"Unexpected list item at line {i + 1}: {line}")
+            container.append(value)
+            i += 1
+            continue
+
+        if ":" not in line:
+            raise ValueError(f"Malformed line {i + 1}: {line}")
+
+        key, value = line.split(":", 1)
+        key = key.strip()
+        value = value.strip()
+
+        if value:
+            assert isinstance(container, dict)
+            container[key] = parse_scalar(value)
+            i += 1
+            continue
+
+        lookahead = i + 1
+        while lookahead < len(lines) and (
+            not lines[lookahead].strip() or lines[lookahead].lstrip().startswith("#")
+        ):
+            lookahead += 1
+
+        if lookahead < len(lines) and lines[lookahead].strip().startswith("- "):
+            new_container: dict[str, object] | list[object] = []
+        else:
+            new_container = {}
+
+        assert isinstance(container, dict)
+        container[key] = new_container
+        stack.append((indent + 1, new_container))
+        i += 1
+
+    return root
 
 
 def project_tools(project: dict) -> list[str]:
@@ -182,7 +265,7 @@ def load_projects() -> list[dict]:
     projects: list[dict] = []
     for metadata_path in sorted(REPO_ROOT.glob("project-*/project.yaml")):
         project_dir = metadata_path.parent
-        metadata = yaml.safe_load(metadata_path.read_text(encoding="utf-8"))
+        metadata = parse_project_yaml(metadata_path.read_text(encoding="utf-8"))
         readme_path = project_dir / "README.md"
         readme_text = readme_path.read_text(encoding="utf-8")
         project = metadata["project"]
