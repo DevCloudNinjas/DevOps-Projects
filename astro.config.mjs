@@ -23,9 +23,6 @@ export default defineConfig({
         minHeadingLevel: 2,
         maxHeadingLevel: 3,
       },
-      components: {
-        Sidebar: './src/components/Sidebar.astro',
-      },
       sidebar: [
         { label: 'Home', link: '/' },
         {

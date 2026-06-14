@@ -90,9 +90,6 @@ body,
 .header,
 .sidebar-pane,
 .sidebar-content,
-.sidebar-shell,
-.sidebar-scroll,
-.sidebar-collapse-toggle,
 .top-level,
 .top-level :is(summary, li, span),
 .top-level a,
@@ -118,55 +115,6 @@ starlight-theme-select {
 .sidebar-pane {
   background: var(--portal-sidebar) !important;
   border-inline-end-color: var(--portal-line-soft) !important;
-}
-
-.sidebar-shell {
-  position: relative;
-}
-
-.sidebar-scroll {
-  min-height: 100%;
-  padding-top: 3rem;
-}
-
-.sidebar-collapse-toggle {
-  align-items: center;
-  background: var(--portal-panel);
-  border: 1px solid var(--portal-line-soft);
-  border-radius: 0.45rem;
-  color: var(--portal-ink);
-  cursor: pointer;
-  display: inline-flex;
-  height: 2.35rem;
-  justify-content: center;
-  position: absolute;
-  inset-block-start: 0.75rem;
-  inset-inline-end: 0.5rem;
-  min-width: 2.35rem;
-  padding: 0;
-  z-index: 2;
-  transition:
-    background-color 0.16s ease,
-    border-color 0.16s ease,
-    color 0.16s ease,
-    transform 0.16s ease;
-}
-
-.sidebar-collapse-toggle:hover,
-.sidebar-collapse-toggle:focus-visible {
-  background: var(--portal-accent-soft);
-  border-color: #7bcf72;
-  color: var(--portal-ink);
-}
-
-.sidebar-collapse-toggle svg {
-  height: 1rem;
-  width: 1rem;
-  transition: transform 0.16s ease;
-}
-
-html[data-sidebar-collapsed="true"] .sidebar-collapse-toggle svg {
-  transform: rotate(180deg);
 }
 
 .main-pane,
@@ -897,26 +845,6 @@ a[href="#_top"],
   border-color: var(--portal-line-soft);
 }
 
-@media (min-width: 50rem) {
-  html[data-sidebar-collapsed="true"] {
-    --sl-sidebar-width: 3.25rem;
-  }
-
-  html[data-sidebar-collapsed="true"] .sidebar-scroll {
-    opacity: 0;
-    pointer-events: none;
-  }
-
-  html[data-sidebar-collapsed="true"] .sidebar-collapse-toggle {
-    inset-inline-end: 0.4rem;
-  }
-
-  html[data-sidebar-collapsed="true"] .sidebar-pane {
-    overflow: hidden;
-    width: var(--sl-sidebar-width) !important;
-  }
-}
-
 @media (width <= 1000px) {
   .hero-lab,
   .portal-grid,
@@ -969,10 +897,6 @@ a[href="#_top"],
     min-height: 2.55rem;
     padding-block: 0.65rem;
     width: 100%;
-  }
-
-  .sidebar-collapse-toggle {
-    display: none;
   }
 
   .metric-grid {
