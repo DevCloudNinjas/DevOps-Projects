@@ -363,6 +363,8 @@ def site_path(path: str) -> str:
     if path.startswith(("http://", "https://", "mailto:", "tel:", "#")):
         return path
     normalized = path if path.startswith("/") else f"/{path}"
+    if SITE_BASE == "/":
+        return normalized
     if normalized == SITE_BASE or normalized.startswith(f"{SITE_BASE}/"):
         return normalized
     return f"{SITE_BASE}{normalized}"
