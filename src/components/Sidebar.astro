@@ -1,0 +1,101 @@
+---
+import MobileMenuFooter from '@astrojs/starlight/components/MobileMenuFooter.astro';
+import SidebarPersister from '@astrojs/starlight/components/SidebarPersister.astro';
+import SidebarSublist from '@astrojs/starlight/components/SidebarSublist.astro';
+
+const { sidebar } = Astro.locals.starlightRoute;
+---
+
+<SidebarPersister>
+	<div class="sidebar-shell">
+		<button
+			type="button"
+			class="sidebar-collapse-toggle print:hidden"
+			data-sidebar-toggle
+			aria-pressed="false"
+			aria-label="Collapse sidebar"
+			title="Collapse sidebar"
+		>
+			<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+				<path d="m15 18-6-6 6-6"></path>
+			</svg>
+		</button>
+
+		<div class="sidebar-scroll">
+			<SidebarSublist sublist={sidebar} />
+		</div>
+	</div>
+</SidebarPersister>
+
+<div class="md:sl-hidden">
+	<MobileMenuFooter />
+</div>
+
+<script is:inline>
+	(() => {
+		const STORAGE_KEY = 'devops-sidebar-collapsed';
+		const COLLAPSED_WIDTH = '3.25rem';
+		const root = document.documentElement;
+		const getPane = () => document.querySelector('.sidebar-pane');
+		const getShell = () => document.querySelector('.sidebar-shell');
+
+		const readStoredState = () => {
+			try {
+				return localStorage.getItem(STORAGE_KEY) === '1';
+			} catch {
+				return false;
+			}
+		};
+
+		const syncLayout = (collapsed) => {
+			root.style.setProperty('--sl-sidebar-width', collapsed ? COLLAPSED_WIDTH : '19rem');
+			const pane = getPane();
+			const shell = getShell();
+			if (pane) {
+				pane.style.width = collapsed ? COLLAPSED_WIDTH : '';
+				pane.style.minWidth = collapsed ? COLLAPSED_WIDTH : '';
+				pane.style.maxWidth = collapsed ? COLLAPSED_WIDTH : '';
+				pane.style.overflow = collapsed ? 'hidden' : '';
+			}
+			if (shell) {
+				shell.style.width = collapsed ? COLLAPSED_WIDTH : '';
+			}
+		};
+
+		const syncButton = () => {
+			const button = document.querySelector('[data-sidebar-toggle]');
+			if (!button) return;
+			const collapsed = root.dataset.sidebarCollapsed === 'true';
+			button.setAttribute('aria-pressed', String(collapsed));
+			button.setAttribute('aria-label', collapsed ? 'Expand sidebar' : 'Collapse sidebar');
+			button.title = collapsed ? 'Expand sidebar' : 'Collapse sidebar';
+		};
+
+		const setState = (collapsed, persist = true) => {
+			root.dataset.sidebarCollapsed = collapsed ? 'true' : 'false';
+			syncLayout(collapsed);
+			if (persist) {
+				try {
+					localStorage.setItem(STORAGE_KEY, collapsed ? '1' : '0');
+				} catch {}
+			}
+			syncButton();
+		};
+
+		const mount = () => {
+			const button = document.querySelector('[data-sidebar-toggle]');
+			if (!button || button.dataset.bound === 'true') return;
+			button.dataset.bound = 'true';
+			button.addEventListener('click', () => setState(root.dataset.sidebarCollapsed !== 'true'));
+			setState(readStoredState(), false);
+		};
+
+		setState(readStoredState(), false);
+		if (document.readyState === 'loading') {
+			document.addEventListener('DOMContentLoaded', mount, { once: true });
+		} else {
+			mount();
+		}
+		window.addEventListener('pageshow', mount);
+	})();
+</script>

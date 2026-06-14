@@ -19,61 +19,12 @@ export default defineConfig({
       favicon: '/favicon.svg',
       lastUpdated: true,
       pagefind: true,
-      head: [
-        {
-          tag: 'script',
-          attrs: { type: 'module' },
-          content: `(() => {
-            const STORAGE_KEY = 'devops-sidebar-collapsed';
-            const root = document.documentElement;
-
-            const readStoredState = () => {
-              try {
-                return localStorage.getItem(STORAGE_KEY) === '1';
-              } catch {
-                return false;
-              }
-            };
-
-            const writeState = (collapsed) => {
-              root.dataset.sidebarCollapsed = collapsed ? 'true' : 'false';
-              try {
-                localStorage.setItem(STORAGE_KEY, collapsed ? '1' : '0');
-              } catch {}
-
-              const button = document.querySelector('[data-sidebar-toggle]');
-              if (button) {
-                button.setAttribute('aria-pressed', String(collapsed));
-                button.setAttribute('aria-label', collapsed ? 'Expand sidebar' : 'Collapse sidebar');
-                button.title = collapsed ? 'Expand sidebar' : 'Collapse sidebar';
-              }
-            };
-
-            const mount = () => {
-              const titleWrapper = document.querySelector('.title-wrapper');
-              if (!titleWrapper || titleWrapper.querySelector('[data-sidebar-toggle]')) return;
-
-              const button = document.createElement('button');
-              button.type = 'button';
-              button.className = 'sidebar-toggle print:hidden';
-              button.dataset.sidebarToggle = 'true';
-              button.innerHTML =
-                '<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="m15 18-6-6 6-6"></path></svg>';
-              titleWrapper.prepend(button);
-              button.addEventListener('click', () => writeState(root.dataset.sidebarCollapsed !== 'true'));
-              writeState(root.dataset.sidebarCollapsed === 'true');
-            };
-
-            root.dataset.sidebarCollapsed = readStoredState() ? 'true' : 'false';
-            document.addEventListener('DOMContentLoaded', mount, { once: true });
-            if (document.readyState !== 'loading') mount();
-            window.addEventListener('pageshow', mount);
-          })();`,
-        },
-      ],
       tableOfContents: {
         minHeadingLevel: 2,
         maxHeadingLevel: 3,
+      },
+      components: {
+        Sidebar: './src/components/Sidebar.astro',
       },
       sidebar: [
         { label: 'Home', link: '/' },
