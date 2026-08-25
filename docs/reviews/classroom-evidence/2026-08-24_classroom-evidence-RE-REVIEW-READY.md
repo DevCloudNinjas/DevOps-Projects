@@ -2,7 +2,8 @@
 
 ## Decision
 
-The frozen post-implementation packet is **ready** for the classroom-evidence re-review. The review covered the 54 evidence-bearing project roots listed in the canonical matrix.
+The frozen post-implementation packet is **ready** for the classroom-evidence re-review. The review
+covered the 54 evidence-bearing project roots listed in the canonical matrix.
 
 ## Offline verification
 
@@ -20,7 +21,12 @@ The frozen post-implementation packet is **ready** for the classroom-evidence re
 
 ## Evidence and boundary review
 
-The classroom packet consistently identifies project-local active paths and fixture-backed, local-first validation. The reviewed records distinguish student-facing local work from instructor-only or quarantined historical material, and they state that cloud deployment or mutation is not established by the local evidence. Validators and fixtures substantiate the claimed local result for every matrix row. No active document link, classroom record, evidence contract, or local-pilot record was found to route students into `quarantine/` or to claim a cloud result from a local-only check.
+The classroom packet consistently identifies project-local active paths and fixture-backed, local-
+first validation. The reviewed records distinguish student-facing local work from instructor-only or
+quarantined historical material, and they state that cloud deployment or mutation is not established
+by the local evidence. Validators and fixtures substantiate the claimed local result for every
+matrix row. No active document link, classroom record, evidence contract, or local-pilot record was
+found to route students into `quarantine/` or to claim a cloud result from a local-only check.
 
 ## Conclusion
 

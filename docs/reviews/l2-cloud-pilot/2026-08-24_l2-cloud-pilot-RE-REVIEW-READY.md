@@ -2,13 +2,21 @@
 
 **Review date:** 2026-08-24
 **Decision:** **READY**
-**Scope:** Frozen post-remediation source packet only. This is an L2 source-readiness decision, not live cloud readiness or approval for a cloud rehearsal.
+**Scope:** Frozen post-remediation source packet only. This is an L2 source-readiness decision, not
+live cloud readiness or approval for a cloud rehearsal.
 
 ## Independent decision
 
-The frozen packet is **READY for L2 source readiness**. The repository contains the complete 54-project portfolio and its local validators pass. Project 53 (`project-53-supply-chain-security-lab`) is the sole selected pilot; Project 52 (`project-52-opentofu-aws-free-tier-lab`) is retained as reusable source-only material and is not selected as the pilot.
+The frozen packet is **READY for L2 source readiness**. The repository contains the complete
+54-project portfolio and its local validators pass. Project 53 (`project-53-supply-chain-security-
+lab`) is the sole selected pilot; Project 52 (`project-52-opentofu-aws-free-tier-lab`) is retained
+as reusable source-only material and is not selected as the pilot.
 
-The active optional pilot workflows are explicit source-only contracts. They use immutable commit-pinned checkout actions, pinned `ubuntu-24.04` runners, and only `contents: read` permissions. The workflow contracts invoke deterministic local fixture/source validators and contain no OIDC token permission. The packet’s active-path checks exclude quarantine and fixture-only negative material from active execution surfaces.
+The active optional pilot workflows are explicit source-only contracts. They use immutable commit-
+pinned checkout actions, pinned `ubuntu-24.04` runners, and only `contents: read` permissions. The
+workflow contracts invoke deterministic local fixture/source validators and contain no OIDC token
+permission. The packet’s active-path checks exclude quarantine and fixture-only negative material
+from active execution surfaces.
 
 ## Review coverage and results
 
@@ -28,7 +36,8 @@ The active optional pilot workflows are explicit source-only contracts. They use
 
 ## Validator execution
 
-The packet’s two canonical local checks completed successfully without provider CLIs, cloud-account access, credentials, containers, or network-dependent execution:
+The packet’s two canonical local checks completed successfully without provider CLIs, cloud-account
+access, credentials, containers, or network-dependent execution:
 
 ```text
 L2 cloud-pilot source validation: PASS
@@ -36,18 +45,14 @@ L2 cloud-pilot source validation: PASS
 L2 source contract validation: PASS
 ```
 
-The source inspection also confirmed that Project 53’s active cloud-pilot workflow uses `workflow_dispatch` and `pull_request`, `permissions: contents: read`, `runs-on: ubuntu-24.04`, an immutable checkout reference, and local Python validation only. Project 52 contains the same source-only contract pattern while remaining reusable material rather than the selected pilot.
+The source inspection also confirmed that Project 53’s active cloud-pilot workflow uses
+`workflow_dispatch` and `pull_request`, `permissions: contents: read`, `runs-on: ubuntu-24.04`, an
+immutable checkout reference, and local Python validation only. Project 52 contains the same source-
+only contract pattern while remaining reusable material rather than the selected pilot.
 
 ## Residual findings
 
-No critical or high L2 source-readiness blockers remain. No live cloud rehearsal was attempted or required, because it is outside this review scope.
+No critical or high L2 source-readiness blockers remain. No live cloud rehearsal was attempted or
+required, because it is outside this review scope.
 
 ## References
-
-[1]: https://docs.github.com/en/actions/security-for-github-actions/security-hardening-your-deployments/about-security-hardening-with-openid-connect "GitHub Docs: About security hardening with OpenID Connect"
-
-[2]: https://docs.github.com/en/actions/security-for-github-actions/security-hardening-your-deployments/setting-permissions-for-jobs-in-a-workflow "GitHub Docs: Setting permissions for jobs in a workflow"
-
-[3]: https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions "GitHub Docs: Workflow syntax for GitHub Actions"
-
-[4]: https://docs.github.com/en/actions/security-for-github-actions/security-hardening-your-deployments/ pinning-actions-to-a-specific-commit "GitHub Docs: Pinning actions to a specific commit"

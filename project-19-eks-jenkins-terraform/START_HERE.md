@@ -20,7 +20,7 @@ From the project root, open README.md and make a local inventory table mapping e
 
 ## Hints if you are stuck
 
-1. 1. If the file-to-stage mapping is unclear, use the active file names and the README headings rather than starting with the command examples
+1. 1. If the file-to-stage mapping is unclear, use the active filenames and the README headings rather than starting with the command examples
 2. 2. If Terraform responsibilities seem mixed together, separate the jenkins_server/tf-aws-ec2 directory from tf-aws-eks and inspect their backend, provider, variable, and resource/module files as distinct units
 3. 3. If the Kubernetes portion is hard to trace, compare the names and fields in manifest/deployment.yaml and manifest/service.yaml with the example kubectl output, without attempting to connect to a cluster.
 

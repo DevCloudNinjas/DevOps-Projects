@@ -1,5 +1,6 @@
+---
 name: L2 cloud pilot source contract
-on:
+"on":
   workflow_dispatch:
   pull_request:
 permissions:

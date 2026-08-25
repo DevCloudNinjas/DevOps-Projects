@@ -22,7 +22,7 @@ From the project root, read the README and inspect `project.yaml`, `buildspec.ya
 
 1. 1. If the local build fails, compare the command and dependency declarations in `package.json` with the project’s installed Node/npm environment before changing application code
 2. 2. For a pipeline-file question, check whether the relevant behavior belongs to the Docker image, the CodeBuild phases, or the CodeDeploy lifecycle configuration
-3. 3. When a stage cannot be reasoned about locally, use the file names and README headings to map its inputs and outputs rather than inventing AWS resource values or credentials.
+3. 3. When a stage cannot be reasoned about locally, use the filenames and README headings to map its inputs and outputs rather than inventing AWS resource values or credentials.
 
 ## Evidence to capture
 

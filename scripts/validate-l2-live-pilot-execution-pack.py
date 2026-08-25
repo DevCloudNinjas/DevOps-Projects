@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Validate the checked-in L2 Live Pilot Execution Pack without external access."""
+
 from __future__ import annotations
 
 import re
@@ -9,7 +10,11 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 PACK = ROOT / "docs" / "live-pilot-execution-pack"
 REQUIRED = {
-    "README.md": ("project-53-supply-chain-security-lab", "source-only", "not authorization"),
+    "README.md": (
+        "project-53-supply-chain-security-lab",
+        "source-only",
+        "not authorization",
+    ),
     "AUTHORIZATION_RECORD.md": ("approval", "budget", "window"),
     "PILOT_RUNBOOK.md": ("stop condition", "evidence", "teardown"),
     "PREFLIGHT_CHECKLIST.md": ("fail-closed", "external", "identity"),
@@ -54,7 +59,10 @@ def main() -> int:
                 fail(f"broken internal link: {name} -> {target}")
         all_text.append(text)
     joined = "\n".join(all_text)
-    if "project-52-opentofu-aws-free-tier-lab" not in joined.lower() or "reusable source-only" not in joined.lower():
+    if (
+        "project-52-opentofu-aws-free-tier-lab" not in joined.lower()
+        or "reusable source-only" not in joined.lower()
+    ):
         fail("Project 52 reusable-pattern boundary is missing")
     if FORBIDDEN_CLAIMS.search(joined):
         fail("pack contains an unsupported live authorization or completion claim")

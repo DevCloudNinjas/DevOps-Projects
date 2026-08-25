@@ -1,5 +1,6 @@
+---
 name: L2 source gates
-on:
+"on":
   pull_request:
   push:
     branches: [main]
@@ -18,14 +19,25 @@ jobs:
           test -f pilot/evidence-schema.json
           test -f pilot/runbook.md
           test -f pilot/README.md
-          test -f pilot/evidence-schema.json
-          grep -RInE 'npm audit|syft|trivy|cosign|attest|sbom|provenance' .github pilot README.md >/dev/null
+          grep -RInE \
+            'npm audit|syft|trivy|cosign|attest|sbom|provenance' \
+            .github pilot README.md >/dev/null
           python3 -m json.tool pilot/evidence-schema.json >/dev/null
-          grep -RInE 'AKIA[0-9A-Z]{16}|BEGIN (RSA|OPENSSH|EC) PRIVATE KEY|ghp_[A-Za-z0-9]+' . --exclude-dir=.git --exclude='package-lock.json' && exit 1 || true
+          secret_pattern='AKIA[0-9A-Z]{16}'
+          secret_pattern+='|BEGIN (RSA|OPENSSH|EC) PRIVATE KEY'
+          secret_pattern+='|ghp_[A-Za-z0-9]+'
+          if grep -RInE "$secret_pattern" . \
+            --exclude-dir=.git \
+            --exclude='package-lock.json'; then
+            exit 1
+          fi
           python3 scripts/validate-l2-cloud-pilots.py
       - name: Plan artifact contract (offline only)
         run: |
           set -euo pipefail
           mkdir -p artifacts
-          printf '%s\n' 'Offline synthetic plan only; no provider, backend, credentials, or apply.' > artifacts/redacted-plan.txt
+          {
+            printf '%s\n' 'Offline synthetic plan only; no provider,'
+            printf '%s\n' 'backend, credentials, or apply.'
+          } > artifacts/redacted-plan.txt
           sha256sum artifacts/redacted-plan.txt > artifacts/plan.sha256
