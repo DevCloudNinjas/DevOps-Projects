@@ -1,10 +1,9 @@
 ---
-report:
-  format: table
-  exit-code: 0
-  severity:
-    - HIGH
-    - CRITICAL
+format: table
+exit-code: 0
+severity:
+  - HIGH
+  - CRITICAL
 scan:
   offline: true
   scanners:
