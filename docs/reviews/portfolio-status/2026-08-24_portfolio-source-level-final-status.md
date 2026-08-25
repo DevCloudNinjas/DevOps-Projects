@@ -20,7 +20,7 @@
 The portfolio is ready for its intended educational use as a local-first DevSecOps curriculum. No
 additional source-modernization or content-addition loop is required for the current approved scope.
 A new source loop should begin only when teaching requirements, the selected pilot, applicable
-standards, or public website structure materially changes.
+standards, or public site structure materially changes.
 
 ## Completed source work
 
@@ -71,8 +71,8 @@ These gates are not source-code tasks. They must not be represented as completed
 
 No additional source-code content loop is required at this time. A new review or addition loop is
 appropriate only when a materially new teaching requirement appears, another live pilot is selected,
-a relevant standard changes significantly, or the public website reveals a clear structural gap.
+a relevant standard changes significantly, or the public site reveals a clear structural gap.
 
 **Approved source-level state as of 24 August 2026:** the portfolio is ready for packaging and
-presentation on a public website. Any live-cloud pilot remains a separately governed external
+presentation on a public site. Any live-cloud pilot remains a separately governed external
 activity.

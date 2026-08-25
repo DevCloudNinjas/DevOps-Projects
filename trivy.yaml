@@ -1,0 +1,14 @@
+---
+format: table
+exit-code: 0
+ignore-unfixed: true
+severity:
+  - HIGH
+  - CRITICAL
+vuln-type:
+  - os
+  - library
+scanners:
+  - vuln
+  - misconfig
+  - secret

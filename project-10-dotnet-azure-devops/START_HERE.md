@@ -14,7 +14,7 @@ Open the README locally and map the three exercises into a paper or local notes 
 
 ## Checkpoints
 
-1. 1. Identify and record the expected ASP.NET Core repository file path (`Application/aspnet-core-dotnet-core/Pages/Index.cshtml`) and the build, release, artifact, and trigger objects named in the packet
+1. 1. Identify and record the expected ASP.NET Core Index page path stated in the README and the build, release, artifact, and trigger objects named in the packet
 2. 2. In a local notes checklist, sequence the stated CI steps—source retrieval, dependency restore, compilation, tests, and published output—and distinguish them from release tasks
 3. 3. Produce a mock change-and-observation record showing the edited heading, expected commit, build/release progression, and updated heading as evidence targets, without executing a cloud deployment.
 
@@ -26,7 +26,7 @@ Open the README locally and map the three exercises into a paper or local notes 
 
 ## Evidence to capture
 
-Annotated local exercise checklist plus a mock CI/CD trace linking the Index.cshtml heading change, commit, build, artifact, release tasks, and resulting updated heading
+Annotated local exercise checklist plus a mock CI/CD trace linking the Index page heading change, commit, build, artifact, release tasks, and resulting updated heading
 
 ## When to ask for help
 

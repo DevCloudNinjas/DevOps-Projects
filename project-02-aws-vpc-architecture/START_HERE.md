@@ -16,7 +16,7 @@ On a local copy, read the main README and sketch the two CIDR blocks, public/pri
 
 1. 1. Produce a local architecture sketch that distinguishes the 192.168.0.0/16 bastion VPC from the 172.32.0.0/16 private application VPC and labels the stated gateway and subnet relationships
 2. 2. Create a local dependency checklist mapping flow logs, S3 policy/configuration, IAM permissions, launch configuration, Auto Scaling, target group, NLB, and Route 53 to their prerequisite components
-3. 3. Assemble a local validation record template covering private-instance access conceptually, Session Manager access, and public web-page verification, leaving all live execution for instructor-controlled infrastructure.
+3. 3. Assemble a local validation record template covering private-instance access conceptually, Session Manager access, and public web page verification, leaving all live execution for instructor-controlled infrastructure.
 
 ## Hints if you are stuck
 
