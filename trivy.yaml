@@ -2,6 +2,7 @@
 format: table
 exit-code: 0
 ignore-unfixed: true
+offline-scan: true
 severity:
   - HIGH
   - CRITICAL
