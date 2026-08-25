@@ -1,0 +1,22 @@
+{
+  "authorization_id": "fixture-53-source-contract",
+  "reviewed_commit_sha": "0000000000000000000000000000000000000000",
+  "source_digest": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+  "plan_digest": "sha256:2222222222222222222222222222222222222222222222222222222222222222",
+  "workflow_run_id": "fixture-53-source-contract-run",
+  "approval_event": "fixture-only-no-live-approval",
+  "role_identity": "fixture-no-provider-identity",
+  "resource_inventory": [{"scope": "fixture-only", "count": 0}],
+  "health_checks": [{"name": "source-contract", "result": "pass"}],
+  "teardown": {"result": "complete", "exit_status": 0},
+  "residual_verification": {
+    "inventory_query_scope": "fixture-only inventory query",
+    "cost_query_scope": "fixture-only cost query",
+    "timestamp": "2026-08-24T02:00:00Z",
+    "result": "clear",
+    "reviewer": "fixture-residual-reviewer"
+  },
+  "timestamp": "2026-08-24T02:00:00Z",
+  "result": "source-contract-pass",
+  "independent_reviewer": "fixture-independent-reviewer"
+}

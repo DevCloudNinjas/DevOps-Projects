@@ -1,0 +1,9 @@
+{
+  "budget": 2000,
+  "actual": 63,
+  "variance": 1937,
+  "scenarios": [
+    "baseline",
+    "+10% demand"
+  ]
+}

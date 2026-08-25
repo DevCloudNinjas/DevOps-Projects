@@ -1,0 +1,6 @@
+{
+  "model_id": "m-001",
+  "accuracy": 0.91,
+  "threshold": 0.9,
+  "evaluator": "instructor-001"
+}

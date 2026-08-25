@@ -1,0 +1,23 @@
+{
+  "request_id": "fixture-52-source-contract",
+  "owner": "fixture-owner",
+  "backup_owner": "fixture-backup-owner",
+  "approvers": ["fixture-security-reviewer", "fixture-budget-reviewer"],
+  "approved_ref": "refs/heads/main",
+  "reviewed_commit_sha": "0000000000000000000000000000000000000000",
+  "region": "fixture-region",
+  "resource_allow_list": ["one-disposable-fixture-resource"],
+  "resource_count": 1,
+  "disposable_scope": "source-only fixture with no provider target",
+  "maximum_lifetime_minutes": 120,
+  "budget_ceiling": 1,
+  "alert_thresholds": [0.5, 0.8, 1.0],
+  "run_window": {
+    "start": "2026-08-24T00:00:00Z",
+    "end": "2026-08-24T02:00:00Z"
+  },
+  "expires_at": "2026-08-24T02:00:00Z",
+  "rollback": "fixture-only rollback has no provider side effect",
+  "teardown_owner": "fixture-teardown-owner",
+  "residual_cost_reviewer": "fixture-residual-reviewer"
+}

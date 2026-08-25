@@ -1,0 +1,9 @@
+{
+  "model_id": "m-001",
+  "dependencies": [
+    {
+      "name": "stdlib",
+      "license": "Python-PSF"
+    }
+  ]
+}

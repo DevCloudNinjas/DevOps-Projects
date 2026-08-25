@@ -1,0 +1,10 @@
+{
+  "model_id": "m-001",
+  "risks": [
+    {
+      "id": "R1",
+      "risk": "hallucination",
+      "disposition": "mitigate"
+    }
+  ]
+}

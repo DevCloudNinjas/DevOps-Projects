@@ -1,0 +1,17 @@
+{
+  "command": "sh validate-p2-local.sh",
+  "interpreter": "/usr/bin/python3",
+  "fixture_set": [
+    "safe-batch-ml.json",
+    "static-inference.json"
+  ],
+  "outcome": "PASS",
+  "computed": {
+    "templates": 2,
+    "unsafe_templates": 0
+  },
+  "negative_case_coverage": [
+    "unsafe template rejected",
+    "missing owner rejected"
+  ]
+}

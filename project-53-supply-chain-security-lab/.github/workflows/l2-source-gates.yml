@@ -1,0 +1,31 @@
+name: L2 source gates
+on:
+  pull_request:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  source-gates:
+    name: l2-source-gates
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      - name: Deterministic local checks
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f pilot/evidence-schema.json
+          test -f pilot/runbook.md
+          test -f pilot/README.md
+          test -f pilot/evidence-schema.json
+          grep -RInE 'npm audit|syft|trivy|cosign|attest|sbom|provenance' .github pilot README.md >/dev/null
+          python3 -m json.tool pilot/evidence-schema.json >/dev/null
+          grep -RInE 'AKIA[0-9A-Z]{16}|BEGIN (RSA|OPENSSH|EC) PRIVATE KEY|ghp_[A-Za-z0-9]+' . --exclude-dir=.git --exclude='package-lock.json' && exit 1 || true
+          python3 scripts/validate-l2-cloud-pilots.py
+      - name: Plan artifact contract (offline only)
+        run: |
+          set -euo pipefail
+          mkdir -p artifacts
+          printf '%s\n' 'Offline synthetic plan only; no provider, backend, credentials, or apply.' > artifacts/redacted-plan.txt
+          sha256sum artifacts/redacted-plan.txt > artifacts/plan.sha256

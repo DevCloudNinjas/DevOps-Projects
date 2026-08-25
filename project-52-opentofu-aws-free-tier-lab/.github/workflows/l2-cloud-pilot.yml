@@ -1,0 +1,19 @@
+name: L2 cloud pilot source contract
+on:
+  workflow_dispatch:
+  pull_request:
+permissions:
+  contents: read
+concurrency: l2-cloud-pilot-source-contract
+jobs:
+  source-contract:
+    name: l2-cloud-pilot-source-contract
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      - name: Validate local fixtures and forbidden cloud surface
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 scripts/validate-l2-source-contract.py
+          python3 -m json.tool pilot/evidence-schema.json >/dev/null

@@ -1,0 +1,38 @@
+{
+  "command": "sh validate-p2-local.sh",
+  "interpreter": "/usr/bin/python3",
+  "fixture_set": [
+    "plan-00.json",
+    "plan-01.json",
+    "plan-02.json",
+    "plan-03.json",
+    "plan-04.json",
+    "plan-05.json",
+    "plan-06.json",
+    "plan-07.json",
+    "plan-08.json",
+    "plan-09.json",
+    "plan-10.json",
+    "plan-11.json",
+    "plan-12.json",
+    "plan-13.json",
+    "plan-14.json",
+    "plan-15.json",
+    "plan-16.json",
+    "plan-17.json",
+    "plan-18.json",
+    "plan-19.json"
+  ],
+  "outcome": "PASS",
+  "computed": {
+    "plans": 20,
+    "allow": 12,
+    "deny": 8
+  },
+  "negative_case_coverage": [
+    "public resource denied",
+    "persistent resource denied",
+    "expired or over-lifetime plan denied",
+    "missing owner denied"
+  ]
+}
