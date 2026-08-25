@@ -1,15 +1,19 @@
 ---
-format: table
-exit-code: 0
-ignore-unfixed: true
-offline-scan: true
-severity:
-  - HIGH
-  - CRITICAL
-vuln-type:
-  - os
-  - library
-scanners:
-  - vuln
-  - misconfig
-  - secret
+report:
+  format: table
+  exit-code: 0
+  severity:
+    - HIGH
+    - CRITICAL
+scan:
+  offline: true
+  scanners:
+    - vuln
+    - misconfig
+    - secret
+pkg:
+  types:
+    - os
+    - library
+vulnerability:
+  ignore-unfixed: true
