@@ -1,0 +1,9 @@
+{
+  "authorization": "none",
+  "contains_credentials": false,
+  "expected_result": "fail",
+  "fixture": "tamper",
+  "purpose": "synthetic tamper validation fixture",
+  "schema_version": "1.0",
+  "tampered": true
+}

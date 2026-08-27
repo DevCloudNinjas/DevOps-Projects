@@ -1,0 +1,9 @@
+[
+  {
+    "id": "OPT-1",
+    "owner": "team-ml",
+    "due_date": "2026-09-01",
+    "expected_benefit": "reduce idle runs",
+    "evidence_status": "open"
+  }
+]

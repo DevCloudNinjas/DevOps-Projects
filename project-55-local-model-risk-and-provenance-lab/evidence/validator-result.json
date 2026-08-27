@@ -1,0 +1,24 @@
+{
+  "command": "sh validate-p2-local.sh",
+  "interpreter": "/usr/bin/python3",
+  "fixture_set": [
+    "provenance.json",
+    "model-card.json",
+    "dataset-manifest.json",
+    "evaluation.json",
+    "risk-register.json",
+    "sbom.json",
+    "approval.json",
+    "verification-result.json",
+    "model.bin"
+  ],
+  "outcome": "PASS",
+  "computed": {
+    "accuracy": 0.91,
+    "model_sha256": "bc0cedf681bcc6cd384c7a73c917f7c91b45f705957995b970fd3d90a85d82ab"
+  },
+  "negative_case_coverage": [
+    "tampered model hash rejected",
+    "incomplete approval rejected"
+  ]
+}

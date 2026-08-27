@@ -1,0 +1,16 @@
+{
+  "application": "static-inference",
+  "owner": "team-ml",
+  "repository_path": "./workload",
+  "lifecycle": "experimental",
+  "environment": "review",
+  "dependencies": [],
+  "data_classification": "synthetic",
+  "resource_class": "small",
+  "ttl_hours": 24,
+  "cost_center": "CC-001",
+  "evidence_links": ["P2_EVIDENCE.md"],
+  "deployment_prohibited": true,
+  "student_role": "student",
+  "instructor_role": "instructor"
+}

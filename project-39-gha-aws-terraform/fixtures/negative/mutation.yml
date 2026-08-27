@@ -1,0 +1,9 @@
+---
+schema_version: "1.0"
+project: project-39-gha-aws-terraform
+fixture: negative-mutation
+purpose: deterministic local-first validation only
+authorization: none
+contains_credentials: false
+provider_actions_authorized: false
+expected_result: fail

@@ -1,0 +1,25 @@
+{
+  "command": "sh validate-p2-local.sh",
+  "interpreter": "/usr/bin/python3",
+  "fixture_set": [
+    "budget-report.json",
+    "daily-costs.csv",
+    "forecast.json",
+    "mapping.json",
+    "recommendations.json",
+    "residual-cost-closure.json"
+  ],
+  "outcome": "PASS",
+  "computed": {
+    "ledger_total": 63.0,
+    "unallocated_rows": 1,
+    "budget_variance": 1937.0,
+    "recommendations": 1
+  },
+  "negative_case_coverage": [
+    "allocation gap detected",
+    "budget overrun would fail",
+    "missing recommendation owner/due date would fail",
+    "unclosed evidence would fail"
+  ]
+}

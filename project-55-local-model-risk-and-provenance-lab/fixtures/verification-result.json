@@ -1,0 +1,5 @@
+{
+  "model_id": "m-001",
+  "status": "verified",
+  "checks": ["hash", "provenance", "approval"]
+}

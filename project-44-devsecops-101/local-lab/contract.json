@@ -1,0 +1,8 @@
+{
+  "project": "project-44-devsecops-101",
+  "mode": "local-first",
+  "provider_access": "prohibited",
+  "credentials": "prohibited",
+  "destructive_operations": "prohibited",
+  "evidence": "synthetic-local-fixtures"
+}

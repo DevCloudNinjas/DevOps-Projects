@@ -1,0 +1,18 @@
+{
+  "type": "object",
+  "required": ["project", "outcome", "teardown_state", "residual_state"],
+  "properties": {
+    "project": {
+      "type": "string"
+    },
+    "outcome": {
+      "type": "string"
+    },
+    "teardown_state": {
+      "type": "string"
+    },
+    "residual_state": {
+      "type": "string"
+    }
+  }
+}

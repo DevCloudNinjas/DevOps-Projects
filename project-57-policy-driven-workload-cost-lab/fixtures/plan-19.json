@@ -1,0 +1,15 @@
+{
+  "id": "plan-19",
+  "owner": "team-ml",
+  "request_id": "req-19",
+  "expiry": "2099-12-31",
+  "max_lifetime_hours": 24,
+  "resource_count": 1,
+  "resource_class": "small",
+  "public": true,
+  "persistent": false,
+  "shared_dependency": false,
+  "production_dependency": false,
+  "cost_center": "CC-001",
+  "budget": 100
+}

@@ -1,0 +1,12 @@
+{
+  "apiVersion": "v1",
+  "data": {
+    "mode": "synthetic-local-validation",
+    "provider_access": "not-authorized"
+  },
+  "kind": "ConfigMap",
+  "metadata": {
+    "name": "local-fixture-app",
+    "namespace": "classroom-local"
+  }
+}

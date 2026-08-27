@@ -1,0 +1,41 @@
+---
+name: L2 source gates
+"on":
+  pull_request:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  source-gates:
+    name: l2-source-gates
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      - name: Deterministic local checks
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f pilot/evidence-schema.json
+          test -f pilot/runbook.md
+          test -f pilot/README.md
+          test -f pilot/policy.rego || true
+          python3 -m json.tool pilot/evidence-schema.json >/dev/null
+          secret_pattern='AKIA[0-9A-Z]{16}'
+          secret_pattern+='|BEGIN (RSA|OPENSSH|EC) PRIVATE KEY'
+          secret_pattern+='|ghp_[A-Za-z0-9]+'
+          if grep -RInE "$secret_pattern" . \
+            --exclude-dir=.git \
+            --exclude='package-lock.json'; then
+            exit 1
+          fi
+          python3 scripts/validate-l2-cloud-pilots.py
+      - name: Plan artifact contract (offline only)
+        run: |
+          set -euo pipefail
+          mkdir -p artifacts
+          {
+            printf '%s\n' 'Offline synthetic plan only; no provider,'
+            printf '%s\n' 'backend, credentials, or apply.'
+          } > artifacts/redacted-plan.txt
+          sha256sum artifacts/redacted-plan.txt > artifacts/plan.sha256

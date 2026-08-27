@@ -1,0 +1,9 @@
+{
+  "contains_cloud_authorization": false,
+  "contains_credentials": false,
+  "decision": "pass",
+  "fixture": "clean-plan-policy",
+  "project": "project-39-gha-aws-terraform",
+  "purpose": "deterministic local-first validation only",
+  "schema_version": "1.0"
+}

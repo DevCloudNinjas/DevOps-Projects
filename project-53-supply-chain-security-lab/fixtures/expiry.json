@@ -1,0 +1,8 @@
+{
+  "authorization": "none",
+  "contains_credentials": false,
+  "fixture": "expiry",
+  "purpose": "synthetic expiry validation fixture",
+  "schema_version": "1.0",
+  "status": "expired"
+}

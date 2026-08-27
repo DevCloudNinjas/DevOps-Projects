@@ -1,0 +1,6 @@
+---
+# Super-Linter loads ActionLint rules from this directory.
+# Its bundled label catalog predates GitHub-hosted ubuntu-24.04.
+self-hosted-runner:
+  labels:
+    - ubuntu-24.04

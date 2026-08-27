@@ -1,0 +1,8 @@
+{
+  "project": "project-32-tetris-devsecops-k8s",
+  "mode": "local-first",
+  "provider_access": "prohibited",
+  "credentials": "prohibited",
+  "destructive_operations": "prohibited",
+  "evidence": "synthetic-local-fixtures"
+}

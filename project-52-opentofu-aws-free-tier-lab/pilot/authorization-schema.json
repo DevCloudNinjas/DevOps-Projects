@@ -1,0 +1,18 @@
+{
+  "type": "object",
+  "required": ["project", "state", "reviewer", "window"],
+  "properties": {
+    "project": {
+      "type": "string"
+    },
+    "state": {
+      "type": "string"
+    },
+    "reviewer": {
+      "type": "string"
+    },
+    "window": {
+      "type": "string"
+    }
+  }
+}

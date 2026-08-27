@@ -1,0 +1,8 @@
+{
+  "authorization": "none",
+  "contains_credentials": false,
+  "expected_result": "pass",
+  "fixture": "positive",
+  "purpose": "synthetic positive validation fixture",
+  "schema_version": "1.0"
+}

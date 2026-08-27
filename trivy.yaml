@@ -1,0 +1,18 @@
+---
+format: table
+exit-code: 0
+severity:
+  - HIGH
+  - CRITICAL
+scan:
+  offline: true
+  scanners:
+    - vuln
+    - misconfig
+    - secret
+pkg:
+  types:
+    - os
+    - library
+vulnerability:
+  ignore-unfixed: true

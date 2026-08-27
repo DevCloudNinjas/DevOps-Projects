@@ -1,0 +1,5 @@
+date,service,workload,owner,environment,cost_center,allocation_status,quantity,rate
+2026-08-01,training,batch-ml,team-ml,local,CC-001,allocated,2,10
+2026-08-01,inference,static-inference,team-ml,review,CC-001,allocated,1000,0.01
+2026-08-01,storage,unknown,unassigned,local,,unallocated,1,3
+2026-08-02,training,batch-ml,team-ml,local,CC-001,allocated,3,10

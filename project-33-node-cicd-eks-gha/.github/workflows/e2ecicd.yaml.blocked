@@ -1,0 +1,6 @@
+---
+# Blocked historical workflow specimen for project-33-node-cicd-eks-gha.
+# This file is documentation only; it must not be enabled or executed.
+status: blocked
+execution: prohibited
+reason: local-first classroom boundary

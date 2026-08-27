@@ -1,0 +1,8 @@
+---
+schema_version: "1.0"
+project: project-14-github-actions-android
+purpose: synthetic local CI contract fixture
+authorization: none
+local_only: true
+contains_credentials: false
+provider_actions_authorized: false

@@ -1,0 +1,6 @@
+{
+  "project": "project-52-opentofu-aws-free-tier-lab",
+  "outcome": "synthetic-source-validation-only",
+  "teardown_state": "not-executed",
+  "residual_state": "not-executed"
+}
