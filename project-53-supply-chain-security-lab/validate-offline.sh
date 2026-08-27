@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 set -eu
-root=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
+root=$(CDPATH='' cd -- "$(dirname -- "$0")" && pwd)
 if [ "$(basename "$root")" != "project-53-supply-chain-security-lab" ]; then
   printf '%s\n' 'ERROR: project root mismatch' >&2
   exit 1

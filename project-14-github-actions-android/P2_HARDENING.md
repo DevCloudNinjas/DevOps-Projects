@@ -1,8 +1,10 @@
-# Source Hardening Record — End to End CI/CD pipeline using GitHub Actions for Android Application
+# Source Hardening Record — end-to-end CI/CD pipeline using GitHub Actions for Android Application
 
 ## Local-first controls
 
-The active classroom route uses checked-in source, documentation, fixtures, and deterministic validation. Unsafe, credential-dependent, provider-mutating, or destructive operations are outside the student path and require separate human authorization.
+The active classroom route uses checked-in source, documentation, fixtures, and deterministic validation.
+Unsafe, credential-dependent, provider-mutating, or destructive operations are outside the student path and
+require separate human authorization.
 
 ## Review checklist
 

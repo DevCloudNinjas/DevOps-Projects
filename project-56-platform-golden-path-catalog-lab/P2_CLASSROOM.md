@@ -14,4 +14,8 @@ authorization or production record.
 
 ## Learning and assessment
 
-Students assemble and review a local golden-path catalog entry that expresses ownership, delivery expectations, and operational metadata. The observable outcome is a validator result confirming the required catalog fields and rejection of an incomplete entry. The instructor criterion is that the learner can connect catalog metadata to an observable platform-engineering responsibility. The project-local validator and synthetic catalog fixtures demonstrate the competency without operating a platform service.
+Students assemble and review a local golden-path catalog entry that expresses ownership, delivery
+expectations, and operational metadata. The observable outcome is a validator result confirming the required
+catalog fields and rejection of an incomplete entry. The instructor criterion is that the learner can connect
+catalog metadata to an observable platform-engineering responsibility. The project-local validator and
+synthetic catalog fixtures demonstrate the competency without operating a platform service.

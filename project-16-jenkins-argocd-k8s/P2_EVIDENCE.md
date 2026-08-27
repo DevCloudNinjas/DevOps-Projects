@@ -1,9 +1,9 @@
-# Local Evidence Record — Real Time DevOps Project | Deploy to Kubernetes Using Jenkins | End to End DevOps Project | CI/CD
+# Local Evidence Record — Real Time DevOps Project | Deploy to Kubernetes Using Jenkins | end-to-end DevOps Project | CI/CD
 
 ## Evidence to retain
 
 | Item | Expected local evidence |
-|---|---|
+| --- | --- |
 | Command | Exact project-local validator command and exit status. |
 | Inputs | Names of checked-in synthetic fixtures reviewed. |
 | Outcome | PASS/FAIL output and the observed control. |
@@ -11,4 +11,5 @@
 
 ## Evidence boundary
 
-Do not record credentials, account identifiers, endpoints, personally identifiable data, or claims of a live deployment. This is classroom evidence, not operational approval.
+Do not record credentials, account identifiers, endpoints, personally identifiable data, or claims of a live
+deployment. This is classroom evidence, not operational approval.

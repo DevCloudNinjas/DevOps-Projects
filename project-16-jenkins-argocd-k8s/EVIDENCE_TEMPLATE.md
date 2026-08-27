@@ -1,7 +1,7 @@
-# Local Evidence Template — Real Time DevOps Project | Deploy to Kubernetes Using Jenkins | End to End DevOps Project | CI/CD
+# Local Evidence Template — Real Time DevOps Project | Deploy to Kubernetes Using Jenkins | end-to-end DevOps Project | CI/CD
 
 | Field | Record |
-|---|---|
+| --- | --- |
 | Project | `project-16-jenkins-argocd-k8s` |
 | Learner | [name or identifier] |
 | Local validator | [command] |
@@ -9,4 +9,5 @@
 | Fixture/control observed | [description] |
 | Instructor feedback | [optional] |
 
-This template documents classroom source validation only. It is not approval for cloud access or an operational change.
+This template documents classroom source validation only. It is not approval for cloud access or an
+operational change.

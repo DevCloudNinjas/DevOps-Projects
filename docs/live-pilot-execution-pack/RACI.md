@@ -3,7 +3,7 @@
 **Status:** Source-only accountability template.
 
 | Activity | Responsible | Accountable | Consulted | Informed |
-|---|---|---|---|---|
+| --- | --- | --- | --- | --- |
 | Authorize scope, target, budget, and window | [enter name] | [enter name] | Security and cost owners | Stakeholders |
 | Verify source ref and preflight evidence | [enter name] | [enter name] | Independent reviewer | Stakeholders |
 | Operate approved external procedure | [enter name] | [enter name] | Security reviewer | Cost owner |

@@ -14,4 +14,8 @@ it is not an authorization or production record.
 
 ## Learning and assessment
 
-Students evaluate provider-neutral workload policy and cost-control fixtures using a deterministic local decision path. The observable outcome is a PASS result for an approved synthetic workload and a rejection for unsafe, ownerless, or expired inputs. The instructor criterion is that the learner explains how ownership, time-to-live, and allow-list controls reduce delivery risk and cost ambiguity. The project-local validator and fixtures demonstrate the competency without a provider account or live workload.
+Students evaluate provider-neutral workload policy and cost-control fixtures using a deterministic local
+decision path. The observable outcome is a PASS result for an approved synthetic workload and a rejection for
+unsafe, ownerless, or expired inputs. The instructor criterion is that the learner explains how ownership,
+time-to-live, and allow-list controls reduce delivery risk and cost ambiguity. The project-local validator and
+fixtures demonstrate the competency without a provider account or live workload.

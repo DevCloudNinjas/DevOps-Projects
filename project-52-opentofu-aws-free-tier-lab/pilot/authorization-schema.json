@@ -1,11 +1,6 @@
 {
   "type": "object",
-  "required": [
-    "project",
-    "state",
-    "reviewer",
-    "window"
-  ],
+  "required": ["project", "state", "reviewer", "window"],
   "properties": {
     "project": {
       "type": "string"

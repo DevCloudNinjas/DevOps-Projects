@@ -8,7 +8,7 @@ covered the 54 evidence-bearing project roots listed in the canonical matrix.
 ## Offline verification
 
 | Check | Result |
-|---|---|
+| --- | --- |
 | Evidence-bearing project roots | 54 found, numbered project-01 through project-54 |
 | Per-project worksheet, evidence contract, and local-pilot record | 54 of 54 present |
 | Active Markdown/document relative links | 0 unresolved links |
@@ -30,4 +30,5 @@ found to route students into `quarantine/` or to claim a cloud result from a loc
 
 ## Conclusion
 
-No remaining critical or high classroom-evidence blockers were identified in the frozen post-implementation packet.
+No remaining critical or high classroom-evidence blockers were identified in the frozen post-implementation
+packet.

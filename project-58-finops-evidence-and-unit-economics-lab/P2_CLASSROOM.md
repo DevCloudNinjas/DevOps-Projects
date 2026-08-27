@@ -14,4 +14,8 @@ and result; it is not an authorization or production record.
 
 ## Learning and assessment
 
-Students reconcile synthetic allocation, budget-variance, and unit-economics evidence into a local operational interpretation. The observable outcome is a machine-readable validation result with computed metrics and negative-case coverage. The instructor criterion is that the learner identifies an allocation gap or variance and states the appropriate accountable follow-up. The project-local validator and synthetic evidence fixtures demonstrate the competency without billing access or real financial data.
+Students reconcile synthetic allocation, budget-variance, and unit-economics evidence into a local operational
+interpretation. The observable outcome is a machine-readable validation result with computed metrics and
+negative-case coverage. The instructor criterion is that the learner identifies an allocation gap or variance
+and states the appropriate accountable follow-up. The project-local validator and synthetic evidence fixtures
+demonstrate the competency without billing access or real financial data.

@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """Fail-closed validation of the manifest-declared active classroom surface."""
+
 from __future__ import annotations
 
 import json
-import os
 import sys
 from pathlib import Path
 
@@ -41,7 +41,12 @@ def main() -> int:
         if not isinstance(active_files, list) or not active_files:
             fail(f"missing active file list for {project}")
         for rel in active_files:
-            if not isinstance(rel, str) or not rel or rel.startswith("/") or ".." in Path(rel).parts:
+            if (
+                not isinstance(rel, str)
+                or not rel
+                or rel.startswith("/")
+                or ".." in Path(rel).parts
+            ):
                 fail(f"unsafe declared active path for {project}: {rel!r}")
             target = root / rel
             if not target.exists() or not target.is_file():
@@ -55,8 +60,12 @@ def main() -> int:
             if quarantine and (root / quarantine) in target.parents:
                 fail(f"manifest declares quarantined file as active: {project}/{rel}")
         for markdown in root.rglob("*.md"):
-            if quarantine and quarantine + "/" in markdown.read_text(encoding="utf-8", errors="ignore"):
-                fail(f"active Markdown references quarantine: {markdown.relative_to(ROOT)}")
+            if quarantine and quarantine + "/" in markdown.read_text(
+                encoding="utf-8", errors="ignore"
+            ):
+                fail(
+                    f"active Markdown references quarantine: {markdown.relative_to(ROOT)}"
+                )
     actual = {path.name for path in ROOT.glob("project-*") if path.is_dir()}
     if actual != declared:
         missing = sorted(declared - actual)

@@ -1,9 +1,9 @@
-# Local Evidence Record — Kubernetes End to End Project on EKS(Amazon Kubernetes Service)
+# Local Evidence Record — Kubernetes end-to-end Project on EKS(Amazon Kubernetes Service)
 
 ## Evidence to retain
 
 | Item | Expected local evidence |
-|---|---|
+| --- | --- |
 | Command | Exact project-local validator command and exit status. |
 | Inputs | Names of checked-in synthetic fixtures reviewed. |
 | Outcome | PASS/FAIL output and the observed control. |
@@ -11,4 +11,5 @@
 
 ## Evidence boundary
 
-Do not record credentials, account identifiers, endpoints, personally identifiable data, or claims of a live deployment. This is classroom evidence, not operational approval.
+Do not record credentials, account identifiers, endpoints, personally identifiable data, or claims of a live
+deployment. This is classroom evidence, not operational approval.

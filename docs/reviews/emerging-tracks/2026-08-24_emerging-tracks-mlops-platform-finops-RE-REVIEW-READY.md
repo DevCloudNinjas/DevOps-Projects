@@ -10,7 +10,7 @@ without prior plans, handoffs, or reviews.
 ## Decision basis
 
 The packet provides meaningful, independently usable, local-first, synthetic, non-production
-additions for Projects 55–58. Each project has a README, classroom and local-rehearsal records,
+additions for Projects 55–58. Each project has a readme, classroom and local-rehearsal records,
 attribution record, deterministic fixtures, a documented shell validator, and machine-readable
 evidence. The project materials explicitly prohibit live pilots, deployment, cloud access,
 production changes, provider CLIs and SDKs, credentials, network access, containers, teardown, and
@@ -61,7 +61,7 @@ coverage.
 
 The validators compute outcomes from checked-in JSON and CSV fixtures rather than merely checking
 static expected strings. Their assertions fail closed on malformed, missing, contradictory, unsafe,
-incomplete, or invalid records as documented by the project READMEs. The captured evidence records
+incomplete, or invalid records as documented by the project readmes. The captured evidence records
 identify the interpreter as `/usr/bin/python3` and retain the fixture sets used for each run.
 
 ## Manifest and project-selection integrity

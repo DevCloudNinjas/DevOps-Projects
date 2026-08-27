@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Fail closed when active project content escapes its root or links to quarantine."""
+
 from __future__ import annotations
 
 import sys
@@ -21,8 +22,12 @@ def main() -> int:
             except ValueError:
                 print(f"ERROR: path escapes project root: {path}", file=sys.stderr)
                 return 1
-        if path.suffix.lower() == ".md" and "quarantine/" in path.read_text(encoding="utf-8", errors="ignore"):
-            print(f"ERROR: active Markdown references quarantine: {path}", file=sys.stderr)
+        if path.suffix.lower() == ".md" and "quarantine/" in path.read_text(
+            encoding="utf-8", errors="ignore"
+        ):
+            print(
+                f"ERROR: active Markdown references quarantine: {path}", file=sys.stderr
+            )
             return 1
     print(f"Project containment: PASS ({root.name})")
     return 0

@@ -10,7 +10,7 @@ provide actionable paths into instructor-only or quarantined material.
 ## Scope and offline evidence
 
 | Check | Result |
-|---|---:|
+| --- | ---: |
 | Project roots inventoried | 54 / 54 |
 | Active `P2_CLASSROOM.md` documents | 54 / 54 |
 | Active `P2_EVIDENCE.md` documents | 54 / 54 |
@@ -25,7 +25,7 @@ credentials, deployment, remote installation, or destructive operation was used.
 
 ## Boundary findings
 
-The active READMEs, classroom contracts, evidence contracts, and local-pilot
+The active readmes, classroom contracts, evidence contracts, and local-pilot
 documents consistently identify the student route as local-first and offline.
 Instructor-only material is described as non-student reference material rather
 than as a learner execution path. Where an active `INSTRUCTOR_BOUNDARY.md`

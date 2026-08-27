@@ -1,3 +1,12 @@
-# Local-First Supporting Record — Real Time DevOps Project | Deploy to Kubernetes Using Jenkins | End to End DevOps Project | CI/CD
-
-This checked-in record is required by the active source contract for `project-16-jenkins-argocd-k8s`. It is synthetic, local-only, and does not authorize provider access, deployment, or destructive operations.
+{
+  "authorization": "none",
+  "contains_credentials": false,
+  "desired_state": {
+    "application": "sample-app",
+    "environment": "local-fixture",
+    "replicas": 1
+  },
+  "project": "project-16-jenkins-argocd-k8s",
+  "purpose": "synthetic desired-state fixture for local-first validation",
+  "schema_version": "1.0"
+}

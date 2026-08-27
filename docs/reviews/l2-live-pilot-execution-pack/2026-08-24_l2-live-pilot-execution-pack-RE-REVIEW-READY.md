@@ -22,7 +22,7 @@ teardown/cost closure stops progression.
 ## Blind review coverage and results
 
 | Control area | Result | Basis in frozen packet |
-|---|---|---|
+| --- | --- | --- |
 | Required document set | Pass | All twelve required Markdown documents are present and non-empty. |
 | Document integrity | Pass | Each required document has exactly one top-level H1 and one complete body; no trailing whitespace was detected. |
 | Navigation | Pass | The dedicated validator resolved all relative internal Markdown links. |

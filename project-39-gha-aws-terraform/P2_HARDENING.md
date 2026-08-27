@@ -1,10 +1,12 @@
-# Source Hardening Record — 👉 GitHub-actions + AWS + Terraform #
+# Source Hardening Record — 👉 GitHub Actions + AWS + Terraform #
 
-## Local-first controls
+## Local-first controls ##
 
-The active classroom route uses checked-in source, documentation, fixtures, and deterministic validation. Unsafe, credential-dependent, provider-mutating, or destructive operations are outside the student path and require separate human authorization.
+The active classroom route uses checked-in source, documentation, fixtures, and deterministic validation.
+Unsafe, credential-dependent, provider-mutating, or destructive operations are outside the student path and
+require separate human authorization.
 
-## Review checklist
+## Review checklist ##
 
 - Confirm the project documentation explains the safe starting point.
 - Confirm expected evidence can be generated locally.

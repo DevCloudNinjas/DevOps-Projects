@@ -20,7 +20,7 @@ gates are **external** human verifications; this source-only checklist neither
 configures nor proves them.
 
 | Gate | Critical check | Evidence ID | [x]/Initials |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | Governance | Signed authorization, independent approver, named owners, approved window/timezone | | |
 | Source integrity | Project 53 exact SHA/ref frozen; Project 52 explicitly not selected | | |
 | GitHub | Narrow token permissions, immutable action references, branch/environment protections, audit access | | |

@@ -10,7 +10,7 @@ Record evidence IDs and reviewers in
 ## Required external controls
 
 | Control | Required human evidence |
-|---|---|
+| --- | --- |
 | Source protection | Protected branch, required checks, and review rule verified. |
 | Environment protection | Approved environment, named approvers, and audit visibility verified. |
 | Identity | Short-lived least-privilege identity and trust policy independently reviewed. |

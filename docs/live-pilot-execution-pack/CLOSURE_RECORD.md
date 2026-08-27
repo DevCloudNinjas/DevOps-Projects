@@ -14,7 +14,7 @@ completed live pilot.
 ## Closure checks
 
 | Check | Evidence record ID | Reviewer outcome |
-|---|---|---|
+| --- | --- | --- |
 | Approved scope remained unchanged | [enter ID] | [ ] |
 | Stop or rollback events documented | [enter ID or N/A] | [ ] |
 | Teardown completion reviewed | [enter ID] | [ ] |

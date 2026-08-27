@@ -23,7 +23,7 @@
 ## Required authorization facts
 
 | Field | Required entry | Complete? |
-|---|---|---|
+| --- | --- | --- |
 | Repository and exact ref | [enter value] | [ ] |
 | Exact Project 53 commit SHA | [enter value] | [ ] |
 | Provider | [enter value] | [ ] |
@@ -54,7 +54,7 @@ acknowledges that alerts are not a hard spending guarantee. No static credential
 may be stored in the repository or evidence.
 
 | Role | Name | Signature | Timestamp with timezone |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | Pilot owner | [enter name] | [enter signature] | [enter timestamp] |
 | Operator | [enter name] | [enter signature] | [enter timestamp] |
 | Security reviewer | [enter name] | [enter signature] | [enter timestamp] |

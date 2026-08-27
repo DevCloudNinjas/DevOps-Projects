@@ -10,7 +10,7 @@
 ## Executive summary
 
 | Level or track | Status | Source-level meaning |
-|---|---|---|
+| --- | --- | --- |
 | **L1 — Local classroom-ready** | **READY** | The original 54-project curriculum plus Projects 55–58 provides local, validated teaching material. |
 | **L2 — Governed cloud-pilot source readiness** | **READY** | Project 53 remains the sole selected future pilot; source contracts and safety boundaries are retained. |
 | **L2 — Live Pilot Execution Pack** | **READY** | A complete human-operable, source-only execution pack exists for Project 53. |
@@ -33,7 +33,7 @@ reusable source-only material. The associated execution pack is documentation an
 based; it creates no provider state and grants no authorization for an operator to deploy.
 
 | Project | Emerging-track focus | Readiness basis |
-|---|---|---|
+| --- | --- | --- |
 | **55** | Local model risk and provenance | Synthetic model, dataset, evaluation, risk, SBOM, approval, provenance, and hash-verification evidence. |
 | **56** | Platform golden-path catalog | Local workload metadata and catalog contracts without a hosted platform service. |
 | **57** | Policy-driven workload cost control | Deterministic provider-neutral safety, ownership, TTL, and cost-intent evaluation. |
@@ -53,10 +53,11 @@ scope.
 
 ## Human and external work remaining
 
-A live cloud pilot is optional. It may proceed only after accountable humans complete the external prerequisites below.
+A live cloud pilot is optional. It may proceed only after accountable humans complete the external
+prerequisites below.
 
 | External gate | Required evidence before any live action |
-|---|---|
+| --- | --- |
 | Disposable target | Approved cloud account or subscription, bounded region, and resource allow-list. |
 | Source-control governance | Protected branches, required checks, environment controls, and named reviewers. |
 | Identity | Short-lived OIDC federation with least privilege; no long-lived repository secret. |
@@ -65,7 +66,8 @@ A live cloud pilot is optional. It may proceed only after accountable humans com
 | Run control | Approved run window, monitoring route, stop conditions, and rollback decision authority. |
 | Closure | Verified teardown plus residual-resource and residual-cost evidence after the controlled run. |
 
-These gates are not source-code tasks. They must not be represented as completed until real external evidence exists.
+These gates are not source-code tasks. They must not be represented as completed until real external evidence
+exists.
 
 ## Maintenance decision
 

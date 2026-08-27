@@ -1,6 +1,9 @@
-synthetic local fixture
-project=project-39-gha-aws-terraform
-path=fixtures/negative/mutation.yml
-purpose=deterministic local-first validation only
-contains_no_credentials=true
-contains_no_cloud_authorization=true
+---
+schema_version: "1.0"
+project: project-39-gha-aws-terraform
+fixture: negative-mutation
+purpose: deterministic local-first validation only
+authorization: none
+contains_credentials: false
+provider_actions_authorized: false
+expected_result: fail

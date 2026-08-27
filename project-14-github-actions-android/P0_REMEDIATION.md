@@ -1,13 +1,15 @@
-# P0 Local-First Remediation — End to End CI/CD pipeline using GitHub Actions for Android Application
+# P0 Local-First Remediation — end-to-end CI/CD pipeline using GitHub Actions for Android Application
 
 ## Scope
 
-This record defines the active classroom path for `project-14-github-actions-android`. It is source-only and local-first: it must not require provider credentials, cloud accounts, external deployment, or destructive lifecycle commands.
+This record defines the active classroom path for `project-14-github-actions-android`. It is source-only and
+local-first: it must not require provider credentials, cloud accounts, external deployment, or destructive
+lifecycle commands.
 
 ## Required controls
 
 | Control | Classroom implementation |
-|---|---|
+| --- | --- |
 | Starting boundary | Students begin with `README.md` and `START_HERE.md`. |
 | Validation | Run only the project-local validator from the project root. |
 | Evidence | Capture local validator output and the listed local fixture results. |
@@ -15,4 +17,5 @@ This record defines the active classroom path for `project-14-github-actions-and
 
 ## Non-claim
 
-Passing local validation demonstrates source-level readiness only. It does not authorize or evidence a live cloud deployment, teardown, or cost review.
+Passing local validation demonstrates source-level readiness only. It does not authorize or evidence a live
+cloud deployment, teardown, or cost review.

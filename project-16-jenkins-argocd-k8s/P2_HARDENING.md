@@ -1,8 +1,10 @@
-# Source Hardening Record — Real Time DevOps Project | Deploy to Kubernetes Using Jenkins | End to End DevOps Project | CI/CD
+# Source Hardening Record — Real Time DevOps Project | Deploy to Kubernetes Using Jenkins | end-to-end DevOps Project | CI/CD
 
 ## Local-first controls
 
-The active classroom route uses checked-in source, documentation, fixtures, and deterministic validation. Unsafe, credential-dependent, provider-mutating, or destructive operations are outside the student path and require separate human authorization.
+The active classroom route uses checked-in source, documentation, fixtures, and deterministic validation.
+Unsafe, credential-dependent, provider-mutating, or destructive operations are outside the student path and
+require separate human authorization.
 
 ## Review checklist
 

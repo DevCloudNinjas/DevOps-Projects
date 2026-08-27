@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 set -eu
-project_root=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
+project_root=$(CDPATH='' cd -- "$(dirname -- "$0")" && pwd)
 project_name=$(basename "$project_root")
 if [ "$project_name" != "project-53-supply-chain-security-lab" ]; then
   printf '%s

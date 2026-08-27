@@ -1,8 +1,12 @@
-# Classroom Worksheet — 𝐓𝐞𝐫𝐫𝐚𝐟𝐨𝐫𝐦:  𝐃𝐞𝐩𝐥𝐨𝐲 𝐚𝐧 𝐄𝐊𝐒 𝐂𝐥𝐮𝐬𝐭𝐞𝐫 — 𝐋𝐢𝐤𝐞 𝐚 𝐁𝐨𝐬𝐬!
+# Classroom Worksheet — 𝐓𝐞𝐫𝐫𝐚𝐟𝐨𝐫𝐦:  𝐃𝐞𝐩𝐥𝐨𝐲 𝐚𝐧 𝐄𝐊𝐒 𝐂𝐥𝐮𝐬𝐭𝐞𝐫 — 𝐋𝐢𝐤𝐞 𝐚 𝐁𝐨𝐬𝐬
 
 ## Learning and assessment
 
-Students will explain the project’s delivery or operations objective using the checked-in source and local fixtures. The observable outcome is a successful local validation transcript plus a short evidence note that identifies the relevant controls. The instructor assesses whether the student followed the local-first boundary, interpreted the validator result, and identified one appropriate next investigation step. The project validator and synthetic fixtures demonstrate the result without provider access or a live deployment.
+Students will explain the project’s delivery or operations objective using the checked-in source and local
+fixtures. The observable outcome is a successful local validation transcript plus a short evidence note that
+identifies the relevant controls. The instructor assesses whether the student followed the local-first
+boundary, interpreted the validator result, and identified one appropriate next investigation step. The
+project validator and synthetic fixtures demonstrate the result without provider access or a live deployment.
 
 ## Student workflow
 
@@ -13,4 +17,5 @@ Students will explain the project’s delivery or operations objective using the
 
 ## Hints
 
-Start with the first failed or missing local artifact. Do not substitute a cloud command for a local validation step.
+Start with the first failed or missing local artifact. Do not substitute a cloud command for a local
+validation step.

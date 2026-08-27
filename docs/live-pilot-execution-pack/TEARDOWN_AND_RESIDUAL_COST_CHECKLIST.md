@@ -3,7 +3,7 @@
 **Status:** Human-operated closure template; not an executable teardown script.
 
 | Closure check | Owner | Evidence record ID | Complete? |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | Approved activity stopped before authorization expiry | [enter name] | [enter ID] | [ ] |
 | Teardown verification within the approved boundary | [enter name] | [enter ID] | [ ] |
 | Independent target inventory completed | [enter name] | [enter ID] | [ ] |

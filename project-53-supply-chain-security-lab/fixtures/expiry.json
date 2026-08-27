@@ -1,6 +1,8 @@
-synthetic local fixture
-project=project-53-supply-chain-security-lab
-path=fixtures/expiry.json
-purpose=deterministic local-first validation only
-contains_no_credentials=true
-contains_no_cloud_authorization=true
+{
+  "authorization": "none",
+  "contains_credentials": false,
+  "fixture": "expiry",
+  "purpose": "synthetic expiry validation fixture",
+  "schema_version": "1.0",
+  "status": "expired"
+}

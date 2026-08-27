@@ -1,8 +1,12 @@
-# Classroom Worksheet — End to End CI/CD pipeline using GitHub Actions for Android Application
+# Classroom Worksheet — end-to-end CI/CD pipeline using GitHub Actions for Android Application
 
 ## Learning and assessment
 
-Students will explain the project’s delivery or operations objective using the checked-in source and local fixtures. The observable outcome is a successful local validation transcript plus a short evidence note that identifies the relevant controls. The instructor assesses whether the student followed the local-first boundary, interpreted the validator result, and identified one appropriate next investigation step. The project validator and synthetic fixtures demonstrate the result without provider access or a live deployment.
+Students will explain the project’s delivery or operations objective using the checked-in source and local
+fixtures. The observable outcome is a successful local validation transcript plus a short evidence note that
+identifies the relevant controls. The instructor assesses whether the student followed the local-first
+boundary, interpreted the validator result, and identified one appropriate next investigation step. The
+project validator and synthetic fixtures demonstrate the result without provider access or a live deployment.
 
 ## Student workflow
 
@@ -13,4 +17,5 @@ Students will explain the project’s delivery or operations objective using the
 
 ## Hints
 
-Start with the first failed or missing local artifact. Do not substitute a cloud command for a local validation step.
+Start with the first failed or missing local artifact. Do not substitute a cloud command for a local
+validation step.

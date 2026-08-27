@@ -1,3 +1,8 @@
-# Local-First Supporting Record — End to End CI/CD pipeline using GitHub Actions for Android Application
-
-This checked-in record is required by the active source contract for `project-14-github-actions-android`. It is synthetic, local-only, and does not authorize provider access, deployment, or destructive operations.
+---
+schema_version: "1.0"
+project: project-14-github-actions-android
+purpose: synthetic local CI contract fixture
+authorization: none
+local_only: true
+contains_credentials: false
+provider_actions_authorized: false

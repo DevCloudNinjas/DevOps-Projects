@@ -1,13 +1,15 @@
-# P0 Local-First Remediation — Kubernetes End to End Project on EKS(Amazon Kubernetes Service)
+# P0 Local-First Remediation — Kubernetes end-to-end Project on EKS(Amazon Kubernetes Service)
 
 ## Scope
 
-This record defines the active classroom path for `project-08-2048-game-eks`. It is source-only and local-first: it must not require provider credentials, cloud accounts, external deployment, or destructive lifecycle commands.
+This record defines the active classroom path for `project-08-2048-game-eks`. It is source-only and
+local-first: it must not require provider credentials, cloud accounts, external deployment, or destructive
+lifecycle commands.
 
 ## Required controls
 
 | Control | Classroom implementation |
-|---|---|
+| --- | --- |
 | Starting boundary | Students begin with `README.md` and `START_HERE.md`. |
 | Validation | Run only the project-local validator from the project root. |
 | Evidence | Capture local validator output and the listed local fixture results. |
@@ -15,4 +17,5 @@ This record defines the active classroom path for `project-08-2048-game-eks`. It
 
 ## Non-claim
 
-Passing local validation demonstrates source-level readiness only. It does not authorize or evidence a live cloud deployment, teardown, or cost review.
+Passing local validation demonstrates source-level readiness only. It does not authorize or evidence a live
+cloud deployment, teardown, or cost review.

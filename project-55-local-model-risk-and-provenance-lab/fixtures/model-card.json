@@ -1,9 +1,6 @@
 {
   "model_id": "m-001",
   "intended_use": "classroom batch scoring",
-  "limitations": [
-    "synthetic data",
-    "not production"
-  ],
+  "limitations": ["synthetic data", "not production"],
   "sensitive_data": "none"
 }

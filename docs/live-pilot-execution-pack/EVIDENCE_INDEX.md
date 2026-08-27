@@ -6,7 +6,7 @@ Use one redacted record per approved checkpoint. Do not store secrets, tokens,
 account identifiers, endpoints, or provider command output.
 
 | Checkpoint | Evidence record ID | Reviewer | Timestamp with timezone | Status |
-|---|---|---|---|---|
+| --- | --- | --- | --- | --- |
 | Authorization verified | [enter ID] | [enter name] | [enter timestamp] | [ ] |
 | Preflight completed | [enter ID] | [enter name] | [enter timestamp] | [ ] |
 | Baseline inventory captured | [enter ID] | [enter name] | [enter timestamp] | [ ] |

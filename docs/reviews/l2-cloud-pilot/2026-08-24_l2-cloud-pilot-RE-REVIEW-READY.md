@@ -21,7 +21,7 @@ from active execution surfaces.
 ## Review coverage and results
 
 | Control area | Independent result | Basis in frozen packet |
-|---|---|---|
+| --- | --- | --- |
 | Portfolio scope | Pass | Canonical portfolio manifest and validator cover exactly 54 project roots. |
 | Pilot selection | Pass | Project 53 is designated as the sole selected pilot; Project 52 is documented as reusable source-only material. |
 | Optional workflow contract | Pass | Active pilot workflows declare source-only/fixture-only behavior, use `ubuntu-24.04`, pin checkout by commit, and grant `contents: read` only. |

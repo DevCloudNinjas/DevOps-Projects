@@ -14,4 +14,8 @@ authorization or production record.
 
 ## Learning and assessment
 
-Students evaluate a synthetic model artifact, approval record, and provenance evidence without a remote model service. The observable outcome is a local validator result that reports the model hash, evaluation result, and rejection of a tampered or incomplete fixture. The instructor criterion is that the learner explains which artifact and approval controls support a trustworthy release decision. The project-local validator and checked-in fixtures demonstrate this competency without cloud credentials or deployment.
+Students evaluate a synthetic model artifact, approval record, and provenance evidence without a remote model
+service. The observable outcome is a local validator result that reports the model hash, evaluation result,
+and rejection of a tampered or incomplete fixture. The instructor criterion is that the learner explains which
+artifact and approval controls support a trustworthy release decision. The project-local validator and
+checked-in fixtures demonstrate this competency without cloud credentials or deployment.
