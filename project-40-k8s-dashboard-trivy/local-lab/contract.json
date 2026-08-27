@@ -1,0 +1,8 @@
+{
+  "project": "project-40-k8s-dashboard-trivy",
+  "mode": "local-first",
+  "provider_access": "prohibited",
+  "credentials": "prohibited",
+  "destructive_operations": "prohibited",
+  "evidence": "synthetic-local-fixtures"
+}

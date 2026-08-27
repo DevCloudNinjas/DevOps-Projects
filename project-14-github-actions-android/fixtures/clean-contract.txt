@@ -1,0 +1,6 @@
+synthetic local fixture
+project=project-14-github-actions-android
+path=fixtures/clean-contract.txt
+purpose=deterministic local-first validation only
+contains_no_credentials=true
+contains_no_cloud_authorization=true

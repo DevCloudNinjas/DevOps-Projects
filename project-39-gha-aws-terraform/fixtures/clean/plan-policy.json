@@ -1,0 +1,6 @@
+synthetic local fixture
+project=project-39-gha-aws-terraform
+path=fixtures/clean/plan-policy.json
+purpose=deterministic local-first validation only
+contains_no_credentials=true
+contains_no_cloud_authorization=true

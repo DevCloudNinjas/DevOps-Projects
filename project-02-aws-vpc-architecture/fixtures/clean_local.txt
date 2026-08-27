@@ -1,0 +1,6 @@
+synthetic local fixture
+project=project-02-aws-vpc-architecture
+path=fixtures/clean_local.txt
+purpose=deterministic local-first validation only
+contains_no_credentials=true
+contains_no_cloud_authorization=true

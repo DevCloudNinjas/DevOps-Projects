@@ -1,0 +1,6 @@
+synthetic local fixture
+project=project-18-jenkins-java-full-cicd
+path=fixtures/negative/mutation.txt
+purpose=deterministic local-first validation only
+contains_no_credentials=true
+contains_no_cloud_authorization=true

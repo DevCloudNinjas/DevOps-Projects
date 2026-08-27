@@ -1,0 +1,13 @@
+---
+name: Local Policy Plan Check
+on:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  local-policy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: sh ci/check-local-policy.sh
