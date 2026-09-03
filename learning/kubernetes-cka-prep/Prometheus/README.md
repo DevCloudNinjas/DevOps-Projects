@@ -2288,15 +2288,15 @@ spec:
 ```
 
 * For the `rules` section, you can write PromQL queries as before or
-  use [Awesome Prometheus alerts](https://awesome-prometheus-alerts.grep.to).
-* The [Awesome Prometheus alerts](https://awesome-prometheus-alerts.grep.to) is
+  use [Awesome Prometheus alerts](https://samber.github.io/awesome-prometheus-alerts).
+* The [Awesome Prometheus alerts](https://samber.github.io/awesome-prometheus-alerts) is
   a [open-source](https://github.com/samber/awesome-prometheus-alerts) that basically is a **Collection of Prometheus
   alerting rules**.
 * It is a fantastic project, and I love it a lot. (Remember that I said you don't need that deep PromQL knowledge?
   That's why!)
 * Under the `Databases and brokers`, you'll find the Redis.
-* We'll need the [Redis down](https://awesome-prometheus-alerts.grep.to/rules#rule-redis-1-1)
-  and [Redis too many connections](https://awesome-prometheus-alerts.grep.to/rules#rule-redis-1-10) rules.
+* We'll need the [Redis down](https://samber.github.io/awesome-prometheus-alerts/rules#rule-redis-1-1)
+  and [Redis too many connections](https://samber.github.io/awesome-prometheus-alerts/rules#rule-redis-1-10) rules.
 * Just copy and paste them under the `rules` same as before.
 
 Your file now should look like this:
